@@ -12,8 +12,7 @@ describe('App', () => {
     // Act - The rendering is the action in this case
     // Expect
     expect(
-      screen.getByRole('heading', { name: heading, level: 1 }),
+      screen.getByRole('heading', { name: heading, level: 1 })
     ).toHaveTextContent(heading);
   });
 });
-

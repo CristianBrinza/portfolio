@@ -5,7 +5,10 @@ interface IconProps {
   type?: string;
 }
 
-const Icon: React.FC<IconProps> = ({ color = 'var(--primary-color)', type = 'empty' }) => {
+const Icon: React.FC<IconProps> = ({
+  color = 'var(--primary-color)',
+  type = 'empty',
+}) => {
   const getComputedStyleValue = (value: string): string => {
     // Check if the value starts with "--" which indicates a CSS variable
     if (value.startsWith('--')) {
@@ -24,7 +27,7 @@ const Icon: React.FC<IconProps> = ({ color = 'var(--primary-color)', type = 'emp
   };
 
   return (
-      <img style={buttonStyle} src={`images/icons/${type}.svg`} alt={type} />
+    <img style={buttonStyle} src={`images/icons/${type}.svg`} alt={type} />
   );
 };
 

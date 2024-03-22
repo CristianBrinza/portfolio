@@ -1,5 +1,5 @@
 // Button.tsx
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 interface ButtonProps {
   bgcolor?: string;
@@ -9,7 +9,10 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  color, bgcolor, border, children,
+  color,
+  bgcolor,
+  border,
+  children,
 }) => {
   const getComputedStyleValue = (value: string): string => {
     // Check if the value starts with "--" which indicates a CSS variable

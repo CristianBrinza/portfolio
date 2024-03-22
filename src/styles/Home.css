@@ -1,0 +1,15 @@
+.home_hero {
+  width: 100%;
+  height: calc(100vh - 106px);
+  position: relative;
+}
+.home {
+  position: relative;
+}
+
+@media (max-width: 1000px) {
+  .home_hero {
+    width: 100%;
+    height: calc(100vh - 84px);
+  }
+}

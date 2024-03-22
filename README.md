@@ -3,7 +3,6 @@
 <h3 align="center">Bachelor of Science in Software Engineering (English Taught Honors Program on Software Engineering) at <a href="https://utm.md/en/">UTM</a>
                    and Programing and Program Analysis Licenced by <a href="https://ceiti.md/">CEITI</a></h3>
 
-
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 <a href="https://codepen.io/brinzacristian" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/codepen.svg" alt="https://codepen.io/brinzacristian" height="30" width="40" /></a>
@@ -19,9 +18,6 @@
 <h3 align='center'><a href="https://cristianbrinza.github.io/portfolio"> https://cristianbrinza.github.io/portfolio/</a></h3>
 <hr>
 
-
-
-
 ## Getting Started
 
 TBD
@@ -29,7 +25,6 @@ TBD
 ## Documentation
 
 TBD
-
 
 ## Features
 
@@ -42,8 +37,6 @@ Read the [contribution guidelines](/CONTRIBUTING.md) before contributing.
 ## Made with ❤️
 
 This (my portofolio) is an open source project and will always remain free to use. If you think it's cool, please star it 🌟. Also feel free contact me at [inbox.cristian.brinza@gmail.com](mailto:inbox.cristian.brinza@gmail.com) if you need any help with these or just want to say hi!
-
-
 
 <hr>
 <h1 align='center'><i>Stay awesome!</i></h1>
