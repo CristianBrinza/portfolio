@@ -1,0 +1,132 @@
+.navbar {
+    margin: auto;
+    margin-top: calc(50px - 0.5rem);
+    max-width: calc(1080px + 2rem);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    color: white;
+    padding: 0.5rem 2rem;
+    box-sizing: border-box;
+
+}
+
+.nav-brand, .nav-items a {
+    color: var(--primary);
+    text-decoration: none;
+    text-align: center;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    display: none; /* Hide by default, will be displayed on small screens */
+    cursor: pointer;
+}
+
+.nav-items {
+    display: flex;
+    align-items: center;
+    gap:20px;
+}
+
+.nav-items a {
+    margin-left: 1rem;
+}
+
+
+@media (max-width: 1000px) {
+    .menu-icon {
+        display: flex; /* Show menu icon on small screens */
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 999;
+    }
+
+
+
+    .nav-items {
+        display: none; /* Hide menu items by default on small screens */
+        flex-direction: column;
+        width: calc(100vw + 4rem);
+        padding: 1rem;
+        position: absolute;
+        top: 55px; /* Adjust based on navbar height */
+        left: 0;
+        right: 0;
+
+        background-color: white;
+        box-sizing: border-box;
+    }
+
+    .nav-items.visible {
+        display: flex; /* Show menu items when menu icon is clicked */
+        margin-left: auto;
+        margin-right: auto;
+        align-items: center;
+        justify-content: center;
+        margin-top: -20px;
+
+    }
+
+}
+
+@media (max-width: 700px) {
+    .nav-brand-img {
+        height: 18px;
+        width: auto;
+    }
+}
+
+
+@media (max-width: 320px) {
+    .navbar {
+        padding: 0.5rem 5px;
+    }
+}
+
+
+.LangSelect_background{
+    width: 100vw;
+    min-height: 100%;
+    background-color: rgb(255 255 255 / 59%);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    overflow-y: auto;
+}
+
+.LangSelect_container{
+    position: relative;
+    box-sizing: border-box;
+    border: 1px solid var(--primary);
+    border-radius: 24px;
+    padding: 45px 65px;
+    background: #FFF;
+
+    height: 300px;
+    margin:  auto;
+}
+
+.LangSelect_close_btn{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}

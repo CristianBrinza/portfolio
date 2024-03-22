@@ -16,3 +16,4 @@ describe('App', () => {
     ).toHaveTextContent(heading);
   });
 });
+
