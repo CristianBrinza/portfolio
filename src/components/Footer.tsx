@@ -4,28 +4,25 @@ import Button from './Button';
 import Icon from './Icon';
 
 const Footer: React.FC = () => {
-    const scrollToTop = () => {
-        console.log("Scrolling to top"); // For debugging
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth', // This triggers the smooth scrolling
-        });
-    };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // This triggers the smooth scrolling
+    });
+  };
 
-
-    return (
+  return (
     <div className="footer">
       <div className="footer_block ">
-       <div className="page footer_block_insde">
-           <div className="footer_left">
-               <img className="footer_logo" src="images/logo_light.svg" alt="CristianBrinza"/>
-               <div className="footer_subtext">
-                   Hope you liked my portfolio website. Feel free to suggest improvements or just to chat.
-               </div>
-           </div>
-       </div>
+        <div className="page footer_block_insde">
+          <div className="footer_left">
+            <img className="footer_logo" src="images/logo_light.svg" alt="CristianBrinza" />
+            <div className="footer_subtext">Hope you liked my portfolio website. Feel free to suggest improvements or just to chat.
+            </div>
+          </div>
+        </div>
       </div>
-        {/* Add the onClick event handler to the Button */}
+      {/* Add the onClick event handler to the Button */}
       <Button onClick={scrollToTop}>
         Back to top
         <Icon type="arrow_up" />
