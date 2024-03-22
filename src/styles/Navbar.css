@@ -51,7 +51,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    z-index: 999;
+    z-index: 99999999;
   }
 
   .nav-items {
@@ -76,6 +76,7 @@
     justify-content: center;
     margin-top: -20px;
     width: 100%;
+    z-index: 999999;
   }
 
   .nav-items button {

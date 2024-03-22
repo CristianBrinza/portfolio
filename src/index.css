@@ -10,3 +10,11 @@ body {
   --primary: #222222;
   --secondary: #fff;
 }
+
+.page{
+  position: relative;
+  padding: 10px;
+  max-width: calc(1080px + 20px);
+  box-sizing: border-box;
+  margin: 0 auto 0;
+}

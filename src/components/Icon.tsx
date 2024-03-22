@@ -3,11 +3,12 @@ import React from 'react';
 interface IconProps {
   color?: string;
   type?: string;
+  size?: string;
 }
 
 const Icon: React.FC<IconProps> = ({
   color = 'var(--primary-color)',
-  type = 'empty',
+  type = 'empty', size
 }) => {
   const getComputedStyleValue = (value: string): string => {
     // Check if the value starts with "--" which indicates a CSS variable
@@ -20,8 +21,8 @@ const Icon: React.FC<IconProps> = ({
   };
 
   const buttonStyle: React.CSSProperties = {
-    height: '24px',
-    width: '24px',
+    height: `${size}px` || '24px',
+    width: `${size}px` || '24px',
     fill: color ? getComputedStyleValue(color) : '--primary',
     stroke: getComputedStyleValue(color),
   };

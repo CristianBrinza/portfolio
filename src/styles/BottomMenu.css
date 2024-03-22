@@ -10,6 +10,9 @@
     transform 0.5s ease-out,
     opacity 0.5s ease-out; /* Ensure transition is defined here */
   opacity: 1; /* Default opacity */
+  margin-bottom: 20px;
+  background: var(--secondary);
+  z-index: 9999;
 }
 
 .BottomMenu_fixed {
@@ -18,6 +21,7 @@
   bottom: 0;
   /* Initially, do not set opacity to 0 here, to avoid it being invisible initially */
   transform: translateY(0px); /* Ensure transform starts at a defined state */
+  margin-bottom: 0px;
 }
 
 /* This is the state when it becomes visible and should animate */
@@ -36,5 +40,5 @@
   padding: 5px;
   border: 1px solid var(--primary);
   border-radius: 100px;
-  margin-bottom: 20px;
+
 }

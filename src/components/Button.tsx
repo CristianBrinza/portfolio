@@ -1,11 +1,12 @@
-// Button.tsx
 import React, { useState } from 'react';
 
+// Updated interface to include onClick
 interface ButtonProps {
   bgcolor?: string;
   color?: string;
   border?: string;
   children: React.ReactNode;
+  onClick?: () => void; // Optional onClick function prop
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -13,14 +14,12 @@ const Button: React.FC<ButtonProps> = ({
   bgcolor,
   border,
   children,
+  onClick, // Destructure onClick from props
 }) => {
   const getComputedStyleValue = (value: string): string => {
-    // Check if the value starts with "--" which indicates a CSS variable
     if (value.startsWith('--')) {
-      // Access computed style to get the value of the CSS variable
       return getComputedStyle(document.documentElement).getPropertyValue(value);
     }
-    // If it's not a CSS variable, return the value itself
     return value;
   };
 
@@ -50,6 +49,9 @@ const Button: React.FC<ButtonProps> = ({
     fontWeight: '600',
     lineHeight: '40px',
     gap: '16px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     mixBlendMode: isHovered ? 'difference' : 'initial',
   };
 
@@ -58,6 +60,7 @@ const Button: React.FC<ButtonProps> = ({
       style={buttonStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={onClick}
     >
       {children}
     </button>

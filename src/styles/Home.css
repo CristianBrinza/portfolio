@@ -1,15 +1,71 @@
+/* Home.css adjustments */
+
 .home_hero {
   width: 100%;
-  height: calc(100vh - 106px);
+  /* Use the --vh custom property instead of vh */
+  height: calc(var(--vh, 1vh) * 100 - 106px);
   position: relative;
 }
-.home {
-  position: relative;
+.home_scroll_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+  bottom: 150px;
+  left: 0;
+  right: 0;
+}
+.home_scroll {
+  color: var(--primary);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 100;
+  line-height: 100%; /* 16px */
+}
+.Home_AboutMe{
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap:30px;
+  margin-top: 30px;
+
+}
+.Home_AboutMe_text{
+  max-width: 780px;
+  width: 100%;
+  color: var(--primary);
+  text-align: center;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 100;
+  line-height: normal;
+}
+
+.home_title{
+  color: #222;
+  text-align: center;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 40px; /* 125% */
+}
+
+
+.temp_home{
+  height: 500px;
+  width: 100%;
 }
 
 @media (max-width: 1000px) {
   .home_hero {
     width: 100%;
-    height: calc(100vh - 84px);
+    /* Adjust the height calculation to use the --vh custom property */
+    height: calc(var(--vh, 1vh) * 100 - 84px);
   }
 }
