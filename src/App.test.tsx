@@ -1,7 +1,7 @@
-/* eslint-disable linebreak-style */
-import { describe, it } from 'vitest';
+// Import necessary libraries and the component to be tested
+import { describe, it, expect } from 'vitest';
 import { screen, render } from '@testing-library/react';
-import '@testing-library/jest-dom'; // Import jest-dom for the custom matchers
+import '@testing-library/jest-dom';
 import App from './App';
 
 describe('App', () => {
@@ -9,12 +9,10 @@ describe('App', () => {
     // Arrange
     render(<App />);
     const heading = 'Hello world!';
-    // Act
+    // Act - The rendering is the action in this case
     // Expect
     expect(
-      screen.getByRole('heading', {
-        level: 1,
-      }),
+      screen.getByRole('heading', { name: heading, level: 1 }),
     ).toHaveTextContent(heading);
   });
 });

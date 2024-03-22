@@ -16,7 +16,7 @@
 </p>
 <br/>
 <hr>
-<h3 align='center'><a> https://cristianbrinza.github.io/portfolio/</a></h3>
+<h3 align='center'><a href="https://cristianbrinza.github.io/portfolio"> https://cristianbrinza.github.io/portfolio/</a></h3>
 <hr>
 
 
