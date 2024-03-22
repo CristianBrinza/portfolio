@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import { describe, it } from 'vitest';
 import { screen, render } from '@testing-library/react';
+import '@testing-library/jest-dom'; // Import jest-dom for the custom matchers
 import App from './App';
 
 describe('App', () => {
