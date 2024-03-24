@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import WebsiteWarning from '../components/WebiteWarning';
 import '../styles/Home.css';
@@ -74,10 +74,7 @@ export default function Home() {
 
           <Button border="var(--primary)">
             {t("home.more_about_me")}
-            <Icon
-              type="arrow_right"
-              stroke="var(--primary)"
-            />
+            <Icon type="arrow_right" stroke="var(--primary)" />
           </Button>
 
         </div>

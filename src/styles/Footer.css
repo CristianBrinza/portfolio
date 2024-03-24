@@ -60,7 +60,7 @@ margin: 0 auto 0;
 
 .footer_right_title{
 font-family: Inter;
-font-size: 24px;
+font-size: 20px;
 font-style: normal;
 font-weight: 700;
 line-height: 40px; /* 166.667% */
@@ -72,7 +72,7 @@ line-height: 40px; /* 166.667% */
 }
 .footer_right_submenu{
     font-family: Inter;
-    font-size: 20px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 200;
     line-height: 40px; /* 200% */

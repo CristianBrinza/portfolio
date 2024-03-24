@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
           />
         </a>
         <button className="menu-icon" onClick={toggleMenuVisibility}>
-          <Icon type="menu" size="30" />
+          <Icon type="menu" size="30" stroke="var(--primary)" />
         </button>
         <div className={`nav-items ${isMenuVisible ? 'visible' : ''}`}>
           <a onClick={handleChangeLanguage}>{currentLanguage === 'en' ? 'en' : 'ro'}</a>

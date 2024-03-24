@@ -79,11 +79,11 @@ const Footer: React.FC = () => {
         {/* Add the onClick event handler to the Button */}
         <Button onClick={scrollToTop}>
             Back to top
-            <Icon type="arrow_up"/>
+            <Icon type="arrow_up" stroke="var(--primary)"/>
         </Button>
 
         <div className="footer_copyright">
-            <Icon type="copyright"/>
+            <Icon type="copyright" stroke="var(--primary)"/>
             &nbsp;&nbsp;2024 Copyright
             <span className="footer_copyright_light">
           &nbsp;by&nbsp;
