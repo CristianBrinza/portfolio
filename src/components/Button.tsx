@@ -34,7 +34,7 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const buttonStyle: React.CSSProperties = {
-    backgroundColor: bgcolor ? getComputedStyleValue(bgcolor) : '#fff',
+    backgroundColor: bgcolor ? getComputedStyleValue(bgcolor) : 'var(--secondary)',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: border ? getComputedStyleValue(border) : 'var(--primary)',

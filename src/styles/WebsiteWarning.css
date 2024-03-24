@@ -24,7 +24,7 @@
   padding: 12px;
   border-radius: 10px;
   border: 1px solid #858585;
-  background: #fdfdfd;
+  background: var(--secondary);
   position: fixed;
   right: 20px; /* Adjust as needed */
   bottom: 100px; /* Adjust as needed */
