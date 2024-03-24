@@ -40,7 +40,7 @@
   left: 0;
   height: 2px;
   width: 0;
-  background-color: #222;
+  background-color: var(--primary);
   border-radius: 0 0 10px 10px; /* Matches the bottom border-radius of the block */
   animation: fillWidth 10s linear forwards;
 }

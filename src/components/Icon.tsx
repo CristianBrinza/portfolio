@@ -26,10 +26,14 @@ const Icon: React.FC<IconProps> = ({
         // If fill or stroke is provided, replace in the SVG content.
         let updatedSvg = text;
         if (fill) {
-          updatedSvg = updatedSvg.replace(/fill="[^"]*"/g, `fill="${fill}"`);
+            updatedSvg = updatedSvg.replace(/fill="[^"]*"/g, `fill="${fill}"`);
         }
         if (stroke) {
-          updatedSvg = updatedSvg.replace(/stroke="[^"]*"/g, `stroke="${stroke}"`);
+            updatedSvg = updatedSvg.replace(/stroke="[^"]*"/g, `stroke="${stroke}"`);
+        }
+        if (size) {
+            updatedSvg = updatedSvg.replace(/ width="[^"]*"/g, ` width="${size}"`);
+            updatedSvg = updatedSvg.replace(/ height="[^"]*"/g, ` height="${size}"`);
         }
         setSvgContent(updatedSvg);
       })
