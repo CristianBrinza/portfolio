@@ -1,4 +1,5 @@
 {
+  "lang": "en",
   "navbar": {
     "contact": "Contact Me",
     "about": "About Me",
@@ -23,5 +24,9 @@
     "services": "Services",
     "other": "Other",
     "top": "Back to top"
+  },
+  "404": {
+    "sorry": "Sorry for the inconveniences",
+    "underwork": "Page underwork"
   }
 }

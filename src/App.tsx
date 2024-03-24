@@ -5,6 +5,8 @@ import {
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import { ThemeProvider } from './components/ThemeContext';
+import Contact from './pages/Contact';
+import About from "./pages/About.tsx";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/" element={<Navigate replace to="/en" />} />
           {/* Default to English */}
           <Route path="*" element={<NotFound />} />
+          <Route path="/:lang/contact" element={<Contact />} />
+          <Route path="/:lang/about" element={<About />} />
         </Routes>
       </HashRouter>
     </ThemeProvider>

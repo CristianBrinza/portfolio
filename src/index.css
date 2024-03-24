@@ -16,4 +16,19 @@ body {
   max-width: calc(1080px + 20px);
   box-sizing: border-box;
   margin: 0 auto 0;
+  min-height: calc(var(--vh, 1vh) * 100 - 106px);
+}
+
+.underwork{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+@media (max-width: 1000px) {
+  .page {
+    min-height: calc(var(--vh, 1vh) * 100 - 84px);
+  }
 }

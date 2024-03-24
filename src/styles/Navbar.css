@@ -41,9 +41,7 @@
   gap: 20px;
 }
 
-.nav-items a {
-  margin-left: 1rem;
-}
+
 
 @media (max-width: 1000px) {
   .menu-icon {

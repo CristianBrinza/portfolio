@@ -1,4 +1,5 @@
 {
+  "lang": "ro",
   "navbar": {
     "contact": "Contact",
     "about": "Despre mine",
@@ -23,6 +24,10 @@
     "services": "Servicii",
     "other": "Aletele",
     "top": "Înapoi sus"
+  },
+  "404": {
+    "sorry": "Ne pare rău pentru inconveniențe",
+    "underwork": "Pagina în lucru"
   }
 
 }

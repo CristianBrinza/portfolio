@@ -4,6 +4,7 @@ import Button from './Button';
 import Icon from './Icon';
 import { useTheme } from './ThemeContext.tsx';
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 const Footer: React.FC = () => {
     const { t, i18n: {} } = useTranslation();
@@ -43,16 +44,28 @@ const Footer: React.FC = () => {
                 Personal
               </div>
               <div className="footer_right_submenu">
-                Resume
+
+                <Link to={`/${t("lang")}/resume`}>
+                  Resume
+                </Link>
               </div>
               <div className="footer_right_submenu">
+
+                <Link to={`/${t("lang")}/work`}>
                   {t('footer.work')}
+                </Link>
               </div>
               <div className="footer_right_submenu">
+
+                <Link to={`/${t("lang")}/about`}>
                   {t('footer.about')}
+                </Link>
               </div>
               <div className="footer_right_submenu">
-                Contact
+
+                <Link to={`/${t("lang")}/contact`}>
+                  Contact
+                </Link>
               </div>
             </div>
             <div className="footer_right_menu">
@@ -60,21 +73,34 @@ const Footer: React.FC = () => {
                   {t('footer.services')}
               </div>
               <div className="footer_right_submenu">
-                Front-end
+
+                <Link to={`/${t("lang")}/front`}>
+                  Front-end
+                </Link>
               </div>
               <div className="footer_right_submenu">
-                Back-end
+
+                <Link to={`/${t("lang")}/back`}>
+                  Back-end
+                </Link>
               </div>
               <div className="footer_right_submenu">
-                Design
+                <Link to={`/${t("lang")}/design`}>
+                  Design
+                </Link>
               </div>
             </div>
             <div className="footer_right_menu">
               <div className="footer_right_title">
+
+                <Link to={`/${t("lang")}/other`}>
                   {t('footer.other')}
+                </Link>
               </div>
               <div className="footer_right_submenu">
-                Legal
+                 <Link to={`/${t("lang")}/legal`}>
+                   Legal
+              </Link>
               </div>
 
             </div>
