@@ -3,6 +3,16 @@
     "contact": "Contact",
     "about": "Despre mine",
     "blog": "Blog",
-    "work": "My work"
+    "work": "Lucru"
+  },
+  "website_warning": {
+    "title": " website în development",
+    "subtitle": "Atenție la schimbari si bugfix-uri"
+  },
+  "home": {
+    "more_about_me": "Mai multe despre mine",
+    "short_t1": "Cu un Developer competent, am o pasiune pentru site-uri web, aplicații și alte tipuri de proiecte atractive din punct de vedere vizual și ușor de utilizat. Mi-am dovedit capacitatea de a oferi muncă de înaltă calitate, de a mă adapta la noile tehnologii, de a colabora cu echipe interfuncționale și de a rămâne în prezent la tendințele din industrie.",
+    "short_t2": "Sunt un tânăr student inginer software, aflat la începutul carierei mele, având o mulțime de idei ambițioase și motivația și disciplina de a le realiza în management, design și dezvoltare.",
+    "short_title": "Foarte scurt despre mine:"
   }
 }

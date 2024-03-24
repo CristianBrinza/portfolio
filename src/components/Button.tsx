@@ -16,12 +16,7 @@ const Button: React.FC<ButtonProps> = ({
   children,
   onClick, // Destructure onClick from props
 }) => {
-  const getComputedStyleValue = (value: string): string => {
-    if (value.startsWith('--')) {
-      return getComputedStyle(document.documentElement).getPropertyValue(value);
-    }
-    return value;
-  };
+
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -34,25 +29,26 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const buttonStyle: React.CSSProperties = {
-    backgroundColor: bgcolor ? getComputedStyleValue(bgcolor) : 'var(--secondary)',
+    backgroundColor: isHovered ? '#d6d6d6' : bgcolor || 'var(--secondary)',
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: border ? getComputedStyleValue(border) : 'var(--primary)',
+    borderColor: isHovered ? '#d6d6d6' : border || 'var(--primary)',
     borderRadius: '100px',
     cursor: 'pointer',
     padding: '3px 28px',
-    color: color ? getComputedStyleValue(color) : 'var(--primary)',
+    color: color || 'var(--primary)',
     textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: '18px',
     fontStyle: 'normal',
     fontWeight: '600',
-    lineHeight: '40px',
+    lineHeight: '100%',
     gap: '16px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    mixBlendMode: isHovered ? 'difference' : 'initial',
+    flexDirection: 'row',
+    minHeight: "46px",
   };
 
   return (

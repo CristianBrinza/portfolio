@@ -6,9 +6,11 @@ import BottomMenu from '../components/BottomMenu';
 import Button from '../components/Button';
 import Icon from '../components/Icon';
 import Footer from '../components/Footer';
+import {useTranslation} from "react-i18next";
 
 export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
+  const { t, i18n: { changeLanguage, language } } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,44 +56,27 @@ export default function Home() {
             <div className="home_scroll">
               Scroll
             </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="23"
-              viewBox="0 0 20 23"
-              fill="none"
-            >
-              <path
-                d="M9.99993 22L0.999863 12.9999M9.99993 22L19 12.9999M9.99993 22L9.99993 0.999838"
-                stroke="#222222"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <Icon type="arrow_to_down" stroke="var(--primary)" />
 
           </div>
           <BottomMenu />
         </div>
         <div className="Home_AboutMe">
           <div className="home_title">
-            Very very short about me:
+            {t("home.short_title")}
           </div>
           <div className="Home_AboutMe_text">
-            As a proficient Developer, I have a passion for visually appealing and user-friendly
-            websites, applications and other types of projects. Proven my ability to deliver
-            high-quality work, adapt to new technologies, collaborate with cross-functional
-            teams, and stay currently with industry trends.
+            {t("home.short_t1")}
           </div>
           <div className="Home_AboutMe_text">
-            I am a young software-engineer student, at the beginning of my career, having a ton of ambitious ideas and the motivation and discipline to realize them in management, design and development.
-            {' '}
+            {t("home.short_t2")}
           </div>
 
-          <Button border="--primary">
-            More about me
+          <Button border="var(--primary)">
+            {t("home.more_about_me")}
             <Icon
               type="arrow_right"
+              stroke="var(--primary)"
             />
           </Button>
 

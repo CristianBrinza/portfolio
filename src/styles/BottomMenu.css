@@ -10,7 +10,7 @@
     transform 0.5s ease-out,
     opacity 0.5s ease-out; /* Ensure transition is defined here */
   opacity: 1; /* Default opacity */
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   background: var(--secondary);
   z-index: 9999;
 }

@@ -21,15 +21,13 @@ i18next
   .init({
     resources,
     debug: true,
-
-    fallbackLng: 'en', // fallback language
+    // Removed the language detector to rely on URL parameter
+    fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
     },
     backend: {
-      // options for the backend
       loadPath: '/locales/{{lng}}/{{ns}}.json',
     },
   });
-
 export default i18next;

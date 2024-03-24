@@ -30,10 +30,10 @@ const BottomMenu: React.FC = () => {
           className={`BottomMenu_container ${isVisible ? 'BottomMenu_fixed BottomMenu_visible' : ''}`}
       >
         <div className="BottomMenu_toggle">
-          <Button color="--secondary" border="--primary" bgcolor="--primary">
+          <Button color="var(--secondary)" border="var(--primary)" bgcolor="var(--primary)">
             Portfolio
           </Button>
-          <Button color="--primary" border="--secondary" bgcolor="--secondary">
+          <Button color="var(--primary)" border="var(--secondary)" bgcolor="var(--secondary)">
             CV/Resume
           </Button>
         </div>

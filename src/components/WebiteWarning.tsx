@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Icon from './Icon';
 import '../styles/WebsiteWarning.css';
+import { useTranslation } from 'react-i18next';
 
 const WebsiteWarning: React.FC = () => {
   const [visible, setVisible] = useState(true);
+  const { t, i18n: { changeLanguage, language } } = useTranslation();
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -26,17 +28,17 @@ const WebsiteWarning: React.FC = () => {
       {visible && (
         <div className={`WebsiteWarning ${visible ? '' : 'fadeOut'}`}>
           <div className="WebsiteWarning_close" onClick={handleClose}>
-            <Icon type="close" />
+            <Icon type="close" stroke="var(--primary)" />
           </div>
           <div className="WebsiteWarning_text">
-            website under development
+            {t('website_warning.title')}
             <br />
             <span className="WebsiteWarning_text_gray">
-              Mind the bugs and the changes
+              {t('website_warning.subtitle')}
             </span>
           </div>
           {/* Fill div */}
-          <div className="WebsiteWarning_fill"></div>
+          <div className="WebsiteWarning_fill" />
         </div>
       )}
     </>

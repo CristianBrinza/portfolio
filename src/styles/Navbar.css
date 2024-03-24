@@ -64,7 +64,7 @@
     left: 0;
     right: 0;
     gap: 10px;
-    background-color: white;
+    background-color: var(--secondary);
     box-sizing: border-box;
   }
 
@@ -88,6 +88,9 @@
   .nav-brand-img {
     height: 18px;
     width: auto;
+  }
+  .navbar {
+    padding-right: 10px;
   }
 }
 
