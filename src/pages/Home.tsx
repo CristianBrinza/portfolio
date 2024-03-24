@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
-import WebsiteWarning from '../components/WebiteWarning';
 import '../styles/Home.css';
 import BottomMenu from '../components/BottomMenu';
 import Button from '../components/Button';
@@ -47,7 +46,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <WebsiteWarning />
+
       <div className={`home ${isSticky ? 'sticky' : ''} page`}>
 
         <div className="home_hero">

@@ -4,7 +4,7 @@ import Button from './Button';
 import Icon from './Icon';
 import { useTheme } from './ThemeContext.tsx';
 import {useTranslation} from "react-i18next";
-import {Link} from "react-router-dom";
+import ScrollToTopLink from './ScrollToTopLink';
 
 const Footer: React.FC = () => {
     const { t, i18n: {} } = useTranslation();
@@ -45,27 +45,27 @@ const Footer: React.FC = () => {
               </div>
               <div className="footer_right_submenu">
 
-                <Link to={`/${t("lang")}/resume`}>
+                <ScrollToTopLink to={`/${t("lang")}/resume`}>
                   Resume
-                </Link>
+                </ScrollToTopLink>
               </div>
               <div className="footer_right_submenu">
 
-                <Link to={`/${t("lang")}/work`}>
+                <ScrollToTopLink to={`/${t("lang")}/work`}>
                   {t('footer.work')}
-                </Link>
+                </ScrollToTopLink>
               </div>
               <div className="footer_right_submenu">
 
-                <Link to={`/${t("lang")}/about`}>
+                <ScrollToTopLink to={`/${t("lang")}/about`}>
                   {t('footer.about')}
-                </Link>
+                </ScrollToTopLink>
               </div>
               <div className="footer_right_submenu">
 
-                <Link to={`/${t("lang")}/contact`}>
+                <ScrollToTopLink to={`/${t("lang")}/contact`}>
                   Contact
-                </Link>
+                </ScrollToTopLink>
               </div>
             </div>
             <div className="footer_right_menu">
@@ -74,33 +74,33 @@ const Footer: React.FC = () => {
               </div>
               <div className="footer_right_submenu">
 
-                <Link to={`/${t("lang")}/front`}>
+                <ScrollToTopLink to={`/${t("lang")}/front`}>
                   Front-end
-                </Link>
+                </ScrollToTopLink>
               </div>
               <div className="footer_right_submenu">
 
-                <Link to={`/${t("lang")}/back`}>
+                <ScrollToTopLink to={`/${t("lang")}/back`}>
                   Back-end
-                </Link>
+                </ScrollToTopLink>
               </div>
               <div className="footer_right_submenu">
-                <Link to={`/${t("lang")}/design`}>
+                <ScrollToTopLink to={`/${t("lang")}/design`}>
                   Design
-                </Link>
+                </ScrollToTopLink>
               </div>
             </div>
             <div className="footer_right_menu">
               <div className="footer_right_title">
 
-                <Link to={`/${t("lang")}/other`}>
+                <ScrollToTopLink to={`/${t("lang")}/other`}>
                   {t('footer.other')}
-                </Link>
+                </ScrollToTopLink>
               </div>
               <div className="footer_right_submenu">
-                 <Link to={`/${t("lang")}/legal`}>
+                 <ScrollToTopLink to={`/${t("lang")}/legal`}>
                    Legal
-              </Link>
+              </ScrollToTopLink>
               </div>
 
             </div>

@@ -6,11 +6,13 @@ import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import { ThemeProvider } from './components/ThemeContext';
 import Contact from './pages/Contact';
-import About from "./pages/About.tsx";
+import About from "./pages/About";
+import WebsiteWarning from "./components/WebiteWarning";
 
 function App() {
   return (
     <ThemeProvider>
+      <WebsiteWarning />
       <HashRouter>
         <Routes>
           <Route path="/:lang" element={<Home />} />

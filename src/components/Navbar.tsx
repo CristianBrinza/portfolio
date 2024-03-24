@@ -45,13 +45,14 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className="navbar">
-        <a href="/" className="nav-brand">
+        <Link className="nav-brand" to={`/${t("lang")}/`}>
+
           <img
             className="nav-brand-img"
             src={`images/${isDarkMode ? 'logo_light.svg' : 'logo.svg'}`}
             alt="Cristian Brinza"
           />
-        </a>
+        </Link>
         <button className="menu-icon" onClick={toggleMenuVisibility}>
           <Icon type="menu" size="30" stroke="var(--primary)" />
         </button>

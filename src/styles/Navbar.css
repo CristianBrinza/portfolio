@@ -65,6 +65,11 @@
     background-color: var(--secondary);
     box-sizing: border-box;
   }
+    .nav-items a {
+      width: 100%;
+      justify-content: center;
+
+  }
 
   .nav-items.visible {
     display: flex; /* Show menu items when menu icon is clicked */
