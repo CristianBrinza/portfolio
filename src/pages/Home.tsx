@@ -10,7 +10,7 @@ import {useTranslation} from "react-i18next";
 
 export default function Home() {
   const [isSticky, setIsSticky] = useState(false);
-  const { t, i18n: { changeLanguage, language } } = useTranslation();
+  const { t, i18n: {} } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
