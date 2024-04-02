@@ -97,10 +97,10 @@ export default function Home() {
               </div>
             </div>
             <div className="home_skils_display_btn">
-            <Button  border="var(--primary)">
-              {t('home.read_more')}
-              <Icon type="arrow_right" stroke="var(--primary)" />
-            </Button>
+              <Button border="var(--primary)">
+                {t('home.read_more')}
+                <Icon type="arrow_right" stroke="var(--primary)" />
+              </Button>
             </div>
           </div>
           <div className="home_skils_display">
@@ -110,50 +110,53 @@ export default function Home() {
             </div>
             <div className="home_skils_display_showcase">
               <div className="home_skils_display_showcase_block">
-                <img src="images/skills/js.png" alt="js"/>
+                <img src="images/skills/js.png" alt="js" />
               </div>
               <div className="home_skils_display_showcase_block">
-                <img src="images/skills/node.png" alt="node"/>
+                <img src="images/skills/node.png" alt="node" />
               </div>
               <div className="home_skils_display_showcase_block">
-                <img src="images/skills/express.png" alt="express"/>
+                <img src="images/skills/express.png" alt="express" />
               </div>
               <div className="home_skils_display_showcase_block">
-                <img src="images/skills/jwt.png" alt="jwt"/>
+                <img src="images/skills/jwt.png" alt="jwt" />
               </div>
               <div className="home_skils_display_showcase_block">
-                <img src="images/skills/python.png" alt="python"/>
+                <img src="images/skills/python.png" alt="python" />
               </div>
               <div className="home_skils_display_showcase_block">
-                <img src="images/skills/mongobd.png" alt="mongobd"/>
+                <img src="images/skills/mongobd.png" alt="mongobd" />
               </div>
             </div>
             <div className="home_skils_display_btn">
               <Button border="var(--primary)">
                 {t('home.read_more')}
-                <Icon type="arrow_right" stroke="var(--primary)"/>
+                <Icon type="arrow_right" stroke="var(--primary)" />
               </Button>
             </div>
           </div>
           <div className="home_skils_display">
             <div className="home_skils_display_title">
-              Design <br className="home_br_hide_mobile"/>Skills
+              Design
+              {' '}
+              <br className="home_br_hide_mobile" />
+              Skills
             </div>
             <div className="home_skils_display_showcase">
               <div className="home_skils_display_showcase_block">
-                <img src="images/skills/figma.png" alt="figma"/>
+                <img src="images/skills/figma.png" alt="figma" />
               </div>
               <div className="home_skils_display_showcase_block">
-                <img src="images/skills/photoshop.png" alt="photoshop"/>
+                <img src="images/skills/photoshop.png" alt="photoshop" />
               </div>
               <div className="home_skils_display_showcase_block">
-                <img src="images/skills/illustator.png" alt="bootstrap"/>
+                <img src="images/skills/illustator.png" alt="bootstrap" />
               </div>
             </div>
             <div className="home_skils_display_btn">
               <Button border="var(--primary)">
                 {t('home.read_more')}
-                <Icon type="arrow_right" stroke="var(--primary)"/>
+                <Icon type="arrow_right" stroke="var(--primary)" />
               </Button>
             </div>
           </div>
