@@ -16,8 +16,6 @@ const Button: React.FC<ButtonProps> = ({
   children,
   onClick, // Destructure onClick from props
 }) => {
-
-
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -48,7 +46,7 @@ const Button: React.FC<ButtonProps> = ({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    minHeight: "46px",
+    minHeight: '46px',
   };
 
   return (

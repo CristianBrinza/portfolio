@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", ".eslintrc.cjs", "src/types/**/*" ],
+  "include": ["src", ".eslintrc.cjs", "src/types/**/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

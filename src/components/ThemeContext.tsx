@@ -1,6 +1,10 @@
 // ThemeContext.tsx or wherever your ThemeProvider is defined
 import React, {
-  createContext, useContext, ReactNode, useState, useEffect,
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
 } from 'react';
 
 interface ThemeContextType {
@@ -18,8 +22,12 @@ export const useTheme = () => {
   return context;
 };
 
-export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
+export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [isDarkMode, setIsDarkMode] = useState(
+    () => localStorage.getItem('theme') === 'dark'
+  );
 
   useEffect(() => {
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');

@@ -5,8 +5,10 @@ import { useTranslation } from 'react-i18next';
 
 const WebsiteWarning: React.FC = () => {
   const [visible, setVisible] = useState(true);
-  const { t, i18n: {} } = useTranslation();
-
+  const {
+    t,
+    i18n: {},
+  } = useTranslation();
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;

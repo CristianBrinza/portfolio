@@ -6,7 +6,9 @@ export default function NotFound() {
     <div>
       <Navbar />
       <div className="page underwork">
-            <h1 style={{textAlign:"center",color:"var(--primary)"}}>404 | Not Found</h1>
+        <h1 style={{ textAlign: 'center', color: 'var(--primary)' }}>
+          404 | Not Found
+        </h1>
       </div>
       <Footer />
     </div>

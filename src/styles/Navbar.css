@@ -41,8 +41,6 @@
   gap: 20px;
 }
 
-
-
 @media (max-width: 1000px) {
   .menu-icon {
     display: flex; /* Show menu icon on small screens */
@@ -65,10 +63,9 @@
     background-color: var(--secondary);
     box-sizing: border-box;
   }
-    .nav-items a {
-      width: 100%;
-      justify-content: center;
-
+  .nav-items a {
+    width: 100%;
+    justify-content: center;
   }
 
   .nav-items.visible {

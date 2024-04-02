@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import '../styles/Navbar.css';
 import { useTranslation } from 'react-i18next';
-import {Link, useLocation, useNavigate} from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import Icon from './Icon';
 import { useTheme } from './ThemeContext';
 
-const LangSelect: React.FC<{ onClose: () => void; }> = ({ onClose }) => (
+const LangSelect: React.FC<{ onClose: () => void }> = ({ onClose }) => (
   <div className="LangSelect_background" onClick={onClose}>
     <div className="LangSelect_container">
       <div className="LangSelect_close_btn" onClick={onClose}>
@@ -45,8 +45,7 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className="navbar">
-        <Link className="nav-brand" to={`/${t("lang")}/`}>
-
+        <Link className="nav-brand" to={`/${t('lang')}/`}>
           <img
             className="nav-brand-img"
             src={`images/${isDarkMode ? 'logo_light.svg' : 'logo.svg'}`}
@@ -57,31 +56,28 @@ const Navbar: React.FC = () => {
           <Icon type="menu" size="30" stroke="var(--primary)" />
         </button>
         <div className={`nav-items ${isMenuVisible ? 'visible' : ''}`}>
-          <a onClick={handleChangeLanguage}>{i18n.language === 'en' ? 'en' : 'ro'}</a>
-          <a onClick={toggleMode}>
-
-            <Icon type={isDarkMode ? 'dark_mode' : 'light_mode'} stroke="var(--primary)"/>
-
+          <a onClick={handleChangeLanguage}>
+            {i18n.language === 'en' ? 'en' : 'ro'}
           </a>
-          <Link to={`/${t("lang")}/blog`}>
-            {t('navbar.blog')}
-          </Link>
-          <Link to={`/${t("lang")}/about`}>
-            {t('navbar.about')}
-          </Link>
-          <Link to={`/${t("lang")}/contact`}>
+          <a onClick={toggleMode}>
+            <Icon
+              type={isDarkMode ? 'dark_mode' : 'light_mode'}
+              stroke="var(--primary)"
+            />
+          </a>
+          <Link to={`/${t('lang')}/blog`}>{t('navbar.blog')}</Link>
+          <Link to={`/${t('lang')}/about`}>{t('navbar.about')}</Link>
+          <Link to={`/${t('lang')}/contact`}>
             <Button color="var(--secondary)" bgcolor="var(--primary)">
               {t('navbar.contact')}
             </Button>
           </Link>
-          <Link to={`/${t("lang")}/work`}>
-          <Button border="var(--primary)">
-            {t('navbar.work')}
-          </Button>
+          <Link to={`/${t('lang')}/work`}>
+            <Button border="var(--primary)">{t('navbar.work')}</Button>
           </Link>
         </div>
       </nav>
-      {showLangPopup && <LangSelect onClose={toggleLang}/>}
+      {showLangPopup && <LangSelect onClose={toggleLang} />}
     </>
   );
 };

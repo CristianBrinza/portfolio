@@ -1,13 +1,11 @@
 import './App.css';
-import {
-  HashRouter, Routes, Route, Navigate,
-} from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import { ThemeProvider } from './components/ThemeContext';
 import Contact from './pages/Contact';
-import About from "./pages/About";
-import WebsiteWarning from "./components/WebiteWarning";
+import About from './pages/About';
+import WebsiteWarning from './components/WebiteWarning';
 
 function App() {
   return (

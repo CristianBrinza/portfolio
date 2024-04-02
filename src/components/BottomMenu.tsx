@@ -26,18 +26,26 @@ const BottomMenu: React.FC = () => {
   }, [isVisible]);
 
   return (
-      <div
-          className={`BottomMenu_container ${isVisible ? 'BottomMenu_fixed BottomMenu_visible' : ''}`}
-      >
-        <div className="BottomMenu_toggle">
-          <Button color="var(--secondary)" border="var(--primary)" bgcolor="var(--primary)">
-            Portfolio
-          </Button>
-          <Button color="var(--primary)" border="var(--secondary)" bgcolor="var(--secondary)">
-            CV/Resume
-          </Button>
-        </div>
+    <div
+      className={`BottomMenu_container ${isVisible ? 'BottomMenu_fixed BottomMenu_visible' : ''}`}
+    >
+      <div className="BottomMenu_toggle">
+        <Button
+          color="var(--secondary)"
+          border="var(--primary)"
+          bgcolor="var(--primary)"
+        >
+          Portfolio
+        </Button>
+        <Button
+          color="var(--primary)"
+          border="var(--secondary)"
+          bgcolor="var(--secondary)"
+        >
+          CV/Resume
+        </Button>
       </div>
+    </div>
   );
 };
 
