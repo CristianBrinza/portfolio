@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "prettier": "prettier --write .",
     "test": "vitest",
-    "predeploy": "yarn build",
+    "predeploy": "vite build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
