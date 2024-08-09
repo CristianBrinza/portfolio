@@ -1,33 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Inter:400,300,600,700,800");
+
 :root {
-  --primary: #222222;
-  --secondary: #ffffff;
+  font-family: Inter, serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+
+  color-scheme: light dark;
+  color: #1D1D1F;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+
+
 body {
   margin: 0;
-  padding: 0;
-  border: 0;
-  font-family: Inter;
-  background: var(--secondary);
-}
-.page {
-  position: relative;
-  padding: 15px;
-  max-width: calc(1080px + 20px);
-  box-sizing: border-box;
-  margin: 0 auto 0;
-  min-height: calc(var(--vh, 1vh) * 100 - 106px);
+  min-width: 320px;
+  min-height: 100vh;
 }
 
-.underwork {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
 
-@media (max-width: 1000px) {
-  .page {
-    min-height: calc(var(--vh, 1vh) * 100 - 84px);
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #ffffff;
+    background-color: #333333;
   }
+
 }
