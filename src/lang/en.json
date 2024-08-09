@@ -1,0 +1,17 @@
+{
+  "lang": "en",
+  "navbar": {
+    "contact": "Contact Me",
+    "about": "About Me",
+    "blog": "Blog",
+    "work": "My work",
+    "romanian": "Romanian",
+    "english": "Enghish"
+  },
+  "website_warning": {
+    "title": " website under development",
+    "subtitle": " Mind the bugs and the changes",
+    "sorry": "We are sorry.",
+    "sorry_message": "The website under development, mind the bugs and the changes"
+  }
+}

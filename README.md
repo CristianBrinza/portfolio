@@ -1,50 +1,44 @@
-# React + TypeScript + Vite
+<h1 align='center'> Hello there, I'm Cristi :wave:</h1>
+<h4 align="center">(@CristianBrinza)</h4>
+<h3 align="center">Bachelor of Science in Software Engineering (English Taught Honors Program on Software Engineering) at <a href="https://utm.md/en/">UTM</a>
+                   and Programing and Program Analysis Licenced by <a href="https://ceiti.md/">CEITI</a></h3>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h3 align="left">Connect with me:</h3>
+<p align="left">
+<a href="https://codepen.io/brinzacristian" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/codepen.svg" alt="https://codepen.io/brinzacristian" height="30" width="40" /></a>
+<a href="https://twitter.com/cristian_brinza" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="https://twitter.com/cristian_brinza" height="30" width="40" /></a>
+<a href="https://linkedin.com/in/cristianbrinza" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="https://linkedin.com/in/cristianbrinza" height="30" width="40" /></a>
+<a href="https://stackoverflow.com/users/17364500/cristian-brinza" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/stack-overflow.svg" alt="https://stackoverflow.com/users/17364500/cristian-brinza" height="30" width="40" /></a>
+<a href="https://www.facebook.com/cristian.brinza.fb/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="cristian.brinza.fb" height="30" width="40" /></a>
+<a href="https://www.instagram.com/brinza_cristian" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="brinza_cristian" height="30" width="40" /></a>
+<a href="https://discordapp.com/users/cristi#5609/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/discord.svg" alt="cristi#5609" height="30" width="40" /></a>
+</p>
+<br/>
+<hr>
+<h3 align='center'><a href="https://cristianbrinza.github.io/portfolio"> https://cristianbrinza.github.io/portfolio/</a></h3>
+<hr>
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+TBD
 
-## Expanding the ESLint configuration
+## Documentation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+TBD
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+TBD
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Contributing
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Read the [contribution guidelines](/CONTRIBUTING.md) before contributing.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Made with ❤️
+
+This (my portofolio) is an open source project and will always remain free to use. If you think it's cool, please star it 🌟. Also feel free contact me at [inbox.cristian.brinza@gmail.com](mailto:inbox.cristian.brinza@gmail.com) if you need any help with these or just want to say hi!
+
+<hr>
+<h1 align='center'><i>Stay awesome!</i></h1>
+
+</br></br></br>

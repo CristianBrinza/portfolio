@@ -1,3 +1,18 @@
 #root {
 
 }
+
+
+#top_notification{
+    color: #1D1D1F;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 18px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F5F5F7;
+}

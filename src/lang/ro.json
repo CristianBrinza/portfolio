@@ -1,0 +1,15 @@
+{
+  "lang": "en",
+  "navbar": {
+    "contact": "Contact",
+    "about": "Despre mine",
+    "blog": "Blog",
+    "work": "Lucru"
+  },
+  "website_warning": {
+    "title": " website under development",
+    "subtitle": " Mind the bugs and the changes",
+    "sorry": "We are sorry.",
+    "sorry_message": "The website under development, mind the bugs and the changes"
+  }
+}

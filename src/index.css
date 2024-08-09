@@ -15,6 +15,11 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+
+  --theme_primary_color_black:#1D1D1F;
+  --theme_primary_color_white:#ffffff;
+  --theme_primary_color_dark_gray: #e5e6ea;
 }
 
 
