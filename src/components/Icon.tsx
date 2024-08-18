@@ -36,6 +36,13 @@ const Icon = ({ type, width = 24, height = 24, color = "#9DAEFF",}) => {
                 <path d="M6.5 17H17.5" stroke="var(--theme_primary_color_black)" strokeWidth="1.5" strokeLinecap="round"/>
           </>
 
+        ),
+        back: (
+            <>
+                <path d="M7 11L1 6" stroke="#222222" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M7 1L1 6" stroke="#222222" stroke-width="1.5" stroke-linecap="round"/>
+            </>
+
         )
 
 
@@ -45,7 +52,7 @@ const Icon = ({ type, width = 24, height = 24, color = "#9DAEFF",}) => {
     return (
         <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} fill="none"
              xmlns="http://www.w3.org/2000/svg">
-            {icons[type]}
+        {icons[type]}
         </svg>
     );
 };

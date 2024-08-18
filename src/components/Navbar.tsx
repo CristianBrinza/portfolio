@@ -108,17 +108,17 @@ const Navbar: React.FC = () => {
       {isListLangPopupVisible && (
           <Popup id="list_all_operators_popup" isVisible={isListLangPopupVisible} onClose={toggleLangPopup}>
             <div>
-             <div id="navbar_lang_select_btns">
-               <Button onClick={() => handleChangeLanguage("ro")} bgcolor="#F2F3F7">
-                 {t('navbar.romanian')}
-               </Button>
-               <Button onClick={() => handleChangeLanguage("en")} bgcolor="#F2F3F7">
-                 {t('navbar.english')}
-               </Button>
-               <Button onClick={() => handleChangeLanguage("ru")} bgcolor="#F2F3F7">
-                 {t('navbar.russian')}
-               </Button>
-             </div>
+              <div id="navbar_lang_select_btns">
+                <Button onClick={() => handleChangeLanguage("ro")} bgcolor="#F2F3F7">
+                  {t('navbar.romanian')}
+                </Button>
+                <Button onClick={() => handleChangeLanguage("en")} bgcolor="#F2F3F7">
+                  {t('navbar.english')}
+                </Button>
+                <Button onClick={() => handleChangeLanguage("ru")} bgcolor="#F2F3F7">
+                  {t('navbar.russian')}
+                </Button>
+              </div>
             </div>
           </Popup>
       )}

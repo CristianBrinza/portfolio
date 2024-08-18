@@ -1,3 +1,4 @@
+//components/WebsiteWarning.tsx
 import React, { useState, useEffect } from 'react';
 import Icon from './Icon';
 import '../styles/WebsiteWarning.css';
