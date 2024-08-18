@@ -12,12 +12,19 @@
   },
   "navigation": {
     "home": "Home",
-    "about_page": "About me"
+    "about_page": "About me",
+    "resume_page": "Resume",
+    "blog_page": "Blog",
+    "not_found_page": "Not Found"
   },
   "website_warning": {
     "title": " Website under development",
     "subtitle": "Mind the bugs and the changes",
     "sorry": "We are sorry.",
     "sorry_message": "The website under development, mind the bugs and the changes"
+  },
+  "home": {
+    "hello": "Hello",
+    "imcristian":"I’m Cristian"
   }
 }

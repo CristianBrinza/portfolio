@@ -1,12 +1,13 @@
 .navbar {
   margin: auto;
-  margin-top: 13px;
-  max-width: calc(1080px + 2rem);
+  margin-top: 4px;
+  margin-bottom: 4px;
+  max-width: calc(1140px + 4rem);
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--theme_primary_color_white);
+  background-color: transparent;
   color: white;
   padding: 0.5rem 2rem;
   box-sizing: border-box;

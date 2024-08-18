@@ -4,7 +4,7 @@
     "contact": "Contactează-mă",
     "about": "Despre mine",
     "blog": "Blog",
-    "work": "Lucrări",
+    "work": "Lucru",
     "romanian": "Română",
     "english": "Engleză",
     "russian": "Rusă",
@@ -12,12 +12,19 @@
   },
   "navigation": {
     "home": "Acasa",
-    "about_page": "Despre mine"
+    "about_page": "Despre mine",
+    "resume_page": "Resume",
+    "blog_page": "Blog",
+    "not_found_page": "Not Found"
   },
   "website_warning": {
     "title": "Site-ul este în curs de dezvoltare",
     "subtitle": "Fiți atenți la erori și la schimbări",
     "sorry": "Ne pare rău.",
     "sorry_message": "Site-ul este în curs de dezvoltare, fiți atenți la erori și la schimbări"
+  },
+  "home": {
+    "hello": "Salut",
+    "imcristian":"Sunt Cristian"
   }
 }

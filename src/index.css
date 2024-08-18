@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Inter:400,300,600,700,800");
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
 :root {
   font-family: Inter, serif;
@@ -16,13 +17,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-
-  --theme_primary_color_black:#1D1D1F;
-  --theme_primary_color_white:#ffffff;
+  --theme_primary_color_black: #1D1D1F;
+  --theme_primary_color_white: #ffffff;
   --theme_primary_color_dark_gray: #e5e6ea;
+
+  /* Transition for smooth theme changes */
+  transition: background-color 0.8s ease-in-out, color 1.2s ease-in-out;
 }
-
-
 
 body {
   margin: 0;
@@ -30,11 +31,19 @@ body {
   min-height: 100vh;
 }
 
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #ffffff;
     background-color: #333333;
   }
+}
 
+/* Dark Mode Specific Styles */
+:root.dark-mode {
+  color: #ffffff;
+  background-color: #222;
+
+  --theme_primary_color_black: #ffffff;
+  --theme_primary_color_white: #1D1D1F;
+  --theme_primary_color_dark_gray: #646464;
 }

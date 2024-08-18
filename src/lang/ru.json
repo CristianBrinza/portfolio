@@ -11,13 +11,20 @@
     "back": "Inapoi"
   },
   "navigation": {
-    "home": "Home",
-    "about_page": "About me"
+    "home": "Главное",
+    "about_page": "Обо мне",
+    "resume_page": "Resume",
+    "blog_page": "Блог",
+    "not_found_page": "Не найдено"
   },
   "website_warning": {
     "title": "Сайт в разработке",
     "subtitle": "Bнимание на ошибки и изменения",
     "sorry": "Извините.",
     "sorry_message": "Сайт в разработке, обратите внимание на ошибки и изменения"
+  },
+  "home": {
+    "hello": "Hello",
+    "imcristian":"I’m Cristian"
   }
 }

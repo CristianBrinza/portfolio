@@ -1,18 +1,22 @@
-import {useTranslation} from "react-i18next";
-import Breadcrumb from "../components/Breadcrumb.tsx";
+import {Trans} from "react-i18next";
+import Breadcrumb from "../components/Breadcrumb/Breadcrumb.tsx";
+import React from "react";
+import Title from "../components/Text/Title/Title.tsx";
 
 export default function Blog() {
-    const { t } = useTranslation();
+
     const breadcrumbItems = [
-        { label: t('navigation.home'), url: '/' },
-        { label: t('navigation.blog_page')},
+        { label: <Trans>navigation.home</Trans>, url: '/' },
+        { label: <Trans>navigation.blog_page</Trans> },
     ];
 
     return (
         <>
             <Breadcrumb items={breadcrumbItems} />
-            <br/>
-            Blog
+
+           <div className="main">
+               <Title>Blog</Title>
+           </div>
         </>
     );
 }

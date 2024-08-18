@@ -27,7 +27,7 @@
   background: var(--theme_primary_color_white);
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 30px;
   animation: slideInRight 0.5s forwards;
   overflow: hidden; /* Ensures that the filling does not extend outside the block */
   overflow-x: hidden; /* Ensures that the filling does not extend outside the block */

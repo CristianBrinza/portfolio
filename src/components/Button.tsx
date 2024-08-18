@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-// Updated interface to include onClick
 interface ButtonProps {
   bgcolor?: string;
   color?: string;
   border?: string;
+  border_radius?: string;
+  hover_bgcolor?: string;
+  hover_color?: string;
   children: React.ReactNode;
-  border_radius:string;
-  hover_bgcolor:string;
-  onClick?: () => void; // Optional onClick function prop
+  onClick?: () => void;
+  to?: string; // New to prop for navigation
 }
 
 const Button: React.FC<ButtonProps> = ({
-  color,
-  bgcolor,
-  hover_bgcolor,
-  border,
-  border_radius,
-  children,
-  onClick, // Destructure onClick from props
-
-}) => {
+                                         color,
+                                         bgcolor,
+                                         hover_bgcolor,
+                                         hover_color,
+                                         border,
+                                         border_radius,
+                                         children,
+                                         onClick,
+                                         to, // Destructure to from props
+                                       }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate(); // useNavigate hook for navigation
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -31,15 +35,24 @@ const Button: React.FC<ButtonProps> = ({
     setIsHovered(false);
   };
 
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    if (to) {
+      navigate(to); // Navigate to the specified route
+    }
+  };
+
   const buttonStyle: React.CSSProperties = {
-    backgroundColor: isHovered ? hover_bgcolor||'var(--theme_primary_color_dark_gray)' : bgcolor || 'var(--theme_primary_color_white)',
+    backgroundColor: isHovered ? hover_bgcolor || 'var(--theme_primary_color_dark_gray)' : bgcolor || 'var(--theme_primary_color_white)',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: isHovered ? hover_bgcolor : border || '#ffffff00',
     borderRadius: border_radius || '12px',
     cursor: 'pointer',
     padding: '3px 28px',
-    color: color || 'var(--theme_primary_color_black)',
+    color: isHovered ? hover_color || 'var(--theme_primary_color_black)' :color || 'var(--theme_primary_color_black)',
     textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: '18px',
@@ -55,14 +68,14 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <button
-      style={buttonStyle}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={onClick}
-    >
-      {children}
-    </button>
+      <button
+          style={buttonStyle}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick} // Use handleClick instead of onClick
+      >
+        {children}
+      </button>
   );
 };
 

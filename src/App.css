@@ -1,7 +1,27 @@
+/*App.css*/
+
 #root {
 
 }
+.main{
+    width: 96vw;
+    max-width: 1180px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    gap:80px;
+}
+.page {
 
+    box-sizing: border-box;
+    margin: 0 auto 0;
+    min-height: calc(var(--vh, 1vh) * 100 - 106px);
+}
+@media (max-width: 1000px) {
+    .page {
+        min-height: calc(var(--vh, 1vh) * 100 - 84px);
+    }
+}
 
 #top_notification{
     color: #1D1D1F;
@@ -15,4 +35,5 @@
     justify-content: center;
     align-items: center;
     background: #F5F5F7;
+    user-select: none;
 }

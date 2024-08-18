@@ -1,22 +1,22 @@
-import Breadcrumb from "../components/Breadcrumb.tsx";
-import {useTranslation} from "react-i18next";
-import {Link} from "react-router-dom";
-import React from "react";
+// src/pages/About.tsx
+import React from 'react';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
+import { Trans } from 'react-i18next'; // Import Trans component
 
 export default function About() {
-    const { t } = useTranslation();
     const breadcrumbItems = [
-        { label: t('navigation.home'), url: '/' },
-        { label: t('navigation.about_page')},
+        { label: <Trans>navigation.home</Trans>, url: '/' },
+        { label: <Trans>navigation.about_page</Trans> },
+
     ];
 
-  return (
-    <>
-        <Breadcrumb items={breadcrumbItems} />
-        <br/>
-        About
-
-        <Link to="/">{t('navbar.home')}</Link>
-    </>
-  );
+    return (
+        <>
+            <Breadcrumb items={breadcrumbItems}/>
+            <div className="main">
+                <h1>About</h1>
+            </div>
+        </>
+    );
 }
+

@@ -1,0 +1,51 @@
+.BottomMenu_container {
+  display: flex;
+  position: absolute;
+  margin: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  transition:
+    transform 0.5s ease-out,
+    opacity 0.5s ease-out; /* Ensure transition is defined here */
+  opacity: 1; /* Default opacity */
+  margin-bottom: 20px;
+  background: transparent;
+  z-index: 9999;
+}
+
+.BottomMenu_fixed {
+  position: fixed;
+  top: auto;
+  bottom: 0;
+  /* Initially, do not set opacity to 0 here, to avoid it being invisible initially */
+  transform: translateY(0px); /* Ensure transform starts at a defined state */
+  margin-bottom: 0px;
+}
+
+/* This is the state when it becomes visible and should animate */
+.BottomMenu_visible {
+  opacity: 1;
+  transform: translateY(
+    -20px
+  ); /* Adjust if you want it to slide from a bit above */
+}
+
+.BottomMenu_toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid var(--theme_primary_color_black);
+  border-radius: 100px;
+  background: var(--theme_primary_color_white);
+}
+
+.BottomMenu_toggle button{
+  border-radius: 100px!important;
+  font-weight: 500!important;
+  padding: 8px 24px!important;
+  line-height: 35px !important;
+}

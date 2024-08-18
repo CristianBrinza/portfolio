@@ -1,11 +1,11 @@
 //components/Navbar.tsx
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles/Navbar.css';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import Icon from './Icon';
-import Popup from "./Popup.tsx";
+import Popup from "./Popup/Popup.tsx";
 
 
 const Langelect: React.FC<{ onClose: () => void }> = ({ onClose }) => (
@@ -51,6 +51,28 @@ const Navbar: React.FC = () => {
 
 
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+      setIsDarkMode(true);
+    }
+  }, []);
+
+
+  const toggleTheme = () => {
+    const newMode = !isDarkMode;
+    setIsDarkMode(newMode);
+    if (newMode) {
+      document.documentElement.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+    }
+  };
 
   const toggleMenuVisibility = () => setIsMenuVisible(!isMenuVisible);
   const toggleLang = () => setShowPopup(!showLangPopup);
@@ -80,26 +102,26 @@ const Navbar: React.FC = () => {
           <Icon type="menu" size="30" stroke="var(--primary)"/>
         </button>
         <div className={`nav-items ${isMenuVisible ? 'visible' : ''}`}>
-          <a onClick={toggleLangPopup}>
+          <a onClick={toggleLangPopup} style={{cursor:"Pointer"}}>
             {i18n.language === 'en' ? 'en' : i18n.language === 'ro' ? 'ro' : 'ru'}
           </a>
 
-          <a>
+          <a  onClick={toggleTheme}>
             <Icon
-                type="mode"
-                stroke="var(----theme_primary_color_black)"
+                type={isDarkMode ? 'dark_mode' : 'light_mode'}
+                stroke="var(--theme_primary_color_black)"
+
             />
           </a>
-          <Link to="/blog">{t('navbar.blog')}</Link>
-          <Link to="/about">{t('navbar.about')}</Link>
-          <Link to="/contact">
-            <Button color="var(--theme_primary_color_white)" hover_bgcolor="#c1061f" bgcolor="#E40523">
+
+
+            <Link to="/blog">{t('navbar.blog')}</Link>
+            <Link to="/about">{t('navbar.about')}</Link>
+            <Button to="/contact" color="#fffff" hover_bgcolor="#8E001D" bgcolor="#E40523" hover_color="#ffffff">
               {t('navbar.contact')}
             </Button>
-          </Link>
-          <Link to="/work">
-            <Button bgcolor="#F2F3F7">{t('navbar.work')}</Button>
-          </Link>
+            <Button to="/work" color="var(--theme_primary_color_black)" border="#F2F3F7" bgcolor="transparent">{t('navbar.work')}</Button>
+
 
         </div>
       </nav>
@@ -110,13 +132,13 @@ const Navbar: React.FC = () => {
           <Popup id="list_all_operators_popup" isVisible={isListLangPopupVisible} onClose={toggleLangPopup}>
             <div>
               <div id="navbar_lang_select_btns">
-                <Button onClick={() => handleChangeLanguage("ro")} bgcolor="#F2F3F7">
+                <Button onClick={() => handleChangeLanguage("ro")} bgcolor="#F2F3F7" color="#1d1d1f">
                   {t('navbar.romanian')}
                 </Button>
-                <Button onClick={() => handleChangeLanguage("en")} bgcolor="#F2F3F7">
+                <Button onClick={() => handleChangeLanguage("en")} bgcolor="#F2F3F7" color="#1d1d1f">
                   {t('navbar.english')}
                 </Button>
-                <Button onClick={() => handleChangeLanguage("ru")} bgcolor="#F2F3F7">
+                <Button onClick={() => handleChangeLanguage("ru")} bgcolor="#F2F3F7" color="#1d1d1f">
                   {t('navbar.russian')}
                 </Button>
               </div>

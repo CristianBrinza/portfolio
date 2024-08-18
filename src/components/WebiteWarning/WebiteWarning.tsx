@@ -1,7 +1,7 @@
 //components/WebsiteWarning.tsx
 import React, { useState, useEffect } from 'react';
-import Icon from './Icon';
-import '../styles/WebsiteWarning.css';
+import Icon from '../Icon.tsx';
+import './WebsiteWarning.css';
 import { useTranslation } from 'react-i18next';
 
 const WebsiteWarning: React.FC = () => {

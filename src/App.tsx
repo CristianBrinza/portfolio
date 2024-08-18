@@ -1,10 +1,11 @@
 // App.tsx
-import {useEffect, useState} from 'react';
-import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import {I18nextProvider, useTranslation} from 'react-i18next';
 import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
+import i18n from './i18n';
 import { routes } from './routesConfig.ts';
-import WebsiteWarning from './components/WebiteWarning.tsx';
+import WebsiteWarning from './components/WebiteWarning/WebiteWarning.tsx';
 
 function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => void }) {
     const { i18n } = useTranslation();
@@ -17,7 +18,8 @@ function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => voi
 
         if (!['en', 'ro', 'ru'].includes(detectedLang)) {
             detectedLang = localStorage.getItem('i18nextLng') || 'en';
-            navigate(`/${detectedLang}${location.pathname}`, { replace: true });
+            const newPath = detectedLang + (location.pathname !== '/' ? location.pathname : '');
+            navigate(`/${newPath}`, { replace: true });
         } else if (detectedLang !== i18n.language) {
             i18n.changeLanguage(detectedLang).then(() => {
                 onLanguageChange();
@@ -37,7 +39,7 @@ function App() {
     };
 
     return (
-        <>
+        <I18nextProvider i18n={i18n}>
             <div id="top_notification">
                 <span style={{ fontWeight: '600' }}>{t('website_warning.sorry')}</span>&nbsp; {t('website_warning.sorry_message')}
             </div>
@@ -48,10 +50,10 @@ function App() {
                     {routes.map(({ path, element }, index) => (
                         <Route key={index} path={path} element={element} />
                     ))}
-                    <Route path="/" element={<Navigate replace to="/en" />} />
+                    <Route path="/" element={<Navigate replace to={`/${localStorage.getItem('i18nextLng') || 'en'}`} />} />
                 </Routes>
             </BrowserRouter>
-        </>
+        </I18nextProvider>
     );
 }
 
