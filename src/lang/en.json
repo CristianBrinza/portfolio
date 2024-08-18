@@ -10,6 +10,10 @@
     "russian": "Russian",
     "back": "Back"
   },
+  "navigation": {
+    "home": "Home",
+    "about_page": "About me"
+  },
   "website_warning": {
     "title": " Website under development",
     "subtitle": "Mind the bugs and the changes",

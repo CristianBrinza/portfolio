@@ -1,19 +1,22 @@
 import Breadcrumb from "../components/Breadcrumb.tsx";
+import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
+import React from "react";
 
 export default function About() {
-
+    const { t } = useTranslation();
     const breadcrumbItems = [
-        { label: 'Acasa', url: '/' },
-        { label: 'Prepararea cafelei', url: '/prepararea-cafelei' },
-        { label: 'Aparate de cafea', url: '/apparate-de-cafea' },
-        { label: 'Aparat de cafea DeLonghi ECAM650.85MS, Argintiu', url: '/aparat-de-cafea-delonghi' },
+        { label: t('navigation.home'), url: '/' },
+        { label: t('navigation.about_page')},
     ];
 
   return (
     <>
         <Breadcrumb items={breadcrumbItems} />
-<br/>
+        <br/>
         About
+
+        <Link to="/">{t('navbar.home')}</Link>
     </>
   );
 }

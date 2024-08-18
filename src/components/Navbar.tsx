@@ -38,16 +38,17 @@ const Navbar: React.FC = () => {
       const pathParts = location.pathname.split('/').filter(Boolean);
 
       if (['en', 'ro', 'ru'].includes(pathParts[0])) {
-        pathParts[0] = lang; // Replace the language part
+        pathParts[0] = lang;
       } else {
-        pathParts.unshift(lang); // Add the new language if not present
+        pathParts.unshift(lang);
       }
 
       navigate('/' + pathParts.join('/'));
-
       setIsListLangPopupVisible(false);
+      localStorage.setItem('i18nextLng', lang); // Save language to local storage
     });
   };
+
 
 
 
@@ -89,14 +90,14 @@ const Navbar: React.FC = () => {
                 stroke="var(----theme_primary_color_black)"
             />
           </a>
-          <Link to={`/${i18n.language}/blog`}>{t('navbar.blog')}</Link>
-          <Link to={`/${i18n.language}/about`}>{t('navbar.about')}</Link>
-          <Link to={`/${i18n.language}/contact`}>
+          <Link to="/blog">{t('navbar.blog')}</Link>
+          <Link to="/about">{t('navbar.about')}</Link>
+          <Link to="/contact">
             <Button color="var(--theme_primary_color_white)" hover_bgcolor="#c1061f" bgcolor="#E40523">
               {t('navbar.contact')}
             </Button>
           </Link>
-          <Link to={`/${i18n.language}/work`}>
+          <Link to="/work">
             <Button bgcolor="#F2F3F7">{t('navbar.work')}</Button>
           </Link>
 

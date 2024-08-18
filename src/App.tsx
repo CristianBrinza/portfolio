@@ -1,10 +1,10 @@
-//App.tsx
-import { useState, useEffect } from 'react';
+// App.tsx
+import {useEffect, useState} from 'react';
 import { useTranslation } from 'react-i18next';
-import {BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
 import { routes } from './routesConfig.ts';
-import WebsiteWarning from "./components/WebiteWarning.tsx";
+import WebsiteWarning from './components/WebiteWarning.tsx';
 
 function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => void }) {
     const { i18n } = useTranslation();
@@ -13,23 +13,14 @@ function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => voi
 
     useEffect(() => {
         const pathParts = location.pathname.split('/').filter(Boolean);
-        const detectedLang = pathParts[0];
+        let detectedLang = pathParts[0];
 
-        if (['en', 'ro', 'ru'].includes(detectedLang)) {
-            if (detectedLang !== i18n.language) {
-                i18n.changeLanguage(detectedLang).then(() => {
-                    onLanguageChange(); // Force re-render by triggering state change
-                    if (pathParts[0] !== detectedLang) {
-                        pathParts[0] = detectedLang;
-                        navigate('/' + pathParts.join('/'), { replace: true });
-                    }
-                });
-            }
-        } else {
-            const defaultLang = 'en';
-            i18n.changeLanguage(defaultLang).then(() => {
-                onLanguageChange(); // Force re-render by triggering state change
-                navigate(`/${defaultLang}${location.pathname}`, { replace: true });
+        if (!['en', 'ro', 'ru'].includes(detectedLang)) {
+            detectedLang = localStorage.getItem('i18nextLng') || 'en';
+            navigate(`/${detectedLang}${location.pathname}`, { replace: true });
+        } else if (detectedLang !== i18n.language) {
+            i18n.changeLanguage(detectedLang).then(() => {
+                onLanguageChange();
             });
         }
     }, [location.pathname, i18n, navigate, onLanguageChange]);
@@ -41,7 +32,6 @@ function App() {
     const { t } = useTranslation();
     const [languageChanged, setLanguageChanged] = useState(false);
 
-    // Function to trigger re-render on language change
     const handleLanguageChange = () => {
         setLanguageChanged(prev => !prev);
     };

@@ -10,6 +10,10 @@
     "russian": "Русский",
     "back": "Inapoi"
   },
+  "navigation": {
+    "home": "Home",
+    "about_page": "About me"
+  },
   "website_warning": {
     "title": "Сайт в разработке",
     "subtitle": "Bнимание на ошибки и изменения",

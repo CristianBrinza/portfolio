@@ -10,6 +10,10 @@
     "russian": "Rusă",
     "back": "Inapoi"
   },
+  "navigation": {
+    "home": "Acasa",
+    "about_page": "Despre mine"
+  },
   "website_warning": {
     "title": "Site-ul este în curs de dezvoltare",
     "subtitle": "Fiți atenți la erori și la schimbări",

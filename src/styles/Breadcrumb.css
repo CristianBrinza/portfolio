@@ -1,0 +1,14 @@
+.breadcrumb{
+    width: 100%;
+    max-width: calc(1180px + 4vw);
+    padding: 2rem 2vw 1rem 2vw;
+    margin: 0 auto 0 auto;
+}
+.breadcrumb a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.breadcrumb span:last-child span{
+    opacity: 0.4;
+}
