@@ -20,15 +20,14 @@
   font-weight: 600;
   line-height: 1;
   width: 320px;
-  height: 62px;
   box-sizing: border-box;
   padding: 12px;
   border-radius: 10px;
   border: 1px solid #858585;
   background: var(--theme_primary_color_white);
   position: fixed;
-  right: 20px; /* Adjust as needed */
-  bottom: 100px; /* Adjust as needed */
+  right: 20px;
+  bottom: 20px;
   animation: slideInRight 0.5s forwards;
   overflow: hidden; /* Ensures that the filling does not extend outside the block */
   overflow-x: hidden; /* Ensures that the filling does not extend outside the block */

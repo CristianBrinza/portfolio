@@ -1,15 +1,18 @@
 {
-  "lang": "en",
+  "lang": "ro",
   "navbar": {
-    "contact": "Contact",
+    "contact": "Contactează-mă",
     "about": "Despre mine",
     "blog": "Blog",
-    "work": "Lucru"
+    "work": "Lucrări",
+    "romanian": "Română",
+    "english": "Engleză",
+    "russian": "Rusă"
   },
   "website_warning": {
-    "title": " website under development",
-    "subtitle": " Mind the bugs and the changes",
-    "sorry": "We are sorry.",
-    "sorry_message": "The website under development, mind the bugs and the changes"
+    "title": "Site-ul este în curs de dezvoltare",
+    "subtitle": "Fiți atenți la erori și la schimbări",
+    "sorry": "Ne pare rău.",
+    "sorry_message": "Site-ul este în curs de dezvoltare, fiți atenți la erori și la schimbări"
   }
 }

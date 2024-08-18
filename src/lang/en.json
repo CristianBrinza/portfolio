@@ -6,11 +6,12 @@
     "blog": "Blog",
     "work": "My work",
     "romanian": "Romanian",
-    "english": "Enghish"
+    "english": "Enghish",
+    "russian": "Russian"
   },
   "website_warning": {
-    "title": " website under development",
-    "subtitle": " Mind the bugs and the changes",
+    "title": " Website under development",
+    "subtitle": "Mind the bugs and the changes",
     "sorry": "We are sorry.",
     "sorry_message": "The website under development, mind the bugs and the changes"
   }
