@@ -11,7 +11,7 @@
 
 .hashtags_blocks{
     border-radius: 100px;
-    background: #F2F3F7;
+    background: var(--costume_hashtag_bg_color);
     display: flex;
     padding: 10px 15px;
     justify-content: center;
@@ -23,4 +23,12 @@
     font-style: normal;
     font-weight: 200;
     line-height: 22px; /* 137.5% */
+
+    transform: scale(1);
+
+}
+
+
+.hashtags_blocks:hover{
+    transform: scale(1.05);
 }

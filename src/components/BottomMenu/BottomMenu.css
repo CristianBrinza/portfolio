@@ -1,8 +1,8 @@
 .BottomMenu_container {
   display: flex;
-  position: absolute;
+  position: sticky;
   margin: auto;
-  bottom: 0;
+  bottom: 20px;
   left: 0;
   right: 0;
   justify-content: center;
@@ -13,6 +13,7 @@
   margin-bottom: 20px;
   background: transparent;
   z-index: 9999;
+  margin-top: 80px;
 }
 
 .BottomMenu_fixed {
@@ -46,6 +47,6 @@
 .BottomMenu_toggle button{
   border-radius: 100px!important;
   font-weight: 500!important;
-  padding: 8px 24px!important;
+  padding: 6px 24px!important;
   line-height: 35px !important;
 }

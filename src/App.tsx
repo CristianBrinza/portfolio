@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, useLocation, Navigate, useNavigate } from
 import './App.css';
 import i18n from './i18n';
 import { routes } from './routesConfig.ts';
-import WebsiteWarning from './components/WebiteWarning/WebiteWarning.tsx';
+import Notification from './components/Notification/Notification.tsx';
 
 function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => void }) {
     const { i18n } = useTranslation();
@@ -43,7 +43,9 @@ function App() {
             <div id="top_notification">
                 <span style={{ fontWeight: '600' }}>{t('website_warning.sorry')}</span>&nbsp; {t('website_warning.sorry_message')}
             </div>
-            <WebsiteWarning />
+            <Notification>
+                {t("website_warning.sorry_message")}
+            </Notification>
             <BrowserRouter>
                 <LanguageInitializer onLanguageChange={handleLanguageChange} />
                 <Routes>

@@ -104,6 +104,8 @@ const Navbar: React.FC = () => {
         <div className={`nav-items ${isMenuVisible ? 'visible' : ''}`}>
           <a onClick={toggleLangPopup} style={{cursor:"Pointer"}}>
             {i18n.language === 'en' ? 'en' : i18n.language === 'ro' ? 'ro' : 'ru'}
+            &nbsp;
+           <span style={{fontWeight:"500"}}> |</span>&nbsp;<Icon type="lang"/>
           </a>
 
           <a  onClick={toggleTheme}>

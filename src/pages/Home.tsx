@@ -7,6 +7,8 @@ import Title from "../components/Text/Title/Title.tsx";
 import {useEffect, useState} from "react";
 import Parapraph from "../components/Text/Parapraph/Parapraph.tsx";
 import Footer from "../components/Footer/Footer.tsx";
+import LinkButton from "../components/LinkButton.tsx";
+import Notification from "../components/Notification/Notification.tsx";
 
 export default function Home() {
     const { t } = useTranslation();
@@ -45,6 +47,12 @@ export default function Home() {
   return (
     <>
       <Navbar/>
+        <Notification type="error">
+            {t("website_warning.sorry_message")}
+        </Notification>
+        <Notification type="error">
+            {t("website_warning.sorry_message")}
+        </Notification>
         <div className={`main ${isSticky ? 'sticky' : ''} page`}>
 
             <div className="home_hero">
@@ -75,26 +83,40 @@ export default function Home() {
                 </div>
 
             </div>
-            <BottomMenu/>
+
             <div style={{margin: '-40px auto auto auto', maxWidth: '980px'}}>
                 <Hashtags
                     tags={["design", "development", "frontend", "backend", "html", "css", "js", "react", "nodejs", "jquery", "bootstrap", "tailwind", "figma", "photoshop", "llustrator", "ux", "ui", "mongodb", "python", "express", "jwt"]}/>
             </div>
             <div className="home_block">
                 <Title>About me</Title>
-                <Parapraph>As a proficient Developer, I have a passion for visually appealing and user-friendly websites, applications and other types of projects. Proven my ability to deliver high-quality work, adapt to new technologies, collaborate with cross-functional teams, and stay currently with industry trends.
-                    I am a young software-engineer student, at the beginning of my career, having a ton of ambitious ideas and the motivation and discipline to realize them in management, design and development.</Parapraph>
-
+                <Parapraph>As a proficient Developer, I have a passion for visually appealing and user-friendly
+                    websites, applications and other types of projects. Proven my ability to deliver high-quality work,
+                    adapt to new technologies, collaborate with cross-functional teams, and stay currently with industry
+                    trends.
+                    I am a young software-engineer student, at the beginning of my career, having a ton of ambitious
+                    ideas and the motivation and discipline to realize them in management, design and
+                    development.</Parapraph>
+                <div className="home_block_about_me_links">
+                    <LinkButton to='/about'>See more</LinkButton>
+                    <LinkButton to='/networking'>Networking</LinkButton>
+                </div>
             </div>
 
-            <div>
+            <div className="home_block">
                 <Title>See my work</Title>
-                <Parapraph>See my work</Parapraph>
+                <Parapraph>I Am a Young Profesional Web-Deweloper and UI&UX Desinger</Parapraph>
+            </div>
+
+
+            <div className="home_block">
+                <Title>Meet my workplaces</Title>
+                <Parapraph>As a freelance designer and web developer, I have had the privilege of working with a diverse range of clients, from private clients to established businesses. My work is driven by a commitment to creativity and quality, ensuring that each project results in exceptional, impactful solutions.</Parapraph>
             </div>
 
         </div>
-
-        <Footer />
+        <BottomMenu/>
+        <Footer/>
 
     </>
   );
