@@ -30,12 +30,16 @@ function LanguageInitializer({
     if (!['en', 'ro', 'ru'].includes(detectedLang)) {
       detectedLang = localStorage.getItem('i18nextLng') || 'en';
       const newPath =
-        detectedLang + (location.pathname !== '/' ? location.pathname : '');
-      navigate(`/${newPath}`, { replace: true });
+        '/' +
+        detectedLang +
+        (location.pathname !== '/' ? location.pathname : '/');
+      navigate(newPath, { replace: true });
     } else if (detectedLang !== i18n.language) {
       i18n.changeLanguage(detectedLang).then(() => {
         onLanguageChange();
       });
+    } else if (location.pathname.endsWith(detectedLang)) {
+      navigate(`/${detectedLang}/`, { replace: true });
     }
   }, [location.pathname, i18n, navigate, onLanguageChange]);
 
@@ -54,7 +58,7 @@ function App() {
     <I18nextProvider i18n={i18n}>
       <div id="top_notification">
         <span style={{ fontWeight: '600' }}>{t('website_warning.sorry')}</span>
-            &nbsp; {t('website_warning.sorry_message')}
+        &nbsp;{t('website_warning.sorry_message')}
       </div>
       <Notification>{t('website_warning.sorry_message')}</Notification>
       <BrowserRouter>

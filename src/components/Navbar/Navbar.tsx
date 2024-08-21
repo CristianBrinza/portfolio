@@ -41,9 +41,10 @@ const Navbar: React.FC = () => {
         pathParts.unshift(lang);
       }
 
-      navigate('/' + pathParts.join('/'));
+      const newPath = `/${pathParts.join('/')}/`.replace(/\/+$/, '/');
+      navigate(newPath);
       setIsListLangPopupVisible(false);
-      localStorage.setItem('i18nextLng', lang); // Save language to local storage
+      localStorage.setItem('i18nextLng', lang);
     });
   };
 

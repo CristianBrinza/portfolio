@@ -3,7 +3,7 @@
   margin-top: 4px;
   margin-bottom: 4px;
   max-width: calc(1140px + 4rem);
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,7 +39,7 @@
 .nav-items {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 10px;
 }
 
 @media (max-width: 1000px) {

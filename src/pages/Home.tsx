@@ -51,7 +51,7 @@ export default function Home() {
       <div className={`main ${isSticky ? 'sticky' : ''} page`}>
         <div className="home_hero">
           <svg
-              className="home_hero_svg"
+            className="home_hero_svg"
             xmlns="http://www.w3.org/2000/svg"
             width="217"
             height="217"

@@ -69,7 +69,7 @@ const Button: React.FC<ButtonProps> = ({
     justifyContent: 'center',
     flexDirection: 'row',
     minHeight: '46px',
-    textDecoration:'none'
+    textDecoration: 'none',
   };
 
   return (
