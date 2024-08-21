@@ -5,19 +5,28 @@ import Icon from '../Icon.tsx';
 import './Notification.css';
 
 interface NotificationProps {
-  type?: 'info' | 'error' | 'success';
+  type?: 'info' | 'error' | 'success' | 'warning';
   children?: React.ReactNode;
+  time?: number; // Time in milliseconds
 }
 
-const Notification: React.FC<NotificationProps> = ({ children, type = 'info' }) => {
+const Notification: React.FC<NotificationProps> = ({
+  children,
+  type = 'info',
+  time = 10000,
+}) => {
   const [visible, setVisible] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const idRef = useRef<number>(Date.now());
-  const { addNotification, removeNotification, getNotificationOffset } = useNotification();
+  const elementRef = useRef<HTMLDivElement>(null);
+  const { addNotification, removeNotification, getNotificationOffset } =
+    useNotification();
 
   useEffect(() => {
     const id = idRef.current;
-    addNotification(id);
+    const height = elementRef.current?.offsetHeight || 0;
+
+    addNotification(id, height);
 
     const timeout = setTimeout(() => {
       setFadeOut(true); // Trigger fade out
@@ -25,13 +34,30 @@ const Notification: React.FC<NotificationProps> = ({ children, type = 'info' }) 
         setVisible(false); // Hide after fade out
         removeNotification(id);
       }, 1000); // Delay matches fadeOut duration
-    }, 11000); // Start fading out after 9 seconds
+    }, time - 1000); // Start fading out 1 second before the total time
 
     return () => {
       clearTimeout(timeout);
       removeNotification(id);
     };
-  }, [addNotification, removeNotification]);
+  }, [addNotification, removeNotification, time]); // Add `time` to the dependency array
+
+  useEffect(() => {
+    if (!visible) return;
+
+    const updatePosition = () => {
+      const offset = getNotificationOffset(idRef.current);
+      if (elementRef.current) {
+        elementRef.current.style.bottom = `${30 + offset}px`;
+      }
+    };
+
+    updatePosition();
+
+    const interval = setInterval(updatePosition, 100);
+
+    return () => clearInterval(interval);
+  }, [visible, getNotificationOffset]);
 
   const handleClose = () => {
     setFadeOut(true);
@@ -43,32 +69,69 @@ const Notification: React.FC<NotificationProps> = ({ children, type = 'info' }) 
   };
 
   const iconColor = type === 'info' ? '#222222' : '#ffffff';
-  const offset = getNotificationOffset(idRef.current);
+  const textColor = type === 'info' ? '#222222' : '#ffffff';
+  const bgColor =
+    type === 'error'
+      ? '#EA5F51'
+      : type === 'warning'
+        ? '#EA8B3F'
+        : type === 'success'
+          ? '#4DD181'
+          : '#ffffff';
+  const borderColor =
+    type === 'error'
+      ? '#EA5F51'
+      : type === 'warning'
+        ? '#EA8B3F'
+        : type === 'success'
+          ? '#4DD181'
+          : '#858585';
 
   return (
-      <>
-        {visible && (
-            <div
-                className={`WebsiteWarning WebsiteWarning_${type} ${fadeOut ? 'fadeOut' : ''}`}
-                style={{ bottom: `${30 + offset}px` }}
-            >
-              <div className="WebsiteWarning_close" onClick={handleClose}>
-                <Icon type="close" stroke="var(--primary)" />
-              </div>
-              <div className="WebsiteWarning_block">
-                <Icon type={type} color={iconColor} />
-                <div className="WebsiteWarning_text">
-                  <span className="WebsiteWarning_type">{type.toUpperCase()}</span>
-                  <br />
-                  <span className="WebsiteWarning_text_gray">
+    <>
+      {visible && (
+        <div
+          ref={elementRef}
+          className={`WebsiteWarning WebsiteWarning_${type} ${fadeOut ? 'fadeOut' : ''}`}
+          style={{
+            transition: 'bottom 1s ease-in-out', // Smooth transition for position
+            background: `${bgColor}`,
+            borderColor: `${borderColor}`,
+          }}
+        >
+          <div className="WebsiteWarning_close" onClick={handleClose}>
+            <Icon type="close" color={iconColor} />
+          </div>
+          <div className="WebsiteWarning_block">
+            <div className="WebsiteWarning_block_icon">
+              <Icon type={type} color={iconColor} />
+            </div>
+            <div className="WebsiteWarning_text">
+              <span
+                className="WebsiteWarning_type"
+                style={{ color: `${textColor}` }}
+              >
+                {type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}
+              </span>
+              <br />
+              <span
+                className="WebsiteWarning_text_gray"
+                style={{ color: `${textColor}` }}
+              >
                 {children || '\u00A0'}
               </span>
-                </div>
-              </div>
-              <div className="WebsiteWarning_fill" />
             </div>
-        )}
-      </>
+          </div>
+          <div
+            className="WebsiteWarning_fill"
+            style={{
+              animationDuration: `${time}ms`, // Set animation duration here
+              background: `${textColor}`,
+            }}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

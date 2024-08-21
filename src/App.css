@@ -1,39 +1,49 @@
 /*App.css*/
 
 #root {
-
 }
-.main{
-    width: 96vw;
-    max-width: 1180px;
-    display: flex;
-    flex-direction: column;
-    margin: 0 auto;
-    gap:80px;
+.main {
+  width: 96vw;
+  max-width: 1180px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 80px;
 }
 .page {
-
-    box-sizing: border-box;
-    margin: 0 auto 0;
-    min-height: calc(var(--vh, 1vh) * 100 - 106px);
+  box-sizing: border-box;
+  margin: 0 auto 0;
+  min-height: calc(var(--vh, 1vh) * 100 - 106px);
 }
 @media (max-width: 1000px) {
-    .page {
-        min-height: calc(var(--vh, 1vh) * 100 - 84px);
-    }
+  .page {
+    min-height: calc(var(--vh, 1vh) * 100 - 84px);
+  }
 }
 
-#top_notification{
-    color: #1D1D1F;
-    font-family: Inter;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 200;
-    line-height: 18px;
-    height: 32px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #F5F5F7;
-    user-select: none;
+#top_notification {
+  color: #1d1d1f;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 18px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f7;
+  user-select: none;
+}
+
+.reveal {
+  position: relative;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: 1s all ease;
+}
+
+.reveal.active {
+  transform: translateY(0);
+  opacity: 1;
 }

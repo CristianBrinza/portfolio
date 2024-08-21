@@ -8,35 +8,35 @@ import translationRomanian from './lang/ro.json';
 import translationRussian from './lang/ru.json';
 
 const resources = {
-    en: {
-        translation: translationEnglish,
-    },
-    ro: {
-        translation: translationRomanian,
-    },
-    ru: {
-        translation: translationRussian,
-    },
+  en: {
+    translation: translationEnglish,
+  },
+  ro: {
+    translation: translationRomanian,
+  },
+  ru: {
+    translation: translationRussian,
+  },
 };
 
 i18next
-    .use(backend)
-    .use(LanguageDetector)
-    .use(initReactI18next)
-    .init({
-        resources,
-        lng: localStorage.getItem('i18nextLng') || 'en', // Load from localStorage or default to 'en'
-        fallbackLng: 'en',
-        interpolation: {
-            escapeValue: false,
-        },
-        backend: {
-            loadPath: '/locales/{{lng}}/{{ns}}.json',
-        },
-    });
+  .use(backend)
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    lng: localStorage.getItem('i18nextLng') || 'en', // Load from localStorage or default to 'en'
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false,
+    },
+    backend: {
+      loadPath: '/locales/{{lng}}/{{ns}}.json',
+    },
+  });
 
-i18next.on('languageChanged', (lng) => {
-    localStorage.setItem('i18nextLng', lng);
+i18next.on('languageChanged', lng => {
+  localStorage.setItem('i18nextLng', lng);
 });
 
 export default i18next;

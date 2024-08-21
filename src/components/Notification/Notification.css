@@ -1,19 +1,16 @@
 .WebsiteWarning_text {
-  color: var(--theme_primary_color_black);
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 700;
   line-height: normal;
 }
 
 .WebsiteWarning_text_gray {
-  color: #8d8d8d;
   font-weight: 400;
 }
 
 .WebsiteWarning {
-  color: var(--theme_primary_color_black);
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
@@ -24,29 +21,6 @@
   padding: 12px;
   border-radius: 10px;
   border: 1px solid #858585;
-  background: var(--theme_primary_color_white);
-  position: fixed;
-  right: 20px;
-  bottom: 30px;
-  animation: slideInRight 0.5s forwards;
-  overflow: hidden; /* Ensures that the filling does not extend outside the block */
-  overflow-x: hidden; /* Ensures that the filling does not extend outside the block */
-  z-index: 99999;
-}
-
-.WebsiteWarning {
-  color: var(--theme_primary_color_black);
-  font-family: Inter;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1;
-  width: 320px;
-  box-sizing: border-box;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #858585;
-  background: var(--theme_primary_color_white);
   position: fixed;
   right: 20px;
   bottom: 30px;
@@ -61,9 +35,9 @@
   left: 0;
   height: 2px;
   width: 0;
-  background-color: #1D1D1F;
+  background-color: #1d1d1f;
   border-radius: 0 0 10px 10px;
-  animation: fillWidth 10s linear forwards;
+  animation: fillWidth linear forwards; /* No duration specified here */
 }
 
 @keyframes fillWidth {
@@ -94,7 +68,6 @@
   }
 }
 
-
 .WebsiteWarning_close {
   position: absolute;
   top: 5px;
@@ -107,12 +80,15 @@
   width: auto !important;
 }
 
-.WebsiteWarning_block{
+.WebsiteWarning_block {
   display: flex;
   align-items: center;
   flex-direction: row;
   gap: 10px;
-
+}
+.WebsiteWarning_block_icon {
+  height: 100%;
+  width: 40px;
 }
 
 @media (max-width: 380px) {

@@ -1,16 +1,16 @@
-.breadcrumb{
-   display: block;
-    padding: 2rem 2vw 1rem 2vw;
-    margin: 0 auto 0 auto;
+.breadcrumb {
+  display: block;
+  padding: 2rem 2vw 1rem 2vw;
+  margin: 0 auto 0 auto;
 }
-.breadcrumb a{
-    text-decoration: none;
-    color: inherit;
+.breadcrumb a {
+  text-decoration: none;
+  color: inherit;
 }
-.breadcrumb a:hover{
-    text-decoration: underline;
+.breadcrumb a:hover {
+  text-decoration: underline;
 }
 
-.breadcrumb span:last-child span{
-    opacity: 0.4;
+.breadcrumb span:last-child span {
+  opacity: 0.4;
 }

@@ -134,11 +134,9 @@
   cursor: pointer;
 }
 
-
-#navbar_lang_select_btns{
+#navbar_lang_select_btns {
   width: 100%;
   display: flex;
   gap: 10px;
- flex-direction: column;
-
+  flex-direction: column;
 }

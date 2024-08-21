@@ -3,24 +3,20 @@ import './BottomMenu.css';
 import Button from '../Button.tsx';
 
 const BottomMenu: React.FC = () => {
-
-
   return (
-    <div
-      className={`BottomMenu_container`}
-    >
+    <div className={`BottomMenu_container`}>
       <div className="BottomMenu_toggle">
         <Button
-            to="work"
+          to="work"
           color="var(--theme_primary_color_white)"
           bgcolor="var(--theme_primary_color_black)"
-            border="transparent"
-            hover_color="var(--theme_primary_color_black)"
+          border="transparent"
+          hover_color="var(--theme_primary_color_black)"
         >
           Portfolio
         </Button>
         <Button
-            to="/cv"
+          to="/cv"
           color="var(--theme_primary_color_black)"
           border="transparent"
           bgcolor="var(--secondary)"
