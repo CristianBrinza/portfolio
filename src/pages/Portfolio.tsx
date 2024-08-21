@@ -1,5 +1,6 @@
 import { Trans } from 'react-i18next';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
+import Title from '../components/Text/Title/Title.tsx';
 
 export default function Portfolio() {
   const breadcrumbItems = [
@@ -11,7 +12,7 @@ export default function Portfolio() {
     <>
       <Breadcrumb items={breadcrumbItems} />
       <div className="main">
-        <h1>Portfolio</h1>
+        <Title>Portfolio</Title>
       </div>
     </>
   );

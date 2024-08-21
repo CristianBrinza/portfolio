@@ -117,14 +117,7 @@ export default function Home() {
         <div className="home_block">
           <Title className="reveal">About me</Title>
           <Parapraph className="reveal">
-            As a proficient Developer, I have a passion for visually appealing
-            and user-friendly websites, applications and other types of
-            projects. Proven my ability to deliver high-quality work, adapt to
-            new technologies, collaborate with cross-functional teams, and stay
-            currently with industry trends. I am a young software-engineer
-            student, at the beginning of my career, having a ton of ambitious
-            ideas and the motivation and discipline to realize them in
-            management, design and development.
+            {t('about_me.self_description')}
           </Parapraph>
           <div className="home_block_about_me_links">
             <LinkButton className="reveal" to="/about">

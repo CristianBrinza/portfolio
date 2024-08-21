@@ -39,7 +39,7 @@
 .nav-items {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 @media (max-width: 1000px) {
@@ -75,7 +75,7 @@
     margin-right: auto;
     align-items: center;
     justify-content: center;
-    margin-top: -20px;
+    margin-top: 5px;
     width: 100%;
     z-index: 999999;
   }

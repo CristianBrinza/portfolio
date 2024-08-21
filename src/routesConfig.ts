@@ -13,7 +13,7 @@ export const routes = [
   { path: '/:lang/blog', element: React.createElement(Blog) },
   { path: '/:lang/about', element: React.createElement(About) },
   { path: '/:lang/contact', element: React.createElement(Contact) },
-  { path: '/:lang/work', element: React.createElement(Portfolio) },
+  { path: '/:lang/portfolio', element: React.createElement(Portfolio) },
   { path: '/:lang/cv', element: React.createElement(Resume) },
   { path: '/:lang/resume', element: React.createElement(Resume) },
   { path: '*', element: React.createElement(NotFound) },

@@ -1,5 +1,6 @@
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
 import { useTranslation } from 'react-i18next';
+import Title from '../components/Text/Title/Title.tsx';
 
 export default function Resume() {
   const { t } = useTranslation();
@@ -11,8 +12,9 @@ export default function Resume() {
   return (
     <>
       <Breadcrumb items={breadcrumbItems} />
-      <br />
-      Resume
+      <div className="main">
+        <Title>Resume</Title>
+      </div>
     </>
   );
 }

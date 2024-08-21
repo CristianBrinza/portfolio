@@ -143,7 +143,7 @@ const Navbar: React.FC = () => {
           <Link to="/about">{t('navbar.about')}</Link>
           <Button
             to="/contact"
-            color="#fffff"
+            color="#ffffff"
             hover_bgcolor="#8E001D"
             bgcolor="#E40523"
             hover_color="#ffffff"
@@ -151,7 +151,7 @@ const Navbar: React.FC = () => {
             {t('navbar.contact')}
           </Button>
           <Button
-            to="/work"
+            to="/portfolio"
             color="var(--theme_primary_color_black)"
             border="#F2F3F7"
             bgcolor="transparent"
