@@ -8,6 +8,8 @@
   justify-content: center;
   gap: 20px;
   position: relative;
+    box-sizing: border-box;
+    padding: 20px;
 }
 .home_hero_text_1 {
   font-family: 'MuseoModerno', serif;
@@ -40,4 +42,44 @@
 .home_block_about_me_links {
   display: flex;
   gap: 15px;
+}
+
+
+
+@media (max-width: 1100px) {
+    .home_hero_text_1, .home_hero_text_2{
+        font-size: 60px;
+        line-height: 60px;
+    }
+    .home_hero_svg{
+        height: 180px;
+        width: 180px;
+    }
+}
+
+
+
+@media (max-width: 780px) {
+
+    .home_hero {
+        flex-direction: column;
+    }
+    .home_hero_text_1, .home_hero_text_2{
+       width: 100%;
+        text-align: center;
+    }
+    .home_hero_text{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .home_hero_text br{
+        display: none;
+    }
+}
+
+@media (max-width: 650px) {
+    .home_hero{
+        height: 70vh;
+    }
 }

@@ -44,7 +44,7 @@ function LanguageInitializer({
 
 function App() {
   const { t } = useTranslation();
-  const [languageChanged, setLanguageChanged] = useState(false);
+  const [, setLanguageChanged] = useState(false);
 
   const handleLanguageChange = () => {
     setLanguageChanged(prev => !prev);
@@ -54,7 +54,7 @@ function App() {
     <I18nextProvider i18n={i18n}>
       <div id="top_notification">
         <span style={{ fontWeight: '600' }}>{t('website_warning.sorry')}</span>
-        &nbsp; {t('website_warning.sorry_message')}
+            &nbsp; {t('website_warning.sorry_message')}
       </div>
       <Notification>{t('website_warning.sorry_message')}</Notification>
       <BrowserRouter>

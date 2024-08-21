@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "check-format": "prettier --check ."
+    "check-format": "prettier --check .",
+    "deploy": "yarn build && wrangler pages publish ./dist --project-name=portfolio"
   },
   "dependencies": {
     "react": "^18.3.1",

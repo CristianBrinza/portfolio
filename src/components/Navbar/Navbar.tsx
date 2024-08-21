@@ -11,7 +11,7 @@ const Langelect: React.FC<{ onClose: () => void }> = ({ onClose }) => (
   <div className="Langelect_background" onClick={onClose}>
     <div className="Langelect_container">
       <div className="Langelect_close_btn" onClick={onClose}>
-        <Icon type="close_ring" />
+        <Icon type="close" />
       </div>
       Langelect_background
     </div>
@@ -116,7 +116,11 @@ const Navbar: React.FC = () => {
           </svg>
         </Link>
         <button className="menu-icon" onClick={toggleMenuVisibility}>
-          <Icon type="menu" size="30" stroke="var(--primary)" />
+          <Icon
+            type="menu"
+            size="30px"
+            color="var(--theme_primary_color_black)"
+          />
         </button>
         <div className={`nav-items ${isMenuVisible ? 'visible' : ''}`}>
           <a onClick={toggleLangPopup} style={{ cursor: 'Pointer' }}>

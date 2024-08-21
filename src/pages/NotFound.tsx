@@ -1,5 +1,4 @@
 // src/pages/About.tsx
-import React from 'react';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
 import { Trans } from 'react-i18next'; // Import Trans component
 

@@ -1,4 +1,3 @@
-// components/Notification.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { useNotification } from './NotificationContext';
 import Icon from '../Icon.tsx';
@@ -87,6 +86,13 @@ const Notification: React.FC<NotificationProps> = ({
           ? '#4DD181'
           : '#858585';
 
+  const iconTypeMap = {
+    info: 'info',
+    error: 'error',
+    success: 'info',
+    warning: 'warning',
+  } as const;
+
   return (
     <>
       {visible && (
@@ -104,7 +110,7 @@ const Notification: React.FC<NotificationProps> = ({
           </div>
           <div className="WebsiteWarning_block">
             <div className="WebsiteWarning_block_icon">
-              <Icon type={type} color={iconColor} />
+              <Icon type={iconTypeMap[type]} color={iconColor} />
             </div>
             <div className="WebsiteWarning_text">
               <span

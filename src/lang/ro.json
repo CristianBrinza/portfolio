@@ -14,6 +14,7 @@
     "home": "Acasă",
     "about_page": "Despre mine",
     "resume_page": "Resume",
+    "contact_page": "Contact me",
     "blog_page": "Blog",
     "not_found_page": "Not Found"
   },
@@ -26,5 +27,8 @@
   "home": {
     "hello": "Salut",
     "imcristian": "Sunt Cristian"
+  },
+  "footer": {
+    "scroll_up": "Scroll up"
   }
 }

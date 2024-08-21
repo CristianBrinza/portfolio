@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import './BottomMenu.css';
 import Button from '../Button.tsx';
 

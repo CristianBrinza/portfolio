@@ -14,6 +14,7 @@
     "home": "Главное",
     "about_page": "Обо мне",
     "resume_page": "Resume",
+    "contact_page": "Contact me",
     "blog_page": "Блог",
     "not_found_page": "Не найдено"
   },
@@ -26,5 +27,8 @@
   "home": {
     "hello": "Hello",
     "imcristian": "I’m Cristian"
+  },
+  "footer": {
+    "scroll_up": "Scroll up"
   }
 }

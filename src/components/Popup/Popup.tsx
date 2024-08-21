@@ -4,7 +4,7 @@ import Icon from '../Icon.tsx';
 
 interface PopupProps {
   id: string;
-  width: string;
+  width?: string;
   children: React.ReactNode;
   isVisible: boolean;
   onClose: () => void;

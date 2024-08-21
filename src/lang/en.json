@@ -15,6 +15,7 @@
     "about_page": "About me",
     "resume_page": "Resume",
     "blog_page": "Blog",
+    "contact_page": "Contact me",
     "not_found_page": "Not Found"
   },
   "website_warning": {
@@ -26,5 +27,8 @@
   "home": {
     "hello": "Hello",
     "imcristian": "I’m Cristian"
+  },
+  "footer": {
+    "scroll_up": "Scroll up"
   }
 }

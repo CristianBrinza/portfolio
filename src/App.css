@@ -3,7 +3,7 @@
 #root {
 }
 .main {
-  width: 96vw;
+  width: 90vw;
   max-width: 1180px;
   display: flex;
   flex-direction: column;
@@ -28,17 +28,21 @@
   font-style: normal;
   font-weight: 200;
   line-height: 18px;
-  height: 32px;
+  min-height: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #f5f5f7;
   user-select: none;
+  flex-wrap: wrap;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 0 10px;
 }
 
 .reveal {
   position: relative;
-  transform: translateY(80px);
+  transform: translateY(100px);
   opacity: 0;
   transition: 1s all ease;
 }

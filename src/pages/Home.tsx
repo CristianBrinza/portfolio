@@ -1,7 +1,6 @@
 import Navbar from '../components/Navbar/Navbar.tsx';
 import BottomMenu from '../components/BottomMenu/BottomMenu.tsx';
 import '../styles/Home.css';
-import { Trans, useTranslation } from 'react-i18next';
 import Hashtags from '../components/Hashtags/Hashtags.tsx';
 import Title from '../components/Text/Title/Title.tsx';
 import { useEffect, useState } from 'react';
@@ -9,6 +8,7 @@ import Parapraph from '../components/Text/Parapraph/Parapraph.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import LinkButton from '../components/LinkButton.tsx';
 import useReveal from '../hooks/useReveal.tsx';
+import { useTranslation } from 'react-i18next';
 
 export default function Home() {
   useReveal();
@@ -51,6 +51,7 @@ export default function Home() {
       <div className={`main ${isSticky ? 'sticky' : ''} page`}>
         <div className="home_hero">
           <svg
+              className="home_hero_svg"
             xmlns="http://www.w3.org/2000/svg"
             width="217"
             height="217"
@@ -79,14 +80,10 @@ export default function Home() {
               strokeWidth="15.19"
             />
           </svg>
-          <div>
-            <span className="home_hero_text_1">
-              <Trans>home.hello</Trans>
-            </span>
+          <div className="home_hero_text">
+            <span className="home_hero_text_1">{t('home.hello')}</span>
             <br />
-            <span className="home_hero_text_2">
-              <Trans>home.imcristian</Trans>
-            </span>
+            <span className="home_hero_text_2">{t('home.imcristian')}</span>
           </div>
         </div>
 

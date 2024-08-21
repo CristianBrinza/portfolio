@@ -17,4 +17,5 @@ export const routes = [
   { path: '/:lang/cv', element: React.createElement(Resume) },
   { path: '/:lang/resume', element: React.createElement(Resume) },
   { path: '*', element: React.createElement(NotFound) },
+  { path: '/:lang/404', element: React.createElement(NotFound) },
 ];
