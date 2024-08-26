@@ -1,3 +1,4 @@
+///pages/Home.tsx
 import Navbar from '../components/Navbar/Navbar.tsx';
 import BottomMenu from '../components/BottomMenu/BottomMenu.tsx';
 import '../styles/Home.css';

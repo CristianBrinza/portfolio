@@ -10,7 +10,8 @@ interface ButtonProps {
   hover_color?: string;
   children: React.ReactNode;
   onClick?: () => void;
-  to?: string; // New to prop for navigation
+  to?: string;
+  className?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -22,7 +23,8 @@ const Button: React.FC<ButtonProps> = ({
   border_radius,
   children,
   onClick,
-  to, // Destructure to from props
+  to,
+  className = '',
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate(); // useNavigate hook for navigation
@@ -77,7 +79,8 @@ const Button: React.FC<ButtonProps> = ({
       style={buttonStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleClick} // Use handleClick instead of onClick
+      onClick={handleClick}
+      className={`${className}`}
     >
       {children}
     </button>

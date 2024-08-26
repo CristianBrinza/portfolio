@@ -15,6 +15,9 @@
     "about_page": "About me",
     "resume_page": "Resume",
     "blog_page": "Blog",
+    "qr_page": "QR Code Generator",
+    "utilities_page": "Utilities",
+    "legal_page": "Legal",
     "portfolio_page": "Portfolio",
     "contact_page": "Contact me",
     "not_found_page": "Not Found"

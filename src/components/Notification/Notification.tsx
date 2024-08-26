@@ -1,3 +1,4 @@
+//components/Notification.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { useNotification } from './NotificationContext';
 import Icon from '../Icon.tsx';
