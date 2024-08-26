@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .file_input {
@@ -14,4 +15,10 @@
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+@media (max-width: 370px) {
+  .file_input {
+    width: 100%;
+  }
 }

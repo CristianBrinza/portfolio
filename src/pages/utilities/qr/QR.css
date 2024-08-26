@@ -2,6 +2,7 @@
   display: flex;
   gap: 10px;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .qr_input {
@@ -11,6 +12,7 @@
   border-radius: 12px;
   color: var(--theme_primary_color_black);
   padding: 0 10px;
+  height: 46px;
 }
 #qr_type,
 #qr_size {
@@ -20,6 +22,7 @@
   border-radius: 12px;
   color: var(--theme_primary_color_black);
   padding: 0 10px;
+  height: 46px;
 }
 #qr_color {
   background-color: var(--theme_primary_color_white);

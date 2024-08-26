@@ -113,6 +113,7 @@ export default function QR() {
             type="text"
             value={qrValue}
             onChange={e => setQrValue(e.target.value)}
+            placeholder="paste here"
           />
           <select
             name="qr_type"

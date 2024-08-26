@@ -11,6 +11,7 @@ import QR from './pages/utilities/qr/QR.tsx';
 import Utilities from './pages/Utilities.tsx';
 import PdfToWord from './pages/utilities/pdf_to_world/PdfToWord.tsx';
 import Legal from './pages/Legal.tsx';
+import Shortener from './pages/utilities/shrotner/Shortener.tsx';
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -25,6 +26,7 @@ export const routes = [
   { path: '/:lang/utilities', element: React.createElement(Utilities) },
   { path: '/:lang/qr', element: React.createElement(QR) },
   { path: '/:lang/pdf-to-world', element: React.createElement(PdfToWord) },
+  { path: '/:lang/shortener', element: React.createElement(Shortener) },
 
   { path: '*', element: React.createElement(NotFound) },
   { path: '/:lang/404', element: React.createElement(NotFound) },

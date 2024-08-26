@@ -31,8 +31,19 @@ export default function Utilities() {
               bgcolor="var(--theme_primary_color_light_gray)"
               hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy" />
+              <Icon type="qr" />
               <div className="utilities_item_text">QR generator</div>
+            </Button>
+            <Button
+              to="/shortener"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_light_gray)"
+              bgcolor="var(--theme_primary_color_light_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="url" />
+              <div className="utilities_item_text">URL Shortener</div>
             </Button>
           </div>
         </div>

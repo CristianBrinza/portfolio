@@ -12,6 +12,7 @@ interface ButtonProps {
   onClick?: () => void;
   to?: string;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,6 +26,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   to,
   className = '',
+  style,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate(); // useNavigate hook for navigation
@@ -72,6 +74,7 @@ const Button: React.FC<ButtonProps> = ({
     flexDirection: 'row',
     minHeight: '46px',
     textDecoration: 'none',
+    ...style,
   };
 
   return (
