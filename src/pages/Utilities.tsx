@@ -45,6 +45,17 @@ export default function Utilities() {
               <Icon type="url" />
               <div className="utilities_item_text">URL Shortener</div>
             </Button>
+            <Button
+              to="/name-validator"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_light_gray)"
+              bgcolor="var(--theme_primary_color_light_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="copy" />
+              <div className="utilities_item_text">Name Validator</div>
+            </Button>
           </div>
         </div>
 
