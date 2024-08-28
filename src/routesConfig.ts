@@ -13,6 +13,9 @@ import PdfToWord from './pages/utilities/pdf_to_world/PdfToWord.tsx';
 import Legal from './pages/Legal.tsx';
 import Shortener from './pages/utilities/shrotner/Shortener.tsx';
 import NameValidator from './pages/utilities/name_validator/NameValidator.tsx';
+import BrowserHistoryAnalyzer from "./pages/utilities/browser_history_analyzer/BrowserHistoryAnalyzer.tsx";
+import RandomNumberGenerator from "./pages/utilities/random_number_generator/RandomNumberGenerator.tsx";
+import PasswordGenerator from "./pages/utilities/password_generator/PasswordGenerator.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -28,6 +31,9 @@ export const routes = [
   { path: '/:lang/qr', element: React.createElement(QR) },
   { path: '/:lang/pdf-to-world', element: React.createElement(PdfToWord) },
   { path: '/:lang/shortener', element: React.createElement(Shortener) },
+  { path: '/:lang/browser-history', element: React.createElement(BrowserHistoryAnalyzer) },
+  { path: '/:lang/random-number-generator', element: React.createElement(RandomNumberGenerator) },
+  { path: '/:lang/password-generator', element: React.createElement(PasswordGenerator) },
   {
     path: '/:lang/name-validator',
     element: React.createElement(NameValidator),
