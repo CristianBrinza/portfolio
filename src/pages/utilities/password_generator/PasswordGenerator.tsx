@@ -202,13 +202,14 @@ export default function PasswordGenerator() {
                     {password && (
                         <div className="pg_result">
                             <p id="pg_result_password">{showPassword ? password : '•'.repeat(password.length)}</p>
-                            <Button
-                                color="var(--theme_primary_color_black)"
-                                border="var(--theme_primary_color_black)"
-                                onClick={() => setShowPassword(!showPassword)}
-                            >
-                                {showPassword ? 'Hide' : 'Show'} Password
-                            </Button>
+                            <div className="pg_result_goup">
+                                <Button
+                                    color="var(--theme_primary_color_black)"
+                                    border="var(--theme_primary_color_black)"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                >
+                                    {showPassword ? 'Hide' : 'Show'} Password
+                                </Button>
                             <Button
                                 color="var(--theme_primary_color_black)"
                                 border="var(--theme_primary_color_black)"
@@ -228,6 +229,7 @@ export default function PasswordGenerator() {
                                     Copied
                                 </span>
                             )}
+                            </div>
                         </div>
                     )}
 
@@ -244,7 +246,6 @@ export default function PasswordGenerator() {
                         style={{ marginTop: '20px' }}
                     >
                         Reset
-                        <Icon type="refresh" />
                     </Button>
                 </div>
             </Page>

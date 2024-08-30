@@ -16,6 +16,7 @@ import NameValidator from './pages/utilities/name_validator/NameValidator.tsx';
 import BrowserHistoryAnalyzer from "./pages/utilities/browser_history_analyzer/BrowserHistoryAnalyzer.tsx";
 import RandomNumberGenerator from "./pages/utilities/random_number_generator/RandomNumberGenerator.tsx";
 import PasswordGenerator from "./pages/utilities/password_generator/PasswordGenerator.tsx";
+import ImageMetadataEditor from "./pages/utilities/image_metadata_editor/ImageMetadataEditor.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -34,6 +35,7 @@ export const routes = [
   { path: '/:lang/browser-history', element: React.createElement(BrowserHistoryAnalyzer) },
   { path: '/:lang/random-number-generator', element: React.createElement(RandomNumberGenerator) },
   { path: '/:lang/password-generator', element: React.createElement(PasswordGenerator) },
+  { path: '/:lang/image-metadata-editor', element: React.createElement(ImageMetadataEditor) },
   {
     path: '/:lang/name-validator',
     element: React.createElement(NameValidator),

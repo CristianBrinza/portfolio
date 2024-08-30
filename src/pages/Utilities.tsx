@@ -7,7 +7,6 @@ import '../styles/Utilities.css';
 import Title from '../components/Text/Title/Title.tsx';
 import Icon from '../components/Icon.tsx';
 import Button from '../components/Button.tsx';
-import RandomNumberGenerator from "./utilities/random_number_generator/RandomNumberGenerator.tsx";
 
 export default function Utilities() {
   const breadcrumbItems = [
@@ -62,7 +61,7 @@ export default function Utilities() {
         </div>
 
         <div className="utilities_block">
-          <div className="utilities_title">Developer</div>
+          <div className="utilities_title">Develop</div>
           <div className="utilities_items">
             <Button
                 to="/random-number-generator"
@@ -84,6 +83,22 @@ export default function Utilities() {
               <Icon type="copy"/>
               <div className="utilities_item_text">Password Generator</div>
             </Button>
+          </div>
+        </div>
+        <div className="utilities_block">
+          <div className="utilities_title">Design</div>
+          <div className="utilities_items">
+            <Button
+                to="/image-metadata-editor"
+                className="utilities_item"
+                color="var(--theme_primary_color_black)"
+                border="var(--theme_primary_color_darkest_gray)"
+                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="copy"/>
+              <div className="utilities_item_text">Image Metadata Editor</div>
+            </Button>
+
           </div>
         </div>
         <div className="utilities_block">

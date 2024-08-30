@@ -244,15 +244,15 @@ const Icon: React.FC<IconProps> = ({
   const finalHeight = height || size || '24px';
 
   // Strip "px" from finalWidth and finalHeight if present
-  const numericWidth = finalWidth.replace('px', '');
-  const numericHeight = finalHeight.replace('px', '');
+  //const numericWidth = finalWidth.replace('px', '');
+  //const numericHeight = finalHeight.replace('px', '');
 
   return (
     <svg
       style={{ transform: `rotate(${rotate}deg)` }}
       width={finalWidth}
       height={finalHeight}
-      viewBox={`0 0 ${numericWidth} ${numericHeight}`}
+      viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       color={color}

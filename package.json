@@ -39,6 +39,7 @@
     "qrcode.react": "^3.1.0",
     "react-i18next": "^15.0.1",
     "react-router-dom": "^6.26.0",
+    "ts-exif-parser": "^0.2.2",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.0",
     "vite": "^5.4.0"
