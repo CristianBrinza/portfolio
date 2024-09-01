@@ -53,15 +53,15 @@ export default function QR() {
         const ctx = offscreenCanvas.getContext('2d');
         if (ctx) {
           ctx.drawImage(
-              canvas,
-              0,
-              0,
-              canvas.width,
-              canvas.height,
-              0,
-              0,
-              qrSize,
-              qrSize
+            canvas,
+            0,
+            0,
+            canvas.width,
+            canvas.height,
+            0,
+            0,
+            qrSize,
+            qrSize
           );
           offscreenCanvas.toBlob(blob => {
             if (blob) {
@@ -96,110 +96,110 @@ export default function QR() {
   ];
 
   return (
-      <>
-        <Breadcrumb items={breadcrumbItems} />
+    <>
+      <Breadcrumb items={breadcrumbItems} />
 
-        <Page gap="20px">
-          <Title>QR code generator</Title>
+      <Page gap="20px">
+        <Title>QR code generator</Title>
 
-          <div className="qr_container">
-            <QRCode
-                value={qrValue}
-                size={250} // Fixed size at 250x250
-                renderAs={qrType === 'png' ? 'canvas' : 'svg'}
-                bgColor={qrType === 'png' ? 'transparent' : '#ffffff'}
-                fgColor={qrColor}
-            />
-          </div>
+        <div className="qr_container">
+          <QRCode
+            value={qrValue}
+            size={250} // Fixed size at 250x250
+            renderAs={qrType === 'png' ? 'canvas' : 'svg'}
+            bgColor={qrType === 'png' ? 'transparent' : '#ffffff'}
+            fgColor={qrColor}
+          />
+        </div>
 
-          <div className="qr_btns">
-            {qrValue && (
-                <Button
-                    style={{ padding: '3px 20px' }}
-                    color="var(--theme_primary_color_white)"
-                    bgcolor="var(--theme_primary_color_dark_gray)"
-                    onClick={emptyInput}
-                >
-                  <Icon type="close" color="var(--theme_primary_color_black)" />
-                </Button>
-            )}
-            <input
-                className="qr_input"
-                type="text"
-                value={qrValue}
-                onChange={e => setQrValue(e.target.value)}
-                placeholder="paste here"
-            />
-            <select
-                name="qr_type"
-                id="qr_type"
-                value={qrType}
-                onChange={e => {
-                  setQrType(e.target.value);
-                  setShowDownload(false); // Hide buttons on type change
-                  if (e.target.value !== 'png') {
-                    setQrSize(256); // Default size for non-PNG
-                  }
-                }}
-            >
-              <option value="png">.png</option>
-              <option value="svg">.svg</option>
-            </select>
-            {qrType === 'png' && (
-                <select
-                    name="qr_size"
-                    id="qr_size"
-                    value={qrSize}
-                    onChange={e => setQrSize(Number(e.target.value))}
-                    defaultValue="256"
-                >
-                  <option value="100">100x100</option>
-                  <option value="256">256x256</option>
-                  <option value="300">300x300</option>
-                  <option value="500">500x500</option>
-                  <option value="1000">1000x1000</option>
-                  <option value="3000">3000x3000</option>
-                  <option value="5000">5000x5000</option>
-                </select>
-            )}
-
-            <input
-                id="qr_color"
-                type="color"
-                value={qrColor}
-                onChange={e => setQrColor(e.target.value)}
-            />
+        <div className="qr_btns">
+          {qrValue && (
             <Button
-                color="var(--theme_primary_color_white)"
-                bgcolor="var(--theme_primary_color_black)"
-                border="var(--theme_primary_color_black)"
-                onClick={handleGenerate}
+              style={{ padding: '3px 20px' }}
+              color="var(--theme_primary_color_white)"
+              bgcolor="var(--theme_primary_color_dark_gray)"
+              onClick={emptyInput}
             >
-              Generate
+              <Icon type="close" color="var(--theme_primary_color_black)" />
             </Button>
-            {showDownload && (
-                <>
-                  <Button
-                      color="var(--theme_primary_color_white)"
-                      bgcolor="var(--theme_primary_color_red)"
-                      border="var(--theme_primary_color_red)"
-                      onClick={handleDownload}
-                  >
-                    Download
-                  </Button>
-                  <Button
-                      color="var(--theme_primary_color_black)"
-                      border="var(--theme_primary_color_black)"
-                      onClick={handleCopy}
-                  >
-                    Copy
-                    <Icon type="copy" />
-                  </Button>
-                </>
-            )}
-          </div>
-        </Page>
-        <Footer />
-      </>
+          )}
+          <input
+            className="qr_input"
+            type="text"
+            value={qrValue}
+            onChange={e => setQrValue(e.target.value)}
+            placeholder="paste here"
+          />
+          <select
+            name="qr_type"
+            id="qr_type"
+            value={qrType}
+            onChange={e => {
+              setQrType(e.target.value);
+              setShowDownload(false); // Hide buttons on type change
+              if (e.target.value !== 'png') {
+                setQrSize(256); // Default size for non-PNG
+              }
+            }}
+          >
+            <option value="png">.png</option>
+            <option value="svg">.svg</option>
+          </select>
+          {qrType === 'png' && (
+            <select
+              name="qr_size"
+              id="qr_size"
+              value={qrSize}
+              onChange={e => setQrSize(Number(e.target.value))}
+              defaultValue="256"
+            >
+              <option value="100">100x100</option>
+              <option value="256">256x256</option>
+              <option value="300">300x300</option>
+              <option value="500">500x500</option>
+              <option value="1000">1000x1000</option>
+              <option value="3000">3000x3000</option>
+              <option value="5000">5000x5000</option>
+            </select>
+          )}
+
+          <input
+            id="qr_color"
+            type="color"
+            value={qrColor}
+            onChange={e => setQrColor(e.target.value)}
+          />
+          <Button
+            color="var(--theme_primary_color_white)"
+            bgcolor="var(--theme_primary_color_black)"
+            border="var(--theme_primary_color_black)"
+            onClick={handleGenerate}
+          >
+            Generate
+          </Button>
+          {showDownload && (
+            <>
+              <Button
+                color="var(--theme_primary_color_white)"
+                bgcolor="var(--theme_primary_color_red)"
+                border="var(--theme_primary_color_red)"
+                onClick={handleDownload}
+              >
+                Download
+              </Button>
+              <Button
+                color="var(--theme_primary_color_black)"
+                border="var(--theme_primary_color_black)"
+                onClick={handleCopy}
+              >
+                Copy
+                <Icon type="copy" />
+              </Button>
+            </>
+          )}
+        </div>
+      </Page>
+      <Footer />
+    </>
   );
 }

@@ -18,7 +18,9 @@ export default function About() {
       <Page gap="50px">
         <div>
           <Title>About</Title>
-          <Parapraph>{t('about_me.self_description')}</Parapraph>
+          <Parapraph style={{ marginTop: '10px' }}>
+            {t('about_me.self_description')}
+          </Parapraph>
 
           <br />
           <div>

@@ -24,39 +24,38 @@ export default function Utilities() {
           <div className="utilities_title">General</div>
           <div className="utilities_items">
             <Button
-                className="utilities_item"
-                to="/qr"
-                color="var(--theme_primary_color_black)"
-                border="var(--theme_primary_color_light_gray)"
-                bgcolor="var(--theme_primary_color_light_gray)"
-                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+              className="utilities_item"
+              to="/qr"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_light_gray)"
+              bgcolor="var(--theme_primary_color_light_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="qr"/>
+              <Icon type="qr" />
               <div className="utilities_item_text">QR generator</div>
             </Button>
             <Button
-                to="/shortener"
-                className="utilities_item"
-                color="var(--theme_primary_color_black)"
-                border="var(--theme_primary_color_light_gray)"
-                bgcolor="var(--theme_primary_color_light_gray)"
-                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+              to="/shortener"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_light_gray)"
+              bgcolor="var(--theme_primary_color_light_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="url"/>
+              <Icon type="url" />
               <div className="utilities_item_text">URL Shortener</div>
             </Button>
             <Button
-                to="/name-validator"
-                className="utilities_item"
-                color="var(--theme_primary_color_black)"
-                border="var(--theme_primary_color_light_gray)"
-                bgcolor="var(--theme_primary_color_light_gray)"
-                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+              to="/name-validator"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_light_gray)"
+              bgcolor="var(--theme_primary_color_light_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy"/>
+              <Icon type="copy" />
               <div className="utilities_item_text">Name Validator</div>
             </Button>
-
           </div>
         </div>
 
@@ -64,23 +63,23 @@ export default function Utilities() {
           <div className="utilities_title">Develop</div>
           <div className="utilities_items">
             <Button
-                to="/random-number-generator"
-                className="utilities_item"
-                color="var(--theme_primary_color_black)"
-                border="var(--theme_primary_color_darkest_gray)"
-                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+              to="/random-number-generator"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_darkest_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy"/>
+              <Icon type="copy" />
               <div className="utilities_item_text">Random Number Generator</div>
             </Button>
             <Button
-                to="/password-generator"
-                className="utilities_item"
-                color="var(--theme_primary_color_black)"
-                border="var(--theme_primary_color_darkest_gray)"
-                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+              to="/password-generator"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_darkest_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy"/>
+              <Icon type="copy" />
               <div className="utilities_item_text">Password Generator</div>
             </Button>
           </div>
@@ -89,45 +88,47 @@ export default function Utilities() {
           <div className="utilities_title">Design</div>
           <div className="utilities_items">
             <Button
-                to="/image-metadata-editor"
-                className="utilities_item"
-                color="var(--theme_primary_color_black)"
-                border="var(--theme_primary_color_darkest_gray)"
-                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+              to="/image-metadata-editor"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_darkest_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy"/>
+              <Icon type="copy" />
               <div className="utilities_item_text">Image Metadata Editor</div>
             </Button>
-
           </div>
         </div>
         <div className="utilities_block">
           <div className="utilities_title">In work</div>
           <div className="utilities_items">
             <Button
-                to="/browser-history"
-                className="utilities_item"
-                color="var(--theme_primary_color_black)"
-                border="var(--theme_primary_color_darkest_gray)"
-                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+              to="/browser-history"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_darkest_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy"/>
-              <div className="utilities_item_text"> Browser History Analyzer</div>
+              <Icon type="copy" />
+              <div className="utilities_item_text">
+                {' '}
+                Browser History Analyzer
+              </div>
             </Button>
             <Button
-                to="/pdf-to-world"
-                className="utilities_item"
-                color="var(--theme_primary_color_black)"
-                border="var(--theme_primary_color_darkest_gray)"
-                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+              to="/pdf-to-world"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_darkest_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy"/>
+              <Icon type="copy" />
               <div className="utilities_item_text">PDF to WORLD</div>
             </Button>
           </div>
         </div>
       </Page>
-      <Footer/>
+      <Footer />
     </>
   );
 }

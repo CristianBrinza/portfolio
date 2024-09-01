@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
                   />
                 </svg>
               </a>
-              <a  href="">
+              <a href="">
                 <svg
                   width="25"
                   height="26"
@@ -123,7 +123,7 @@ const Footer: React.FC = () => {
                   />
                 </svg>
               </a>
-              <a style={{display:'none'}} href="">
+              <a style={{ display: 'none' }} href="">
                 <svg
                   width="28"
                   height="22"

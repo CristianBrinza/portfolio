@@ -64,8 +64,6 @@
   gap: 15px;
 }
 
-
-
 @media (max-width: 670px) {
   .footer_main {
   }
@@ -73,7 +71,6 @@
 
 @media (max-width: 290px) {
   .footer_main_top_social {
-  gap:10px;
+    gap: 10px;
   }
-
 }

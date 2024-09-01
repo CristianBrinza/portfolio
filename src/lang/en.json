@@ -37,5 +37,15 @@
   },
   "about_me": {
     "self_description": "As a proficient Developer, I have a passion for visually appealing and user-friendly websites, applications and other types of projects. Proven my ability to deliver high-quality work, adapt to new technologies, collaborate with cross-functional teams, and stay currently with industry trends. I am a young software-engineer student, at the beginning of my career, having a ton of ambitious ideas and the motivation and discipline to realize them in management, design and development."
+  },
+  "contact": {
+    "get_in_touch": "Get in Touch",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "send_message": "Send Message",
+    "sending": "Sending...",
+    "success_message": "Your message has been sent successfully!",
+    "error_message": "An error occurred while sending your message. Please try again later."
   }
 }

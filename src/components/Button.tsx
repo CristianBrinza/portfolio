@@ -13,23 +13,27 @@ interface ButtonProps {
   to?: string;
   className?: string;
   style?: React.CSSProperties;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  color,
-  bgcolor,
-  hover_bgcolor,
-  hover_color,
-  border,
-  border_radius,
-  children,
-  onClick,
-  to,
-  className = '',
-  style,
-}) => {
+                                         color,
+                                         bgcolor,
+                                         hover_bgcolor,
+                                         hover_color,
+                                         border,
+                                         border_radius,
+                                         children,
+                                         onClick,
+                                         to,
+                                         className = '',
+                                         style,
+                                         type = 'button',
+                                         disabled = false,
+                                       }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const navigate = useNavigate(); // useNavigate hook for navigation
+  const navigate = useNavigate();
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -44,23 +48,23 @@ const Button: React.FC<ButtonProps> = ({
       onClick();
     }
     if (to) {
-      navigate(to); // Navigate to the specified route
+      navigate(to);
     }
   };
 
   const buttonStyle: React.CSSProperties = {
     backgroundColor: isHovered
-      ? hover_bgcolor || 'var(--theme_primary_color_dark_gray)'
-      : bgcolor || 'var(--theme_primary_color_white)',
+        ? hover_bgcolor || 'var(--theme_primary_color_dark_gray)'
+        : bgcolor || 'var(--theme_primary_color_white)',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: isHovered ? hover_bgcolor : border || '#ffffff00',
     borderRadius: border_radius || '12px',
-    cursor: 'pointer',
-    padding: '3px 28px',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    padding: '0px 28px',
     color: isHovered
-      ? hover_color || 'var(--theme_primary_color_black)'
-      : color || 'var(--theme_primary_color_black)',
+        ? hover_color || 'var(--theme_primary_color_black)'
+        : color || 'var(--theme_primary_color_black)',
     textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: '18px',
@@ -72,21 +76,36 @@ const Button: React.FC<ButtonProps> = ({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    minHeight: '46px',
+    minHeight: '48px',
     textDecoration: 'none',
-    ...style,
+    opacity: disabled ? 0.6 : 1,
+    pointerEvents: disabled ? 'none' : 'auto',
+    boxSizing: 'border-box',
   };
 
-  return (
-    <button
-      style={buttonStyle}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
-      className={`${className}`}
-    >
-      {children}
-    </button>
+  return to ? (
+      <a
+          href={to}
+          style={buttonStyle}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={onClick}
+          className={`${className}`}
+      >
+        {children}
+      </a>
+  ) : (
+      <button
+          type={type}
+          style={buttonStyle}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+          className={`${className}`}
+          disabled={disabled}
+      >
+        {children}
+      </button>
   );
 };
 

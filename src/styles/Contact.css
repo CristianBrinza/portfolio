@@ -1,0 +1,123 @@
+/* src/styles/Contact.css */
+
+.contact_page {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 30px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#contact_page_left {
+  width: 100%;
+  max-width: 600px;
+}
+#contact_page_right {
+  width: 100%;
+  max-width: 400px;
+}
+
+.contact_info {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact_info_row {
+  font-size: 16px;
+  color: var(--theme_primary_color_black);
+}
+.contact_info_row b {
+  margin-right: 10px;
+}
+
+.contact_form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form_group label {
+  font-weight: 600;
+  color: var(--theme_primary_color_black);
+}
+
+.form_group input,
+.form_group textarea {
+  padding: 10px 15px;
+  border: 1px solid var(--theme_primary_color_dark_gray);
+  border-radius: 8px;
+  font-size: 16px;
+  color: var(--theme_primary_color_black);
+  background-color: var(--theme_primary_color_white);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form_group input:focus,
+.form_group textarea:focus {
+  border-color: var(--theme_primary_color_black);
+}
+
+.error_message {
+  color: var(--theme_primary_color_red);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.success_message {
+  color: var(--theme_primary_color_green);
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.contact_form button {
+  align-self: flex-start;
+}
+.contact_info a {
+  color: #333333;
+}
+.contact_br_hide_on_desktop{
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  #contact_page_left {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+@media (max-width: 1100px) {
+  #contact_page_left {
+    width: 100%;
+    max-width: 400px;
+  }
+  .contact_info_row {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 915px) {
+  #contact_page_left {
+    width: 100%;
+    max-width: 100%;
+  }
+  .contact_info_row {
+    display: block;
+  }
+  #contact_page_right {
+    max-width: 100%;
+    margin-top: 30px;
+  }
+  .contact_br_hide_on_desktop{
+    display: block;
+  }
+}
