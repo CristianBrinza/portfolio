@@ -84,7 +84,7 @@
 .contact_info a {
   color: #333333;
 }
-.contact_br_hide_on_desktop{
+.contact_br_hide_on_desktop {
   display: none;
 }
 
@@ -117,7 +117,7 @@
     max-width: 100%;
     margin-top: 30px;
   }
-  .contact_br_hide_on_desktop{
+  .contact_br_hide_on_desktop {
     display: block;
   }
 }

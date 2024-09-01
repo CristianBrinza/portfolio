@@ -18,20 +18,20 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-                                         color,
-                                         bgcolor,
-                                         hover_bgcolor,
-                                         hover_color,
-                                         border,
-                                         border_radius,
-                                         children,
-                                         onClick,
-                                         to,
-                                         className = '',
-                                         style,
-                                         type = 'button',
-                                         disabled = false,
-                                       }) => {
+  color,
+  bgcolor,
+  hover_bgcolor,
+  hover_color,
+  border,
+  border_radius,
+  children,
+  onClick,
+  to,
+  className = '',
+  style,
+  type = 'button',
+  disabled = false,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
@@ -54,8 +54,8 @@ const Button: React.FC<ButtonProps> = ({
 
   const buttonStyle: React.CSSProperties = {
     backgroundColor: isHovered
-        ? hover_bgcolor || 'var(--theme_primary_color_dark_gray)'
-        : bgcolor || 'var(--theme_primary_color_white)',
+      ? hover_bgcolor || 'var(--theme_primary_color_dark_gray)'
+      : bgcolor || 'var(--theme_primary_color_white)',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: isHovered ? hover_bgcolor : border || '#ffffff00',
@@ -63,8 +63,8 @@ const Button: React.FC<ButtonProps> = ({
     cursor: disabled ? 'not-allowed' : 'pointer',
     padding: '0px 28px',
     color: isHovered
-        ? hover_color || 'var(--theme_primary_color_black)'
-        : color || 'var(--theme_primary_color_black)',
+      ? hover_color || 'var(--theme_primary_color_black)'
+      : color || 'var(--theme_primary_color_black)',
     textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: '18px',
@@ -81,31 +81,32 @@ const Button: React.FC<ButtonProps> = ({
     opacity: disabled ? 0.6 : 1,
     pointerEvents: disabled ? 'none' : 'auto',
     boxSizing: 'border-box',
+    ...style,
   };
 
   return to ? (
-      <a
-          href={to}
-          style={buttonStyle}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onClick={onClick}
-          className={`${className}`}
-      >
-        {children}
-      </a>
+    <a
+      href={to}
+      style={buttonStyle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={onClick}
+      className={`${className}`}
+    >
+      {children}
+    </a>
   ) : (
-      <button
-          type={type}
-          style={buttonStyle}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onClick={handleClick}
-          className={`${className}`}
-          disabled={disabled}
-      >
-        {children}
-      </button>
+    <button
+      type={type}
+      style={buttonStyle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+      className={`${className}`}
+      disabled={disabled}
+    >
+      {children}
+    </button>
   );
 };
 

@@ -87,11 +87,13 @@ export default function Contact() {
             </span>
             <br />
             <span className="contact_info_row">
-              <b>Office Hours: </b> <br className="contact_br_hide_on_desktop"/>
+              <b>Office Hours: </b>{' '}
+              <br className="contact_br_hide_on_desktop" />
               <span>Available Monday to Friday, 9 AM - 5 PM</span>
             </span>
             <span className="contact_info_row">
-              <b>Response Time: </b> <br className="contact_br_hide_on_desktop"/>
+              <b>Response Time: </b>{' '}
+              <br className="contact_br_hide_on_desktop" />
               <span>I usually respond within 1-3 hours</span>
             </span>
           </div>
