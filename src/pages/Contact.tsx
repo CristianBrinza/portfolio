@@ -78,7 +78,7 @@ export default function Contact() {
             <span className="contact_info_row">
               <b>Email: </b>
               <a href="mailto:inbox@cristian.brinza.com">
-                inbox@cristian.brinza.com
+                inbox@cristianbrinza.com
               </a>
             </span>
             <span className="contact_info_row">
