@@ -56,6 +56,17 @@ export default function Utilities() {
               <Icon type="copy" />
               <div className="utilities_item_text">Name Validator</div>
             </Button>
+            <Button
+              to="/word-counter"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_light_gray)"
+              bgcolor="var(--theme_primary_color_light_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="copy" />
+              <div className="utilities_item_text">Word Counter</div>
+            </Button>
           </div>
         </div>
 
@@ -82,6 +93,26 @@ export default function Utilities() {
               <Icon type="copy" />
               <div className="utilities_item_text">Password Generator</div>
             </Button>
+            <Button
+              to="/json-formatter"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_darkest_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="copy" />
+              <div className="utilities_item_text">JSON Formatter</div>
+            </Button>
+            <Button
+              to="/json-diff-tool"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_darkest_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="copy" />
+              <div className="utilities_item_text">JSON Diff Tool</div>
+            </Button>
           </div>
         </div>
         <div className="utilities_block">
@@ -96,6 +127,16 @@ export default function Utilities() {
             >
               <Icon type="copy" />
               <div className="utilities_item_text">Image Metadata Editor</div>
+            </Button>
+            <Button
+              to="/color-convertor"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_darkest_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="copy" />
+              <div className="utilities_item_text">Color Convertor</div>
             </Button>
           </div>
         </div>

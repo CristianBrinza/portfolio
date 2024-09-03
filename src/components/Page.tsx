@@ -5,6 +5,8 @@ interface PageProps {
   className?: string;
   children?: React.ReactNode;
   minHeight?: string;
+  style?: React.CSSProperties;
+  id?: string;
 }
 
 const Page: React.FC<PageProps> = ({
@@ -12,14 +14,17 @@ const Page: React.FC<PageProps> = ({
   className = '',
   children,
   minHeight = '55vh',
+  style,
+  id,
 }) => {
   const pageStyle: React.CSSProperties = {
     gap: gap,
     minHeight: minHeight,
+    ...style,
   };
 
   return (
-    <div className={`${className} main`} style={pageStyle}>
+    <div id={id} className={`${className} main`} style={pageStyle}>
       {children}
     </div>
   );

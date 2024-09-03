@@ -1,0 +1,15 @@
+/* src/styles/About.css */
+#about_page {
+  display: flex;
+  flex-direction: row;
+  gap: 60px;
+  align-items: flex-start;
+}
+#about_page_text {
+  width: 700px;
+}
+#about_page_img {
+  width: 350px;
+  height: auto;
+  margin-top: 50px;
+}

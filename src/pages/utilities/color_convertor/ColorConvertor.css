@@ -1,0 +1,34 @@
+.converter_container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+#converter_input {
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--theme_primary_color_white);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 12px;
+  color: var(--theme_primary_color_black);
+  padding: 0 10px;
+  height: 46px;
+}
+
+.color_formats_container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.color_format {
+  display: flex;
+  align-items: center;
+  background-color: var(--theme_primary_color_white);
+  border: 1px solid var(--theme_primary_color_dark_gray);
+  border-radius: 8px;
+  padding: 10px;
+}

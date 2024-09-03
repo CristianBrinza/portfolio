@@ -17,6 +17,10 @@ import BrowserHistoryAnalyzer from './pages/utilities/browser_history_analyzer/B
 import RandomNumberGenerator from './pages/utilities/random_number_generator/RandomNumberGenerator.tsx';
 import PasswordGenerator from './pages/utilities/password_generator/PasswordGenerator.tsx';
 import ImageMetadataEditor from './pages/utilities/image_metadata_editor/ImageMetadataEditor.tsx';
+import ColorConvertor from './pages/utilities/color_convertor/ColorConvertor.tsx';
+import JsonFormatter from './pages/utilities/json-formatter/JsonFormatter.tsx';
+import WordCounter from './pages/utilities/word_counter/WordCounter.tsx';
+import JsonDiffTool from './pages/utilities/json_diff_tool/JsonDiffTool.tsx';
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -49,8 +53,24 @@ export const routes = [
     element: React.createElement(ImageMetadataEditor),
   },
   {
+    path: '/:lang/color-convertor',
+    element: React.createElement(ColorConvertor),
+  },
+  {
     path: '/:lang/name-validator',
     element: React.createElement(NameValidator),
+  },
+  {
+    path: '/:lang/json-formatter',
+    element: React.createElement(JsonFormatter),
+  },
+  {
+    path: '/:lang/word-counter',
+    element: React.createElement(WordCounter),
+  },
+  {
+    path: '/:lang/json-diff-tool',
+    element: React.createElement(JsonDiffTool),
   },
 
   { path: '*', element: React.createElement(NotFound) },
