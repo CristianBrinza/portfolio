@@ -67,6 +67,17 @@ export default function Utilities() {
               <Icon type="copy" />
               <div className="utilities_item_text">Word Counter</div>
             </Button>
+            <Button
+              to="/stopwatch-timer"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_light_gray)"
+              bgcolor="var(--theme_primary_color_light_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="copy" />
+              <div className="utilities_item_text">Stopwatch Timer</div>
+            </Button>
           </div>
         </div>
 

@@ -21,6 +21,7 @@ import ColorConvertor from './pages/utilities/color_convertor/ColorConvertor.tsx
 import JsonFormatter from './pages/utilities/json-formatter/JsonFormatter.tsx';
 import WordCounter from './pages/utilities/word_counter/WordCounter.tsx';
 import JsonDiffTool from './pages/utilities/json_diff_tool/JsonDiffTool.tsx';
+import StopwatchTimer from './pages/utilities/stopwatch_timer/StopwatchTimer.tsx';
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -71,6 +72,10 @@ export const routes = [
   {
     path: '/:lang/json-diff-tool',
     element: React.createElement(JsonDiffTool),
+  },
+  {
+    path: '/:lang/stopwatch-timer',
+    element: React.createElement(StopwatchTimer),
   },
 
   { path: '*', element: React.createElement(NotFound) },
