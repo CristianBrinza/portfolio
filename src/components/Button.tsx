@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, ReactElement, isValidElement } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Icon from './Icon'; // Adjust the import path as needed
 
 interface ButtonProps {
   bgcolor?: string;
@@ -84,6 +85,9 @@ const Button: React.FC<ButtonProps> = ({
     ...style,
   };
 
+  // Pass the dynamic color to Icon
+  const buttonIconColor = isHovered ? hover_color || color : color;
+
   return to ? (
     <a
       href={to}
@@ -105,7 +109,15 @@ const Button: React.FC<ButtonProps> = ({
       className={`${className}`}
       disabled={disabled}
     >
-      {children}
+      {/* Render children and pass dynamic color to Icon */}
+      {React.Children.map(children, child => {
+        if (isValidElement(child) && child.type === Icon) {
+          return React.cloneElement(child as ReactElement<any>, {
+            color: buttonIconColor,
+          });
+        }
+        return child;
+      })}
     </button>
   );
 };

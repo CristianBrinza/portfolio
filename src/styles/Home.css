@@ -43,7 +43,9 @@
   display: flex;
   gap: 15px;
 }
-
+.home_block_title{
+  margin-bottom: 0px!important;
+}
 @media (max-width: 1100px) {
   .home_hero_text_1,
   .home_hero_text_2 {

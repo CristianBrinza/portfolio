@@ -73,11 +73,13 @@ export default function Contact() {
           <div className="contact_info">
             <span className="contact_info_row">
               <b>Phone: </b>
-              <span>+373 (68) 74-54-34</span>
+              <a style={{ textDecoration: 'none' }} href="tel:+37368745434">
+                +373 (68) 74-54-34
+              </a>
             </span>
             <span className="contact_info_row">
               <b>Email: </b>
-              <a href="mailto:inbox@cristian.brinza.com">
+              <a href="mailto:inbox@cristianbrinza.com">
                 inbox@cristianbrinza.com
               </a>
             </span>

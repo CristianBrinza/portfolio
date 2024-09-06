@@ -18,26 +18,46 @@ export default function About() {
       <Page gap="50px" id="about_page">
         <div id="about_page_text">
           <div>
-            <Title>About</Title>
-            <Parapraph style={{ marginTop: '10px' }}>
-              {t('about_me.self_description')}
-            </Parapraph>
+            <div id="about_page_text_first_block">
+              <div>
+                <Title>About</Title>
+                <div id="about_page_text_first_sub_block">
+                  <Parapraph style={{ marginTop: '10px' }}>
+                    {t('about_me.self_description')}
+                  </Parapraph>
+                  <div id="about_page_text_first_sub_block_img">
+                    <img
+                      id="about_page_img"
+                      src="/images/about_photo.jpg"
+                      alt="photo"
+                    />
+                  </div>
+                </div>
 
-            <br />
-            <div>
-              <b>Age:</b> 22 years
+                <br />
+                <div>
+                  <b>Age:</b> 22 years
+                </div>
+                <div>
+                  <b>Location:</b> Chisinau, Moldova Republic of
+                </div>
+                <div>
+                  <b>Languages:</b> Romanian (maternal); English, Russian (High
+                  level); French (intermediate)
+                </div>
+                <div style={{ height: '10px' }}></div>
+              </div>
+              <div>
+                <div id="about_page_img_block_mobile">
+                  <img
+                    id="about_page_img"
+                    src="/images/about_photo.jpg"
+                    alt="photo"
+                  />
+                </div>
+              </div>
             </div>
-            <div>
-              <b>Location:</b> Chisinau, Moldova Republic of
-            </div>
-            <div>
-              <b>Languages:</b> Romanian (maternal); English, Russian (High
-              level); French (intermediate)
-            </div>
-            <div style={{ height: '10px' }}></div>
-          </div>
-          <div>
-            <Title>Education</Title>
+            <Title className="about_page_useful_links">Education</Title>
 
             <div style={{ marginTop: '10px' }}>
               <b> Technical University of Moldova</b>
@@ -85,7 +105,7 @@ export default function About() {
           </div>
 
           <div>
-            <Title>Useful Links</Title>
+            <Title className="about_page_useful_links">Useful Links</Title>
             <div>
               <b>Github: </b>
               <a href="https://www.github.com/CristianBrinza">
@@ -100,7 +120,9 @@ export default function About() {
             </div>
           </div>
         </div>
-        <img id="about_page_img" src="/images/about_photo.jpg" alt="photo" />
+        <div id="about_page_img_block">
+          <img id="about_page_img" src="/images/about_photo.jpg" alt="photo" />
+        </div>
       </Page>
       <Footer />
     </>

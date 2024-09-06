@@ -98,6 +98,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .full-screen .timer_display {
   font-size: 96px;
   transform: scale(2);
@@ -105,9 +106,9 @@
 
 .fullscreen-controls {
   position: absolute;
-  bottom: 40px;
+  bottom: 60px;
   left: 50%;
-  transform: translateX(-50%) scale(0.5);
+  transform: translateX(-50%) scale(0.7);
   opacity: 0;
   width: 100%;
   display: flex;
@@ -166,4 +167,91 @@
 
 .full-screen .timer_input_container {
   display: none;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .stopwatch_timer_container {
+    padding: 10px;
+  }
+
+  .timer_display , .full-screen .timer_display{
+    font-size: 28px;
+    padding: 10px;
+    min-width: unset;
+  }
+
+  .controls {
+    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .timer_input_container {
+    gap: 3px;
+  }
+
+  .timer_input {
+    width: 40px;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .laps {
+    font-size: 14px;
+  }
+
+  .fullscreen-controls {
+    transform: translateX(-50%) scale(0.5);
+  }
+
+  .fullscreen-laps {
+    bottom: 80px;
+    width: 180px;
+    font-size: 12px;
+  }
+
+  .popup_content {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .popup_content h2 {
+    font-size: 24px;
+  }
+
+  .popup_content Button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .timer_display, .full-screen .timer_display {
+    font-size: 22px;
+    padding: 8px;
+  }
+
+  .controls {
+    gap: 3px;
+    flex-direction: column;
+  }
+
+  .fullscreen-controls {
+    transform: translateX(-50%) scale(0.6);
+  }
+
+  .fullscreen-laps {
+    bottom: 70px;
+    width: 160px;
+    font-size: 10px;
+  }
+
+  .popup_content {
+    width: 85%;
+    padding: 10px;
+  }
+
+  .popup_content h2 {
+    font-size: 20px;
+  }
 }

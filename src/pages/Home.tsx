@@ -131,14 +131,14 @@ export default function Home() {
         </div>
 
         <div className="home_block">
-          <Title className="reveal">See my work</Title>
+          <Title className="reveal home_block_title">See my work</Title>
           <Parapraph className="reveal">
             I Am a Young Profesional Web-Deweloper and UI&UX Desinger
           </Parapraph>
         </div>
 
         <div className="home_block">
-          <Title className="reveal">Meet my workplaces</Title>
+          <Title className="reveal home_block_title">Meet my workplaces</Title>
           <Parapraph className="reveal">
             As a freelance designer and web developer, I have had the privilege
             of working with a diverse range of clients, from private clients to

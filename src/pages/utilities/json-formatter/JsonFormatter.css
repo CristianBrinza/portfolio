@@ -147,3 +147,45 @@
     justify-content: center;
   }
 }
+
+/* Custom scrollbar styles for the laps list */
+.formatter_textarea {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: var(--theme_primary_color_black) transparent;
+}
+
+/* For Webkit browsers like Chrome, Safari, and Edge */
+.formatter_textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.formatter_textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.formatter_textarea::-webkit-scrollbar-thumb {
+  background-color: var(--theme_primary_color_black);
+  border-radius: 10px;
+  border: 2px solid transparent; /* Optional for padding inside thumb */
+}
+
+/* Custom scrollbar styles for the laps list */
+.formatter_output {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: var(--theme_primary_color_black) transparent;
+}
+
+/* For Webkit browsers like Chrome, Safari, and Edge */
+.formatter_output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.formatter_output::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.formatter_output::-webkit-scrollbar-thumb {
+  background-color: var(--theme_primary_color_black);
+  border-radius: 10px;
+  border: 2px solid transparent; /* Optional for padding inside thumb */
+}

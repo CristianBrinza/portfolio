@@ -150,3 +150,24 @@
     justify-content: flex-end;
   }
 }
+
+/* Custom scrollbar styles for the laps list */
+.json_diff_textarea {
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: var(--theme_primary_color_black) transparent;
+}
+
+/* For Webkit browsers like Chrome, Safari, and Edge */
+.json_diff_textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.json_diff_textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.json_diff_textarea::-webkit-scrollbar-thumb {
+  background-color: var(--theme_primary_color_black);
+  border-radius: 10px;
+  border: 2px solid transparent; /* Optional for padding inside thumb */
+}

@@ -31,8 +31,8 @@ export default function Utilities() {
               bgcolor="var(--theme_primary_color_light_gray)"
               hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="qr" />
-              <div className="utilities_item_text">QR generator</div>
+              <Icon type="qr" color= '#1d1d1f'/>
+              <div className="utilities_item_text" style={{color: '#1d1d1f'}}>QR generator</div>
             </Button>
             <Button
               to="/shortener"
@@ -42,8 +42,8 @@ export default function Utilities() {
               bgcolor="var(--theme_primary_color_light_gray)"
               hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="url" />
-              <div className="utilities_item_text">URL Shortener</div>
+              <Icon type="url" color= '#1d1d1f'/>
+              <div className="utilities_item_text" style={{color: '#1d1d1f'}}>URL Shortener</div>
             </Button>
             <Button
               to="/name-validator"
@@ -53,8 +53,8 @@ export default function Utilities() {
               bgcolor="var(--theme_primary_color_light_gray)"
               hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy" />
-              <div className="utilities_item_text">Name Validator</div>
+              <Icon type="copy" color= '#1d1d1f'/>
+              <div className="utilities_item_text" style={{color: '#1d1d1f'}}>Name Validator</div>
             </Button>
             <Button
               to="/word-counter"
@@ -64,8 +64,8 @@ export default function Utilities() {
               bgcolor="var(--theme_primary_color_light_gray)"
               hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy" />
-              <div className="utilities_item_text">Word Counter</div>
+              <Icon type="copy" color= '#1d1d1f'/>
+              <div className="utilities_item_text" style={{color: '#1d1d1f'}}>Word Counter</div>
             </Button>
             <Button
               to="/stopwatch-timer"
@@ -75,8 +75,8 @@ export default function Utilities() {
               bgcolor="var(--theme_primary_color_light_gray)"
               hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
-              <Icon type="copy" />
-              <div className="utilities_item_text">Stopwatch Timer</div>
+              <Icon type="copy" color= '#1d1d1f'/>
+              <div className="utilities_item_text" style={{color: '#1d1d1f'}}>Stopwatch Timer</div>
             </Button>
           </div>
         </div>
@@ -148,6 +148,16 @@ export default function Utilities() {
             >
               <Icon type="copy" />
               <div className="utilities_item_text">Color Convertor</div>
+            </Button>{' '}
+            <Button
+              to="/image-color-picker"
+              className="utilities_item"
+              color="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_darkest_gray)"
+              hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="copy" />
+              <div className="utilities_item_text">Color Picker</div>
             </Button>
           </div>
         </div>

@@ -4,7 +4,7 @@ import Home from './pages/Home.tsx';
 import About from './pages/About.tsx';
 import Blog from './pages/Blog.tsx';
 import Contact from './pages/Contact.tsx';
-import Portfolio from './pages/Portfolio.tsx';
+import Portfolio from './pages/portfolio/Portfolio.tsx';
 import NotFound from './pages/NotFound.tsx';
 import Resume from './pages/Resume.tsx';
 import QR from './pages/utilities/qr/QR.tsx';
@@ -22,6 +22,10 @@ import JsonFormatter from './pages/utilities/json-formatter/JsonFormatter.tsx';
 import WordCounter from './pages/utilities/word_counter/WordCounter.tsx';
 import JsonDiffTool from './pages/utilities/json_diff_tool/JsonDiffTool.tsx';
 import StopwatchTimer from './pages/utilities/stopwatch_timer/StopwatchTimer.tsx';
+import ImageColorPicker from './pages/utilities/image_color_picker/ImageColorPicker.tsx';
+import PortfolioBackEnd from "./pages/portfolio/PortfolioBackEnd.tsx";
+import PortfolioFrontEnd from "./pages/portfolio/PortfolioFrontEnd.tsx";
+import PortfolioDesign from "./pages/portfolio/PortfolioDesign.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -76,6 +80,22 @@ export const routes = [
   {
     path: '/:lang/stopwatch-timer',
     element: React.createElement(StopwatchTimer),
+  },
+  {
+    path: '/:lang/image-color-picker',
+    element: React.createElement(ImageColorPicker),
+  },
+  {
+    path: '/:lang/portfolio-design',
+    element: React.createElement(PortfolioDesign),
+  },
+  {
+    path: '/:lang/iportfolio-back-end',
+    element: React.createElement(PortfolioBackEnd),
+  },
+  {
+    path: '/:lang/portfolio-front-end',
+    element: React.createElement(PortfolioFrontEnd),
   },
 
   { path: '*', element: React.createElement(NotFound) },

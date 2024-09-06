@@ -7,6 +7,7 @@ import Footer from '../../../components/Footer/Footer.tsx';
 import Button from '../../../components/Button.tsx';
 import { Trans } from 'react-i18next';
 import './ImageMetadataEditor.css';
+import Notification from '../../../components/Notification/Notification.tsx';
 
 // Define a type for ExifTags
 type ExifTags = {
@@ -83,6 +84,7 @@ export default function ImageMetadataEditor() {
   const [batchEdit, setBatchEdit] = useState<boolean>(false);
   const [batchFiles, setBatchFiles] = useState<File[]>([]);
   const [geolocation, setGeolocation] = useState<Geolocation | null>(null);
+  const [showRawNotification, setShowRawNotification] = useState(false);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [fileInfo, setFileInfo] = useState({
     name: '',
@@ -113,10 +115,13 @@ export default function ImageMetadataEditor() {
         !fileType.includes('png') &&
         !fileType.includes('gif')
       ) {
-        // RAW image detected, show a placeholder or message
+        // RAW image detected, show a notification instead of an alert
+        setShowRawNotification(true);
+        setMetadata(null); // Clear the metadata
+        setEditedMetadata(null); // Clear the edited metadata
         setImagePreview(null); // or set a placeholder image URL
-        alert('RAW images cannot be previewed.');
       } else {
+        setShowRawNotification(false);
         const result = URL.createObjectURL(file);
         setImagePreview(result);
       }
@@ -367,6 +372,12 @@ export default function ImageMetadataEditor() {
           { label: 'Image Metadata Editor' },
         ]}
       />
+
+      {showRawNotification && (
+        <Notification type="warning">
+          No preview available for this image format.
+        </Notification>
+      )}
 
       <Page gap="20px">
         <Title>Image Metadata Editor</Title>
