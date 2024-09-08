@@ -124,8 +124,8 @@ export default function Home() {
             <LinkButton className="reveal" to="/about">
               See more
             </LinkButton>
-            <LinkButton className="reveal" to="/networking">
-              Networking
+            <LinkButton className="reveal" to="/contact">
+              Contact me
             </LinkButton>
           </div>
         </div>

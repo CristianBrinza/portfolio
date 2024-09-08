@@ -23,9 +23,9 @@ import WordCounter from './pages/utilities/word_counter/WordCounter.tsx';
 import JsonDiffTool from './pages/utilities/json_diff_tool/JsonDiffTool.tsx';
 import StopwatchTimer from './pages/utilities/stopwatch_timer/StopwatchTimer.tsx';
 import ImageColorPicker from './pages/utilities/image_color_picker/ImageColorPicker.tsx';
-import PortfolioBackEnd from "./pages/portfolio/PortfolioBackEnd.tsx";
-import PortfolioFrontEnd from "./pages/portfolio/PortfolioFrontEnd.tsx";
-import PortfolioDesign from "./pages/portfolio/PortfolioDesign.tsx";
+import PortfolioBackEnd from './pages/portfolio/PortfolioBackEnd.tsx';
+import PortfolioFrontEnd from './pages/portfolio/PortfolioFrontEnd.tsx';
+import PortfolioDesign from './pages/portfolio/PortfolioDesign.tsx';
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -90,7 +90,7 @@ export const routes = [
     element: React.createElement(PortfolioDesign),
   },
   {
-    path: '/:lang/iportfolio-back-end',
+    path: '/:lang/portfolio-back-end',
     element: React.createElement(PortfolioBackEnd),
   },
   {

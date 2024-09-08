@@ -1,26 +1,28 @@
-.not_found_page{
-    height: calc(100vh - 160px);
-    background: var(--theme_primary_color_light_gray);
-    margin-bottom: 30px;
-    display: flex;
-    border-radius: 14px;
-    align-items: center;
-    justify-content: center;
+.not_found_page {
+  height: calc(100vh - 160px);
+  background: var(--theme_primary_color_light_gray);
+  margin-bottom: 30px;
+  display: flex;
+  border-radius: 14px;
+  align-items: center;
+  justify-content: center;
 }
 
-.not_found_page h1{
-    margin: 10px;
-    text-align: center;
-    line-height: 120%;
+.not_found_page h1 {
+  margin: 10px;
+  text-align: center;
+  line-height: 120%;
 }
-#not_found_page_br{
-    display: none;
+
+#not_found_page_br {
+  display: none;
 }
+
 @media (max-width: 380px) {
-    #not_found_page_dash {
-        display: none;
-    }
-    #not_found_page_br{
-        display: block;
-    }
+  #not_found_page_dash {
+    display: none;
+  }
+  #not_found_page_br {
+    display: block;
+  }
 }

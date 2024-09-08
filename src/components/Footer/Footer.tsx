@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
                   />
                 </svg>
               </a>
-              <a href="">
+              <a href="https://www.linkedin.com/in/cristianbrinza/">
                 <svg
                   width="29"
                   height="30"
@@ -109,7 +109,7 @@ const Footer: React.FC = () => {
                   />
                 </svg>
               </a>
-              <a href="">
+              <a href="https://www.instagram.com/brinza_cristian/">
                 <svg
                   width="32"
                   height="32"

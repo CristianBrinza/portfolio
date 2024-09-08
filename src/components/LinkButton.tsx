@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from './Icon.tsx';
+import { Link } from 'react-router-dom';
 
 interface LinkButtonProps {
   to?: string;
@@ -28,11 +29,16 @@ const LinkButton: React.FC<LinkButtonProps> = ({
     cursor: 'pointer',
   };
 
-  return (
-    <a href={to} className={className} style={LinkButtonStyle}>
+  return to ? (
+    <Link to={to} className={className} style={LinkButtonStyle}>
       {children}
       <Icon type="arrow" color={color || '#1967D2'} />
-    </a>
+    </Link>
+  ) : (
+    <span className={className} style={LinkButtonStyle}>
+      {children}
+      <Icon type="arrow" color={color || '#1967D2'} />
+    </span>
   );
 };
 

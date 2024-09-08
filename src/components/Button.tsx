@@ -1,5 +1,5 @@
 import React, { useState, ReactElement, isValidElement } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Icon from './Icon'; // Adjust the import path as needed
 
 interface ButtonProps {
@@ -89,8 +89,8 @@ const Button: React.FC<ButtonProps> = ({
   const buttonIconColor = isHovered ? hover_color || color : color;
 
   return to ? (
-    <a
-      href={to}
+    <Link
+      to={to}
       style={buttonStyle}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -98,7 +98,7 @@ const Button: React.FC<ButtonProps> = ({
       className={`${className}`}
     >
       {children}
-    </a>
+    </Link>
   ) : (
     <button
       type={type}

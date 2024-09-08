@@ -175,7 +175,8 @@
     padding: 10px;
   }
 
-  .timer_display , .full-screen .timer_display{
+  .timer_display,
+  .full-screen .timer_display {
     font-size: 28px;
     padding: 10px;
     min-width: unset;
@@ -226,7 +227,8 @@
 }
 
 @media (max-width: 480px) {
-  .timer_display, .full-screen .timer_display {
+  .timer_display,
+  .full-screen .timer_display {
     font-size: 22px;
     padding: 8px;
   }
