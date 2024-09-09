@@ -18,7 +18,9 @@
   line-height: 45px;
   margin-top: 40px;
 }
-
+.portfolio_front_page_main_title {
+  margin-top: 10px;
+}
 @media (max-width: 900px) {
   #portfolio_front_page_disclaimer {
     max-width: 500px;

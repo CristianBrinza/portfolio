@@ -38,7 +38,7 @@ export default function About() {
                   className="about_page_text_color"
                   style={{ marginTop: '10px' }}
                 >
-                  Hi, I'm Cristian Brinza, as a proficient Developer, I have a
+                  Hi, I'm Cristian Brinza. As a proficient Developer, I have a
                   passion for visually appealing and user-friendly websites,
                   applications and other types of projects. Proven my ability to
                   deliver high-quality work, adapt to new technologies,

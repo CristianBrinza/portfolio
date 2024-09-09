@@ -1,0 +1,30 @@
+[
+  {
+    "img": "/images/portfolio/portfolio_924500.png",
+    "title": "Weather App",
+    "description": "Simple but beautiful weather API app",
+    "link": "https://github.com/CristianBrinza/small-frontend-projects/tree/main/weather_app",
+    "demo": "https://cristianbrinza.github.io/small-frontend-projects/weather_app/index.html"
+  },
+  {
+    "img": "/images/portfolio/portfolio_938443.png",
+    "title": "Rubber Button",
+    "description": "A Rubber Button With HTML, CSS and SVG",
+    "link": "https://github.com/CristianBrinza/small-frontend-projects/tree/main/rubber_button",
+    "demo": "https://cristianbrinza.github.io/small-frontend-projects/rubber_button/index.html"
+  },
+  {
+    "img": "/images/portfolio/portfolio_739442.png",
+    "title": "QR code generator",
+    "description": "A simple demonstratioona QR code generator with Google API",
+    "link": "https://github.com/CristianBrinza/qr-generator",
+    "demo": "https://cristianbrinza.github.io/qr-generator/"
+  },
+  {
+    "img": "/images/portfolio/portfolio_624349.png",
+    "title": "3D tag-cloud",
+    "description": "A 3D rotating randomly generated in JS sphere with front-end tags",
+    "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/3D_tagcloud/index.html",
+    "demo": "https://cristianbrinza.github.io/small-frontend-projects/3D_tagcloud/index.html"
+  }
+]

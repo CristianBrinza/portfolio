@@ -19,18 +19,19 @@ interface BreadcrumbItem {
 }
 
 export default function PortfolioFrontEnd() {
-  const [showCardItems, setShowCardItems] = useState<ShowCardItem[]>([]);
+  const [showCardItems1, setshowCardItems1] = useState<ShowCardItem[]>([]);
+  const [showCardItems2, setshowCardItems2] = useState<ShowCardItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchShowCardItems = async () => {
+    const fetchshowCardItems1 = async () => {
       try {
-        const response = await fetch('/json/portfolio.json');
+        const response = await fetch('/json/portfolio_top_projects.json');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setShowCardItems(data);
+        setshowCardItems1(data);
       } catch (error) {
         console.error('Error fetching show card data:', error);
       } finally {
@@ -38,7 +39,24 @@ export default function PortfolioFrontEnd() {
       }
     };
 
-    fetchShowCardItems();
+    fetchshowCardItems1();
+
+    const fetchshowCardItems2 = async () => {
+      try {
+        const response = await fetch('/json/portfolio_projects.json');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setshowCardItems2(data);
+      } catch (error) {
+        console.error('Error fetching show card data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchshowCardItems2();
   }, []);
 
   // Example breadcrumb items
@@ -66,7 +84,9 @@ export default function PortfolioFrontEnd() {
         </div>
 
         <div id="portfolio_front_page_main">
-          <ShowCards items={showCardItems} />
+          <ShowCards items={showCardItems1} />
+          <div className="portfolio_front_page_main_title">Other Pojects:</div>
+          <ShowCards items={showCardItems2} />
         </div>
         <div id="portfolio_front_page_disclaimer">
           Projects may resemble others due to the use of open-source

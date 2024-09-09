@@ -18,6 +18,7 @@ const BottomMenu: React.FC = () => {
           to="/cv"
           color="var(--theme_primary_color_black)"
           border="transparent"
+          hover_bgcolor="var(--theme_primary_color_dark_gray)"
           bgcolor="var(--secondary)"
         >
           CV/Resume

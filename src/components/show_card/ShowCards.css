@@ -11,12 +11,14 @@
   aspect-ratio: 16 / 9;
   width: 100%;
   border-radius: 10px;
+  border: 1.5px solid var(--theme_primary_color_dark_gray);
 }
 .show_card_img_empty {
   aspect-ratio: 16 / 9;
   width: 100%;
   border-radius: 10px;
   background: var(--theme_primary_color_light_gray);
+  border: 1.5px solid var(--theme_primary_color_light_gray);
 }
 
 .show_card_title {
@@ -37,33 +39,37 @@
   text-overflow: ellipsis;
   overflow: hidden;
   width: 100%;
-  white-space: normal; /* Allow text to wrap */
+  white-space: normal;
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
   height: 50px;
-}
-.show_card_btns {
-  display: none;
-  width: 100%;
-  height: 50px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  justify-content: space-between;
-  gap: 10px;
-  align-items: center;
+  margin-bottom: 20px;
 }
 .show_card_subtitle_hiden {
   display: none;
+}
+
+.show_card_btns {
+  display: none;
+  width: 100%;
+  height: 70px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  transition-delay: 0.2s; /* Add delay for buttons */
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
 }
 
 .show_card:hover .show_card_subtitle {
   display: none;
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
+  transition-delay: 0s; /* Remove delay for subtitle hiding */
 }
 
 .show_card:hover .show_card_btns,
@@ -71,9 +77,28 @@
   display: flex;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
+  transition-delay: 0.2s; /* Add delay for buttons */
 }
 
 .show_card_btn_link,
 .show_card_btn_demo {
   width: 100%;
+}
+
+@media (max-width: 1300px) {
+  .show_card {
+    width: calc((100% - 40px) / 3);
+  }
+}
+
+@media (max-width: 950px) {
+  .show_card {
+    width: calc((100% - 20px) / 2);
+  }
+}
+
+@media (max-width: 500px) {
+  .show_card {
+    width: 100%;
+  }
 }

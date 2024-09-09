@@ -18,7 +18,10 @@
   left: 30px;
   display: none;
   opacity: 0;
-  transition: opacity 0.4s ease-in-out;
+  transition:
+    opacity 0.4s ease-in-out,
+    display 0.4s ease-in-out;
+  transition-delay: 0.2s;
 }
 .portfolio_page_cards_title {
   font-size: 24px;
@@ -64,13 +67,16 @@
   width: 100%;
   max-width: 800px;
 }
+
 .portfolio_page_cards:hover .portfolio_page_cards_see_more {
   position: absolute;
   bottom: 30px;
   left: 30px;
   display: block;
   opacity: 1;
-  transition: opacity 0.4s ease-in-out;
+  transition:
+    opacity 0.4s ease-in-out,
+    display 0.4s ease-in-out;
   transition-delay: 0.2s;
 }
 

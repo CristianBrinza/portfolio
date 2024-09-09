@@ -73,7 +73,7 @@
   font-weight: 400;
   margin-top: 10px;
   letter-spacing: -0.24px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 #about_page_title {
   font-weight: 1000;
@@ -107,5 +107,8 @@
     font-size: 38px;
     line-height: 37px;
     margin-top: 0px;
+  }
+  #about_page_title_small {
+    margin-bottom: 20px;
   }
 }

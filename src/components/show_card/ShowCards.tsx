@@ -37,6 +37,7 @@ const ShowCards: React.FC<ShowCardProps> = ({ items, id }) => {
                       color="var(--theme_primary_color_black)"
                       border="var(--theme_primary_color_dark_gray)"
                       bgcolor="var(--theme_primary_color_dark_gray)"
+                      hover_bgcolor="var(--theme_primary_color_darkest_gray)"
                       className="show_card_btn_link"
                       to={item.link}
                     >

@@ -13,7 +13,7 @@ export default function PageContents({ sections, id }: PageContentsProps) {
     const element = document.getElementById(id);
     if (element) {
       const offsetTop =
-        element.getBoundingClientRect().top + window.pageYOffset - 35; // Adjust for 35px offset
+        element.getBoundingClientRect().top + window.pageYOffset - 30;
       window.scrollTo({ top: offsetTop, behavior: 'smooth' });
       setActiveSection(id);
     }
