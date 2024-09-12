@@ -26,6 +26,7 @@ import ImageColorPicker from './pages/utilities/image_color_picker/ImageColorPic
 import PortfolioBackEnd from './pages/portfolio/PortfolioBackEnd.tsx';
 import PortfolioFrontEnd from './pages/portfolio/PortfolioFrontEnd.tsx';
 import PortfolioDesign from './pages/portfolio/PortfolioDesign.tsx';
+import ScreenSize from './pages/utilities/screen_size/ScreenSize.tsx';
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -84,6 +85,10 @@ export const routes = [
   {
     path: '/:lang/image-color-picker',
     element: React.createElement(ImageColorPicker),
+  },
+  {
+    path: '/:lang/screen-size',
+    element: React.createElement(ScreenSize),
   },
   {
     path: '/:lang/portfolio-design',

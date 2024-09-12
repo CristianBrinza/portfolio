@@ -1,0 +1,46 @@
+#portfolio_design_page_main {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+#portfolio_design_page_disclaimer {
+  font-size: 10px;
+  font-weight: 200;
+  line-height: 12px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 800px;
+}
+
+#portfolio_design_page_title {
+  font-weight: 1000;
+  font-size: 50px;
+  line-height: 45px;
+  margin-top: 40px;
+}
+.portfolio_design_page_main_title {
+  margin-top: 10px;
+}
+@media (max-width: 900px) {
+  #portfolio_design_page_disclaimer {
+    max-width: 500px;
+  }
+}
+@media (max-width: 650px) {
+  #portfolio_design_page_title {
+    text-align: center;
+  }
+
+  #portfolio_design_page_disclaimer {
+    margin-bottom: -30px;
+    margin-top: 0px;
+  }
+}
+
+@media (max-width: 325px) {
+  #portfolio_design_page_title {
+    font-size: 45px;
+    line-height: 40px;
+    margin-top: 30px;
+  }
+}

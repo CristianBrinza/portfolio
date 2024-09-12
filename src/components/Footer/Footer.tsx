@@ -5,7 +5,15 @@ import Icon from '../Icon.tsx';
 import { useTranslation } from 'react-i18next';
 import LinkButton from '../LinkButton.tsx';
 
-const Footer: React.FC = () => {
+interface BreadcrumbProps {
+  button?: boolean;
+  copyright?: boolean;
+}
+
+const Footer: React.FC<BreadcrumbProps> = ({
+  button = true,
+  copyright = true,
+}) => {
   const {
     t,
     i18n: {},
@@ -63,7 +71,7 @@ const Footer: React.FC = () => {
             </svg>
 
             <div className="footer_main_top_social">
-              <a href="">
+              <a href="https://www.facebook.com/cristian.brinza.fb/">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="14"
@@ -181,23 +189,33 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-      <Button onClick={scrollToTop} border="#333" border_radius="100px">
-        {t('footer.scroll_up')}
-        <Icon
-          type="arrow"
-          rotate="-90"
-          color="var(--theme_primary_color_black)"
-          width="30px"
-          height="30px"
-        />
-      </Button>
 
-      <div className="footer_copyright">
-        <Icon type="copyright" color="var(--theme_primary_color_black)" />
-        &nbsp;&nbsp;2024 Copyright
-        <span className="footer_copyright_light">&nbsp;by&nbsp;</span>
-        Cristian Brinza
-      </div>
+      {button == true ? (
+        <Button
+          onClick={scrollToTop}
+          border="#333"
+          border_radius="100px"
+          id="footer_btn_scroll_up"
+        >
+          {t('footer.scroll_up')}
+          <Icon
+            type="arrow"
+            rotate="-90"
+            color="var(--theme_primary_color_black)"
+            width="30px"
+            height="30px"
+          />
+        </Button>
+      ) : null}
+
+      {copyright == true ? (
+        <div className="footer_copyright">
+          <Icon type="copyright" color="var(--theme_primary_color_black)" />
+          &nbsp;&nbsp;2024 Copyright
+          <span className="footer_copyright_light">&nbsp;by&nbsp;</span>
+          Cristian Brinza
+        </div>
+      ) : null}
     </div>
   );
 };

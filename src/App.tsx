@@ -13,6 +13,7 @@ import './App.css';
 import i18n from './i18n';
 import { routes } from './routesConfig.ts';
 import Notification from './components/Notification/Notification.tsx';
+import { LanguageProvider } from './context/LanguageContext.tsx';
 
 function LanguageInitializer({
   onLanguageChange,
@@ -36,12 +37,10 @@ function LanguageInitializer({
       navigate(newPath, { replace: true });
     } else if (detectedLang !== i18n.language) {
       i18n.changeLanguage(detectedLang).then(() => {
-        onLanguageChange();
+        onLanguageChange(); // Trigger a callback to re-render the app
       });
-    } else if (location.pathname.endsWith(detectedLang)) {
-      navigate(`/${detectedLang}/`, { replace: true });
     }
-  }, [location.pathname, i18n, navigate, onLanguageChange]);
+  }, [location.pathname, i18n.language, navigate, onLanguageChange]);
 
   return null;
 }
@@ -51,7 +50,7 @@ function App() {
   const [, setLanguageChanged] = useState(false);
 
   const handleLanguageChange = () => {
-    setLanguageChanged(prev => !prev);
+    setLanguageChanged(prev => !prev); // This will cause a re-render
   };
 
   return (
@@ -63,20 +62,22 @@ function App() {
       <Notification>{t('website_warning.sorry_message')}</Notification>
       <BrowserRouter>
         <LanguageInitializer onLanguageChange={handleLanguageChange} />
-        <Routes>
-          {routes.map(({ path, element }, index) => (
-            <Route key={index} path={path} element={element} />
-          ))}
-          <Route
-            path="/"
-            element={
-              <Navigate
-                replace
-                to={`/${localStorage.getItem('i18nextLng') || 'en'}`}
-              />
-            }
-          />
-        </Routes>
+        <LanguageProvider>
+          <Routes>
+            {routes.map(({ path, element }, index) => (
+              <Route key={index} path={path} element={element} />
+            ))}
+            <Route
+              path="/"
+              element={
+                <Navigate
+                  replace
+                  to={`/${localStorage.getItem('i18nextLng') || 'en'}`}
+                />
+              }
+            />
+          </Routes>
+        </LanguageProvider>
       </BrowserRouter>
     </I18nextProvider>
   );

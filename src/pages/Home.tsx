@@ -1,4 +1,5 @@
-///pages/Home.tsx
+//pages/Home.tsx
+
 import Navbar from '../components/Navbar/Navbar.tsx';
 import BottomMenu from '../components/BottomMenu/BottomMenu.tsx';
 import '../styles/Home.css';
@@ -9,12 +10,18 @@ import Parapraph from '../components/Text/Parapraph/Parapraph.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import LinkButton from '../components/LinkButton.tsx';
 import useReveal from '../hooks/useReveal.tsx';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
+import { useLanguage } from '../context/LanguageContext'; // Import the language context
 
 export default function Home() {
-  useReveal();
-  const { t } = useTranslation();
+  const { t } = useTranslation(); // Get the t function from useTranslation
+  const { language } = useLanguage(); // Get the current language from the context
+
   const [isSticky, setIsSticky] = useState(false);
+
+  useReveal(); // Assuming this hook is for reveal animations
+
+  // Handle scroll events to apply sticky class to elements
   useEffect(() => {
     const handleScroll = () => {
       if (window.pageYOffset > window.innerHeight) {
@@ -24,28 +31,32 @@ export default function Home() {
       }
     };
 
-    // Set the --vh custom property to the innerHeight of the window
     const setVH = () => {
       const vh = window.innerHeight * 0.01;
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     };
 
-    // Set it on resize and orientation change
+    // Set custom property and add event listeners
     window.addEventListener('resize', setVH);
     window.addEventListener('orientationchange', setVH);
-
-    // Set on initial load
-    setVH();
-
     window.addEventListener('scroll', handleScroll);
 
-    // Cleanup function to remove the event listeners
+    // Set viewport height on initial load
+    setVH();
+
+    // Cleanup event listeners
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', setVH);
       window.removeEventListener('orientationchange', setVH);
     };
-  }, []); // Empty dependency array ensures that effect only runs once
+  }, []);
+
+  // Effect to trigger a re-render when the language changes
+  useEffect(() => {
+    // Any additional logic you want to apply when the language changes can go here
+  }, [language]); // Re-run whenever the language changes
+
   return (
     <>
       <Navbar />
@@ -84,7 +95,9 @@ export default function Home() {
           <div className="home_hero_text">
             <span className="home_hero_text_1">{t('home.hello')}</span>
             <br />
-            <span className="home_hero_text_2">{t('home.imcristian')}</span>
+            <span className="home_hero_text_2">
+              <Trans>home.imcristian</Trans>
+            </span>
           </div>
         </div>
 
@@ -118,7 +131,7 @@ export default function Home() {
         <div className="home_block">
           <Title className="reveal">About me</Title>
           <Parapraph className="reveal">
-            {t('about_me.self_description')}
+            <Trans>about_me.self_description</Trans>
           </Parapraph>
           <div className="home_block_about_me_links">
             <LinkButton className="reveal" to="/about">

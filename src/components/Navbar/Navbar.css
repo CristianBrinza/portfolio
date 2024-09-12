@@ -41,7 +41,9 @@
   align-items: center;
   gap: 20px;
 }
-
+.navbar_show_on_mobile {
+  display: none;
+}
 @media (max-width: 1000px) {
   .menu-icon {
     display: flex; /* Show menu icon on small screens */
@@ -50,7 +52,9 @@
     position: relative;
     z-index: 99999999;
   }
-
+  .navbar_show_on_mobile {
+    display: block;
+  }
   .nav-items {
     display: none; /* Hide menu items by default on small screens */
     flex-direction: column;

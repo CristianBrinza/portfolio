@@ -16,6 +16,7 @@ interface ButtonProps {
   style?: React.CSSProperties;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
+  id?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -32,6 +33,7 @@ const Button: React.FC<ButtonProps> = ({
   style,
   type = 'button',
   disabled = false,
+  id,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
@@ -90,6 +92,7 @@ const Button: React.FC<ButtonProps> = ({
 
   return to ? (
     <Link
+      id={id}
       to={to}
       style={buttonStyle}
       onMouseEnter={handleMouseEnter}
@@ -101,6 +104,7 @@ const Button: React.FC<ButtonProps> = ({
     </Link>
   ) : (
     <button
+      id={id}
       type={type}
       style={buttonStyle}
       onMouseEnter={handleMouseEnter}

@@ -10,8 +10,12 @@
   gap: 15px;
   position: relative;
   margin-top: 80px;
-  margin-bottom: 10px;
 }
+
+#footer_btn_scroll_up {
+  margin-top: 10px;
+}
+
 .footer_main {
   display: flex;
   width: 100%;

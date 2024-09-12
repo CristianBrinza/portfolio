@@ -98,7 +98,7 @@ export default function Portfolio() {
           further inquiries, feel free to contact me.
         </div>
       </Page>
-      <Footer />
+      <Footer button={false} copyright={false} />
     </>
   );
 }

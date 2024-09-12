@@ -1,0 +1,104 @@
+{
+  "design": {
+    "top": []
+  },
+  "front": {
+    "top": [
+      {
+        "img": "/images/portfolio/portfolio_197970.png",
+        "title": "Green Systems",
+        "description": "A PBL project aimed to solve your houseplant and agriculture watering problems",
+        "link": "https://github.com/Complexica-PBL/IOT-TEAM-10/tree/main",
+        "more": "https://cristianbrinza.com/files/portfolio/GreenSystem.pdf"
+      },
+      {
+        "img": "/images/portfolio/portfolio_399940.png",
+        "title": "The POS",
+        "description": "A point of sale, or point of purchase, is where you ring up customers. The POS system is the hardware and software that enable your business to make those sales.",
+        "link": "https://github.com/FAF-UTM/thePOS"
+      },
+      {
+        "img": "/images/portfolio/portfolio_230433.png",
+        "title": "Study Space",
+        "description": "Alternative text (alt text) helps provide an inclusive experience for merchants who use screen readers.",
+        "link": "https://github.com/FAF-UTM/utm-studyspace-frontend"
+      }
+    ],
+    "others": [
+      {
+        "img": "/images/portfolio/portfolio_924500.png",
+        "title": "Weather App",
+        "description": "A weather app with real-time data and a sleek, intuitive interface",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/tree/main/weather_app",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/weather_app/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_938443.png",
+        "title": "Rubber Button",
+        "description": "A Rubber Button With HTML, CSS and SVG",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/tree/main/rubber_button",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/rubber_button/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_824588.png",
+        "title": "Custom Step Indicator",
+        "description": "A flexible step indicator for tracking multi-step progress in processes.",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/step_indicator/index.html",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/step_indicator/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_189949.png",
+        "title": "Single Digit Input",
+        "description": "A custom input field designed for single-digit entries",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/single_digit_input/index.html",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/single_digit_input/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_123909.png",
+        "title": "Screen Size",
+        "description": "A tool for calculating screen size in custom formats.",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/screen_size/index.html",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/screen_size/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_227386.png",
+        "title": "Text Effect Writing",
+        "description": "A cool effect simulating writing code",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/text_effect_writing/index.html",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/text_effect_writing/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_007566.png",
+        "title": "Animated Counter",
+        "description": "An animated counter with smooth transitions",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/animated_counter",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/animated_counter/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_144949.png",
+        "title": "Non Rectangular shape",
+        "description": "An interesting costume non-rectangular shape",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/non_rectangular_shape/index.html",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/non_rectangular_shape/index.html"
+      },
+
+      {
+        "img": "/images/portfolio/portfolio_739442.png",
+        "title": "QR Code Generator",
+        "description": "A simple demonstration of a QR code generator using Google API",
+        "link": "https://github.com/CristianBrinza/qr-generator",
+        "demo": "https://cristianbrinza.github.io/qr-generator/"
+      },
+      {
+        "img": "/images/portfolio/portfolio_624349.png",
+        "title": "3D Tag-Cloud",
+        "description": "A 3D rotating sphere generated with front-end tags using JavaScript",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/3D_tagcloud/index.html",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/3D_tagcloud/index.html"
+      }
+    ]
+  },
+  "back": {
+    "top": []
+  }
+}

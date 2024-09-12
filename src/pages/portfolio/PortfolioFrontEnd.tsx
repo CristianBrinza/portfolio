@@ -26,12 +26,15 @@ export default function PortfolioFrontEnd() {
   useEffect(() => {
     const fetchshowCardItems1 = async () => {
       try {
-        const response = await fetch('/json/portfolio_top_projects.json');
+        const response = await fetch('/json/portfolio.json');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setshowCardItems1(data);
+
+        // Extract only front.top section
+        const frontTopItems = data?.front?.top || [];
+        setshowCardItems1(frontTopItems);
       } catch (error) {
         console.error('Error fetching show card data:', error);
       } finally {
@@ -43,12 +46,13 @@ export default function PortfolioFrontEnd() {
 
     const fetchshowCardItems2 = async () => {
       try {
-        const response = await fetch('/json/portfolio_projects.json');
+        const response = await fetch('/json/portfolio.json');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setshowCardItems2(data);
+        const frontOthersItems = data?.front?.others || [];
+        setshowCardItems2(frontOthersItems);
       } catch (error) {
         console.error('Error fetching show card data:', error);
       } finally {
