@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-top: -80px;
+  text-decoration: none;
 }
 .blog {
   width: calc((100% - 20px) / 2);
@@ -31,6 +32,7 @@
   margin-top: 8px;
   margin-bottom: 5px;
   width: 100%;
+  color: var(--theme_primary_color_black);
 }
 
 .blog_subtitle,
@@ -49,6 +51,7 @@
   overflow: hidden;
   height: 50px;
   margin-bottom: 20px;
+  color: var(--theme_primary_color_black);
 }
 
 @media (max-width: 550px) {
