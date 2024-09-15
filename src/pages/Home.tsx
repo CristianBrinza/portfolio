@@ -11,7 +11,9 @@ import Footer from '../components/Footer/Footer.tsx';
 import LinkButton from '../components/LinkButton.tsx';
 import useReveal from '../hooks/useReveal.tsx';
 import { Trans, useTranslation } from 'react-i18next';
-import { useLanguage } from '../context/LanguageContext'; // Import the language context
+import { useLanguage } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
+import Notification from '../components/Notification/Notification.tsx';
 
 export default function Home() {
   const { t } = useTranslation(); // Get the t function from useTranslation
@@ -90,6 +92,22 @@ export default function Home() {
     };
   }, []);
 
+  const [showNotification1, setShowNotification2] = useState(false); // For home_portfolio_block2
+  const [showNotification3, setShowNotification3] = useState(false); // For home_portfolio_block3
+
+  const handleNotificationClick1 = () => {
+    setShowNotification2(true); // Show notification for block 2
+    setTimeout(() => {
+      setShowNotification2(false); // Hide notification after 10 seconds
+    }, 10000);
+  };
+
+  const handleNotificationClick3 = () => {
+    setShowNotification3(true); // Show notification for block 3
+    setTimeout(() => {
+      setShowNotification3(false); // Hide notification after 10 seconds
+    }, 10000);
+  };
   return (
     <>
       <div className={`home_hero_new ${isSticky ? 'sticky' : ''}`}>
@@ -186,6 +204,50 @@ export default function Home() {
           <Parapraph className="reveal home_page_paraghaph">
             I Am a Young Profesional Web-Deweloper and UI&UX Desinger
           </Parapraph>
+
+          <div id="home_portfolio_blocks">
+            <div
+              className="home_portfolio_block reveal"
+              id="home_portfolio_block1"
+              style={{ opacity: '0.1', cursor: 'not-allowed' }}
+              onClick={handleNotificationClick1}
+            >
+              <div className="home_portfolio_block_title">
+                Design <br />
+                (UX & UI)
+              </div>
+            </div>
+            {showNotification1 && (
+              <Notification type="warning">
+                Sorry, page 'Design' still in development
+              </Notification>
+            )}
+            <Link
+              to="/portfolio-front-end"
+              className="home_portfolio_block reveal"
+              id="home_portfolio_block2"
+            >
+              <div className="home_portfolio_block_title">
+                Front-End <br /> Developement
+              </div>
+            </Link>
+            <div
+              className="home_portfolio_block reveal"
+              id="home_portfolio_block3"
+              onClick={handleNotificationClick3}
+              style={{ opacity: '0.1', cursor: 'not-allowed' }}
+            >
+              <div className="home_portfolio_block_title">
+                Back-End <br />
+                Developement
+              </div>
+            </div>
+            {showNotification3 && (
+              <Notification type="warning">
+                Sorry, page 'Back-end' still in development
+              </Notification>
+            )}
+          </div>
         </div>
 
         <div className="home_block">

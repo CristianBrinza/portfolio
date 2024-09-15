@@ -27,6 +27,7 @@ import PortfolioBackEnd from './pages/portfolio/PortfolioBackEnd.tsx';
 import PortfolioFrontEnd from './pages/portfolio/PortfolioFrontEnd.tsx';
 import PortfolioDesign from './pages/portfolio/PortfolioDesign.tsx';
 import ScreenSize from './pages/utilities/screen_size/ScreenSize.tsx';
+import Login from "./pages/admin/login/Login.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -37,6 +38,7 @@ export const routes = [
   { path: '/:lang/cv', element: React.createElement(Resume) },
   { path: '/:lang/resume', element: React.createElement(Resume) },
   { path: '/:lang/legal', element: React.createElement(Legal) },
+  { path: '/:lang/login', element: React.createElement(Login) },
 
   { path: '/:lang/utilities', element: React.createElement(Utilities) },
   { path: '/:lang/qr', element: React.createElement(QR) },

@@ -88,7 +88,13 @@
         "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/non_rectangular_shape/index.html",
         "demo": "https://cristianbrinza.github.io/small-frontend-projects/non_rectangular_shape/index.html"
       },
-
+      {
+        "img": "/images/portfolio/portfolio_124944.png",
+        "title": "Cursor Testing",
+        "description": "Testing css cursor style types proprieties",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/cursor_test",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/cursor_test/index.html"
+      },
       {
         "img": "/images/portfolio/portfolio_739442.png",
         "title": "QR Code Generator",
@@ -102,6 +108,13 @@
         "description": "A 3D rotating sphere generated with front-end tags using JavaScript",
         "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/3D_tagcloud/index.html",
         "demo": "https://cristianbrinza.github.io/small-frontend-projects/3D_tagcloud/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_564084.png",
+        "title": "AppleMac Cursors ",
+        "description": "Download Mac cursor in SVG format",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/apple_cursor",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/apple_cursor/index.html"
       }
     ]
   },
