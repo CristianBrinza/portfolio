@@ -28,7 +28,7 @@ import PortfolioFrontEnd from './pages/portfolio/PortfolioFrontEnd.tsx';
 import PortfolioDesign from './pages/portfolio/PortfolioDesign.tsx';
 import ScreenSize from './pages/utilities/screen_size/ScreenSize.tsx';
 import Login from './pages/admin/login/Login.tsx';
-import Admin from "./pages/admin/admin/Admin.tsx";
+import Admin from './pages/admin/admin/Admin.tsx';
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },

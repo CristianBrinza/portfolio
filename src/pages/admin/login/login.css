@@ -11,10 +11,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 325px;
+  max-width: 400px;
   padding: 20px 40px;
   border-radius: 12px;
   background: var(--theme_primary_color_light_gray);
+  box-sizing: border-box;
 }
 
 .logo_container {
@@ -50,7 +51,6 @@
 
 /* Responsive styling */
 @media (max-width: 768px) {
-
   .login_input {
     font-size: 14px;
     padding: 10px;

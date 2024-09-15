@@ -10,8 +10,5 @@ export default function Admin() {
     navigate('/login');
   }, [navigate]);
 
-  return (
-      <>
-      </>
-  );
+  return <></>;
 }
