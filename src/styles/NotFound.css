@@ -13,6 +13,9 @@
   text-align: center;
   line-height: 120%;
 }
+.not_found_page_under{
+  text-align: center;
+}
 
 #not_found_page_br {
   display: none;
