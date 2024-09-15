@@ -9,7 +9,7 @@
         "title": "Green Systems",
         "description": "A PBL project aimed to solve your houseplant and agriculture watering problems",
         "link": "https://github.com/Complexica-PBL/IOT-TEAM-10/tree/main",
-        "more": "https://cristianbrinza.com/files/portfolio/GreenSystem.pdf"
+        "more": "/files/portfolio/GreenSystem.pdf"
       },
       {
         "img": "/images/portfolio/portfolio_399940.png",
@@ -59,6 +59,13 @@
         "description": "A tool for calculating screen size in custom formats.",
         "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/screen_size/index.html",
         "demo": "https://cristianbrinza.github.io/small-frontend-projects/screen_size/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_224439.png",
+        "title": "Cursor Text Shadow",
+        "description": "An animated effect of the shadow on coursor mouvement",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/cursor_text_shadow",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/cursor_text_shadow/index.html"
       },
       {
         "img": "/images/portfolio/portfolio_227386.png",

@@ -1,0 +1,80 @@
+/* Container for the image and the spinner */
+.resume_page_image_container {
+  position: relative;
+  width: 95%;
+  max-width: 950px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px; /* Set a minimum height for the image container */
+  background-color: var(
+    --theme_secondary_color_light
+  ); /* Subtle background while loading */
+  border-radius: 12px;
+  border: 1px solid var(--costume_footer_bg_color);
+  overflow: hidden;
+}
+
+/* Styling the square-shaped loading spinner */
+.loading_spinner {
+  width: 50px;
+  height: 50px;
+  background-color: var(--theme_primary_color_black);
+  animation: pulse 1s infinite;
+  border-radius: 8px; /* Square with rounded corners */
+}
+
+/* Pulse animation for the square loader */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Styling for the image */
+#resume_page_cv {
+  width: 100%;
+  border-radius: 12px;
+  transition: opacity 0.5s ease-in-out; /* Smooth transition when the image appears */
+}
+
+/* Hidden image initially */
+.hidden_image {
+  opacity: 0;
+}
+
+/* Visible image after loading */
+.visible_image {
+  opacity: 1;
+}
+
+/* Responsive Button Container */
+.resume_page_btns {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Responsive Image Container */
+@media (max-width: 768px) {
+  .resume_page_image_container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 500px) {
+  .resume_page_image_container {
+    width: 100%;
+  }
+}

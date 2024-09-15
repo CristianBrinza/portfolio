@@ -26,7 +26,7 @@ export default function PortfoliodesignEnd() {
   useEffect(() => {
     const fetchshowCardItems1 = async () => {
       try {
-        const response = await fetch('/json/portfolio.json');
+        const response = await fetch(import.meta.env.VITE_PORTFOLIO_DATA);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -44,7 +44,7 @@ export default function PortfoliodesignEnd() {
 
     const fetchshowCardItems2 = async () => {
       try {
-        const response = await fetch('/json/portfolio.json');
+        const response = await fetch(import.meta.env.VITE_PORTFOLIO_DATA);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

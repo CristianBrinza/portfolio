@@ -15,7 +15,7 @@ const BottomMenu: React.FC = () => {
           Portfolio
         </Button>
         <Button
-          to="/cv"
+          to="/resume"
           color="var(--theme_primary_color_black)"
           border="transparent"
           hover_bgcolor="var(--theme_primary_color_dark_gray)"

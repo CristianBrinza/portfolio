@@ -50,7 +50,8 @@ const Button: React.FC<ButtonProps> = ({
     if (onClick) {
       onClick();
     }
-    if (to) {
+    if (to && !to.startsWith('/files/')) {
+      // Only use navigate for internal links, not for file downloads
       navigate(to);
     }
   };
@@ -90,7 +91,23 @@ const Button: React.FC<ButtonProps> = ({
   // Pass the dynamic color to Icon
   const buttonIconColor = isHovered ? hover_color || color : color;
 
-  return to ? (
+  // Check if the link is external (for files, etc.)
+  const isExternalLink = to && to.startsWith('/files/');
+
+  return isExternalLink ? (
+    <a
+      id={id}
+      href={to}
+      style={buttonStyle}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      onClick={onClick}
+      className={`${className}`}
+      rel="noopener noreferrer"
+    >
+      {children}
+    </a>
+  ) : to ? (
     <Link
       id={id}
       to={to}
@@ -113,7 +130,6 @@ const Button: React.FC<ButtonProps> = ({
       className={`${className}`}
       disabled={disabled}
     >
-      {/* Render children and pass dynamic color to Icon */}
       {React.Children.map(children, child => {
         if (isValidElement(child) && child.type === Icon) {
           return React.cloneElement(child as ReactElement<any>, {

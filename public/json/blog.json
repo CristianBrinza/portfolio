@@ -1,0 +1,11 @@
+[
+  {
+    "title": "First Blog Post",
+    "description": "This is the description of the first blog post."
+  },
+  {
+    "to": "/second-post",
+    "title": "Second Blog Post",
+    "description": "This is the description of the second blog post."
+  }
+]

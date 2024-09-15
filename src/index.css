@@ -43,8 +43,8 @@ body {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #ffffff;
-    background-color: #333333;
+    color: #1d1d1f;
+    background-color: #ffffff;
   }
 }
 
@@ -62,4 +62,5 @@ body {
 
   --costume_hashtag_bg_color: #ffffff17;
   --costume_footer_bg_color: #ffffff17;
+  --costume_footer_txt_color_1: #e0e0e0ff;
 }

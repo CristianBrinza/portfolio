@@ -4,6 +4,8 @@ import Title from '../components/Text/Title/Title.tsx';
 import Page from '../components/Page.tsx';
 import '../styles/Blog.css';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Footer from '../components/Footer/Footer.tsx';
 
 // Define the type for blog items
 interface BlogItem {
@@ -19,19 +21,31 @@ export default function Blog() {
     { label: <Trans>navigation.blog_page</Trans> },
   ];
 
-  // Items array with optional 'to' and 'img'
-  const items: BlogItem[] = [
-    {
-      title: 'First Blog Post',
-      description: 'This is the description of the first blog post.',
-    },
-    {
-      to: '/second-post', // Link for the second post
-      title: 'Second Blog Post',
-      description: 'This is the description of the second blog post.',
-      img: 'https://via.placeholder.com/150', // Optional image
-    },
-  ];
+  const [showBlogPosts, setBlogPosts] = useState<BlogItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        const response = await fetch(import.meta.env.VITE_BLOG_DATA);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setBlogPosts(data); // Set the fetched blog posts
+      } catch (error) {
+        console.error('Error fetching blog data:', error);
+      } finally {
+        setLoading(false); // Stop loading indicator
+      }
+    };
+
+    fetchBlogPosts();
+  }, []); // Ensure the useEffect runs only once on mount
+
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading message while fetching data
+  }
 
   return (
     <>
@@ -41,7 +55,7 @@ export default function Blog() {
         <Title style={{ marginTop: '20px' }}>What’s new</Title>
 
         <div className="blog_cards">
-          {items.map((item, index: number) => {
+          {showBlogPosts.map((item, index: number) => {
             const hasLink = !!item.to; // Check if the 'to' prop exists
 
             return (
@@ -63,6 +77,7 @@ export default function Blog() {
           })}
         </div>
       </Page>
+      <Footer />
     </>
   );
 }

@@ -14,12 +14,12 @@ const Parapraph: React.FC<ParapraphProps> = ({
   style,
 }) => {
   const textStyle: React.CSSProperties = {
-    color: color || 'var(--theme_primary_color_black)',
+    color: color || 'var(--costume_footer_txt_color_1)',
     fontFamily: 'Inter',
-    fontSize: '16px',
+    fontSize: '16.8px',
     fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: '18px',
+    fontWeight: '450',
+    lineHeight: '23.04px',
     ...style,
   };
 

@@ -57,51 +57,89 @@ export default function Home() {
     // Any additional logic you want to apply when the language changes can go here
   }, [language]); // Re-run whenever the language changes
 
+  useEffect(() => {
+    const adjustHeroHeight = () => {
+      const topNotification = document.getElementById('top_notification');
+      const topNotificationHeight = topNotification
+        ? topNotification.offsetHeight
+        : 0;
+      const heroHeight = topNotification
+        ? window.innerHeight - topNotificationHeight
+        : window.innerHeight;
+
+      // Set the CSS variable for height
+      document.documentElement.style.setProperty(
+        '--hero-height',
+        `${heroHeight - 4}px`
+      );
+
+      // Set the CSS variable for margin-top if #top_notification exists
+      const marginTop = topNotification ? '-4px' : '0px';
+      document.documentElement.style.setProperty(
+        '--hero-margin-top',
+        marginTop
+      );
+    };
+
+    // Set initial hero height and margin-top, and update on resize
+    adjustHeroHeight();
+    window.addEventListener('resize', adjustHeroHeight);
+
+    return () => {
+      window.removeEventListener('resize', adjustHeroHeight);
+    };
+  }, []);
+
   return (
     <>
-      <Navbar />
-      <div className={`main ${isSticky ? 'sticky' : ''} page`}>
-        <div className="home_hero">
-          <svg
-            className="home_hero_svg"
-            xmlns="http://www.w3.org/2000/svg"
-            width="217"
-            height="217"
-            viewBox="0 0 217 217"
-            fill="none"
-          >
-            <rect width="217" height="217" fill="#222222" />
-            <path
-              d="M104.16 71.6099C104.16 71.6099 101.983 71.6101 57.3465 71.6099C12.7105 71.6096 12.7109 145.39 57.3465 145.39C101.982 145.39 104.16 145.39 104.16 145.39"
-              stroke="white"
-              strokeWidth="15.19"
-            />
-            <path
-              d="M115.01 71.6099C115.01 71.6099 117.187 71.6101 161.823 71.6099C206.459 71.6096 206.458 145.39 161.823 145.39C117.187 145.39 115.01 145.39 115.01 145.39"
-              stroke="white"
-              strokeWidth="15.19"
-            />
-            <path
-              d="M125.86 108.5C125.86 108.5 128.037 108.5 172.673 108.5"
-              stroke="white"
-              strokeWidth="15.19"
-            />
-            <path
-              d="M123.227 85.0935C123.227 85.0935 123.227 87.2706 123.227 131.907"
-              stroke="white"
-              strokeWidth="15.19"
-            />
-          </svg>
-          <div className="home_hero_text">
-            <span className="home_hero_text_1">{t('home.hello')}</span>
-            <br />
-            <span className="home_hero_text_2">
-              <Trans>home.imcristian</Trans>
-            </span>
+      <div className={`home_hero_new ${isSticky ? 'sticky' : ''}`}>
+        <Navbar />
+
+        <div className={`main  page`}>
+          <div className="home_hero">
+            <svg
+              className="home_hero_svg"
+              xmlns="http://www.w3.org/2000/svg"
+              width="217"
+              height="217"
+              viewBox="0 0 217 217"
+              fill="none"
+            >
+              <rect width="217" height="217" fill="#222222" />
+              <path
+                d="M104.16 71.6099C104.16 71.6099 101.983 71.6101 57.3465 71.6099C12.7105 71.6096 12.7109 145.39 57.3465 145.39C101.982 145.39 104.16 145.39 104.16 145.39"
+                stroke="white"
+                strokeWidth="15.19"
+              />
+              <path
+                d="M115.01 71.6099C115.01 71.6099 117.187 71.6101 161.823 71.6099C206.459 71.6096 206.458 145.39 161.823 145.39C117.187 145.39 115.01 145.39 115.01 145.39"
+                stroke="white"
+                strokeWidth="15.19"
+              />
+              <path
+                d="M125.86 108.5C125.86 108.5 128.037 108.5 172.673 108.5"
+                stroke="white"
+                strokeWidth="15.19"
+              />
+              <path
+                d="M123.227 85.0935C123.227 85.0935 123.227 87.2706 123.227 131.907"
+                stroke="white"
+                strokeWidth="15.19"
+              />
+            </svg>
+            <div className="home_hero_text">
+              <span className="home_hero_text_1">{t('home.hello')}</span>
+              <br />
+              <span className="home_hero_text_2">
+                <Trans>home.imcristian</Trans>
+              </span>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div style={{ margin: '-40px auto auto auto', maxWidth: '980px' }}>
+      <div className={`main page`}>
+        <div style={{ margin: '40px auto 0 auto', maxWidth: '980px' }}>
           <Hashtags
             tags={[
               'design',
@@ -130,7 +168,7 @@ export default function Home() {
         </div>
         <div className="home_block">
           <Title className="reveal">About me</Title>
-          <Parapraph className="reveal">
+          <Parapraph className="reveal home_page_paraghaph">
             <Trans>about_me.self_description</Trans>
           </Parapraph>
           <div className="home_block_about_me_links">
@@ -145,14 +183,14 @@ export default function Home() {
 
         <div className="home_block">
           <Title className="reveal home_block_title">See my work</Title>
-          <Parapraph className="reveal">
+          <Parapraph className="reveal home_page_paraghaph">
             I Am a Young Profesional Web-Deweloper and UI&UX Desinger
           </Parapraph>
         </div>
 
         <div className="home_block">
           <Title className="reveal home_block_title">Meet my workplaces</Title>
-          <Parapraph className="reveal">
+          <Parapraph className="reveal home_page_paraghaph">
             As a freelance designer and web developer, I have had the privilege
             of working with a diverse range of clients, from private clients to
             established businesses. My work is driven by a commitment to
