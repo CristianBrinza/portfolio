@@ -1,11 +1,12 @@
 .not_found_page {
-  height: calc(100vh - 160px);
   background: var(--theme_primary_color_light_gray);
   margin-bottom: 30px;
   display: flex;
   border-radius: 14px;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 20px;
 }
 
 .not_found_page h1 {
@@ -13,7 +14,7 @@
   text-align: center;
   line-height: 120%;
 }
-.not_found_page_under{
+.not_found_page_under {
   text-align: center;
 }
 
