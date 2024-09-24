@@ -28,7 +28,7 @@ export default function OfflinePage() {
 
     const breadcrumbItems = [
         { label: <Trans>navigation.home</Trans>, url: '/' },
-        { label: 'Offlne'},
+        { label: 'Offline'},
     ];
 
     return (
@@ -39,16 +39,14 @@ export default function OfflinePage() {
                 gap="20px"
                 style={{ minHeight: pageHeight }}
             >
-                <div style={{ height: '80px', width: '80px' }}>
+                <div style={{ height: '100px', width: '100px' }}>
                     <Icon
-                        type="info"
-                        size="80px"
+                        type="offline"
+                        size="100px"
                         color="var(--theme_primary_color_darkest_gray"
                     />
                 </div>
                 <h1>
-                    <p></p>
-
                     You're Offline
                 </h1>
 
