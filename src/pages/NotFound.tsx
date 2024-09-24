@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
 import { Trans } from 'react-i18next';
 import Footer from '../components/Footer/Footer.tsx';
-import '../styles/NotFound.css';
+import styles from '../styles/NotFound.module.css';
 import Page from '../components/Page.tsx';
 import Icon from '../components/Icon.tsx';
 
@@ -33,7 +33,7 @@ export default function NotFound() {
     <>
       <Breadcrumb items={breadcrumbItems} />
       <Page
-        className="not_found_page"
+        className={styles.not_found_page}
         gap="20px"
         style={{ minHeight: pageHeight }}
       >
@@ -45,11 +45,11 @@ export default function NotFound() {
           />
         </div>
         <h1>
-          404 <span id="not_found_page_dash">-</span>
-          <br id="not_found_page_br" /> Not Found
+          404 <span id={styles.not_found_page_dash}>-</span>
+          <br id={styles.not_found_page_br} /> Not Found
         </h1>
 
-        <div className="not_found_page_under">
+        <div className={styles.not_found_page_under}>
           There’s no page at this address <br />
           Check the URL and try again, or use the search field to find what you
           need.

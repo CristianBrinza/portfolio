@@ -53,11 +53,6 @@
   padding-right: 30px;
   font-family: 'Open Sans';
 }
-#portfolio_page_title_small {
-  font-size: 20px;
-  color: var(--theme_primary_color_darkest_gray);
-  font-weight: 700;
-}
 
 #portfolio_page_disclamer {
   font-size: 10px;

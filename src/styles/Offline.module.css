@@ -1,0 +1,32 @@
+.offline_page {
+  background: var(--theme_primary_color_light_gray);
+  margin-bottom: 30px;
+  display: flex;
+  border-radius: 14px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.offline_page h1 {
+  margin: 10px;
+  text-align: center;
+  line-height: 120%;
+}
+.offline_page_under {
+  text-align: center;
+}
+
+#offline_page_br {
+  display: none;
+}
+
+@media (max-width: 380px) {
+  #offline_page_dash {
+    display: none;
+  }
+  #offline_page_br {
+    display: block;
+  }
+}
