@@ -103,6 +103,13 @@
         "demo": "https://cristianbrinza.github.io/qr-generator/"
       },
       {
+        "img": "/images/portfolio/portfolio_674993.png",
+        "title": "Interactive Gradient",
+        "description": "An interactive hover affected blur gradient",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/interactive_gradient/",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/interactive_gradient/index.html"
+      },
+      {
         "img": "/images/portfolio/portfolio_624349.png",
         "title": "3D Tag-Cloud",
         "description": "A 3D rotating sphere generated with front-end tags using JavaScript",

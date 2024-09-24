@@ -250,7 +250,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="home_block">
+        <div className="home_block" style={{display:"none"}}>
           <Title className="reveal home_block_title">Meet my workplaces</Title>
           <Parapraph className="reveal home_page_paraghaph">
             As a freelance designer and web developer, I have had the privilege

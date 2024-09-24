@@ -1,11 +1,13 @@
 [
   {
-    "title": "First Blog Post",
-    "description": "This is the description of the first blog post."
+    "img": "/images/blog/blog_234927.jpg",
+    "title": "[NEW] - About page added",
+    "description": "Check out the new about page",
+    "to": "/about"
   },
   {
-    "to": "/second-post",
-    "title": "Second Blog Post",
-    "description": "This is the description of the second blog post."
+    "title": "[NEW] - Legal page added",
+    "description": "Check out the new legal page",
+    "to": "/legal"
   }
 ]

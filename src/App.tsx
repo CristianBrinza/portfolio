@@ -53,6 +53,21 @@ function App() {
     setLanguageChanged(prev => !prev); // This will cause a re-render
   };
 
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+
+  useEffect(() => {
+    const updateNetworkStatus = () => {
+      setIsOnline(navigator.onLine);
+    };
+
+    window.addEventListener("online", updateNetworkStatus);
+    window.addEventListener("offline", updateNetworkStatus);
+
+    return () => {
+      window.removeEventListener("online", updateNetworkStatus);
+      window.removeEventListener("offline", updateNetworkStatus);
+    };
+  }, []);
   return (
     <I18nextProvider i18n={i18n}>
       <div id="top_notification">
@@ -63,6 +78,7 @@ function App() {
       <BrowserRouter>
         <LanguageInitializer onLanguageChange={handleLanguageChange} />
         <LanguageProvider>
+          {isOnline ? (
           <Routes>
             {routes.map(({ path, element }, index) => (
               <Route key={index} path={path} element={element} />
@@ -77,6 +93,9 @@ function App() {
               }
             />
           </Routes>
+          ) : (
+              <Navigate to="/offline" replace />
+          )}
         </LanguageProvider>
       </BrowserRouter>
     </I18nextProvider>

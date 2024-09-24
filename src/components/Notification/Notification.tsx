@@ -68,7 +68,7 @@ const Notification: React.FC<NotificationProps> = ({
     }, 1000);
   };
 
-  const iconColor = type === 'info' ? '#222222' : '#ffffff';
+  const iconColor = type === 'info' ? 'var(--costume_info_loading_notification)' : '#ffffff';
   const textColor = type === 'info' ? '#222222' : '#ffffff';
   const bgColor =
     type === 'error'
@@ -77,7 +77,7 @@ const Notification: React.FC<NotificationProps> = ({
         ? '#EA8B3F'
         : type === 'success'
           ? '#4DD181'
-          : '#ffffff';
+          : 'var(--costume_info_notification)';
   const borderColor =
     type === 'error'
       ? '#EA5F51'
@@ -85,7 +85,7 @@ const Notification: React.FC<NotificationProps> = ({
         ? '#EA8B3F'
         : type === 'success'
           ? '#4DD181'
-          : '#858585';
+          : 'var(--costume_info_notification)';
 
   const iconTypeMap = {
     info: 'info',

@@ -16,9 +16,10 @@
   font-style: normal;
   font-weight: 600;
   line-height: 1;
-  width: 320px;
+  width: 100%;
+  max-width: 330px;
   box-sizing: border-box;
-  padding: 12px;
+  padding: 12px 30px 12px 12px;
   border-radius: 10px;
   border: 1px solid #858585;
   position: fixed;
@@ -94,7 +95,7 @@
 @media (max-width: 380px) {
   .WebsiteWarning {
     width: 85vw;
-    height: 21vw;
+    min-height: 21vw;
     padding: 4vw;
     border-radius: 3vw;
   }
