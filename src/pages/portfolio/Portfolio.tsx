@@ -31,104 +31,104 @@ export default function Portfolio() {
   };
 
   return (
-      <>
-        <Breadcrumb items={breadcrumbItems} />
-        <Page minHeight="80vh" gap="50px">
-          <div className={styles.main}>
-            <div style={{ display: 'none' }} id="portfolio_page_title_small">
-              Welcome to my Portfolio
-            </div>
-            <div id={styles.portfolio_page_title}>
-              Build. <br />
-              Contribute. <br />
-              Evolve. <br />
-            </div>
+    <>
+      <Breadcrumb items={breadcrumbItems} />
+      <Page minHeight="80vh" gap="50px">
+        <div className={styles.main}>
+          <div style={{ display: 'none' }} id="portfolio_page_title_small">
+            Welcome to my Portfolio
           </div>
+          <div id={styles.portfolio_page_title}>
+            Build. <br />
+            Contribute. <br />
+            Evolve. <br />
+          </div>
+        </div>
 
-          <div id={styles.portfolio_page_main}>
-            <div
-                className={styles.portfolio_page_cards}
-                onClick={handleNotificationClick1}
-            >
-              <div className={styles.portfolio_page_cards_title}>
-                Design <br />
-                (UX & UI)
-                <br />
-                <div className={styles.portfolio_page_cards_title_mini}>
-                  Exceptional Experiences, One Pixel at a Time
-                </div>
+        <div id={styles.portfolio_page_main}>
+          <div
+            className={styles.portfolio_page_cards}
+            onClick={handleNotificationClick1}
+          >
+            <div className={styles.portfolio_page_cards_title}>
+              Design <br />
+              (UX & UI)
+              <br />
+              <div className={styles.portfolio_page_cards_title_mini}>
+                Exceptional Experiences, One Pixel at a Time
               </div>
-              <img
-                  className={styles.portfolio_page_cards_img}
-                  src="/images/portfolio_1.png"
-                  alt="Portfolio"
-              />
-              <LinkButton className={styles.portfolio_page_cards_see_more} to="">
-                See more
-              </LinkButton>
-              {showNotification1 && (
-                  <Notification type="warning">
-                    Sorry, page 'Design' still in development
-                  </Notification>
-              )}
             </div>
-            <div className={styles.portfolio_page_cards}>
-              <div className={styles.portfolio_page_cards_title}>
-                Front-End <br />
-                Development
-                <br />
-                <div className={styles.portfolio_page_cards_title_mini}>
-                  Where Creativity Meets Code in the World of Frontend
-                </div>
-              </div>
-              <img
-                  className={styles.portfolio_page_cards_img}
-                  src="/images/portfolio_2.png"
-                  alt="Portfolio"
-              />
-              <LinkButton
-                  className={styles.portfolio_page_cards_see_more}
-                  to="/portfolio-front-end"
-              >
-                See more
-              </LinkButton>
-            </div>
-            <div
-                className={styles.portfolio_page_cards}
-                onClick={handleNotificationClick3}
-            >
-              <div className={styles.portfolio_page_cards_title}>
-                Back-End <br />
-                Development
-                <br />
-                <div className={styles.portfolio_page_cards_title_mini}>
-                  Building the Engines that Power the Web
-                </div>
-              </div>
-              <img
-                  className={styles.portfolio_page_cards_img}
-                  src="/images/portfolio_3.png"
-                  alt="Portfolio"
-              />
-              <LinkButton className={styles.portfolio_page_cards_see_more} to="">
-                See more
-              </LinkButton>
-              {showNotification3 && (
-                  <Notification type="warning">
-                    Sorry, page 'Back-end' still in development
-                  </Notification>
-              )}
-            </div>
+            <img
+              className={styles.portfolio_page_cards_img}
+              src="/images/portfolio_1.png"
+              alt="Portfolio"
+            />
+            <LinkButton className={styles.portfolio_page_cards_see_more} to="">
+              See more
+            </LinkButton>
+            {showNotification1 && (
+              <Notification type="warning">
+                Sorry, page 'Design' still in development
+              </Notification>
+            )}
           </div>
-          <div id={styles.portfolio_page_disclamer}>
-            Projects may resemble others due to the use of open-source
-            technologies. All work is either original or adapted to demonstrate my
-            skills. These projects are open-source for educational purposes.
-            Please ensure proper licensing and attribution are respected. For
-            further inquiries, feel free to contact me.
+          <div className={styles.portfolio_page_cards}>
+            <div className={styles.portfolio_page_cards_title}>
+              Front-End <br />
+              Development
+              <br />
+              <div className={styles.portfolio_page_cards_title_mini}>
+                Where Creativity Meets Code in the World of Frontend
+              </div>
+            </div>
+            <img
+              className={styles.portfolio_page_cards_img}
+              src="/images/portfolio_2.png"
+              alt="Portfolio"
+            />
+            <LinkButton
+              className={styles.portfolio_page_cards_see_more}
+              to="/portfolio-front-end"
+            >
+              See more
+            </LinkButton>
           </div>
-        </Page>
-        <Footer button={false} copyright={false} />
-      </>
+          <div
+            className={styles.portfolio_page_cards}
+            onClick={handleNotificationClick3}
+          >
+            <div className={styles.portfolio_page_cards_title}>
+              Back-End <br />
+              Development
+              <br />
+              <div className={styles.portfolio_page_cards_title_mini}>
+                Building the Engines that Power the Web
+              </div>
+            </div>
+            <img
+              className={styles.portfolio_page_cards_img}
+              src="/images/portfolio_3.png"
+              alt="Portfolio"
+            />
+            <LinkButton className={styles.portfolio_page_cards_see_more} to="">
+              See more
+            </LinkButton>
+            {showNotification3 && (
+              <Notification type="warning">
+                Sorry, page 'Back-end' still in development
+              </Notification>
+            )}
+          </div>
+        </div>
+        <div id={styles.portfolio_page_disclamer}>
+          Projects may resemble others due to the use of open-source
+          technologies. All work is either original or adapted to demonstrate my
+          skills. These projects are open-source for educational purposes.
+          Please ensure proper licensing and attribution are respected. For
+          further inquiries, feel free to contact me.
+        </div>
+      </Page>
+      <Footer button={false} copyright={false} />
+    </>
   );
 }

@@ -82,6 +82,7 @@
     margin-top: 5px;
     width: 100%;
     z-index: 999999;
+    border-bottom: 1px solid var(--theme_primary_color_darkest_gray);
   }
 
   .nav-items button {

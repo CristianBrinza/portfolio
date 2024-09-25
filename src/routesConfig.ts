@@ -29,7 +29,8 @@ import PortfolioDesign from './pages/portfolio/PortfolioDesign.tsx';
 import ScreenSize from './pages/utilities/screen_size/ScreenSize.tsx';
 import Login from './pages/admin/login/Login.tsx';
 import Admin from './pages/admin/admin/Admin.tsx';
-import OfflinePage from "./pages/OfflinePage.tsx";
+import OfflinePage from './pages/OfflinePage.tsx';
+import SimpleSlider from "./pages/test/SimpleSlider.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -108,7 +109,10 @@ export const routes = [
     path: '/:lang/portfolio-front-end',
     element: React.createElement(PortfolioFrontEnd),
   },
-
+  {
+    path: '/:lang/test',
+    element: React.createElement(SimpleSlider),
+  },
   { path: '*', element: React.createElement(NotFound) },
   { path: '/:lang/404', element: React.createElement(NotFound) },
 ];

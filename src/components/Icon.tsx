@@ -251,7 +251,7 @@ const icons = {
   ro: (
     <>
       <rect width="24" height="24" rx="12" fill="#F3F4F6" />
-      <g clip-path="url(#clip0_3032_5696)">
+      <g clipPath="url(#clip0_3032_5696)">
         <rect
           x="3.75"
           y="3.75"
@@ -281,7 +281,7 @@ const icons = {
   ru: (
     <>
       <rect x="0.5" width="24" height="24" rx="12" fill="#F3F4F6" />
-      <g clip-path="url(#clip0_3032_5703)">
+      <g clipPath="url(#clip0_3032_5703)">
         <rect
           x="4.25"
           y="3.75"
@@ -332,7 +332,7 @@ const icons = {
   en: (
     <>
       <rect width="24" height="24" rx="12" fill="#F3F4F6" />
-      <g clip-path="url(#clip0_3032_5698)">
+      <g clipPath="url(#clip0_3032_5698)">
         <rect
           x="3.75"
           y="3.75"
@@ -406,42 +406,50 @@ const icons = {
       </defs>
     </>
   ),
-    offline: (
-        <>
-            <path
-                d="M4.98121 8.34154C3.00007 9.00445 1.5 10.5744 1.5 13.0335C1.5 15.9897 3.91875 18.0501 6.875 18.0501H15.1332M21.7378 17.0531C22.518 16.4063 23 15.4347 23 14.1085C23 11.429 20.626 10.2671 18.7 10.1668C18.3018 6.15615 15.5198 3.7168 12.25 3.7168C11.0782 3.7168 10.0646 4.0272 9.22208 4.52932"
-                stroke="currentColor" stroke-width="1.43333" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M20.6102 20.2L3.41016 3" stroke="currentColor" stroke-width="1.43333" stroke-miterlimit="10"
-                  stroke-linecap="round"/>
-        </>
-
-    )
+  offline: (
+    <>
+      <path
+        d="M4.98121 8.34154C3.00007 9.00445 1.5 10.5744 1.5 13.0335C1.5 15.9897 3.91875 18.0501 6.875 18.0501H15.1332M21.7378 17.0531C22.518 16.4063 23 15.4347 23 14.1085C23 11.429 20.626 10.2671 18.7 10.1668C18.3018 6.15615 15.5198 3.7168 12.25 3.7168C11.0782 3.7168 10.0646 4.0272 9.22208 4.52932"
+        stroke="currentColor"
+        stroke-width="1.43333"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M20.6102 20.2L3.41016 3"
+        stroke="currentColor"
+        stroke-width="1.43333"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+      />
+    </>
+  ),
 };
 
 const Icon: React.FC<IconProps> = ({
-                                       type,
-                                       size,
-                                       width,
-                                       height,
-                                       color = 'var(--theme_primary_color_black)',
-                                       rotate = '0',
-                                   }) => {
-    const finalWidth = width || size || '24px';
-    const finalHeight = height || size || '24px';
+  type,
+  size,
+  width,
+  height,
+  color = 'var(--theme_primary_color_black)',
+  rotate = '0',
+}) => {
+  const finalWidth = width || size || '24px';
+  const finalHeight = height || size || '24px';
 
-    return (
-        <svg
-            style={{transform: `rotate(${rotate}deg)`}}
-            width={finalWidth}
-            height={finalHeight}
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            color={color}
-        >
-            {type && icons[type]}
-        </svg>
-    );
+  return (
+    <svg
+      style={{ transform: `rotate(${rotate}deg)` }}
+      width={finalWidth}
+      height={finalHeight}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      color={color}
+    >
+      {type && icons[type]}
+    </svg>
+  );
 };
 
 export default Icon;

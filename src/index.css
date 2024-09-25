@@ -28,8 +28,8 @@
   --costume_hashtag_bg_color: #f2f3f7;
   --costume_footer_bg_color: #1d1d1f;
   --costume_footer_txt_color_1: #434e4eff;
-  --costume_info_notification:#F7F8F9;
-  --costume_info_loading_notification:#CCCCCC;
+  --costume_info_notification: #f7f8f9;
+  --costume_info_loading_notification: #cccccc;
 
   /* Transition for smooth theme changes */
   transition:
@@ -68,6 +68,6 @@ body {
   --costume_hashtag_bg_color: #ffffff17;
   --costume_footer_bg_color: #ffffff17;
   --costume_footer_txt_color_1: #e0e0e0ff;
-  --costume_info_notification:#F7F8F9;
-  --costume_info_loading_notification:#CCCCCC;
+  --costume_info_notification: #f7f8f9;
+  --costume_info_loading_notification: #cccccc;
 }

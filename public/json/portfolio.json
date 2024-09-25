@@ -127,5 +127,34 @@
   },
   "back": {
     "top": []
-  }
+  },
+  "home": [
+      {
+        "img": "/images/portfolio/portfolio_197970.png",
+        "title": "Green Systems",
+        "description": "A PBL project aimed to solve your houseplant and agriculture watering problems",
+        "link": "https://github.com/Complexica-PBL/IOT-TEAM-10/tree/main",
+        "more": "/files/portfolio/GreenSystem.pdf"
+      },
+      {
+        "img": "/images/portfolio/portfolio_399940.png",
+        "title": "The POS",
+        "description": "A point of sale, or point of purchase, is where you ring up customers. The POS system is the hardware and software that enable your business to make those sales.",
+        "link": "https://github.com/FAF-UTM/thePOS"
+      },
+      {
+        "img": "/images/portfolio/portfolio_230433.png",
+        "title": "Study Space",
+        "description": "Alternative text (alt text) helps provide an inclusive experience for merchants who use screen readers.",
+        "link": "https://github.com/FAF-UTM/utm-studyspace-frontend"
+      },
+    {
+      "img": "/images/portfolio/portfolio_924500.png",
+      "title": "Weather App",
+      "description": "A weather app with real-time data and a sleek, intuitive interface",
+      "link": "https://github.com/CristianBrinza/small-frontend-projects/tree/main/weather_app",
+      "demo": "https://cristianbrinza.github.io/small-frontend-projects/weather_app/index.html"
+    }
+    ]
+
 }

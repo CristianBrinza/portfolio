@@ -73,12 +73,14 @@ export default function Login() {
       }
     } catch (error) {
       // If an error occurs or the server returns nothing
-      addNotification('Login failed. Server did not respond or returned an error.');
+      addNotification(
+        'Login failed. Server did not respond or returned an error.'
+      );
     }
   };
 
   const addNotification = (message: string) => {
-    setNotifications((prev) => [...prev, message]);
+    setNotifications(prev => [...prev, message]);
     setShowNotification(true); // Show notification
     setTimeout(() => {
       setShowNotification(false); // Hide notification after 10 seconds
@@ -96,81 +98,81 @@ export default function Login() {
   ];
 
   return (
-      <>
-        <Breadcrumb items={breadcrumbItems} />
-        <Page className="login_page" style={{ height: pageHeight }}>
-          <div className="login_container">
-            <div className="logo_container">
-              <svg
-                  width="80"
-                  height="80"
-                  viewBox="0 0 56 56"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect width="56" height="56" fill="#E40523" />
-                <path
-                    d="M26.8802 18.48C26.8802 18.48 26.3183 18.48 14.7994 18.48C3.28037 18.4799 3.28047 37.52 14.7994 37.52C26.3182 37.52 26.8802 37.52 26.8802 37.52"
-                    stroke="white"
-                    strokeWidth="3.92"
-                />
-                <path
-                    d="M29.6804 18.48C29.6804 18.48 30.2422 18.4801 41.7612 18.48C53.2802 18.48 53.2801 37.52 41.7612 37.52C30.2423 37.52 29.6804 37.52 29.6804 37.52"
-                    stroke="white"
-                    strokeWidth="3.92"
-                />
-                <path
-                    d="M32.4807 28.0001C32.4807 28.0001 33.0425 28.0001 44.5615 28.0001"
-                    stroke="white"
-                    strokeWidth="3.92"
-                />
-                <path
-                    d="M31.8008 21.9596C31.8008 21.9596 31.8007 22.5214 31.8008 34.0404"
-                    stroke="white"
-                    strokeWidth="3.92"
-                />
-              </svg>
-            </div>
-
-            <form className="login_form" onSubmit={handleFormSubmit}>
-              <input
-                  type="text"
-                  className="login_input"
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                  autoComplete="username  "
+    <>
+      <Breadcrumb items={breadcrumbItems} />
+      <Page className="login_page" style={{ height: pageHeight }}>
+        <div className="login_container">
+          <div className="logo_container">
+            <svg
+              width="80"
+              height="80"
+              viewBox="0 0 56 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect width="56" height="56" fill="#E40523" />
+              <path
+                d="M26.8802 18.48C26.8802 18.48 26.3183 18.48 14.7994 18.48C3.28037 18.4799 3.28047 37.52 14.7994 37.52C26.3182 37.52 26.8802 37.52 26.8802 37.52"
+                stroke="white"
+                strokeWidth="3.92"
               />
-              <input
-                  type="password"
-                  className="login_input"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  autoComplete="current-password"
+              <path
+                d="M29.6804 18.48C29.6804 18.48 30.2422 18.4801 41.7612 18.48C53.2802 18.48 53.2801 37.52 41.7612 37.52C30.2423 37.52 29.6804 37.52 29.6804 37.52"
+                stroke="white"
+                strokeWidth="3.92"
               />
-              <Button
-                  color="var(--theme_primary_color_white)"
-                  bgcolor="var(--theme_primary_color_black)"
-                  border="var(--theme_primary_color_black)"
-                  id="login_button"
-              >
-                Login
-              </Button>
-            </form>
-
-            {/* Notification Section */}
-            {showNotification &&
-                notifications.map((message, index) => (
-                    <Notification key={index} type="warning">
-                      {message}
-                    </Notification>
-                ))}
+              <path
+                d="M32.4807 28.0001C32.4807 28.0001 33.0425 28.0001 44.5615 28.0001"
+                stroke="white"
+                strokeWidth="3.92"
+              />
+              <path
+                d="M31.8008 21.9596C31.8008 21.9596 31.8007 22.5214 31.8008 34.0404"
+                stroke="white"
+                strokeWidth="3.92"
+              />
+            </svg>
           </div>
-        </Page>
-        <Footer />
-      </>
+
+          <form className="login_form" onSubmit={handleFormSubmit}>
+            <input
+              type="text"
+              className="login_input"
+              placeholder="Username"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+              autoComplete="username  "
+            />
+            <input
+              type="password"
+              className="login_input"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
+            />
+            <Button
+              color="var(--theme_primary_color_white)"
+              bgcolor="var(--theme_primary_color_black)"
+              border="var(--theme_primary_color_black)"
+              id="login_button"
+            >
+              Login
+            </Button>
+          </form>
+
+          {/* Notification Section */}
+          {showNotification &&
+            notifications.map((message, index) => (
+              <Notification key={index} type="warning">
+                {message}
+              </Notification>
+            ))}
+        </div>
+      </Page>
+      <Footer />
+    </>
   );
 }
