@@ -49,6 +49,10 @@
   display: flex;
   gap: 15px;
 }
+.home_block_about_me_links_projects {
+  display: flex;
+  gap: 15px;
+}
 .home_block_title {
   margin-bottom: 0px !important;
 }
@@ -71,7 +75,7 @@
 
 .home_portfolio_block {
   width: 378px;
-  height: 140px;
+  height: 148px;
   border-radius: 12px;
   display: flex;
   justify-content: flex-start;
@@ -112,26 +116,57 @@
   justify-content: center;
 }
 
-.home_my_work{
-  width: 100%;
-  display: flex;
-  gap:20px
-}
-.home_my_work_block{
-  width: calc((100% - 60px) / 4);
+.home_my_work_block {
   height: 100px;
   border-radius: 12px;
   display: flex;
   border: 1px solid #e2e2e2;
   justify-content: center;
   align-items: center;
-
+  width: calc(100% - 20px);
+  margin-left: 10px;
+  margin-right: 10px;
 }
-
-@media (max-width: 1300px) {
-  .home_my_work_block {
-    width: calc((100% - 40px) / 3);
-  }
+.home_block_stack_show {
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  gap: 20px;
+}
+.home_block_stack_show_block {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 380px;
+  padding: 20px 50px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  border: 1px solid var(--theme_primary_color_dark_gray);
+}
+.home_block_stack_show_block_title {
+  padding-right: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+.home_block_stack_show_block_svgs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.home_block_stack_show_block_svg {
+  border: 1px solid var(--theme_primary_color_dark_gray);
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 1100px) {
@@ -151,11 +186,7 @@
     padding-bottom: 60px;
   }
 }
-@media (max-width: 950px) {
-  .home_my_work_block {
-    width: calc((100% - 20px) / 2);
-  }
-}
+
 @media (max-width: 780px) {
   .home_hero {
     flex-direction: column;
@@ -186,10 +217,5 @@
   }
   .home_portfolio_block:hover {
     background-size: cover;
-  }
-}
-@media (max-width: 500px) {
-  .home_my_work_block {
-    width: 100%;
   }
 }
