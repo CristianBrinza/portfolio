@@ -9,19 +9,21 @@ interface ShowCardItem {
   link: string;
   demo?: string;
   more?: string;
+  id?: string;
 }
 
 interface ShowCardProps {
   id?: string;
   items: ShowCardItem[];
+  className?: string;
 }
 
-const ShowCards: React.FC<ShowCardProps> = ({ items, id }) => {
+const ShowCards: React.FC<ShowCardProps> = ({ items, id, className = '' }) => {
   return (
-    <div id={id} className="show_cards">
+    <div id={id} className={`show_cards ${className}`}>
       {items.map((item: ShowCardItem, index: number) => {
         return (
-          <div className="show_card" key={index}>
+          <div className="show_card" id={item.id} key={index}>
             {item.img ? (
               <img src={item.img} alt="Portfolio" className="show_card_img" />
             ) : (
