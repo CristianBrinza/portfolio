@@ -65,3 +65,11 @@ a:visited {
 a:active {
   color: #0b49a0; /* Optional color for active (clicked) links */
 }
+
+/*costume */
+/*for homepage */
+@media (max-width: 1300px) and (min-width: 951px) {
+  #do_not_show {
+    display: none !important;
+  }
+}
