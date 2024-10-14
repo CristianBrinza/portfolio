@@ -33,6 +33,13 @@
         "demo": "https://cristianbrinza.github.io/small-frontend-projects/weather_app/index.html"
       },
       {
+        "img": "/images/portfolio/portfolio_393908.png",
+        "title": "Google Clone",
+        "description": "A static Google search/homepage page clone, HTML and CSS only",
+        "link": "https://github.com/CristianBrinza/google-clone",
+        "demo": "https://cristianbrinza.github.io/google-clone/"
+      },
+      {
         "img": "/images/portfolio/portfolio_938443.png",
         "title": "Rubber Button",
         "description": "A Rubber Button With HTML, CSS and SVG",
@@ -122,6 +129,13 @@
         "description": "Download Mac cursor in SVG format",
         "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/apple_cursor",
         "demo": "https://cristianbrinza.github.io/small-frontend-projects/apple_cursor/index.html"
+      },
+      {
+        "img": "/images/portfolio/portfolio_407796.png",
+        "title": "Google Loader",
+        "description": "Google loader animation with HTML and CSS only",
+        "link": "https://github.com/CristianBrinza/small-frontend-projects/blob/main/google_loader",
+        "demo": "https://cristianbrinza.github.io/small-frontend-projects/google_loader/index.html"
       }
     ]
   },

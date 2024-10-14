@@ -16,6 +16,11 @@
   width: 100%;
   border-radius: 10px;
   border: 1.5px solid var(--theme_primary_color_dark_gray);
+  transform: scale(1);
+}
+.blog:hover .blog_img {
+  transform: scale(1.01);
+  transition: transform 0.2s ease-in-out;
 }
 .blog_img_empty {
   aspect-ratio: 16 / 9;
