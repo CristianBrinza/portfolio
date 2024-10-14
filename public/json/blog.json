@@ -10,5 +10,11 @@
     "title": "[NEW] - Legal page added",
     "description": "Check out the new legal page",
     "to": "/legal"
+  },
+  {
+    "img": "/images/blog/blog_232602.jpg",
+    "title": "[NEW] - Front-End page added",
+    "description": "Always updating creative Front-end projects with access to source code and demo's",
+    "to": "/portfolio-front-end"
   }
 ]
