@@ -24,6 +24,22 @@
         "link": "https://github.com/FAF-UTM/utm-studyspace-frontend"
       }
     ],
+    "react": [
+      {
+        "img": "/images/portfolio/portfolio_533906.png",
+        "title": "Tabulation",
+        "description": "Tabulation with variable pagination, search and sorting",
+        "link": "https://github.com/CristianBrinza/react-showcase/tree/main/src/showcase/tabulation",
+        "demo": "https://reactshowcase.pages.dev/tabulation"
+      },
+      {
+        "img": "/images/portfolio/portfolio_583316.png",
+        "title": "Drag and Drop",
+        "description": "A drag and drop functionality showcase",
+        "link": "https://github.com/CristianBrinza/react-showcase/tree/main/src/showcase/rag-and-drop",
+        "demo": "https://reactshowcase.pages.dev/drag-and-drop"
+      }
+    ],
     "others": [
       {
         "img": "/images/portfolio/portfolio_924500.png",

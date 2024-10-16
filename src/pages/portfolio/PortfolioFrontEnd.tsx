@@ -21,6 +21,7 @@ interface BreadcrumbItem {
 export default function PortfolioFrontEnd() {
   const [showCardItems1, setshowCardItems1] = useState<ShowCardItem[]>([]);
   const [showCardItems2, setshowCardItems2] = useState<ShowCardItem[]>([]);
+  const [showCardItems3, setshowCardItems3] = useState<ShowCardItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -51,7 +52,7 @@ export default function PortfolioFrontEnd() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        const frontOthersItems = data?.front?.others || [];
+        const frontOthersItems = data?.front?.react || [];
         setshowCardItems2(frontOthersItems);
       } catch (error) {
         console.error('Error fetching show card data:', error);
@@ -61,6 +62,24 @@ export default function PortfolioFrontEnd() {
     };
 
     fetchshowCardItems2();
+
+    const fetchshowCardItems3 = async () => {
+      try {
+        const response = await fetch(import.meta.env.VITE_PORTFOLIO_DATA);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        const frontOthersItems = data?.front?.others || [];
+        setshowCardItems3(frontOthersItems);
+      } catch (error) {
+        console.error('Error fetching show card data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchshowCardItems3();
   }, []);
 
   // Example breadcrumb items
@@ -89,8 +108,13 @@ export default function PortfolioFrontEnd() {
 
         <div id="portfolio_front_page_main">
           <ShowCards items={showCardItems1} />
-          <div className="portfolio_front_page_main_title">Other Pojects:</div>
+
+          <div className="portfolio_front_page_main_title">
+            React (tehnical) showcase:
+          </div>
           <ShowCards items={showCardItems2} />
+          <div className="portfolio_front_page_main_title">Other Pojects:</div>
+          <ShowCards items={showCardItems3} />
         </div>
         <div id="portfolio_front_page_disclaimer">
           Projects may resemble others due to the use of open-source
