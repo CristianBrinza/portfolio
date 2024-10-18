@@ -6,7 +6,7 @@ const BottomMenu: React.FC = () => {
     <div className={`BottomMenu_container`}>
       <div className="BottomMenu_toggle">
         <Button
-          to="work"
+          to="/"
           color="var(--theme_primary_color_white)"
           bgcolor="var(--theme_primary_color_black)"
           border="transparent"
