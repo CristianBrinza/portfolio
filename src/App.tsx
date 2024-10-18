@@ -10,9 +10,9 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import i18n from './i18n';
-import { routes } from './routesConfig.ts';
-import Notification from './components/Notification/Notification.tsx';
-import { LanguageProvider } from './context/LanguageContext.tsx';
+import { routes } from './routesConfig';
+import Notification from './components/Notification/Notification';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Lazy load OfflinePage for optimized loading
 const OfflinePage = React.lazy(() => import('./pages/OfflinePage'));
@@ -26,9 +26,21 @@ function LanguageInitializer({
   const location = useLocation();
   const navigate = useNavigate();
 
+  // List of paths to exclude from language redirection
+  const excludedPaths = ['/files', '/images', '/json'];
+
   useEffect(() => {
     const pathParts = location.pathname.split('/').filter(Boolean);
     let detectedLang = pathParts[0];
+
+    // Check if the current path is an excluded path
+    const isExcludedPath = excludedPaths.some(path =>
+      location.pathname.startsWith(path)
+    );
+
+    if (isExcludedPath) {
+      return; // Do nothing if it's an excluded path
+    }
 
     if (!['en', 'ro', 'ru'].includes(detectedLang)) {
       detectedLang = localStorage.getItem('i18nextLng') || 'en';
