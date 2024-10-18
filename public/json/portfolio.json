@@ -36,11 +36,39 @@
         "img": "/images/portfolio/portfolio_583316.png",
         "title": "Drag and Drop",
         "description": "A drag and drop functionality showcase",
-        "link": "https://github.com/CristianBrinza/react-showcase/tree/main/src/showcase/rag-and-drop",
+        "link": "https://github.com/CristianBrinza/react-showcase/tree/main/src/showcase/DragAndDrop",
         "demo": "https://reactshowcase.pages.dev/drag-and-drop"
+      },
+      {
+        "img": "/images/portfolio/portfolio_533908.png",
+        "title": "Todo List",
+        "description": "Manage tasks with advanced features and local storage",
+        "link": "https://github.com/CristianBrinza/react-showcase/tree/main/src/showcase/TodoList",
+        "demo": "https://reactshowcase.pages.dev/todo-list"
+      },
+      {
+        "img": "/images/portfolio/portfolio_533910.png",
+        "title": "File Uploader",
+        "description": "Upload and preview files with advanced drag-and-drop functionality",
+        "link": "https://github.com/CristianBrinza/react-showcase/tree/main/src/showcase/FileUploader",
+        "demo": "https://reactshowcase.pages.dev/file-uploader"
+      },
+      {
+        "img": "/images/portfolio/portfolio_533911.png",
+        "title": "Tic-Tac-Toe",
+        "description": "Play Tic-Tac-Toe against a friend or AI",
+        "link": "https://github.com/CristianBrinza/react-showcase/tree/main/src/showcase/TicTacToe",
+        "demo": "https://reactshowcase.pages.dev/tic-tac-toe"
+      },
+      {
+        "img": "/images/portfolio/portfolio_533909.png",
+        "title": "Markdown Editor",
+        "description": "Write and preview Markdown with advanced feature.",
+        "link": "https://github.com/CristianBrinza/react-showcase/tree/main/src/showcase/MarkdownEditor",
+        "demo": "https://reactshowcase.pages.dev/markdown-editor"
       }
     ],
-    "others": [
+    "html": [
       {
         "img": "/images/portfolio/portfolio_924500.png",
         "title": "Weather App",

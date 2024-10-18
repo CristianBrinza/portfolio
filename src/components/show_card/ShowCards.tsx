@@ -16,10 +16,20 @@ interface ShowCardProps {
   id?: string;
   items: ShowCardItem[];
   className?: string;
+  desktop?: number; // New prop for desktop card count
+  tablet?: number; // New prop for tablet card count
+  mobile?: number; // New prop for mobile card count
 }
 
-const ShowCards: React.FC<ShowCardProps> = ({ items, id, className = '' }) => {
-  const [visibleCards, setVisibleCards] = useState<number>(8); // Initial visible cards
+const ShowCards: React.FC<ShowCardProps> = ({
+  items,
+  id,
+  className = '',
+  desktop = 8,
+  tablet = 6,
+  mobile = 4,
+}) => {
+  const [visibleCards, setVisibleCards] = useState<number>(desktop); // Default to desktop number of cards
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
 
   useEffect(() => {
@@ -29,17 +39,17 @@ const ShowCards: React.FC<ShowCardProps> = ({ items, id, className = '' }) => {
 
     // Update the number of visible cards based on screen width
     if (windowWidth <= 950) {
-      setVisibleCards(4);
+      setVisibleCards(mobile); // Use mobile prop or default
     } else if (windowWidth <= 1300) {
-      setVisibleCards(6);
+      setVisibleCards(tablet); // Use tablet prop or default
     } else {
-      setVisibleCards(8);
+      setVisibleCards(desktop); // Use desktop prop or default
     }
 
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
-  }, [windowWidth]);
+  }, [windowWidth, desktop, tablet, mobile]); // Include prop values in the dependency array
 
   const showMoreCards = () => {
     setVisibleCards(items.length); // Show all remaining cards when "Show More" is clicked

@@ -27,7 +27,7 @@
   margin-top: 10px;
   padding-top: 15px;
   width: 100%;
-/*   border-top: 1px solid var(--theme_primary_color_dark_gray); */
+  /*   border-top: 1px solid var(--theme_primary_color_dark_gray); */
 }
 @media (max-width: 900px) {
   #portfolio_front_page_disclaimer {

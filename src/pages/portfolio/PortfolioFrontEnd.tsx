@@ -70,7 +70,7 @@ export default function PortfolioFrontEnd() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        const frontOthersItems = data?.front?.others || [];
+        const frontOthersItems = data?.front?.html || [];
         setshowCardItems3(frontOthersItems);
       } catch (error) {
         console.error('Error fetching show card data:', error);
@@ -112,8 +112,10 @@ export default function PortfolioFrontEnd() {
           <div className="portfolio_front_page_main_title">
             React (tehnical) showcase:
           </div>
-          <ShowCards items={showCardItems2} />
-          <div className="portfolio_front_page_main_title">Other Pojects:</div>
+          <ShowCards desktop={4} items={showCardItems2} />
+          <div className="portfolio_front_page_main_title">
+            HTML, CSS & JS :
+          </div>
           <ShowCards items={showCardItems3} />
         </div>
         <div id="portfolio_front_page_disclaimer">
