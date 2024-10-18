@@ -152,12 +152,12 @@ const Navbar: React.FC = () => {
             {t('navbar.contact')}
           </Button>
           <Button
-              className={"home_portfolio_btn"}
+            className={'home_portfolio_btn'}
             to="/portfolio"
             color="var(--theme_primary_color_black)"
             border="transparent"
             bgcolor="transparent"
-              hover_bgcolor="transparent"
+            hover_bgcolor="transparent"
           >
             {t('navbar.work')}
           </Button>

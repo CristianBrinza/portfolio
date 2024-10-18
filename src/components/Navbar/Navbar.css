@@ -151,13 +151,15 @@
   align-items: center;
   padding: 12px;
 
-  border: 1.5px solid #0000!important;
+  border: 1.5px solid #0000 !important;
   border-radius: 12px;
-  background: linear-gradient(var(--theme_primary_color_white), var(--theme_primary_color_white)) padding-box, linear-gradient(
-          var(--angle),
-          #FB6DFEFF,
-          #53e1ff
-  ) border-box;
+  background:
+    linear-gradient(
+        var(--theme_primary_color_white),
+        var(--theme_primary_color_white)
+      )
+      padding-box,
+    linear-gradient(var(--angle), #fb6dfeff, #53e1ff) border-box;
   animation: 8s rotate linear infinite;
 }
 
@@ -168,7 +170,7 @@
 }
 
 @property --angle {
-  syntax: "<angle>";
+  syntax: '<angle>';
   initial-value: 0deg;
   inherits: false;
 }
