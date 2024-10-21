@@ -30,6 +30,7 @@ import ScreenSize from './pages/utilities/screen_size/ScreenSize.tsx';
 import Login from './pages/admin/login/Login.tsx';
 import Admin from './pages/admin/admin/Admin.tsx';
 import OfflinePage from './pages/OfflinePage.tsx';
+import Ip from "./pages/utilities/ip/Ip.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -95,6 +96,10 @@ export const routes = [
   {
     path: '/:lang/screen-size',
     element: React.createElement(ScreenSize),
+  },
+  {
+    path: '/:lang/ip',
+    element: React.createElement(Ip),
   },
   {
     path: '/:lang/portfolio-design',
