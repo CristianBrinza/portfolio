@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "deploy": "yarn build && wrangler pages publish ./dist --project-name=portfolio",
+    "deploy": "yarn build && wrangler pages deploy ./dist --project-name=portfolio",
     "predeploy": "yarn build"
   },
   "dependencies": {
