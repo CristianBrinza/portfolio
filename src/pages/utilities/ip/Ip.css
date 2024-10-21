@@ -1,0 +1,30 @@
+.pdf_to_word_container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ip_container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.copied_text {
+  color: #4DD181;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 370px) {
+  .file_input {
+    width: 100%;
+  }
+}
