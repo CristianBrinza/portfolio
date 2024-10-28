@@ -10,13 +10,12 @@ import LinkButton from '../components/LinkButton.tsx';
 import useReveal from '../hooks/useReveal.tsx';
 import { Trans, useTranslation } from 'react-i18next';
 import { useLanguage } from '../context/LanguageContext';
-import { Link } from 'react-router-dom';
-import Notification from '../components/Notification/Notification.tsx';
 import ShowCards from '../components/show_card/ShowCards.tsx';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Icon from '../components/Icon.tsx';
+import Page from "../components/Page.tsx";
 
 interface ShowCardItem {
   title: string;
@@ -92,22 +91,7 @@ export default function Home() {
     };
   }, []);
 
-  const [showNotification1, setShowNotification2] = useState(false); // For home_portfolio_block2
-  const [showNotification3, setShowNotification3] = useState(false); // For home_portfolio_block3
 
-  const handleNotificationClick1 = () => {
-    setShowNotification2(true);
-    setTimeout(() => {
-      setShowNotification2(false);
-    }, 10000);
-  };
-
-  const handleNotificationClick3 = () => {
-    setShowNotification3(true);
-    setTimeout(() => {
-      setShowNotification3(false);
-    }, 10000);
-  };
 
   const [showCardItems, setshowCardItems] = useState<ShowCardItem[]>([]);
 
@@ -253,59 +237,22 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.home_block}>
-          <Title className={`reveal ${styles.home_block_title}`}>
-            See my work
-          </Title>
-          <Parapraph className={`reveal ${styles.home_page_paraghaph}`}>
-            I Am a Young Professional Web Developer and UI&UX Designer
-          </Parapraph>
 
-          <div id={styles.home_portfolio_blocks}>
-            <div
-              className={`${styles.home_portfolio_block} reveal`}
-              id={styles.home_portfolio_block1}
-              style={{ opacity: '0.5', cursor: 'not-allowed' }}
-              onClick={handleNotificationClick1}
-            >
-              <div className={styles.home_portfolio_block_title}>
-                Design <br />
-                (UX & UI)
-              </div>
-            </div>
-            {showNotification1 && (
-              <Notification type="warning">
-                Sorry, page 'Design' still in development
-              </Notification>
-            )}
-            <Link
-              to="/portfolio-front-end"
-              className={`${styles.home_portfolio_block} reveal`}
-              id={styles.home_portfolio_block2}
-            >
-              <div className={styles.home_portfolio_block_title}>
-                Front-End <br /> Development
-              </div>
-            </Link>
-            <div
-              className={`${styles.home_portfolio_block} reveal`}
-              id={styles.home_portfolio_block3}
-              onClick={handleNotificationClick3}
-              style={{ opacity: '0.5', cursor: 'not-allowed' }}
-            >
-              <div className={styles.home_portfolio_block_title}>
-                Back-End <br />
-                Development
-              </div>
-            </div>
-            {showNotification3 && (
-              <Notification type="warning">
-                Sorry, page 'Back-end' still in development
-              </Notification>
-            )}
-          </div>
+        <div id={styles.home_portfolio_block} style={{display:"none"}}>
+
+            <Page minHeight={'100px'}>
+              ddd <br/>
+              ddd <br/>
+              ddd <br/>
+              ddd <br/>
+            </Page>
+
+
+
+
         </div>
-        <div className={styles.home_block} style={{ display: 'none' }}>
+
+        <div className={styles.home_block} style={{display: 'none' }}>
           <Title className={`reveal ${styles.home_block_title}`}>
             My Stack
           </Title>
@@ -404,36 +351,37 @@ export default function Home() {
         </div>
 
         <div className={styles.home_block}>
-          <Title className={`reveal ${styles.home_block_title}`}>
-            Meet my workplaces
-          </Title>
-          <Parapraph className={`reveal ${styles.home_page_paraghaph}`}>
-            As a freelance designer and web developer, I have had the privilege
-            of working with a diverse range of clients, from private clients to
-            established businesses. My work is driven by a commitment to
-            creativity and quality, ensuring that each project results in
-            exceptional, impactful solutions.
-          </Parapraph>
+          <div className={`reveal ${styles.home_block_work}`}>
+
+            <Title className={`reveal ${styles.home_block_title}`}>
+              Meet my workplaces
+            </Title>
+          </div>
         </div>
         <div style={{ marginTop: '-60px' }}>
           <Slider {...settings}>
             <div>
-              <div className={styles.home_my_work_block}>hiden</div>
+              <div className={styles.home_my_work_block}><img style={{width:'100%'}} src="/images/workplaces/secret.png" alt="work"/></div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}>hiden</div>
+              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
+                                                              src="/images/workplaces/secret.png" alt="work"/></div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}>hiden</div>
+              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
+                                                              src="/images/workplaces/secret.png" alt="work"/></div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}>hiden</div>
+              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
+                                                              src="/images/workplaces/secret.png" alt="work"/></div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}>hiden</div>
+              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
+                                                              src="/images/workplaces/secret.png" alt="work"/></div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}>hiden</div>
+              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
+                                                              src="/images/workplaces/secret.png" alt="work"/></div>
             </div>
           </Slider>
         </div>

@@ -150,17 +150,30 @@
   justify-content: center;
   align-items: center;
   padding: 12px;
-
+position: relative;
   border: 1.5px solid #0000 !important;
   border-radius: 12px;
   background:
-    linear-gradient(
-        var(--theme_primary_color_white),
-        var(--theme_primary_color_white)
-      )
-      padding-box,
-    linear-gradient(var(--angle), #fb6dfeff, #53e1ff) border-box;
+          linear-gradient(
+                  var(--theme_primary_color_white),
+                  var(--theme_primary_color_white)
+          )
+          padding-box,
+          linear-gradient(var(--angle), #fb6dfeff, #53e1ff) border-box;
   animation: 8s rotate linear infinite;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.home_portfolio_btn:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--theme_primary_color_darkest_gray_20p_opacity); /* Semi-transparent overlay */
+  border-radius: inherit; /* Ensure the mask follows the button's border-radius */
+  pointer-events: none; /* Allow clicking through the mask */
 }
 
 @keyframes rotate {

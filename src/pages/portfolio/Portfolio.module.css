@@ -4,6 +4,7 @@
   flex-wrap: wrap;
 }
 .portfolio_page_cards {
+  color: #1d1d1f;
   width: 280px;
   height: 400px;
   border-radius: 15px;
@@ -83,6 +84,7 @@
   bottom: 70px;
   transition: bottom 0.4s ease-in-out;
 }
+
 
 #portfolio_page_title {
   font-weight: 1000;
