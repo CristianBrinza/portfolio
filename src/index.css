@@ -31,6 +31,7 @@
   --costume_footer_txt_color_1: #434e4eff;
   --costume_info_notification: #f7f8f9;
   --costume_info_loading_notification: #cccccc;
+  --banner_bg_color: #2B373B;
 
   /* Transition for smooth theme changes */
   transition:
@@ -45,7 +46,9 @@ body {
   cursor:
     url('/public/system/arrow-cursor-outline.svg') 12 12,
     auto;
+  position: relative;
 }
+
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -72,4 +75,5 @@ body {
   --costume_footer_txt_color_1: #e0e0e0ff;
   --costume_info_notification: #f7f8f9;
   --costume_info_loading_notification: #cccccc;
+  --banner_bg_color: #2B373B;
 }

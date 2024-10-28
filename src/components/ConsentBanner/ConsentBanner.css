@@ -1,0 +1,29 @@
+#bannerStyles{
+    position:fixed;
+    bottom: 0;
+    background-color: var(--banner_bg_color);
+    color: #FFF;
+    text-align: center;
+    z-index: 9999;
+    display: flex;
+    gap:15px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+#bannerStyles_buttons{
+    display: flex;
+    gap:15px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media (max-width: 530px) {
+    #bannerStyles {
+        gap: 0;
+        flex-direction: column;
+    }
+}

@@ -1,6 +1,7 @@
 import { Trans } from 'react-i18next';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
 import Title from '../components/Text/Title/Title.tsx';
+import Parapraph from '../components/Text/Parapraph/Parapraph.tsx';
 import Page from '../components/Page.tsx';
 import '../styles/Blog.css';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,7 @@ interface BlogItem {
   description: string;
   to?: string; // 'to' is optional
   img?: string; // 'img' is optional
+  news_type?: string;
 }
 
 export default function Blog() {
@@ -52,8 +54,12 @@ export default function Blog() {
       <Breadcrumb items={breadcrumbItems} />
 
       <Page>
-        <Title style={{ marginTop: '20px' }}>What’s new</Title>
-
+       <div>
+         <Title style={{ marginTop: '20px' }}>What’s new</Title>
+         <Parapraph style={{ marginBottom: '20px' }}>
+           Welcome to the Blog & Updates section! Here you’ll find news, updates, and documentation on the latest website developments, new features, design changes, and more. Stay tuned as we continuously improve your experience!
+         </Parapraph>
+       </div>
         <div className="blog_cards">
           {showBlogPosts.map((item, index: number) => {
             const hasLink = !!item.to; // Check if the 'to' prop exists
@@ -70,7 +76,13 @@ export default function Blog() {
                 ) : (
                   <div className="blog_img_empty"></div>
                 )}
-                <div className="blog_title">{item.title}</div>
+                <div className="blog_title">
+                  {item.news_type ? (
+                      <> <span className='blog_title_type'> {item.news_type}  </span> - </>
+                    ) : (
+                      <></>
+                    )}
+                  {item.title}</div>
                 <div className="blog_subtitle">{item.description}</div>
               </Link>
             );

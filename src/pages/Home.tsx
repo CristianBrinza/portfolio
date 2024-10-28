@@ -14,7 +14,6 @@ import ShowCards from '../components/show_card/ShowCards.tsx';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Icon from '../components/Icon.tsx';
 import Page from "../components/Page.tsx";
 
 interface ShowCardItem {
@@ -153,6 +152,10 @@ export default function Home() {
         <Navbar />
         <div className={`main page`}>
           <div className={styles.home_hero}>
+            <div className={styles.home_hero_about}>
+              Designer <br/>
+              Full-Stack Developer
+            </div>
             <svg
               className={styles.home_hero_svg}
               xmlns="http://www.w3.org/2000/svg"
@@ -227,16 +230,15 @@ export default function Home() {
           <Parapraph className={`reveal ${styles.home_page_paraghaph}`}>
             <Trans>about_me.self_description</Trans>
           </Parapraph>
-          <div className={styles.home_block_about_me_links}>
-            <LinkButton className="reveal" to="/about">
+          <div className={`reveal ${styles.home_block_about_me_links}`}>
+            <LinkButton to="/about">
               See more
             </LinkButton>
-            <LinkButton className="reveal" to="/contact">
+            <LinkButton to="/contact">
               Contact me
             </LinkButton>
           </div>
         </div>
-
 
         <div id={styles.home_portfolio_block} style={{display:"none"}}>
 
@@ -248,94 +250,8 @@ export default function Home() {
             </Page>
 
 
-
-
         </div>
 
-        <div className={styles.home_block} style={{display: 'none' }}>
-          <Title className={`reveal ${styles.home_block_title}`}>
-            My Stack
-          </Title>
-          <Parapraph className={`reveal ${styles.home_page_paraghaph}`}>
-            My toolkit blends modern tech and design to create seamless,
-            user-friendly digital experiences.
-          </Parapraph>
-
-          <div className={styles.home_block_stack_show}>
-            <div className={styles.home_block_stack_show_block}>
-              <div className={styles.home_block_stack_show_block_title}>
-                Design
-              </div>
-              <div className={styles.home_block_stack_show_block_svgs}>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="figma" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="photoshop" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="illustrator" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="premier" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="after_effect" />
-                </div>
-              </div>
-            </div>
-            <div className={styles.home_block_stack_show_block}>
-              <div className={styles.home_block_stack_show_block_title}>
-                Front-end
-              </div>
-              <div className={styles.home_block_stack_show_block_svgs}>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="react" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="vite" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="bootstrap" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="mondodb" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="npm" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="yarn" />
-                </div>
-              </div>
-            </div>
-            <div className={styles.home_block_stack_show_block}>
-              <div className={styles.home_block_stack_show_block_title}>
-                Back-end
-              </div>
-              <div className={styles.home_block_stack_show_block_svgs}>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="nodejs" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="express" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="javascript" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="git" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="jwt" />
-                </div>
-                <div className={styles.home_block_stack_show_block_svg}>
-                  <Icon size="32px" type="python" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className={styles.home_block}>
           <Title className={`reveal ${styles.home_block_title}`}>
             Top Projects
@@ -388,7 +304,11 @@ export default function Home() {
       </div>
 
       <BottomMenu />
-      <Footer />
+      <Footer/>
+
+      <div className={styles.home_loader} style={{display:"none"}}>
+
+      </div>
     </>
   );
 }

@@ -124,7 +124,7 @@ const Navbar: React.FC = () => {
           />
         </button>
         <div className={`nav-items ${isMenuVisible ? 'visible' : ''}`}>
-          <a onClick={toggleLangPopup} style={{ cursor: 'Pointer' }}>
+          <a className='navbar_on_hover' onClick={toggleLangPopup} style={{ cursor: 'Pointer' }}>
             <span className="navbar_show_on_mobile"> Language:&nbsp;</span>
             {i18n.language === 'en' ? (
               <Icon type="en" size="28px" />
@@ -135,13 +135,13 @@ const Navbar: React.FC = () => {
             )}
           </a>
 
-          <a onClick={toggleTheme}>
+          <a id='navbar_isDarkMode' className='navbar_on_hover' onClick={toggleTheme}>
             <span className="navbar_show_on_mobile"> Mode:&nbsp;</span>
             <Icon type={isDarkMode ? 'dark_mode' : 'light_mode'} />
           </a>
 
-          <Link to="/blog">{t('navbar.blog')}</Link>
-          <Link to="/about">{t('navbar.about')}</Link>
+          <Link className='navbar_on_hover_text' to="/blog">{t('navbar.blog')}</Link>
+          <Link className='navbar_on_hover_text' to="/about">{t('navbar.about')}</Link>
           <Button
             to="/contact"
             color="#ffffff"

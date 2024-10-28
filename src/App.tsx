@@ -13,10 +13,12 @@ import i18n from './i18n';
 import { routes } from './routesConfig';
 import Notification from './components/Notification/Notification';
 import { LanguageProvider } from './context/LanguageContext';
-import ReactGA from 'react-ga4'
+import ReactGA from 'react-ga4';
+import ConsentBanner from "./components/ConsentBanner/ConsentBanner.tsx";
 
 // Access the Google Analytics tracking ID from the environment variable
-const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG
+const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG;
+const GTM_ID = import.meta.env.VITE_GTM_ID
 
 // Lazy load OfflinePage for optimized loading
 const OfflinePage = React.lazy(() => import('./pages/OfflinePage'));
@@ -67,7 +69,7 @@ function AppContent() {
   const { t } = useTranslation();
   const [, setLanguageChanged] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
-  const location = useLocation(); // Hook to get current location (for page tracking)
+  const location = useLocation();
 
   const handleLanguageChange = () => {
     setLanguageChanged(prev => !prev); // This will cause a re-render
@@ -88,19 +90,39 @@ function AppContent() {
     };
   }, []);
 
+  // Initialize Google Analytics based on consent
   useEffect(() => {
-
-    ReactGA.initialize(TRACKING_ID);
-    //console.log('Google Analytics initialized with ID:', TRACKING_ID);
-
+    const consentGiven = localStorage.getItem('userConsent');
+    if (consentGiven === 'granted') {
+      ReactGA.initialize(TRACKING_ID);
+      ReactGA.send('pageview'); // Initial pageview after consent is granted
+    }
   }, []);
 
-  // Send custom Google Analytics page view event whenever route changes
+  // Send page view on route change
   useEffect(() => {
     const page = location.pathname;
-    const pageTitle = document.title || "Website"; // Optionally set a fallback title
-    ReactGA.send({ hitType: "pageview", page, title: pageTitle });
-  }, [location.pathname]); // Dependency ensures this runs when the route changes
+    const pageTitle = document.title || 'Website';
+    ReactGA.send({ hitType: 'pageview', page, title: pageTitle });
+  }, [location.pathname]);
+
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.innerHTML = `
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','${GTM_ID}');
+  `;
+    document.head.appendChild(script);
+
+    // Add the noscript part of GTM in the <body>
+    const noscript = document.createElement('noscript');
+    noscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
+    document.body.appendChild(noscript);
+  }, []);
 
   return (
       <>
@@ -132,6 +154,7 @@ function AppContent() {
                 <OfflinePage />
               </Suspense>
           )}
+          <ConsentBanner />
         </LanguageProvider>
       </>
   );

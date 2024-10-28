@@ -187,3 +187,20 @@ position: relative;
   initial-value: 0deg;
   inherits: false;
 }
+
+
+#navbar_isDarkMode{
+  cursor: pointer;
+}
+
+.navbar_on_hover, .navbar_on_hover_text {
+  transition: transform 0.1s ease-in-out;
+}
+
+.navbar_on_hover:hover {
+  transform: scale(1.08);
+}
+
+.navbar_on_hover_text:hover {
+  transform: scale(1.03);
+}
