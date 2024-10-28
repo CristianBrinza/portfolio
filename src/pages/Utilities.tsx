@@ -135,14 +135,24 @@ export default function Utilities() {
               <div className="utilities_item_text">JSON Diff Tool</div>
             </Button>
             <Button
-              to="/screen-size"
-              className="utilities_item"
-              color="var(--theme_primary_color_black)"
-              border="var(--theme_primary_color_darkest_gray)"
-              hover_bgcolor="var(--theme_primary_color_dark_gray)"
+                to="/screen-size"
+                className="utilities_item"
+                color="var(--theme_primary_color_black)"
+                border="var(--theme_primary_color_darkest_gray)"
+                hover_bgcolor="var(--theme_primary_color_dark_gray)"
             >
               <Icon type="copy" />
               <div className="utilities_item_text">Screen Size</div>
+            </Button>
+            <Button
+                to="/ip"
+                className="utilities_item"
+                color="var(--theme_primary_color_black)"
+                border="var(--theme_primary_color_darkest_gray)"
+                hover_bgcolor="var(--theme_primary_color_dark_gray)"
+            >
+              <Icon type="copy" />
+              <div className="utilities_item_text">My IP Address</div>
             </Button>
           </div>
         </div>
