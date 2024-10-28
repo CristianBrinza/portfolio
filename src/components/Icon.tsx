@@ -7,6 +7,8 @@ interface IconProps {
   height?: string;
   color?: string;
   rotate?: string;
+  className?: string;
+  style?: React.CSSProperties;
 }
 const icons = {
   close: (
@@ -1043,19 +1045,27 @@ const Icon: React.FC<IconProps> = ({
   height,
   color = 'var(--theme_primary_color_black)',
   rotate = '0',
+  className = '',
+  style
+,
 }) => {
   const finalWidth = width || size || '24px';
   const finalHeight = height || size || '24px';
 
   return (
     <svg
-      style={{ transform: `rotate(${rotate}deg)` }}
+        style={{
+            transform: `rotate(${rotate}deg)`,
+            ...style,
+        }}
+      className={className}
       width={finalWidth}
       height={finalHeight}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       color={color}
+
     >
       {type && icons[type]}
     </svg>
