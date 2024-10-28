@@ -336,11 +336,7 @@ export default function Legal() {
             Compliance page, including the exercise of your data protection
             rights, please reach out via the contact details provided on the
             website.
-            <br />
-            <br />
-            &nbsp;&nbsp;&nbsp; This version offers more detailed legal language,
-            making it sound professional and polished for your portfolio. Would
-            you like any further refinements or sections added?
+
           </div>
         </div>
         <PageContents id="about_page_contents" sections={sections} />
