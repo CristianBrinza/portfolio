@@ -15,6 +15,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Page from "../components/Page.tsx";
+import FeedbackMenu from "../components/FeedbackMenu/FeedbackMenu.tsx";
 
 interface ShowCardItem {
   title: string;
@@ -304,7 +305,8 @@ export default function Home() {
       </div>
 
       <BottomMenu />
-      <Footer/>
+      <Footer className={styles.home_footer}/>
+      <FeedbackMenu/>
 
       <div className={styles.home_loader} style={{display:"none"}}>
 

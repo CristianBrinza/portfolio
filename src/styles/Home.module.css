@@ -77,6 +77,10 @@ margin-left: calc((100vw - 100%) / -2);
   color: white;
 }
 
+.home_footer{
+  margin-top: 30px!important;
+}
+
 .home_block_work{
   width: 100%;
   display: flex;
