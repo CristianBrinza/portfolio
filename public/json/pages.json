@@ -1,0 +1,8 @@
+[
+  {
+    "link": "2134420",
+    "type": "Blog",
+    "title": "New look of the Homepage",
+    "content": " <div id=\"about_page_title\">\n                Meet the Designer <br />\n                and Developer <br />\n              </div>\n\n              <div id=\"about_page_title_small\">\n                \"The Person Behind the Projects\"\n              </div>\n\n              <div id=\"about_page_text_first_sub_block\">\n                <div\n                  className=\"about_page_text_color\"\n                  style={{ marginTop: '10px' }}\n                >\n                  Hi, I'm Cristian Brinza. As a proficient Developer, I have a\n                  passion for visually appealing and user-friendly websites,\n                  applications and other types of projects. Proven my ability to\n                  deliver high-quality work, adapt to new technologies,\n                  collaborate with cross-functional teams, and stay currently\n                  with industry trends. I am a young software-engineer student,\n                  at the beginning of my career, having a ton of ambitious ideas\n                  and the motivation and discipline to realize them in\n                  management, design and development.\n                </div>"
+  }
+]

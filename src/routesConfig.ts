@@ -119,6 +119,6 @@ export const routes = [
     path: '/:lang/test',
     element: React.createElement(NotFound),
   },
-  { path: '*', element: React.createElement(NotFound) },
+  // { path: '*', element: React.createElement(NotFound) },
   { path: '/:lang/404', element: React.createElement(NotFound) },
 ];

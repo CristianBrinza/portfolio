@@ -5,7 +5,6 @@ import {
   Routes,
   Route,
   useLocation,
-  Navigate,
   useNavigate,
 } from 'react-router-dom';
 import './App.css';
@@ -14,11 +13,12 @@ import { routes } from './routesConfig';
 import Notification from './components/Notification/Notification';
 import { LanguageProvider } from './context/LanguageContext';
 import ReactGA from 'react-ga4';
-import ConsentBanner from "./components/ConsentBanner/ConsentBanner.tsx";
+import ConsentBanner from './components/ConsentBanner/ConsentBanner';
+import DynamicPages from './components/DynamicPages/DynamicPages'; // Import the new DynamicPages component
 
 // Access the Google Analytics tracking ID from the environment variable
 const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG;
-const GTM_ID = import.meta.env.VITE_GTM_ID
+const GTM_ID = import.meta.env.VITE_GTM_ID;
 
 // Lazy load OfflinePage for optimized loading
 const OfflinePage = React.lazy(() => import('./pages/OfflinePage'));
@@ -106,7 +106,6 @@ function AppContent() {
     ReactGA.send({ hitType: 'pageview', page, title: pageTitle });
   }, [location.pathname]);
 
-
   useEffect(() => {
     const script = document.createElement('script');
     script.innerHTML = `
@@ -118,7 +117,6 @@ function AppContent() {
   `;
     document.head.appendChild(script);
 
-    // Add the noscript part of GTM in the <body>
     const noscript = document.createElement('noscript');
     noscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
     document.body.appendChild(noscript);
@@ -138,18 +136,10 @@ function AppContent() {
                 {routes.map(({ path, element }, index) => (
                     <Route key={index} path={path} element={element} />
                 ))}
-                <Route
-                    path="/"
-                    element={
-                      <Navigate
-                          replace
-                          to={`/${localStorage.getItem('i18nextLng') || 'en'}`}
-                      />
-                    }
-                />
+
+                <Route path="/*" element={<DynamicPages />} /> {/* Dynamic Pages */}
               </Routes>
           ) : (
-              // Lazy load the OfflinePage component
               <Suspense fallback={<div>Loading offline page...</div>}>
                 <OfflinePage />
               </Suspense>
