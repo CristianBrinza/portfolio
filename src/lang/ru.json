@@ -20,7 +20,8 @@
     "utilities_page": "Utilities",
     "legal_page": "Legal",
     "portfolio_page": "Portfolio",
-    "not_found_page": "Не найдено"
+    "not_found_page": "Не найдено",
+    "consent_page": "Cookies"
   },
   "website_warning": {
     "title": "Сайт в разработке",

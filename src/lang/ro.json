@@ -20,7 +20,8 @@
     "legal_page": "Legal",
     "blog_page": "Blog & Updates",
     "portfolio_page": "Portfolio",
-    "not_found_page": "Not Found"
+    "not_found_page": "Not Found",
+    "consent_page": "Cookies"
   },
   "website_warning": {
     "title": "Site-ul este în curs de dezvoltare",

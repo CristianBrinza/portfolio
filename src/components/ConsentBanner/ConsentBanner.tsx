@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./ConsentBanner.css";
 import Button from '../Button.tsx';
 import ReactGA from 'react-ga4';
+import {Link} from "react-router-dom";
 
 const ConsentBanner: React.FC = () => {
     const [showBanner, setShowBanner] = useState<boolean>(false);
@@ -42,7 +43,7 @@ const ConsentBanner: React.FC = () => {
 
     return showBanner ? (
         <div id="bannerStyles">
-            <p>This website uses cookies to improve your experience.</p>
+            <p>This website uses <Link to="/privacy">cookies</Link> to improve your experience.</p>
             <div id="bannerStyles_buttons">
                 <Button onClick={handleDecline}>
                     Decline

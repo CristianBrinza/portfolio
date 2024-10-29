@@ -31,6 +31,7 @@ import Login from './pages/admin/login/Login.tsx';
 import Admin from './pages/admin/admin/Admin.tsx';
 import OfflinePage from './pages/OfflinePage.tsx';
 import Ip from "./pages/utilities/ip/Ip.tsx";
+import Consent from "./pages/Consent.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -41,6 +42,7 @@ export const routes = [
   { path: '/:lang/cv', element: React.createElement(Resume) },
   { path: '/:lang/resume', element: React.createElement(Resume) },
   { path: '/:lang/legal', element: React.createElement(Legal) },
+  { path: '/:lang/privacy', element: React.createElement(Consent) },
   { path: '/:lang/login', element: React.createElement(Login) },
   { path: '/:lang/admin', element: React.createElement(Admin) },
   { path: '/:lang/offline', element: React.createElement(OfflinePage) },

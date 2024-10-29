@@ -20,7 +20,8 @@
     "legal_page": "Legal",
     "portfolio_page": "Portfolio",
     "contact_page": "Contact me",
-    "not_found_page": "Not Found"
+    "not_found_page": "Not Found",
+    "consent_page": "Cookies"
   },
   "website_warning": {
     "title": " Website under development",
