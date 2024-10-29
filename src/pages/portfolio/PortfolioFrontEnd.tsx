@@ -5,6 +5,7 @@ import './PortfolioFrontEnd.css';
 import Footer from '../../components/Footer/Footer.tsx';
 import Page from '../../components/Page.tsx';
 import ShowCards from '../../components/show_card/ShowCards.tsx';
+import FeedbackMenu from "../../components/FeedbackMenu/FeedbackMenu.tsx";
 
 interface ShowCardItem {
   title: string;
@@ -126,7 +127,8 @@ export default function PortfolioFrontEnd() {
           further inquiries, feel free to contact me.
         </div>
       </Page>
-      <Footer />
+      <Footer/>
+      <FeedbackMenu/>
     </>
   );
 }
