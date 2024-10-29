@@ -5,14 +5,18 @@ import Icon from '../Icon.tsx';
 import { useTranslation } from 'react-i18next';
 import LinkButton from '../LinkButton.tsx';
 
-interface BreadcrumbProps {
+interface FooterProps {
   button?: boolean;
   copyright?: boolean;
+  className?: boolean;
+  style?: React.CSSProperties;
 }
 
-const Footer: React.FC<BreadcrumbProps> = ({
+const Footer: React.FC<FooterProps> = ({
   button = true,
   copyright = true,
+    style,
+    className = ''
 }) => {
   const {
     t,
@@ -27,7 +31,9 @@ const Footer: React.FC<BreadcrumbProps> = ({
   };
 
   return (
-    <div className="footer">
+    <div
+         className={`footer ${className}`}
+         style={{...style}}>
       <div className="footer_main">
         <div className="main">
           <div className="footer_main_top">
