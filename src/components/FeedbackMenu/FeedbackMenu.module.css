@@ -21,9 +21,9 @@
 
 .FeedbackMenu_textarea {
     scrollbar-width: thin;
-    scrollbar-color: var(--theme_primary_color_black) transparent;
+    scrollbar-color: #1d1d1f transparent;
      padding: 10px;
-     background-color: var(--theme_primary_color_white);
+     background-color: #ffffff;
      border-width: 1px;
      border-style: solid;
      border-radius: 12px;
