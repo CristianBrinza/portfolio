@@ -5,7 +5,8 @@ import Page from '../../components/Page.tsx';
 import LinkButton from '../../components/LinkButton.tsx';
 import Notification from '../../components/Notification/Notification.tsx';
 import { useState } from 'react';
-import styles from './Portfolio.module.css'; // Importing CSS Module
+import styles from './Portfolio.module.css';
+import FeedbackMenu from "../../components/FeedbackMenu/FeedbackMenu.tsx"; // Importing CSS Module
 
 export default function Portfolio() {
   const breadcrumbItems = [
@@ -129,6 +130,7 @@ export default function Portfolio() {
         </div>
       </Page>
       <Footer />
+      <FeedbackMenu/>
     </>
   );
 }
