@@ -110,7 +110,7 @@ const FeedbackMenu: React.FC = () => {
                     isVisible={isFeedbackPopupVisible}
                     onClose={toggleFeedbackPopup}
                 >
-                    <Parapraph>
+                    <Parapraph style={{color:'#434e4eff'}}>
                         <b>1. How would you rate the overall design of the portfolio?</b>
                     </Parapraph>
                     <div className={styles.FeedbackMenu_stars}>
@@ -119,12 +119,12 @@ const FeedbackMenu: React.FC = () => {
                                 key={star}
                                 onClick={() => choseStars("design", star)}
                                 type={star <= answers.design ? "star_fill" : "star"}
-                                color={star <= answers.design ? "var(--theme_primary_color_black)" : "var(--theme_primary_color_darkest_gray)"}
+                                color={star <= answers.design ? "#1d1d1f" : "#bbbbbb"}
                             />
                         ))}
                     </div>
 
-                    <Parapraph>
+                    <Parapraph style={{color:'#434e4eff'}}>
                         <b>2. How would you rate the usability and navigation of the portfolio?</b>
                     </Parapraph>
                     <div className={styles.FeedbackMenu_stars}>
@@ -133,12 +133,12 @@ const FeedbackMenu: React.FC = () => {
                                 key={star}
                                 onClick={() => choseStars("usability", star)}
                                 type={star <= answers.usability ? "star_fill" : "star"}
-                                color={star <= answers.usability ? "var(--theme_primary_color_black)" : "var(--theme_primary_color_darkest_gray)"}
+                                color={star <= answers.usability ? "#1d1d1f" : "#bbbbbb"}
                             />
                         ))}
                     </div>
 
-                    <Parapraph>
+                    <Parapraph style={{color:'#434e4eff'}}>
                         <b>3. How likely are you to consider working with me based on this portfolio?</b>
                     </Parapraph>
                     <div className={styles.FeedbackMenu_stars}>
@@ -147,11 +147,11 @@ const FeedbackMenu: React.FC = () => {
                                 key={star}
                                 onClick={() => choseStars("work", star)}
                                 type={star <= answers.work ? "star_fill" : "star"}
-                                color={star <= answers.work ? "var(--theme_primary_color_black)" : "var(--theme_primary_color_darkest_gray)"}
+                                color={star <= answers.work ? "#1d1d1f" : "#bbbbbb"}
                             />
                         ))}
                     </div>
-                    <Parapraph>
+                    <Parapraph style={{color:'#434e4eff'}}>
                         <b>4. How can we improve?</b>
                     </Parapraph>
                     <textarea
@@ -171,10 +171,10 @@ const FeedbackMenu: React.FC = () => {
                     • 5 - Excellent <br />
                     <br />
                     <Button
-                        color="var(--theme_primary_color_black)"
-                        border="var(--theme_primary_color_dark_gray)"
-                        bgcolor="var(--theme_primary_color_dark_gray)"
-                        hover_bgcolor="var(--theme_primary_color_darkest_gray)"
+                        color="#1d1d1f"
+                        border="#f2f3f7"
+                        bgcolor="#f2f3f7"
+                        hover_bgcolor="#dedede"
                         onClick={handleNotificationClick1} // New logic to show notification if any question is unanswered
                     >
                         Send
