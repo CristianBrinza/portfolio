@@ -39,9 +39,9 @@
   align-items: center;
   gap: 5px;
   padding: 5px;
-  border: 1px solid var(--theme_primary_color_black);
+  border: 1px solid var(--theme_primary_color_dark_gray);
   border-radius: 100px;
-  background: var(--theme_primary_color_white);
+  background: var(--theme_primary_color_dark_gray);
 }
 
 .BottomMenu_toggle a {
