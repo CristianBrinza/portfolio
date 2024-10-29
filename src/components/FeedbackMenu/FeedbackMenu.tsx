@@ -158,7 +158,7 @@ const FeedbackMenu: React.FC = () => {
                         className={styles.FeedbackMenu_textarea}
                         value={improvement}
                         onChange={handleTextChange}
-                        style={{ resize: "both", width: "100%", height: "100px", maxWidth: "100%", maxHeight: "200px" }}
+                        style={{ resize: "both", width: "100%", height: "100px", maxWidth: "100%", minWidth: "100%", maxHeight: "200px" }}
                         placeholder="Your suggestions..."
                     />
 
