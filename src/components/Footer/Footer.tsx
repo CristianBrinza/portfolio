@@ -8,7 +8,7 @@ import LinkButton from '../LinkButton.tsx';
 interface FooterProps {
   button?: boolean;
   copyright?: boolean;
-  className?: boolean;
+  className?: string;
   style?: React.CSSProperties;
 }
 
