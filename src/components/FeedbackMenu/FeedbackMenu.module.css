@@ -3,10 +3,11 @@
 }
 
 .FeedbackMenu_side{
-    position: absolute;
+    position: fixed;
     right: 0;
-    top: calc(50vh - 80px);
+    top: 50%;
     cursor: pointer;
+    transform: translateY(-50%); /* This keeps it centered vertically */
 }
 
 .FeedbackMenu_side:hover path{
