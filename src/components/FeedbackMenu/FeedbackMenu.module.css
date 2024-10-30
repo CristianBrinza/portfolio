@@ -28,7 +28,7 @@
      border-width: 1px;
      border-style: solid;
      border-radius: 12px;
-     color: var(--theme_primary_color_black);
+     color: #1d1d1f;
      resize: vertical;
      flex: 1;
      box-sizing: border-box;
