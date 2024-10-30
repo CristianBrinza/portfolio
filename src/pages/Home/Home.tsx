@@ -267,7 +267,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.home_block}>
+        <div className={styles.home_block} style={{display:"none"}}>
           <div className={`reveal ${styles.home_block_work}`}>
 
             <Title className={`reveal ${styles.home_block_title}`}>
@@ -275,7 +275,7 @@ export default function Home() {
             </Title>
           </div>
         </div>
-        <div style={{ marginTop: '-60px' }}>
+        <div style={{ marginTop: '-60px', display:"none" }}>
           <Slider {...settings}>
             <div>
               <div className={styles.home_my_work_block}><img style={{width:'100%'}} src="/images/workplaces/secret.png" alt="work"/></div>
