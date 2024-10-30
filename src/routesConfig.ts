@@ -32,6 +32,7 @@ import Admin from './pages/admin/admin/Admin.tsx';
 import OfflinePage from './pages/OfflinePage.tsx';
 import Ip from "./pages/utilities/ip/Ip.tsx";
 import Consent from "./pages/Consent.tsx";
+import Test from "./pages/test/Test.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -46,6 +47,7 @@ export const routes = [
   { path: '/:lang/login', element: React.createElement(Login) },
   { path: '/:lang/admin', element: React.createElement(Admin) },
   { path: '/:lang/offline', element: React.createElement(OfflinePage) },
+  { path: '/:lang/test', element: React.createElement(Test) },
 
   { path: '/:lang/utilities', element: React.createElement(Utilities) },
   { path: '/:lang/qr', element: React.createElement(QR) },
@@ -114,10 +116,6 @@ export const routes = [
   {
     path: '/:lang/portfolio-front-end',
     element: React.createElement(PortfolioFrontEnd),
-  },
-  {
-    path: '/:lang/test',
-    element: React.createElement(NotFound),
   },
   // { path: '*', element: React.createElement(NotFound) },
   { path: '/:lang/404', element: React.createElement(NotFound) },

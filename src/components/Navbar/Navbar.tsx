@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from '../Button.tsx';
 import Icon from '../Icon.tsx';
 import Popup from '../Popup/Popup.tsx';
+import useGoogleAnalyticsEvent from '../../hooks/useGoogleAnalyticsEvent';
 
 const Langelect: React.FC<{ onClose: () => void }> = ({ onClose }) => (
   <div className="Langelect_background" onClick={onClose}>
@@ -72,6 +73,8 @@ const Navbar: React.FC = () => {
 
   const toggleMenuVisibility = () => setIsMenuVisible(!isMenuVisible);
   const toggleLang = () => setShowPopup(!showLangPopup);
+
+  const sendAnalyticsEvent = useGoogleAnalyticsEvent('Navbar Interactions');
 
   return (
     <>
@@ -158,6 +161,9 @@ const Navbar: React.FC = () => {
             border="transparent"
             bgcolor="transparent"
             hover_bgcolor="transparent"
+            onClick={async () => {
+              await sendAnalyticsEvent('home_portfolio_btn');
+            }}
           >
             {t('navbar.work')}
           </Button>

@@ -1,6 +1,7 @@
+// components/Button.tsx
 import React, { useState, ReactElement, isValidElement } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Icon from './Icon'; // Adjust the import path as needed
+import Icon from './Icon';
 
 interface ButtonProps {
   bgcolor?: string;
@@ -10,7 +11,7 @@ interface ButtonProps {
   hover_bgcolor?: string;
   hover_color?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: () => Promise<void> | void;
   to?: string;
   className?: string;
   style?: React.CSSProperties;
@@ -20,21 +21,21 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({
-  color,
-  bgcolor,
-  hover_bgcolor,
-  hover_color,
-  border,
-  border_radius,
-  children,
-  onClick,
-  to,
-  className = '',
-  style,
-  type = 'button',
-  disabled = false,
-  id,
-}) => {
+                                         color,
+                                         bgcolor,
+                                         hover_bgcolor,
+                                         hover_color,
+                                         border,
+                                         border_radius,
+                                         children,
+                                         onClick,
+                                         to,
+                                         className = '',
+                                         style,
+                                         type = 'button',
+                                         disabled = false,
+                                         id,
+                                       }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
 
@@ -46,20 +47,19 @@ const Button: React.FC<ButtonProps> = ({
     setIsHovered(false);
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (onClick) {
-      onClick();
+      await onClick(); // Ensure analytics tracking completes
     }
     if (to && !to.startsWith('/files/')) {
-      // Only use navigate for internal links, not for file downloads
       navigate(to);
     }
   };
 
   const buttonStyle: React.CSSProperties = {
     backgroundColor: isHovered
-      ? hover_bgcolor || 'var(--theme_primary_color_dark_gray)'
-      : bgcolor || 'var(--theme_primary_color_white)',
+        ? hover_bgcolor || 'var(--theme_primary_color_dark_gray)'
+        : bgcolor || 'var(--theme_primary_color_white)',
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: isHovered ? hover_bgcolor : border || '#ffffff00',
@@ -67,15 +67,12 @@ const Button: React.FC<ButtonProps> = ({
     cursor: disabled ? 'not-allowed' : 'pointer',
     padding: '0px 28px',
     color: isHovered
-      ? hover_color || 'var(--theme_primary_color_black)'
-      : color || 'var(--theme_primary_color_black)',
+        ? hover_color || 'var(--theme_primary_color_black)'
+        : color || 'var(--theme_primary_color_black)',
     textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: '18px',
-    fontStyle: 'normal',
     fontWeight: '500',
-    lineHeight: '100%',
-    gap: '16px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -88,57 +85,54 @@ const Button: React.FC<ButtonProps> = ({
     ...style,
   };
 
-  // Pass the dynamic color to Icon
   const buttonIconColor = isHovered ? hover_color || color : color;
-
-  // Check if the link is external (for files, etc.)
   const isExternalLink = to && to.startsWith('/files/');
 
   return isExternalLink ? (
-    <a
-      id={id}
-      href={to}
-      style={buttonStyle}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={onClick}
-      className={`${className}`}
-      rel="noopener noreferrer"
-    >
-      {children}
-    </a>
+      <a
+          id={id}
+          href={to}
+          style={buttonStyle}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={onClick}
+          className={`${className}`}
+          rel="noopener noreferrer"
+      >
+        {children}
+      </a>
   ) : to ? (
-    <Link
-      id={id}
-      to={to}
-      style={buttonStyle}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={onClick}
-      className={`${className}`}
-    >
-      {children}
-    </Link>
+      <Link
+          id={id}
+          to={to}
+          style={buttonStyle}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+          className={`${className}`}
+      >
+        {children}
+      </Link>
   ) : (
-    <button
-      id={id}
-      type={type}
-      style={buttonStyle}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
-      className={`${className}`}
-      disabled={disabled}
-    >
-      {React.Children.map(children, child => {
-        if (isValidElement(child) && child.type === Icon) {
-          return React.cloneElement(child as ReactElement<any>, {
-            color: buttonIconColor,
-          });
-        }
-        return child;
-      })}
-    </button>
+      <button
+          id={id}
+          type={type}
+          style={buttonStyle}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleClick}
+          className={`${className}`}
+          disabled={disabled}
+      >
+        {React.Children.map(children, child => {
+          if (isValidElement(child) && child.type === Icon) {
+            return React.cloneElement(child as ReactElement<any>, {
+              color: buttonIconColor,
+            });
+          }
+          return child;
+        })}
+      </button>
   );
 };
 
