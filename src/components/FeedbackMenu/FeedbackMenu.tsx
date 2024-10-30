@@ -64,7 +64,7 @@ const FeedbackMenu: React.FC = () => {
             formData.append('entry.925523382', answers.work.toString()); // Likelihood to work together
             formData.append('entry.1262297536', improvement); // Improvement suggestions
 
-            await fetch("https://docs.google.com/forms/d/e/1FAIpQLScZVCkcivEwdGTllDruqjMkhsY3g4dFLFMbLdGmn2rwwDN70Q/formResponse", {
+            await fetch(import.meta.env.VITE_FEEDBACK_FORM, {
                 method: "POST",
                 mode: "no-cors",
                 headers: {
