@@ -1,6 +1,6 @@
 //routesConfig.ts
 import React from 'react'; // Make sure to import React if using JSX or createElement
-import Home from './pages/Home.tsx';
+import Home from './pages/Home/Home.tsx';
 import About from './pages/About.tsx';
 import Blog from './pages/Blog.tsx';
 import Contact from './pages/Contact.tsx';

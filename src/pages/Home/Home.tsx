@@ -1,21 +1,21 @@
-import Navbar from '../components/Navbar/Navbar.tsx';
-import BottomMenu from '../components/BottomMenu/BottomMenu.tsx';
-import styles from '../styles/Home.module.css'; // Importing the CSS module
-import Hashtags from '../components/Hashtags/Hashtags.tsx';
-import Title from '../components/Text/Title/Title.tsx';
+import Navbar from '../../components/Navbar/Navbar.tsx';
+import BottomMenu from '../../components/BottomMenu/BottomMenu.tsx';
+import styles from './Home.module.css'; // Importing the CSS module
+import Hashtags from '../../components/Hashtags/Hashtags.tsx';
+import Title from '../../components/Text/Title/Title.tsx';
 import { useEffect, useState } from 'react';
-import Parapraph from '../components/Text/Parapraph/Parapraph.tsx';
-import Footer from '../components/Footer/Footer.tsx';
-import LinkButton from '../components/LinkButton.tsx';
-import useReveal from '../hooks/useReveal.tsx';
+import Parapraph from '../../components/Text/Parapraph/Parapraph.tsx';
+import Footer from '../../components/Footer/Footer.tsx';
+import LinkButton from '../../components/LinkButton.tsx';
+import useReveal from '../../hooks/useReveal.tsx';
 import { Trans, useTranslation } from 'react-i18next';
-import { useLanguage } from '../context/LanguageContext';
-import ShowCards from '../components/show_card/ShowCards.tsx';
+import { useLanguage } from '../../context/LanguageContext';
+import ShowCards from '../../components/show_card/ShowCards.tsx';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Page from "../components/Page.tsx";
-import FeedbackMenu from "../components/FeedbackMenu/FeedbackMenu.tsx";
+import Page from "../../components/Page.tsx";
+import FeedbackMenu from "../../components/FeedbackMenu/FeedbackMenu.tsx";
 
 interface ShowCardItem {
   title: string;

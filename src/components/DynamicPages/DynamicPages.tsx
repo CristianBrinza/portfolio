@@ -34,6 +34,17 @@ const DynamicPages: React.FC = () => {
         fetchPages();
     }, []);
 
+    const getTypeUrl = (type: string | undefined): string => {
+        switch (type) {
+            case 'Blog':
+                return '/blog';
+            case 'News':
+                return '/blog';
+            default:
+                return '/'; // Fallback to home if no type or unknown type
+        }
+    };
+
     return (
         <Routes>
             {dynamicPages.map((page) => (
@@ -45,7 +56,9 @@ const DynamicPages: React.FC = () => {
                             <Breadcrumb
                                 items={[
                                     { label: <Trans>navigation.home</Trans>, url: '/' },
-                                    ...(page.type ? [{ label: `${page.type} / ` }] : []), // Conditionally include 'aaa' if page.type exists
+                                    ...(page.type
+                                        ? [{ label: `${page.type} `, url: getTypeUrl(page.type) }]
+                                        : []), // Conditionally include type with URL
                                     { label: page.title },
                                 ]}
                             />
