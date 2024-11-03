@@ -5,6 +5,7 @@ import Breadcrumb from '../Breadcrumb/Breadcrumb.tsx';
 import NotFound from '../../pages/NotFound';
 import { Trans } from 'react-i18next';
 import Page from '../Page.tsx';
+import "./DynamicPages.css"
 
 interface Page {
     link: string;
@@ -62,8 +63,8 @@ const DynamicPages: React.FC = () => {
                                     { label: page.title },
                                 ]}
                             />
-                            <Page gap="50px" id="dynamic_pages_page">
-                                <div dangerouslySetInnerHTML={{ __html: page.content }} />
+                            <Page gap="50px" id="dynamic_pages">
+                                <div id="about_page_text" dangerouslySetInnerHTML={{__html: page.content}} />
                             </Page>
                             <Footer />
                         </>
