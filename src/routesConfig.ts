@@ -27,8 +27,6 @@ import PortfolioBackEnd from './pages/portfolio/PortfolioBackEnd.tsx';
 import PortfolioFrontEnd from './pages/portfolio/PortfolioFrontEnd.tsx';
 import PortfolioDesign from './pages/portfolio/PortfolioDesign.tsx';
 import ScreenSize from './pages/utilities/screen_size/ScreenSize.tsx';
-import Login from './pages/admin/login/Login.tsx';
-import Admin from './pages/admin/admin/Admin.tsx';
 import OfflinePage from './pages/OfflinePage.tsx';
 import Ip from "./pages/utilities/ip/Ip.tsx";
 import Consent from "./pages/Consent.tsx";
