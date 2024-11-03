@@ -44,8 +44,6 @@ export const routes = [
   { path: '/:lang/resume', element: React.createElement(Resume) },
   { path: '/:lang/legal', element: React.createElement(Legal) },
   { path: '/:lang/privacy', element: React.createElement(Consent) },
-  { path: '/:lang/login', element: React.createElement(Login) },
-  { path: '/:lang/admin', element: React.createElement(Admin) },
   { path: '/:lang/offline', element: React.createElement(OfflinePage) },
   { path: '/:lang/test', element: React.createElement(Test) },
 

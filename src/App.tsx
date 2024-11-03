@@ -1,4 +1,3 @@
-// App.tsx
 import React, { useEffect, useState, Suspense } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import {
@@ -7,6 +6,7 @@ import {
   Route,
   useLocation,
   useNavigate,
+  Navigate
 } from 'react-router-dom';
 import './App.css';
 import i18n from './i18n';
@@ -16,6 +16,12 @@ import { LanguageProvider } from './context/LanguageContext';
 import ReactGA from 'react-ga4';
 import ConsentBanner from './components/ConsentBanner/ConsentBanner';
 import DynamicPages from './components/DynamicPages/DynamicPages';
+import Login from './pages/admin/login/Login';
+import ProtectedRoute from './components/ProtectedRoute';
+import GuestPage from './pages/admin/guest/GuestPage';
+import Dashboard from './pages/admin/dashboard/Dashboard';
+import Admin from './pages/admin/admin/Admin';
+import { AuthProvider } from './context/AuthContext';
 
 const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG;
 const GTM_ID = import.meta.env.VITE_GTM_ID;
@@ -30,7 +36,7 @@ function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => voi
   useEffect(() => {
     const pathParts = location.pathname.split('/').filter(Boolean);
     let detectedLang = pathParts[0];
-    const isExcludedPath = excludedPaths.some(path => location.pathname.startsWith(path));
+    const isExcludedPath = excludedPaths.some((path) => location.pathname.startsWith(path));
 
     if (isExcludedPath) return;
 
@@ -52,7 +58,7 @@ function AppContent() {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const location = useLocation();
 
-  const handleLanguageChange = () => setLanguageChanged(prev => !prev);
+  const handleLanguageChange = () => setLanguageChanged((prev) => !prev);
 
   useEffect(() => {
     const updateNetworkStatus = () => setIsOnline(navigator.onLine);
@@ -74,9 +80,9 @@ function AppContent() {
   useEffect(() => {
     const consentGiven = localStorage.getItem('userConsent');
     if (consentGiven === 'granted' && !ReactGA.ga()) {
-      ReactGA.initialize(TRACKING_ID);  // Removed unsupported debug parameter
+      ReactGA.initialize(TRACKING_ID);
       ReactGA.send('pageview');
-      console.log("Google Analytics initialized");
+      console.log('Google Analytics initialized');
     }
   }, []);
 
@@ -104,20 +110,27 @@ function AppContent() {
   }, []);
 
   return (
-      <>
+      <AuthProvider>
         <div id="top_notification">
           <span style={{ fontWeight: '600' }}>{t('website_warning.sorry')}</span>
           &nbsp;{t('website_warning.sorry_message')}
         </div>
         <Notification>{t('website_warning.sorry_message')}</Notification>
-        <LanguageInitializer onLanguageChange={handleLanguageChange}/>
+        <LanguageInitializer onLanguageChange={handleLanguageChange} />
         <LanguageProvider>
           {isOnline ? (
               <Routes>
-                {routes.map(({path, element}, index) => (
-                    <Route key={index} path={path} element={element}/>
+                {routes.map(({ path, element }, index) => (
+                    <Route key={index} path={path} element={element} />
                 ))}
-                <Route path="/*" element={<DynamicPages/>}/>
+                <Route path="/:lang/login" element={<Login />} />
+                <Route path="/login" element={<Navigate to="/en/login" replace />} />
+
+                {/* Protected routes */}
+                <Route path="/:lang/guest" element={<ProtectedRoute allowedRoles={['guest', 'user', 'admin']}><GuestPage /></ProtectedRoute>} />
+                <Route path="/:lang/dashboard" element={<ProtectedRoute allowedRoles={['guest', 'user', 'admin']}><Dashboard /></ProtectedRoute>} />
+                <Route path="/:lang/admin" element={<ProtectedRoute allowedRoles={['admin']}><Admin /></ProtectedRoute>} />
+                <Route path="/*" element={<DynamicPages />} />
               </Routes>
           ) : (
               <Suspense fallback={<div>Loading offline page...</div>}>
@@ -126,7 +139,7 @@ function AppContent() {
           )}
           <ConsentBanner/>
         </LanguageProvider>
-      </>
+      </AuthProvider>
   );
 }
 
