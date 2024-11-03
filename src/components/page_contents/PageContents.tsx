@@ -38,8 +38,8 @@ export default function PageContents({ sections, id }: PageContentsProps) {
   }, [sections]);
 
   return (
-    <div id={id} className={styles.contents_component}>
-      <div className={styls.contents_component_title}>On this page</div>
+    <div id={id} className="contents_component">
+      <div className="contents_component_title">On this page</div>
       {sections.map(({ id, label }) => (
         <div
           key={id}
