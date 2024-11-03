@@ -22,6 +22,7 @@ import GuestPage from './pages/admin/guest/GuestPage';
 import Dashboard from './pages/admin/dashboard/Dashboard';
 import Admin from './pages/admin/admin/Admin';
 import { AuthProvider } from './context/AuthContext';
+import PortfolioManager from "./pages/admin/portfolio/PortfolioManager.tsx";
 
 const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG;
 const GTM_ID = import.meta.env.VITE_GTM_ID;
@@ -130,6 +131,14 @@ function AppContent() {
                 <Route path="/:lang/guest" element={<ProtectedRoute allowedRoles={['guest', 'user', 'admin']}><GuestPage /></ProtectedRoute>} />
                 <Route path="/:lang/dashboard" element={<ProtectedRoute allowedRoles={['guest', 'user', 'admin']}><Dashboard /></ProtectedRoute>} />
                 <Route path="/:lang/admin" element={<ProtectedRoute allowedRoles={['admin']}><Admin /></ProtectedRoute>} />
+                <Route
+                    path="/:lang/dashboard/portfolio-manager"
+                    element={
+                      <ProtectedRoute allowedRoles={['admin', 'user']}>
+                        <PortfolioManager />
+                      </ProtectedRoute>
+                    }
+                />
                 <Route path="/*" element={<DynamicPages />} />
               </Routes>
           ) : (

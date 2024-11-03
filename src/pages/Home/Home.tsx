@@ -98,7 +98,7 @@ export default function Home() {
   useEffect(() => {
     const fetchshowCardItems = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_PORTFOLIO_DATA);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

@@ -1,26 +1,29 @@
-//components/Notification.tsx
+// src/components/Notification/Notification.tsx
+
 import React, { useState, useEffect, useRef } from 'react';
-import { useNotification } from './NotificationContext';
-import Icon from '../Icon.tsx';
+import { useNotification } from './NotificationContext'; // If you're using a notification context
+import Icon from '../Icon'; // Adjust the import path as necessary
 import './Notification.css';
 
 interface NotificationProps {
   type?: 'info' | 'error' | 'success' | 'warning';
   children?: React.ReactNode;
   time?: number; // Time in milliseconds
+  onClose?: () => void; // Added onClose prop
 }
 
 const Notification: React.FC<NotificationProps> = ({
-  children,
-  type = 'info',
-  time = 10000,
-}) => {
+                                                     children,
+                                                     type = 'info',
+                                                     time = 10000,
+                                                     onClose, // Added onClose prop
+                                                   }) => {
   const [visible, setVisible] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const idRef = useRef<number>(Date.now());
   const elementRef = useRef<HTMLDivElement>(null);
   const { addNotification, removeNotification, getNotificationOffset } =
-    useNotification();
+      useNotification(); // If you're using a notification context
 
   useEffect(() => {
     const id = idRef.current;
@@ -29,18 +32,19 @@ const Notification: React.FC<NotificationProps> = ({
     addNotification(id, height);
 
     const timeout = setTimeout(() => {
-      setFadeOut(true); // Trigger fade out
+      setFadeOut(true);
       setTimeout(() => {
-        setVisible(false); // Hide after fade out
+        setVisible(false);
         removeNotification(id);
-      }, 1000); // Delay matches fadeOut duration
-    }, time - 1000); // Start fading out 1 second before the total time
+        if (onClose) onClose(); // Call onClose when notification is dismissed
+      }, 1000);
+    }, time - 1000);
 
     return () => {
       clearTimeout(timeout);
       removeNotification(id);
     };
-  }, [addNotification, removeNotification, time]); // Add `time` to the dependency array
+  }, [addNotification, removeNotification, time, onClose]);
 
   useEffect(() => {
     if (!visible) return;
@@ -63,30 +67,23 @@ const Notification: React.FC<NotificationProps> = ({
     setFadeOut(true);
     setTimeout(() => {
       setVisible(false);
-      const id = idRef.current;
-      removeNotification(id);
+      removeNotification(idRef.current);
+      if (onClose) onClose(); // Call onClose when close button is clicked
     }, 1000);
   };
 
   const iconColor =
-    type === 'info' ? 'var(--costume_info_loading_notification)' : '#ffffff';
+      type === 'info' ? 'var(--costume_info_loading_notification)' : '#ffffff';
   const textColor = type === 'info' ? '#222222' : '#ffffff';
   const bgColor =
-    type === 'error'
-      ? '#EA5F51'
-      : type === 'warning'
-        ? '#EA8B3F'
-        : type === 'success'
-          ? '#4DD181'
-          : 'var(--costume_info_notification)';
-  const borderColor =
-    type === 'error'
-      ? '#EA5F51'
-      : type === 'warning'
-        ? '#EA8B3F'
-        : type === 'success'
-          ? '#4DD181'
-          : 'var(--costume_info_notification)';
+      type === 'error'
+          ? '#EA5F51'
+          : type === 'warning'
+              ? '#EA8B3F'
+              : type === 'success'
+                  ? '#4DD181'
+                  : 'var(--costume_info_notification)';
+  const borderColor = bgColor;
 
   const iconTypeMap = {
     info: 'info',
@@ -96,50 +93,50 @@ const Notification: React.FC<NotificationProps> = ({
   } as const;
 
   return (
-    <>
-      {visible && (
-        <div
-          ref={elementRef}
-          className={`WebsiteWarning WebsiteWarning_${type} ${fadeOut ? 'fadeOut' : ''}`}
-          style={{
-            transition: 'bottom 1s ease-in-out', // Smooth transition for position
-            background: `${bgColor}`,
-            borderColor: `${borderColor}`,
-          }}
-        >
-          <div className="WebsiteWarning_close" onClick={handleClose}>
-            <Icon type="close" color={iconColor} />
-          </div>
-          <div className="WebsiteWarning_block">
-            <div className="WebsiteWarning_block_icon">
-              <Icon type={iconTypeMap[type]} color={iconColor} />
+      <>
+        {visible && (
+            <div
+                ref={elementRef}
+                className={`WebsiteWarning WebsiteWarning_${type} ${fadeOut ? 'fadeOut' : ''}`}
+                style={{
+                  transition: 'bottom 1s ease-in-out',
+                  background: `${bgColor}`,
+                  borderColor: `${borderColor}`,
+                }}
+            >
+              <div className="WebsiteWarning_close" onClick={handleClose}>
+                <Icon type="close" color={iconColor} />
+              </div>
+              <div className="WebsiteWarning_block">
+                <div className="WebsiteWarning_block_icon">
+                  <Icon type={iconTypeMap[type]} color={iconColor} />
+                </div>
+                <div className="WebsiteWarning_text">
+                            <span
+                                className="WebsiteWarning_type"
+                                style={{ color: `${textColor}` }}
+                            >
+                                {type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}
+                            </span>
+                  <br />
+                  <span
+                      className="WebsiteWarning_text_gray"
+                      style={{ color: `${textColor}` }}
+                  >
+                                {children || '\u00A0'}
+                            </span>
+                </div>
+              </div>
+              <div
+                  className="WebsiteWarning_fill"
+                  style={{
+                    animationDuration: `${time}ms`,
+                    background: `${textColor}`,
+                  }}
+              />
             </div>
-            <div className="WebsiteWarning_text">
-              <span
-                className="WebsiteWarning_type"
-                style={{ color: `${textColor}` }}
-              >
-                {type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}
-              </span>
-              <br />
-              <span
-                className="WebsiteWarning_text_gray"
-                style={{ color: `${textColor}` }}
-              >
-                {children || '\u00A0'}
-              </span>
-            </div>
-          </div>
-          <div
-            className="WebsiteWarning_fill"
-            style={{
-              animationDuration: `${time}ms`, // Set animation duration here
-              background: `${textColor}`,
-            }}
-          />
-        </div>
-      )}
-    </>
+        )}
+      </>
   );
 };
 

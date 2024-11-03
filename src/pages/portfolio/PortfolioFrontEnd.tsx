@@ -28,7 +28,11 @@ export default function PortfolioFrontEnd() {
   useEffect(() => {
     const fetchshowCardItems1 = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_PORTFOLIO_DATA);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`, {
+          headers: {
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -48,7 +52,11 @@ export default function PortfolioFrontEnd() {
 
     const fetchshowCardItems2 = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_PORTFOLIO_DATA);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`, {
+          headers: {
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -66,7 +74,11 @@ export default function PortfolioFrontEnd() {
 
     const fetchshowCardItems3 = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_PORTFOLIO_DATA);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`, {
+          headers: {
+            'ngrok-skip-browser-warning': 'true'
+          }
+        });
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
