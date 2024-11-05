@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Trans } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb.tsx";
 import Page from "../../components/Page.tsx";
 import Title from "../../components/Text/Title/Title.tsx";
@@ -7,6 +8,7 @@ import Parapraph from "../../components/Text/Parapraph/Parapraph.tsx";
 import styles from "./Certifications.module.css";
 
 interface CertificationsItem {
+    to: string;
     img: string;
     title: string;
     by: string;
@@ -16,6 +18,7 @@ interface CertificationsItem {
 const Certifications: React.FC = () => {
     const [showCardItems, setShowCardItems] = useState<CertificationsItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchShowCardItems = async () => {
@@ -50,6 +53,12 @@ const Certifications: React.FC = () => {
         { label: 'Certifications & Courses' },
     ];
 
+    const handleCardClick = (to: string | undefined) => {
+        if (to) {
+            navigate("/course");
+        }
+    };
+
     return (
         <>
             <Breadcrumb items={breadcrumbItems} />
@@ -62,7 +71,11 @@ const Certifications: React.FC = () => {
 
                     <div className={styles.certification_block}>
                         {showCardItems.map((item, index) => (
-                            <div key={index} className={styles.certification_card}>
+                            <div
+                                key={index}
+                                className={`${styles.certification_card} ${item.to ? styles.certification_card_pointer : styles.certification_card_not_allowed}`}
+                                onClick={() => handleCardClick(item.to)}
+                            >
                                 <img src={item.img} alt="certifications" className={styles.certification_img}/>
                                 <b className={styles.certification_title}>{item.title}</b>
                                 <p className={styles.certification_by}>{item.by}</p>
