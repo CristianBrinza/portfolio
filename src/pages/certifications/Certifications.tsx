@@ -6,6 +6,8 @@ import Page from "../../components/Page.tsx";
 import Title from "../../components/Text/Title/Title.tsx";
 import Parapraph from "../../components/Text/Parapraph/Parapraph.tsx";
 import styles from "./Certifications.module.css";
+import Footer from "../../components/Footer/Footer.tsx";
+import FeedbackMenu from "../../components/FeedbackMenu/FeedbackMenu.tsx";
 
 interface CertificationsItem {
     to: string;
@@ -62,7 +64,7 @@ const Certifications: React.FC = () => {
     return (
         <>
             <Breadcrumb items={breadcrumbItems} />
-            <Page>
+            <Page minHeight="80vh">
                 <div>
                     <Title style={{ marginTop: '20px' }}>Certifications & Courses</Title>
                     <Parapraph style={{ marginBottom: '20px' }}>
@@ -85,6 +87,8 @@ const Certifications: React.FC = () => {
                     </div>
                 </div>
             </Page>
+            <Footer/>
+            <FeedbackMenu/>
         </>
     );
 };
