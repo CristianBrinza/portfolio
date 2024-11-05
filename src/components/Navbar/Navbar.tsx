@@ -1,4 +1,4 @@
-//components/Navbar.tsx
+//components/AdminSideMenu.tsx
 import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import { useTranslation } from 'react-i18next';
@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
   const toggleMenuVisibility = () => setIsMenuVisible(!isMenuVisible);
   const toggleLang = () => setShowPopup(!showLangPopup);
 
-  const sendAnalyticsEvent = useGoogleAnalyticsEvent('Navbar Interactions');
+  const sendAnalyticsEvent = useGoogleAnalyticsEvent('AdminNavbar Interactions');
 
   return (
     <>

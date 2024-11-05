@@ -238,7 +238,7 @@ const PortfolioManager: React.FC = () => {
 
     const breadcrumbItems = [
         { label: 'Home', url: `/${language}/` },
-        { label: 'Admin', url: `/${language}/admin` },
+        { label: 'Dashboard', url: `/${language}/dashboard` },
         { label: 'Portfolio Manager' },
     ];
 

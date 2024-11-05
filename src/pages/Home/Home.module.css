@@ -113,6 +113,35 @@ margin-left: calc((100vw - 100%) / -2);
   z-index: 999999999;
 }
 
+.home_block_links {
+  margin-top: -20px;
+}
+.home_block_links_btns{
+  width: 100%;
+  display: flex;
+  gap:10px 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.home_block_links_btn{
+width: calc((100% / 2) - 5px);
+  display: flex !important;
+  justify-content: space-between!important;
+  align-items: center!important;
+  font-size: 16.8px!important;
+}
+
+.home_block_links_btn_icon {
+  transform: translateX(0)!important;
+  transition: transform 0.3s ease; /* Smooth easing for the animation */
+}
+
+.home_block_links_btn:hover .home_block_links_btn_icon {
+  transform: translateX(4px)!important; /* Moves the icon 4px to the right */
+}
+
+
 @media (max-width: 1100px) {
   .home_page_paraghaph {
     line-height: 20px;

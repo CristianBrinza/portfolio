@@ -22,6 +22,7 @@
   --theme_primary_color_white: #ffffff;
   --theme_primary_color_light_gray: #f8f8f8;
   --theme_primary_color_dark_gray: #f2f3f7;
+  --theme_primary_color_darker_gray: #d8d8d8;
   --theme_primary_color_darkest_gray: #bbbbbb;
   --theme_primary_color_darkest_gray_20p_opacity: #bbbbbb20;
   --theme_primary_color_red: #e40523;
@@ -66,6 +67,7 @@ body {
   --theme_primary_color_white: #1d1d1f;
   --theme_primary_color_light_gray: #f8f8f8;
   --theme_primary_color_dark_gray: #646464;
+  --theme_primary_color_darker_gray: #d1d1d1;
   --theme_primary_color_darkest_gray: #dedede;
   --theme_primary_color_darkest_gray_20p_opacity: #bbbbbb20;
   --theme_primary_color_red: #e40523;
