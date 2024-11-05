@@ -182,6 +182,9 @@ width: calc((100% / 2) - 5px);
   .home_hero_about{
    display: none;
   }
+  .home_block_links_btn{
+    width: 100%;
+  }
 }
 
 @media (max-width: 650px) {
