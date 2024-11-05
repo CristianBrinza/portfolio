@@ -9,6 +9,7 @@ import styles from "./Certifications.module.css";
 interface CertificationsItem {
     img: string;
     title: string;
+    by: string;
     description: string;
 }
 
@@ -19,7 +20,11 @@ const Certifications: React.FC = () => {
     useEffect(() => {
         const fetchShowCardItems = async () => {
             try {
-                const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/certifications`);
+                const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/certifications`, {
+                    headers: {
+                        'ngrok-skip-browser-warning': 'true'
+                    }
+                });
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
