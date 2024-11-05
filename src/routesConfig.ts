@@ -31,6 +31,7 @@ import OfflinePage from './pages/OfflinePage.tsx';
 import Ip from "./pages/utilities/ip/Ip.tsx";
 import Consent from "./pages/Consent.tsx";
 import Test from "./pages/test/Test.tsx";
+import Certifications from "./pages/certifications/Certifications.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -43,6 +44,7 @@ export const routes = [
   { path: '/:lang/legal', element: React.createElement(Legal) },
   { path: '/:lang/privacy', element: React.createElement(Consent) },
   { path: '/:lang/offline', element: React.createElement(OfflinePage) },
+  { path: '/:lang/certifications', element: React.createElement(Certifications) },
   { path: '/:lang/test', element: React.createElement(Test) },
 
   { path: '/:lang/utilities', element: React.createElement(Utilities) },
