@@ -307,7 +307,7 @@ export default function Home() {
                 hover_bgcolor="var(--theme_primary_color_darkest_gray)"
 
             >
-              sss
+              My stack
               <Icon size='28px' className={styles.home_block_links_btn_icon} type="arrow"  />
             </Button>
 
