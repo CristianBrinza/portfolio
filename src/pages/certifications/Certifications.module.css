@@ -14,7 +14,17 @@
     border-radius: 12px;
     box-sizing: border-box;
     padding: 20px;
-
+    transform: scale(1.00);
+    transition: transform 0.2s ease-in-out;
+}
+.certification_card_pointer {
+    cursor: pointer;
+}
+.certification_card_not_allowed {
+    cursor: not-allowed;
+}
+.certification_card:hover{
+    transform: scale(1.02);
 }
 
 .certification_by{
