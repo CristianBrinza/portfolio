@@ -55,7 +55,7 @@ const Certifications: React.FC = () => {
 
     const handleCardClick = (to: string | undefined) => {
         if (to) {
-            navigate("/course");
+            navigate(to);
         }
     };
 
