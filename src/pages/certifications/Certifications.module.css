@@ -9,11 +9,10 @@
 
 .certification_card{
     width: calc((100% - 60px) / 4);
-    height: 260px;
     border: 1px solid var(--theme_primary_color_darker_gray);
     border-radius: 12px;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 20px 20px 0;
     transform: scale(1.00);
     transition: transform 0.2s ease-in-out;
 }
