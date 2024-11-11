@@ -1,27 +1,18 @@
-// components/AdminSideMenu.tsx
-import React, { useEffect, useState } from 'react';
+// src/components/Admin/AdminNavbar/AdminNavbar.tsx
+
+import React, { useEffect, useState, useRef } from 'react';
 import styles from './AdminNavbar.module.css'; // Import the CSS module
 import { useTranslation } from 'react-i18next';
-import {Link, useLocation, useNavigate, useParams} from 'react-router-dom';
-import Button from '../../Button.tsx';
-import Icon from '../../Icon.tsx';
-import Popup from '../../Popup/Popup.tsx';
-import {useAuth} from "../../../context/AuthContext.tsx";
-
-const Langelect: React.FC<{ onClose: () => void }> = ({ onClose }) => (
-    <div className={styles.LangSelect_background} onClick={onClose}>
-      <div className={styles.LangSelect_container}>
-        <div className={styles.LangSelect_close_btn} onClick={onClose}>
-          <Icon type="close" />
-        </div>
-        Langelect_background
-      </div>
-    </div>
-);
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import Button from '../../Button';
+import Icon from '../../Icon';
+import Popup from '../../Popup/Popup';
+import { useAuth } from '../../../context/AuthContext';
+import api from '../../../utils/api';
 
 const AdminNavbar: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const [showLangPopup, setShowPopup] = useState(false);
+  const [showLangPopup, setShowLangPopup] = useState(false);
 
   const { t, i18n } = useTranslation();
   const location = useLocation();
@@ -72,8 +63,6 @@ const AdminNavbar: React.FC = () => {
   };
 
   const toggleMenuVisibility = () => setIsMenuVisible(!isMenuVisible);
-  const toggleLang = () => setShowPopup(!showLangPopup);
-
 
   const { logout } = useAuth();
   const { lang } = useParams();
@@ -83,6 +72,79 @@ const AdminNavbar: React.FC = () => {
     logout();
     navigate(`/${language}/login`);
   };
+
+  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [userInitials, setUserInitials] = useState<string>('');
+  const [showProfilePopup, setShowProfilePopup] = useState(false);
+
+  const profilePopupRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await api.get('/user/profile', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+
+        if (response.data.image) {
+          const imageUrl = `${import.meta.env.VITE_BACKEND}/user/profile-image/${response.data.image}`;
+          setProfileImage(imageUrl);
+        } else {
+          setProfileImage(null);
+        }
+
+        // Get user initials
+        const { name, surname, username } = response.data;
+        const initials = getInitials(name, surname, username);
+        setUserInitials(initials);
+
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  const getInitials = (name: string, surname: string, username: string): string => {
+    let initials = '';
+    if (name && surname) {
+      initials = `${name.charAt(0)}${surname.charAt(0)}`;
+    } else if (name) {
+      initials = name.charAt(0);
+    } else if (surname) {
+      initials = surname.charAt(0);
+    } else if (username) {
+      initials = username.charAt(0);
+    }
+    return initials.toUpperCase();
+  };
+
+  const toggleProfilePopup = () => {
+    setShowProfilePopup((prev) => !prev);
+  };
+
+  // Close popup when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+          profilePopupRef.current &&
+          !profilePopupRef.current.contains(event.target as Node)
+      ) {
+        setShowProfilePopup(false);
+      }
+    };
+    if (showProfilePopup) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showProfilePopup]);
 
   return (
       <>
@@ -106,65 +168,84 @@ const AdminNavbar: React.FC = () => {
           </Link>
 
           <button className={styles.menuIcon} onClick={toggleMenuVisibility}>
-            <Icon type="menu" size="30px" color="var(--theme_primary_color_black)"/>
+            <Icon type="menu" size="30px" color="var(--theme_primary_color_black)" />
           </button>
           <div className={`${styles.navItems} ${isMenuVisible ? styles.visible : ''}`}>
+            <Link className={styles.navbar_on_hover_text} to="/admin">
+              Admin
+            </Link>
+            <Link
+                className={styles.navbar_on_hover_text}
+                to="/dashboard/portfolio-manager"
+            >
+              Portfolio
+            </Link>
+            <Link className={styles.navbar_on_hover_text} to="/dashboard/storage">
+              Storage
+            </Link>
 
-            <Link className={styles.navbar_on_hover_text} to="/admin">Admin</Link>
-            <Link className={styles.navbar_on_hover_text} to="/dashboard/portfolio-manager">Portfolio</Link>
-            <Link className={styles.navbar_on_hover_text} to="/dashboard/storage">Storage</Link>
-
-
-            <a className={styles.navbar_on_hover} onClick={toggleLangPopup} style={{cursor: 'pointer'}}>
+            <a
+                className={styles.navbar_on_hover}
+                onClick={toggleLangPopup}
+                style={{ cursor: 'pointer' }}
+            >
               <span className={styles.navbarShowOnMobile}> Language:&nbsp;</span>
               {i18n.language === 'en' ? (
-                  <Icon type="en" size="28px"/>
+                  <Icon type="en" size="28px" />
               ) : i18n.language === 'ro' ? (
-                  <Icon type="ro" size="28px"/>
+                  <Icon type="ro" size="28px" />
               ) : (
-                  <Icon type="ru" size="28px"/>
+                  <Icon type="ru" size="28px" />
               )}
             </a>
 
-            <a id='navbar_isDarkMode' className={styles.navbar_on_hover} onClick={toggleTheme}>
+            <a
+                id="navbar_isDarkMode"
+                className={styles.navbar_on_hover}
+                onClick={toggleTheme}
+            >
               <span className={styles.navbarShowOnMobile}> Mode:&nbsp;</span>
-              <Icon type={isDarkMode ? 'dark_mode' : 'light_mode'}/>
+              <Icon type={isDarkMode ? 'dark_mode' : 'light_mode'} />
             </a>
- <Button onClick={handleLogoff}>Log Off</Button>
+
+            <div className={styles.profileContainer}>
+              {profileImage ? (
+                  <img
+                      src={profileImage}
+                      alt="Profile"
+                      className={styles.profileImage}
+                      onClick={toggleProfilePopup}
+                  />
+              ) : (
+                  <div
+                      className={styles.initialsCircle}
+                      onClick={toggleProfilePopup}
+                  >
+                    {userInitials}
+                  </div>
+              )}
+
+              {showProfilePopup && (
+                  <div className={styles.profilePopup} ref={profilePopupRef}>
+                    <Button onClick={() => navigate('/dashboard/profile')}>
+                      Edit Profile
+                    </Button>
+                    <Button onClick={handleLogoff}>Log Off</Button>
+                  </div>
+              )}
+            </div>
           </div>
         </nav>
-        {showLangPopup && <Langelect onClose={toggleLang}/>}
-
         {isListLangPopupVisible && (
             <Popup
-                id="list_all_operators_popup"
+                id="languagePopup"
                 isVisible={isListLangPopupVisible}
                 onClose={toggleLangPopup}
             >
-              <div>
-                <div id="navbar_lang_select_btns" className={styles.navbar_lang_select_btns}>
-                  <Button
-                      onClick={() => handleChangeLanguage('ro')}
-                      bgcolor="#F2F3F7"
-                      color="#1d1d1f"
-                  >
-                    {t('navbar.romanian')}
-                  </Button>
-                  <Button
-                      onClick={() => handleChangeLanguage('en')}
-                      bgcolor="#F2F3F7"
-                      color="#1d1d1f"
-                  >
-                    {t('navbar.english')}
-                  </Button>
-                  <Button
-                      onClick={() => handleChangeLanguage('ru')}
-                      bgcolor="#F2F3F7"
-                      color="#1d1d1f"
-                  >
-                    {t('navbar.russian')}
-                  </Button>
-                </div>
+              <div className={styles.langPopupContent}>
+                <Button onClick={() => handleChangeLanguage('en')}>English</Button>
+                <Button onClick={() => handleChangeLanguage('ro')}>Romanian</Button>
+                <Button onClick={() => handleChangeLanguage('ru')}>Russian</Button>
               </div>
             </Popup>
         )}

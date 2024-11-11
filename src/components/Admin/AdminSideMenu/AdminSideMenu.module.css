@@ -1,6 +1,7 @@
 .AdminSideMenu{
     width: 280px;
     min-height: 20px;
+    height: 78vh;
     background: var(--theme_primary_color_dark_gray);
     border-radius: 12px;
     box-sizing: border-box;

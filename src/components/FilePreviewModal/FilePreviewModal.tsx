@@ -1,23 +1,16 @@
 // src/components/FilePreviewModal/FilePreviewModal.tsx
 
 import React, { useEffect, useState } from 'react';
-import Popup from '../Popup/Popup';
 import api from '../../utils/api';
 import './FilePreviewModal.css';
-
-interface FileItem {
-    name: string;
-    path: string;
-    isFile: boolean;
-    isFolder: boolean;
-    size: number;
-    modifiedAt: string;
-    createdAt: string;
-    mimeType: string | null;
-}
+import Icon from "../Icon.tsx";
 
 interface FilePreviewModalProps {
-    file: FileItem;
+    file: {
+        name: string;
+        path: string;
+        mimeType: string | null;
+    };
     onClose: () => void;
     language: string;
 }
@@ -28,48 +21,83 @@ const FilePreviewModal: React.FC<FilePreviewModalProps> = ({ file, onClose }) =>
     useEffect(() => {
         const fetchPreview = async () => {
             try {
-                if (file.mimeType && file.mimeType.startsWith('image/')) {
-                    setContent(
-                        `${import.meta.env.VITE_BACKEND}/storage/preview?path=${encodeURIComponent(
-                            file.path
-                        )}`
-                    );
+                const token = localStorage.getItem('token');
+                const previewUrl = `${import.meta.env.VITE_BACKEND}/storage/preview?path=${encodeURIComponent(file.path)}`;
+                const response = await fetch(previewUrl, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    if (file.mimeType?.startsWith('image/')) {
+                        const blob = await response.blob();
+                        const blobUrl = URL.createObjectURL(blob);
+                        setContent(blobUrl);
+                    } else if (file.mimeType?.startsWith('text/')) {
+                        const text = await response.text();
+                        setContent(text);
+                    } else if (file.mimeType === 'application/pdf') {
+                        const blob = await response.blob();
+                        const blobUrl = URL.createObjectURL(blob);
+                        setContent(blobUrl);
+                    } else {
+                        setContent(null);
+                    }
                 } else {
-                    const response = await api.get(
-                        `${import.meta.env.VITE_BACKEND}/storage/preview`,
-                        {
-                            params: { path: file.path },
-                            headers: {
-                                'ngrok-skip-browser-warning': 'true',
-                                Authorization: `Bearer ${localStorage.getItem('token')}`,
-                            },
-                        }
-                    );
-                    setContent(response.data);
+                    setContent(null);
                 }
             } catch (error) {
                 console.error('Error fetching file preview:', error);
-                setContent('Preview not available.');
+                setContent(null);
             }
         };
 
         fetchPreview();
     }, [file]);
 
-    const isImage = file.mimeType?.startsWith('image/');
-    const isText = file.mimeType?.startsWith('text/');
+    const renderContent = () => {
+        if (!content) {
+            return <p>Preview not available.</p>;
+        }
+
+        if (file.mimeType?.startsWith('image/')) {
+            return <img src={content} alt={file.name} style={{ width: '100%', height: 'auto' }} />;
+        }
+
+        if (file.mimeType?.startsWith('text/')) {
+            return (
+                <textarea
+                    readOnly
+                    value={content}
+                    style={{ width: '100%', height: '80vh' }}
+                ></textarea>
+            );
+        }
+
+        if (file.mimeType === 'application/pdf') {
+            return (
+                <iframe
+                    src={content}
+                    title={file.name}
+                    style={{ width: '100%', height: '80vh' }}
+                ></iframe>
+            );
+        }
+
+        return <p>Preview not available.</p>;
+    };
 
     return (
-        <Popup id="filePreviewModal" isVisible={true} onClose={onClose}>
-            <div className="file_preview_modal">
-                <h2>Preview: {file.name}</h2>
-                <div className="file_preview_content">
-                    {isImage && <img src={content || ''} alt={file.name} />}
-                    {isText && <pre>{content}</pre>}
-                    {!isImage && !isText && <p>Preview not available for this file type.</p>}
-                </div>
+        <div className="file_preview_modal">
+            <div className="file_preview_modal_content">
+                <button className="close_button" onClick={onClose}>
+                    <Icon type="close"/>
+                </button>
+                <h2>{file.name}</h2>
+                {renderContent()}
             </div>
-        </Popup>
+        </div>
     );
 };
 

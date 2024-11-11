@@ -205,3 +205,119 @@
 .navbar_on_hover_text:hover {
   transform: scale(1.03);
 }
+
+
+.profileImageContainer {
+  position: relative;
+}
+
+.profileImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+
+
+
+
+.profileContainer {
+  position: relative;
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.profileImage {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+
+.profilePopup button {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.profilePopup button:last-child {
+  margin-bottom: 0;
+}
+
+.profilePopup button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Adjusting nav items alignment */
+.navItems {
+  display: flex;
+  align-items: center;
+}
+
+
+.initialsCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #317ce6; /* or any preferred background color */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.profileContainer {
+  position: relative;
+  display: inline-block;
+  display: inline-block;
+  margin-left: 15px;
+  position: absolute;
+  right: 50px;
+  top: auto;
+  bottom: auto;
+  margin-top: 5px;
+  }
+
+.profileImage {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.profilePopup {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 170px;
+  left: -100px;
+}
+
+.profilePopup button {
+  display: block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.profilePopup button:last-child {
+  margin-bottom: 0;
+}
+
+.profilePopup button:hover {
+  background-color: #f0f0f0;
+}

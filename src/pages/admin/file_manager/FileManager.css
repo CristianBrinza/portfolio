@@ -18,7 +18,9 @@
     display: flex;
 }
 
-.file_manager_controls input{
+.file_manager_controls input,
+.create_folder_popup  input,
+.rename_popup input{
     background-color: var(--theme_primary_color_white);
     border-width: 1px;
     border-style: solid;
@@ -26,6 +28,7 @@
     color: var(--theme_primary_color_black);
     padding: 0 10px;
     height: 46px;
+    box-sizing: border-box;
 }
 
 .file_manager_controls_sort_costume {
@@ -89,10 +92,6 @@
 }
 
 
-.file_manager_item_actions button {
-    margin-right: 5px;
-}
-
 .file_manager_pagination {
     margin-top: 20px;
     display: flex;
@@ -108,13 +107,6 @@
     padding: 20px;
 }
 
-.file_manager_item_icon img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
 
 .file_manager_items {
     display: flex;
@@ -123,7 +115,7 @@
 }
 
 .file_manager_item {
-    width: 180px;
+    width: 280px;
     margin: 10px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -143,11 +135,6 @@
     text-align: center;
 }
 
-.file_manager_item_icon img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-}
 
 .file_manager_item_name {
     font-weight: bold;
@@ -160,12 +147,9 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
+    gap:0px 5px;
 }
 
-.file_manager_item_actions button {
-    margin: 0 3px;
-    padding: 5px 8px;
-}
 
 .file_manager_item_info {
     position: relative;
@@ -190,4 +174,48 @@
 
 .file_manager_item_hover_info p {
     margin: 5px 0;
+}
+
+.file_preview_folder{
+    border: 1px solid #859aff;
+    border-radius: 8px;
+    background-color: #eef2ff;
+}
+
+
+.file_manager_item_actions button{
+    width: auto;
+    padding: 0px 15px !important;
+    min-width: 60px;
+}
+
+
+.file_preview_thumbnail {
+    width: 100%;
+    height: 70px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.file_preview_thumbnail img {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 5px;
+
+}
+
+.file_placeholder_thumbnail {
+    width: 100%;
+    height: 100%;
+    background-color: #c8c8c8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file_placeholder_thumbnail i {
+    color: #fff;
+    font-size: 48px;
 }
