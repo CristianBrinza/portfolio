@@ -2,19 +2,17 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import styles from './AdminNavbar.module.css'; // Import the CSS module
-import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import Button from '../../Button';
 import Icon from '../../Icon';
 import Popup from '../../Popup/Popup';
 import { useAuth } from '../../../context/AuthContext';
 import api from '../../../utils/api';
+import i18n from "../../../i18n.tsx";
 
 const AdminNavbar: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  const [showLangPopup, setShowLangPopup] = useState(false);
 
-  const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [isListLangPopupVisible, setIsListLangPopupVisible] = useState(false);

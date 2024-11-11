@@ -1,7 +1,6 @@
 // src/components/FilePreviewModal/FilePreviewModal.tsx
 
 import React, { useEffect, useState } from 'react';
-import api from '../../utils/api';
 import './FilePreviewModal.css';
 import Icon from "../Icon.tsx";
 

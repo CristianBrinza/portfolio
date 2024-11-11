@@ -802,7 +802,7 @@ const FileManager: React.FC = () => {
 
             {/* Share Popup */}
             {showSharePopup && itemToShare && (
-                <Popup isVisible={showSharePopup} onClose={closeSharePopup}>
+                <Popup id="showSharePopup" isVisible={showSharePopup} onClose={closeSharePopup}>
                     <div className="share_popup">
                         <h2>Share File: {itemToShare.name}</h2>
                         {!shareLink ? (
@@ -838,7 +838,7 @@ const FileManager: React.FC = () => {
 
             {/* Create Folder Popup */}
             {showCreateFolderPopup && (
-                <Popup isVisible={showCreateFolderPopup} onClose={closeCreateFolderPopup}>
+                <Popup id='showCreateFolderPopup' isVisible={showCreateFolderPopup} onClose={closeCreateFolderPopup}>
                     <div className="create_folder_popup">
                         <h2>Create New Folder</h2>
                         <input
@@ -857,7 +857,7 @@ const FileManager: React.FC = () => {
 
             {/* Move Popup */}
             {showMovePopup && (
-                <Popup isVisible={showMovePopup} onClose={closeMovePopup}>
+                <Popup id='showMovePopup' isVisible={showMovePopup} onClose={closeMovePopup}>
                     <div className="move_popup">
                         <h2>Move Item</h2>
                         <p>Moving: {itemToMove?.name}</p>

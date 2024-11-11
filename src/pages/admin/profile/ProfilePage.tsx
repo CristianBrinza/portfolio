@@ -6,8 +6,6 @@ import api from '../../../utils/api';
 import Button from '../../../components/Button';
 import Notification from '../../../components/Notification/Notification';
 import './ProfilePage.css';
-import {Link} from "react-router-dom";
-import styles from "../../../components/Admin/AdminNavbar/AdminNavbar.module.css";
 
 const ProfilePage: React.FC = () => {
     const [profile, setProfile] = useState({
