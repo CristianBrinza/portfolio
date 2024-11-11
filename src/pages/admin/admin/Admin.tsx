@@ -5,7 +5,7 @@ import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout';
 
 const Dashboard: React.FC = () => {
   const breadcrumb = [
-    { label: 'Dashboard' }
+    { label: 'Admin' }
   ];
 
   return (

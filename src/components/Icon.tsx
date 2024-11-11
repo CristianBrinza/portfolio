@@ -1078,6 +1078,22 @@ const icons = {
                 fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </>
 
+    ),
+    download: (
+        <>
+            <path
+                d="M12 15V3M12 15L8 11M12 15L16 11M2 17L2.621 19.485C2.72915 19.9177 2.97882 20.3018 3.33033 20.5763C3.68184 20.8508 4.11501 20.9999 4.561 21H19.438C19.884 20.9999 20.3172 20.8508 20.6687 20.5763C21.0202 20.3018 21.2698 19.9177 21.378 19.485L22 17"
+                stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </>
+
+    ),
+    move: (
+        <>
+            <path
+                d="M20 6H12L10 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6ZM20 18H4V6H9.17L10.58 7.41L11.17 8H20V18ZM12.16 12H8V14H12.16L10.57 15.59L11.99 17L16 13.01L11.99 9L10.58 10.41L12.16 12Z"
+                fill="black"/>
+        </>
+
     )
 };
 const Icon: React.FC<IconProps> = ({

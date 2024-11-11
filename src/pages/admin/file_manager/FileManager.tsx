@@ -1,5 +1,3 @@
-// src/pages/admin/storage/FileManager.tsx
-
 import React, { useEffect, useState, useRef } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -12,7 +10,7 @@ import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 import FilePreviewModal from '../../../components/FilePreviewModal/FilePreviewModal';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './FileManager.css';
-import Icon from "../../../components/Icon.tsx";
+import Icon from '../../../components/Icon.tsx';
 
 interface FileItem {
     name: string;
@@ -25,6 +23,7 @@ interface FileItem {
     mimeType: string | null;
     createdBy?: string;
     lastModifiedBy?: string;
+    isFavorite?: boolean; // Added isFavorite property
 }
 
 const FileManager: React.FC = () => {
@@ -64,6 +63,11 @@ const FileManager: React.FC = () => {
     const [showSharePopup, setShowSharePopup] = useState<boolean>(false);
     const [itemToShare, setItemToShare] = useState<FileItem | null>(null);
     const [expiresIn, setExpiresIn] = useState<number>(24); // Default to 24 hours
+
+    // State for moving items
+    const [showMovePopup, setShowMovePopup] = useState<boolean>(false);
+    const [itemToMove, setItemToMove] = useState<FileItem | null>(null);
+    const [destinationPath, setDestinationPath] = useState<string>('');
 
     const breadcrumbItems = [
         { label: 'Dashboard', url: `/${language}/dashboard` },
@@ -127,13 +131,23 @@ const FileManager: React.FC = () => {
             if (a.name === '.trash') return -1;
             if (b.name === '.trash') return 1;
 
-            // Always put 'version' folder second
-            if (a.name === 'version') {
+            // Always put '.versions' folder second
+            if (a.name === '.versions') {
                 if (b.name === '.trash') return 1;
                 return -1;
             }
-            if (b.name === 'version') {
+            if (b.name === '.versions') {
                 if (a.name === '.trash') return -1;
+                return 1;
+            }
+
+            // Always put '.favorite' folder third
+            if (a.name === '.favorite') {
+                if (b.name === '.trash' || b.name === '.versions') return 1;
+                return -1;
+            }
+            if (b.name === '.favorite') {
+                if (a.name === '.trash' || a.name === '.versions') return -1;
                 return 1;
             }
 
@@ -275,7 +289,7 @@ const FileManager: React.FC = () => {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             });
-            setNotification({ message: 'Item moved to trash.', type: 'info' });
+            setNotification({ message: 'Item moved to trash.', type: 'success' });
             fetchItems();
         } catch (error) {
             console.error('Error deleting item:', error);
@@ -303,13 +317,17 @@ const FileManager: React.FC = () => {
 
     const restoreItem = async (item: FileItem) => {
         try {
-            await api.put(`${import.meta.env.VITE_BACKEND}/storage/trash/restore`, {
-                itemPath: item.path.replace('.trash/', ''),
-            }, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+            await api.put(
+                `${import.meta.env.VITE_BACKEND}/storage/trash/restore`,
+                {
+                    itemPath: item.path.replace('.trash/', ''),
                 },
-            });
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                }
+            );
             setNotification({ message: 'Item restored successfully.', type: 'success' });
             fetchItems();
         } catch (error) {
@@ -318,13 +336,33 @@ const FileManager: React.FC = () => {
         }
     };
 
-    const downloadItem = (item: FileItem) => {
-        const link = document.createElement('a');
-        link.href = `${import.meta.env.VITE_BACKEND}/storage/download?path=${encodeURIComponent(
-            item.path
-        )}`;
-        link.target = '_blank';
-        link.click();
+    const downloadItem = async (item: FileItem) => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch(
+                `${import.meta.env.VITE_BACKEND}/storage/download?path=${encodeURIComponent(item.path)}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error('Error downloading file');
+            }
+
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = item.name;
+            link.click();
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error('Error downloading file:', error);
+            setNotification({ message: 'Error downloading file.', type: 'error' });
+        }
     };
 
     const formatSize = (size: number) => {
@@ -389,7 +427,7 @@ const FileManager: React.FC = () => {
         if (!itemToShare) return;
         try {
             const response = await api.post(
-                '/storage/share',
+                `${import.meta.env.VITE_BACKEND}/storage/share`,
                 { filePath: itemToShare.path, expiresIn },
                 {
                     headers: {
@@ -440,6 +478,79 @@ const FileManager: React.FC = () => {
             console.error('Error creating folder:', error);
             setNotification({ message: 'Error creating folder.', type: 'error' });
             closeCreateFolderPopup();
+        }
+    };
+
+    // Toggle favorite functionality
+    const toggleFavorite = async (item: FileItem) => {
+        try {
+            if (item.isFavorite) {
+                // Remove from favorites
+                await api.delete(`${import.meta.env.VITE_BACKEND}/storage/favorite`, {
+                    data: { itemPath: item.path },
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                });
+                setNotification({ message: 'Item removed from favorites.', type: 'info' });
+            } else {
+                // Add to favorites
+                await api.post(
+                    `${import.meta.env.VITE_BACKEND}/storage/favorite`,
+                    { itemPath: item.path },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        },
+                    }
+                );
+                setNotification({ message: 'Item added to favorites.', type: 'success' });
+            }
+
+            // Update the item's isFavorite status
+            setItems((prevItems) =>
+                prevItems.map((prevItem) =>
+                    prevItem.path === item.path ? { ...prevItem, isFavorite: !item.isFavorite } : prevItem
+                )
+            );
+        } catch (error) {
+            console.error('Error toggling favorite:', error);
+            setNotification({ message: 'Error updating favorite status.', type: 'error' });
+        }
+    };
+
+    // Move functionality
+    const openMovePopup = (item: FileItem) => {
+        setItemToMove(item);
+        setDestinationPath('');
+        setShowMovePopup(true);
+    };
+
+    const closeMovePopup = () => {
+        setShowMovePopup(false);
+        setItemToMove(null);
+        setDestinationPath('');
+    };
+
+    const handleMove = async () => {
+        if (!itemToMove || !destinationPath) return;
+        try {
+            await api.put(
+                `${import.meta.env.VITE_BACKEND}/storage/move`,
+                { sourcePath: itemToMove.path, destinationPath },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                }
+            );
+            setNotification({ message: 'Item moved successfully!', type: 'success' });
+            closeMovePopup();
+            fetchItems();
+        } catch (error) {
+            console.error('Error moving item:', error);
+            setNotification({ message: 'Error moving item.', type: 'error' });
+            closeMovePopup();
         }
     };
 
@@ -502,7 +613,7 @@ const FileManager: React.FC = () => {
                     />
                     <select
                         value={sortBy}
-                        className="file_manager_controls_sort_costume"
+                        className="file_manager_controls_sort_custom"
                         onChange={handleSortChange}
                     >
                         <option value="name">Name</option>
@@ -510,7 +621,9 @@ const FileManager: React.FC = () => {
                         <option value="modifiedAt">Modified At</option>
                         <option value="createdAt">Created At</option>
                     </select>
-                    <Button onClick={handleOrderChange}>
+                    <Button
+                        border='var(--theme_primary_color_dark_gray)'
+                        onClick={handleOrderChange}>
                         {sortOrder === 'asc' ? '↑' : '↓'}
                     </Button>
                 </div>
@@ -561,8 +674,8 @@ const FileManager: React.FC = () => {
                                 </div>
                             </div>
                             <div className="file_manager_item_actions">
-                                {/* Hide action buttons for .trash and version folders */}
-                                {!(item.name === '.trash' || item.name === 'version') && (
+                                {/* Hide action buttons for .trash, version, and .favorite folders */}
+                                {!(item.name === '.trash' || item.name === '.versions' || item.name === '.favorite') && (
                                     <>
                                         {!item.isFolder && !isInTrash && (
                                             <Button onClick={() => openFilePreview(item)}>
@@ -579,6 +692,12 @@ const FileManager: React.FC = () => {
                                                 </Button>
                                                 <Button onClick={() => deleteItem(item)}>
                                                     <Icon type="trash" />
+                                                </Button>
+                                                <Button onClick={() => toggleFavorite(item)}>
+                                                    <Icon type={item.isFavorite ? 'star_fill' : 'star'} />
+                                                </Button>
+                                                <Button onClick={() => openMovePopup(item)}>
+                                                    <Icon type="move" />
                                                 </Button>
                                                 {!item.isFolder && (
                                                     <Button onClick={() => downloadItem(item)}>
@@ -688,7 +807,7 @@ const FileManager: React.FC = () => {
                         <h2>Share File: {itemToShare.name}</h2>
                         {!shareLink ? (
                             <div>
-                                <label>Expires In (hours):</label>
+                                <label>Expires In (hours): </label>
                                 <input
                                     type="number"
                                     value={expiresIn}
@@ -696,7 +815,13 @@ const FileManager: React.FC = () => {
                                     max={168}
                                     onChange={(e) => setExpiresIn(Number(e.target.value))}
                                 />
-                                <Button onClick={handleCreateShareLink}>Generate Link</Button>
+                                <Button
+                                    color="#fff"
+                                    bgcolor="#317ce6"
+                                    border="#317ce6"
+                                    hover_bgcolor="#1967D2"
+                                    hover_color="#fff"
+                                    onClick={handleCreateShareLink}>Generate Link</Button>
                             </div>
                         ) : (
                             <div>
@@ -725,6 +850,27 @@ const FileManager: React.FC = () => {
                         <div className="popup_actions">
                             <Button onClick={handleCreateFolder}>Create</Button>
                             <Button onClick={closeCreateFolderPopup}>Cancel</Button>
+                        </div>
+                    </div>
+                </Popup>
+            )}
+
+            {/* Move Popup */}
+            {showMovePopup && (
+                <Popup isVisible={showMovePopup} onClose={closeMovePopup}>
+                    <div className="move_popup">
+                        <h2>Move Item</h2>
+                        <p>Moving: {itemToMove?.name}</p>
+                        <label>Destination Path:</label>
+                        <input
+                            type="text"
+                            value={destinationPath}
+                            onChange={(e) => setDestinationPath(e.target.value)}
+                            placeholder="Enter destination path"
+                        />
+                        <div className="popup_actions">
+                            <Button onClick={handleMove}>Move</Button>
+                            <Button onClick={closeMovePopup}>Cancel</Button>
                         </div>
                     </div>
                 </Popup>

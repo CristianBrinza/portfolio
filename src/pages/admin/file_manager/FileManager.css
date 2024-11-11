@@ -20,7 +20,9 @@
 
 .file_manager_controls input,
 .create_folder_popup  input,
-.rename_popup input{
+.rename_popup input,
+.move_popup input,
+.share_popup input{
     background-color: var(--theme_primary_color_white);
     border-width: 1px;
     border-style: solid;
@@ -31,7 +33,7 @@
     box-sizing: border-box;
 }
 
-.file_manager_controls_sort_costume {
+.file_manager_controls_sort_custom {
     background-color: var(--theme_primary_color_white);
     border-width: 1px;
     border-style: solid;
@@ -46,6 +48,9 @@
     gap:5px;
 }
 
+.file_manager_search_sort button{
+    margin-top: 0;
+}
 
 .file_manager_items {
     display: flex;
@@ -151,15 +156,13 @@
 }
 
 
-.file_manager_item_info {
-    position: relative;
-}
+
 
 .file_manager_item_hover_info {
     display: none;
     position: absolute;
     top: 0;
-    left: 180px;
+    left: 250px;
     background: #fff;
     border: 1px solid #ccc;
     padding: 10px;
