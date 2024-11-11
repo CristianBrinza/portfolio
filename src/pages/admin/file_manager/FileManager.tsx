@@ -386,13 +386,14 @@ const FileManager: React.FC = () => {
 
             {/* Upload Progress Popup */}
             {showUploadPopup && (
-                <Popup isVisible={showUploadPopup} onClose={() => setShowUploadPopup(false)}>
+                <Popup id="uploadProgressPopup" isVisible={showUploadPopup} onClose={() => setShowUploadPopup(false)}>
                     <div className="upload_progress_popup">
                         <h2>Uploading...</h2>
                         <ProgressBar progress={uploadProgress} />
                     </div>
                 </Popup>
             )}
+
 
             {/* File Preview Modal */}
             {showPreviewModal && previewFile && (
@@ -405,7 +406,7 @@ const FileManager: React.FC = () => {
 
             {/* Rename Popup */}
             {showRenamePopup && (
-                <Popup isVisible={showRenamePopup} onClose={closeRenamePopup}>
+                <Popup  id="renamePopup" isVisible={showRenamePopup} onClose={closeRenamePopup}>
                     <div className="rename_popup">
                         <h2>Rename Item</h2>
                         <input

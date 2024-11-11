@@ -32,7 +32,8 @@ const AdminLayout: React.FC<AdminProps> = ({ children, breadcrumb }) => {
         </div>
         <AdminPage minHeight="78vh">
           <div className={styles.adminlayout_content}>
-            <AdminSideMenu />
+              <AdminSideMenu>ss</AdminSideMenu>
+
             <div className={styles.adminlayout_child}>{children}</div>
           </div>
         </AdminPage>

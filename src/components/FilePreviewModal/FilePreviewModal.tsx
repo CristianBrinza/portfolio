@@ -60,7 +60,7 @@ const FilePreviewModal: React.FC<FilePreviewModalProps> = ({ file, onClose }) =>
     const isText = file.mimeType?.startsWith('text/');
 
     return (
-        <Popup isVisible={true} onClose={onClose}>
+        <Popup id="filePreviewModal" isVisible={true} onClose={onClose}>
             <div className="file_preview_modal">
                 <h2>Preview: {file.name}</h2>
                 <div className="file_preview_content">
