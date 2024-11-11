@@ -2,12 +2,19 @@
 import React from 'react';
 import styles from './AdminSideMenu.module.css';
 
-const AdminSideMenu: React.FC = () => {
+interface AdminProps {
+    children: React.ReactNode;
+}
+
+const AdminSideMenu: React.FC<AdminProps> = ({
+                                                 children,
+
+}) => {
 
 
   return (
       <div  className={styles.AdminSideMenu}>
-
+          {children}
       </div>
   );
 };

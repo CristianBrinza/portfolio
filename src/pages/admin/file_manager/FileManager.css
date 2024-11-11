@@ -1,0 +1,193 @@
+/* src/pages/admin/storage/FileManager.css */
+
+.file_manager_title {
+    margin-bottom: 20px;
+}
+
+.file_manager_controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: flex-start;
+}
+
+.file_manager_actions button {
+    margin-right: 10px;
+}
+.file_manager_actions{
+    display: flex;
+}
+
+.file_manager_controls input{
+    background-color: var(--theme_primary_color_white);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
+    color: var(--theme_primary_color_black);
+    padding: 0 10px;
+    height: 46px;
+}
+
+.file_manager_controls_sort_costume {
+    background-color: var(--theme_primary_color_white);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
+    color: var(--theme_primary_color_black);
+    padding: 0 10px;
+    height: 46px;
+}
+.file_manager_search_sort {
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+
+
+.file_manager_items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.file_manager_item {
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.file_manager_item_icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.file_manager_item_name {
+    font-weight: bold;
+}
+
+.file_manager_item_info {
+    position: relative;
+}
+
+.file_manager_item_hover_info {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 220px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 10;
+    width: 200px;
+}
+
+.file_manager_item:hover .file_manager_item_hover_info {
+    display: block;
+}
+
+
+.file_manager_item_actions button {
+    margin-right: 5px;
+}
+
+.file_manager_pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file_manager_pagination button {
+    margin: 0 5px;
+}
+
+.upload_progress_popup {
+    padding: 20px;
+}
+
+.file_manager_item_icon img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+.file_manager_items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.file_manager_item {
+    width: 180px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    transition: box-shadow 0.2s;
+    position: relative;
+}
+
+.file_manager_item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.file_manager_item_icon {
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.file_manager_item_icon img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.file_manager_item_name {
+    font-weight: bold;
+    text-align: center;
+    word-break: break-word;
+}
+
+.file_manager_item_actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.file_manager_item_actions button {
+    margin: 0 3px;
+    padding: 5px 8px;
+}
+
+.file_manager_item_info {
+    position: relative;
+}
+
+.file_manager_item_hover_info {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 180px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 10;
+    width: 200px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.file_manager_item:hover .file_manager_item_hover_info {
+    display: block;
+}
+
+.file_manager_item_hover_info p {
+    margin: 5px 0;
+}

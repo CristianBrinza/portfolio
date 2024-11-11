@@ -1,37 +1,18 @@
-// src/pages/admin/dashboard/Dashboard.tsx
+// src/pages/admin/dashboard/Storage.tsx
 
 import React from 'react';
-import AdminPage from "../../../components/AdminPage.tsx";
-
-import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb.tsx";
-import {Trans} from "react-i18next";
-import AdminSideMenu from "../../../components/Admin/AdminSideMenu/AdminSideMenu.tsx";
-import AdminNavbar from "../../../components/Admin/AdminNavbar/AdminNavbar.tsx";
+import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout';
 
 const Dashboard: React.FC = () => {
-
-    const breadcrumbItems = [
-        { label: <Trans>navigation.home</Trans>, url: '/dashboard' },
-        { label: 'Dashboard' },
+    const breadcrumb = [
+        { label: 'Dashboard' }
     ];
-
-
-
 
     return (
         <div>
-            <AdminNavbar/>
-            <div className="admin_breadcrumb">
-                <Breadcrumb items={breadcrumbItems}/>
-            </div>
-            <AdminPage>
-
-                <AdminSideMenu>
-                </AdminSideMenu>
-                <div>
-                    kk
-                </div>
-            </AdminPage>
+            <AdminLayout breadcrumb={breadcrumb}>
+                <p>Welcome to the Dashboard!</p>
+            </AdminLayout>
         </div>
     );
 };

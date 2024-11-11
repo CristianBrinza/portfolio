@@ -32,6 +32,11 @@ import Ip from "./pages/utilities/ip/Ip.tsx";
 import Consent from "./pages/Consent.tsx";
 import Test from "./pages/test/Test.tsx";
 import Certifications from "./pages/certifications/Certifications.tsx";
+import PortfolioManager from "./pages/admin/portfolio/PortfolioManager.tsx";
+import Admin from "./pages/admin/admin/Admin.tsx";
+import Dashboard from "./pages/admin/dashboard/Dashboard.tsx";
+import GuestPage from "./pages/admin/guest/GuestPage.tsx";
+import FileManager from "./pages/admin/file_manager/FileManager.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -115,6 +120,33 @@ export const routes = [
     path: '/:lang/portfolio-front-end',
     element: React.createElement(PortfolioFrontEnd),
   },
+
+  {
+  path: '/:lang/dashboard',
+    element: React.createElement(Dashboard),
+    allowedRoles: ['guest', 'user', 'admin'],
+},
+  {
+    path: '/:lang/admin',
+    element: React.createElement(Admin),
+    allowedRoles: ['admin'],
+  },
+  {
+    path: '/:lang/guest',
+    element: React.createElement(GuestPage),
+    allowedRoles: ['guest', 'user', 'admin'],
+  },
+  {
+    path: '/:lang/dashboard/portfolio-manager',
+    element: React.createElement(PortfolioManager),
+    allowedRoles: ['admin', 'user'],
+  },
+  {
+    path: '/:lang/dashboard/storage',
+    element: React.createElement(FileManager),
+    allowedRoles: ['admin', 'user'],
+  },
+
   // { path: '*', element: React.createElement(NotFound) },
   { path: '/:lang/404', element: React.createElement(NotFound) },
 ];

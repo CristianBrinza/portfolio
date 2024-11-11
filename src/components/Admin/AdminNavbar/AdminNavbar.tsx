@@ -87,7 +87,7 @@ const AdminNavbar: React.FC = () => {
   return (
       <>
         <nav className={styles.navbar}>
-          <Link className={styles.navBrand} to={`/${t('lang')}dashboard`}>
+          <Link className={styles.navBrand} to={`/dashboard`}>
             <svg width="163" height="58" viewBox="0 0 163 58" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="56" height="56" transform="translate(0 1)" fill="#E40523"/>
               <path
@@ -112,6 +112,7 @@ const AdminNavbar: React.FC = () => {
 
             <Link className={styles.navbar_on_hover_text} to="/admin">Admin</Link>
             <Link className={styles.navbar_on_hover_text} to="/dashboard/portfolio-manager">Portfolio</Link>
+            <Link className={styles.navbar_on_hover_text} to="/dashboard/storage">Storage</Link>
 
 
             <a className={styles.navbar_on_hover} onClick={toggleLangPopup} style={{cursor: 'pointer'}}>

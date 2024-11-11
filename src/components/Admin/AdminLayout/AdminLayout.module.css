@@ -1,0 +1,9 @@
+.adminlayout_content{
+  display: flex;
+  width: 100%;
+  gap:20px;
+}
+
+.adminlayout_child{
+  width: calc(100% - 300px);
+}

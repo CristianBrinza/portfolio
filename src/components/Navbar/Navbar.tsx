@@ -74,7 +74,7 @@ const Navbar: React.FC = () => {
   const toggleMenuVisibility = () => setIsMenuVisible(!isMenuVisible);
   const toggleLang = () => setShowPopup(!showLangPopup);
 
-  const sendAnalyticsEvent = useGoogleAnalyticsEvent('AdminNavbar Interactions');
+  const sendAnalyticsEvent = useGoogleAnalyticsEvent('AdminLayout Interactions');
 
   return (
     <>

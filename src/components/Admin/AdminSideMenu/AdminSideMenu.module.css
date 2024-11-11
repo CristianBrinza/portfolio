@@ -3,4 +3,7 @@
     min-height: 20px;
     background: var(--theme_primary_color_dark_gray);
     border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+
 }

@@ -13,6 +13,7 @@ import Popup from '../../../components/Popup/Popup';
 import Notification from '../../../components/Notification/Notification';
 import { AxiosError } from 'axios';
 import './PortfolioManager.css';
+import AdminLayout from "../../../components/Admin/AdminLayout/AdminLayout.tsx";
 
 interface PortfolioItem {
     img: string;
@@ -237,17 +238,15 @@ const PortfolioManager: React.FC = () => {
     };
 
     const breadcrumbItems = [
-        { label: 'Home', url: `/${language}/` },
         { label: 'Dashboard', url: `/${language}/dashboard` },
         { label: 'Portfolio Manager' },
     ];
 
     return (
-        <>
-            <Breadcrumb items={breadcrumbItems} />
-            <Page className="portfolio_manager_page">
+            <AdminLayout breadcrumb={breadcrumbItems}>
+
                 <Title className="portfolio_manager_page_title">
-                    Portfolio Manager
+                  &nbsp;
                 </Title>
 
                 {notification && (
@@ -484,8 +483,6 @@ const PortfolioManager: React.FC = () => {
                         </div>
                     </div>
                 )}
-            </Page>
-            <Footer />
 
             <Popup
                 id="portfolio_item_popup"
@@ -579,7 +576,7 @@ const PortfolioManager: React.FC = () => {
                     </div>
                 </div>
             </Popup>
-        </>
+            </AdminLayout>
     );
 };
 

@@ -21,6 +21,8 @@
 }
 .admin_breadcrumb{
   width: 100%;
+  display: flex;
+  justify-content: start;
 }
 .admin_breadcrumb .breadcrumb{
   width: calc(98vw - 4rem)!important;

@@ -1,0 +1,22 @@
+/* src/components/FilePreviewModal/FilePreviewModal.css */
+
+.file_preview_modal {
+    max-width: 800px;
+    width: 90%;
+}
+
+.file_preview_modal img {
+    max-width: 100%;
+    height: auto;
+}
+
+.file_preview_content {
+    margin-top: 20px;
+}
+
+.file_preview_content pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 400px;
+    overflow-y: auto;
+}

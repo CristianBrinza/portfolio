@@ -17,12 +17,7 @@ import ReactGA from 'react-ga4';
 import ConsentBanner from './components/ConsentBanner/ConsentBanner';
 import DynamicPages from './components/DynamicPages/DynamicPages';
 import Login from './pages/admin/login/Login';
-import ProtectedRoute from './components/ProtectedRoute';
-import GuestPage from './pages/admin/guest/GuestPage';
-import Dashboard from './pages/admin/dashboard/Dashboard';
-import Admin from './pages/admin/admin/Admin';
 import { AuthProvider } from './context/AuthContext';
-import PortfolioManager from "./pages/admin/portfolio/PortfolioManager.tsx";
 
 const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG;
 const GTM_ID = import.meta.env.VITE_GTM_ID;
@@ -110,6 +105,36 @@ function AppContent() {
     document.body.appendChild(noscript);
   }, []);
 
+  const [showNotification, setShowNotification] = useState(false);
+  useEffect(() => {
+    const checkBackendStatus = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND}/status`, {
+          headers: {
+            'ngrok-skip-browser-warning': 'true',
+          },
+        });
+
+        if (response.status !== 200) {
+          setShowNotification(true);
+          setTimeout(() => {
+            setShowNotification(false);
+            setShowNotification(true);
+          }, 10000); // Hide notification after 10 seconds
+        }
+      } catch (error) {
+        console.error('Error fetching backend status:', error);
+        // Show notification in case of network error
+        setShowNotification(true);
+        setTimeout(() => {
+          setShowNotification(false);
+        }, 10000); // Hide notification after 10 seconds
+      }
+    };
+
+    checkBackendStatus();
+  }, []);
+
   return (
       <AuthProvider>
         <div id="top_notification">
@@ -117,6 +142,11 @@ function AppContent() {
           &nbsp;{t('website_warning.sorry_message')}
         </div>
         <Notification>{t('website_warning.sorry_message')}</Notification>
+        {showNotification && (
+            <Notification type="error">
+              Sorry, Back-end is down
+            </Notification>
+        )}
         <LanguageInitializer onLanguageChange={handleLanguageChange} />
         <LanguageProvider>
           {isOnline ? (
@@ -127,19 +157,7 @@ function AppContent() {
                 <Route path="/:lang/login" element={<Login />} />
                 <Route path="/login" element={<Navigate to="/en/login" replace />} />
 
-                {/* Protected routes */}
-                <Route path="/:lang/guest" element={<ProtectedRoute allowedRoles={['guest', 'user', 'admin']}><GuestPage /></ProtectedRoute>} />
-                <Route path="/:lang/dashboard" element={<ProtectedRoute allowedRoles={['guest', 'user', 'admin']}><Dashboard /></ProtectedRoute>} />
-                <Route path="/:lang/admin" element={<ProtectedRoute allowedRoles={['admin']}><Admin /></ProtectedRoute>} />
-                <Route
-                    path="/:lang/dashboard/portfolio-manager"
-                    element={
-                      <ProtectedRoute allowedRoles={['admin', 'user']}>
-                        <PortfolioManager />
-                      </ProtectedRoute>
-                    }
-                />
-                <Route path="/*" element={<DynamicPages />} />
+              <Route path="/*" element={<DynamicPages />} />
               </Routes>
           ) : (
               <Suspense fallback={<div>Loading offline page...</div>}>
