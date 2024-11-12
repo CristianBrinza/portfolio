@@ -8,9 +8,13 @@ const Dashboard: React.FC = () => {
     { label: 'Admin' }
   ];
 
+    const menu = [
+        { btn: 'Edit Profile', url:'/dashboard/profile', type:'button'}
+    ];
+
   return (
       <div>
-        <AdminLayout breadcrumb={breadcrumb}>
+        <AdminLayout menu_items={menu} breadcrumb={breadcrumb}>
           <p>Welcome to the ADMIN!</p>
         </AdminLayout>
       </div>

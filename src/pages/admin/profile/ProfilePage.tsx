@@ -5,7 +5,8 @@ import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout';
 import api from '../../../utils/api';
 import Button from '../../../components/Button';
 import Notification from '../../../components/Notification/Notification';
-import './ProfilePage.css';
+import styles from './ProfilePage.module.css';
+import Title from "../../../components/Text/Title/Title.tsx";
 
 const ProfilePage: React.FC = () => {
     const [profile, setProfile] = useState({
@@ -18,10 +19,6 @@ const ProfilePage: React.FC = () => {
         message: string;
         type: 'success' | 'error' | 'info' | 'warning';
     } | null>(null);
-
-    // State for password change
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
 
     // State for selected profile image file
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -36,6 +33,7 @@ const ProfilePage: React.FC = () => {
             const response = await api.get('/user/profile', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'ngrok-skip-browser-warning': 'true',
                 },
             });
             setProfile(response.data);
@@ -67,6 +65,7 @@ const ProfilePage: React.FC = () => {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
                         'Content-Type': 'multipart/form-data',
+                        'ngrok-skip-browser-warning': 'true',
                     },
                 });
 
@@ -89,30 +88,6 @@ const ProfilePage: React.FC = () => {
         }
     };
 
-    const handlePasswordSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        try {
-            await api.put(
-                '/user/password',
-                { currentPassword, newPassword },
-                {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    },
-                }
-            );
-            setNotification({ message: 'Password updated successfully', type: 'success' });
-            setCurrentPassword('');
-            setNewPassword('');
-        } catch (error: any) {
-            console.error('Error updating password:', error);
-            if (error.response && error.response.data) {
-                setNotification({ message: error.response.data.message, type: 'error' });
-            } else {
-                setNotification({ message: 'Error updating password', type: 'error' });
-            }
-        }
-    };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
@@ -125,8 +100,12 @@ const ProfilePage: React.FC = () => {
 
     const breadcrumbItems = [{ label: 'Dashboard', url: '/dashboard' }, { label: 'Profile' }];
 
+    const menu = [
+        { btn: 'Edit Profile', url:'/dashboard/profile', type:'button_active', icon:"profile"},
+        { btn: 'Change Password', url:'/dashboard/profile/password', type:'button', icon:"password"}
+    ];
     return (
-        <AdminLayout breadcrumb={breadcrumbItems}>
+        <AdminLayout menu_items={menu} breadcrumb={breadcrumbItems}>
             {notification && (
                 <Notification
                     type={notification.type}
@@ -135,70 +114,54 @@ const ProfilePage: React.FC = () => {
                     {notification.message}
                 </Notification>
             )}
-            <div className="profile_page">
-                <h2>Edit Profile</h2>
-                <form onSubmit={handleProfileSubmit}>
-                    <div className="form_group">
-                        <label>Username</label>
-                        <input type="text" name="username" value={profile.username} disabled />
-                    </div>
-                    <div className="form_group">
-                        <label>Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={profile.name}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form_group">
-                        <label>Surname</label>
-                        <input
-                            type="text"
-                            name="surname"
-                            value={profile.surname}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="form_group">
-                        <label>Profile Image</label>
-                        {profileImageUrl && (
-                            <img
-                                src={profileImageUrl}
-                                alt="Profile"
-                                className="profile_image_preview"
-                            />
-                        )}
-                        <input type="file" accept="image/*" onChange={handleFileChange} />
-                    </div>
-                    <Button type="submit">Save Changes</Button>
-                </form>
+            <Title className={styles.profile_password_edit_title}>
+                Edit Profile
+            </Title>
 
-                <h2>Change Password</h2>
-                <form onSubmit={handlePasswordSubmit}>
-                    <div className="form_group">
-                        <label>Current Password</label>
-                        <input
-                            type="password"
-                            name="currentPassword"
-                            value={currentPassword}
-                            onChange={(e) => setCurrentPassword(e.target.value)}
-                            required
+            <form onSubmit={handleProfileSubmit}>
+                <div className={styles.form_group}>
+                    <label>Username</label>
+                    <input type="text" name="username" value={profile.username} disabled/>
+                </div>
+                <div className={styles.form_group}>
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        name="name"
+                        value={profile.name}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className={styles.form_group}>
+                    <label>Surname</label>
+                    <input
+                        type="text"
+                        name="surname"
+                        value={profile.surname}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className={styles.form_group}>
+                    <label>Profile Image</label>
+                    {profileImageUrl && (
+                        <img
+                            src={profileImageUrl}
+                            alt="Profile"
+                            className={styles.profile_image_preview}
                         />
-                    </div>
-                    <div className="form_group">
-                        <label>New Password</label>
-                        <input
-                            type="password"
-                            name="newPassword"
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            required
-                        />
-                    </div>
-                    <Button type="submit">Change Password</Button>
-                </form>
-            </div>
+                    )}
+                    <input type="file" accept="image/*" onChange={handleFileChange}/>
+                </div>
+                <Button type="submit"
+                        color="#fff"
+                        bgcolor="#317ce6"
+                        border="#317ce6"
+                        hover_bgcolor="#1967D2"
+                        hover_color="#fff"
+                >Save Changes</Button>
+            </form>
+
+
         </AdminLayout>
     );
 };

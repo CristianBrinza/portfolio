@@ -38,6 +38,7 @@ import Dashboard from "./pages/admin/dashboard/Dashboard.tsx";
 import GuestPage from "./pages/admin/guest/GuestPage.tsx";
 import FileManager from "./pages/admin/file_manager/FileManager.tsx";
 import ProfilePage from "./pages/admin/profile/ProfilePage.tsx";
+import PasswordPage from "./pages/admin/profile/PasswordPage.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -150,6 +151,11 @@ export const routes = [
   {
     path: '/:lang/dashboard/profile',
     element: React.createElement(ProfilePage),
+    allowedRoles: ['admin', 'user', 'guest'],
+  },
+  {
+    path: '/:lang/dashboard/profile/password',
+    element: React.createElement(PasswordPage),
     allowedRoles: ['admin', 'user', 'guest'],
   },
 

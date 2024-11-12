@@ -100,6 +100,7 @@ const FileManager: React.FC = () => {
                     },
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`,
+                        'ngrok-skip-browser-warning': 'true',
                     },
                 }
             );
@@ -184,6 +185,7 @@ const FileManager: React.FC = () => {
                         const response = await fetch(previewUrl, {
                             headers: {
                                 Authorization: `Bearer ${token}`,
+                                'ngrok-skip-browser-warning': 'true',
                             },
                         });
                         if (response.ok) {

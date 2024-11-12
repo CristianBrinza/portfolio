@@ -1,4 +1,4 @@
-/* src/pages/admin/profile/ProfilePage.css */
+/* src/pages/admin/profile/ProfilePage.module.css */
 
 .profile_page {
     max-width: 600px;
@@ -19,22 +19,28 @@
 
 .form_group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-bottom: 15px;
+    align-items: center;
+    gap: 10px;
 }
 
 .form_group label {
     font-size: 1rem;
     color: #555;
-    margin-bottom: 5px;
+    width: 150px;
 }
 
 .form_group input {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.3s;
+    background-color: var(--theme_primary_color_white);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
+    color: var(--theme_primary_color_black);
+    padding: 0 10px;
+    height: 46px;
+    box-sizing: border-box;
+    max-width: 300px;
 }
 
 .form_group input:focus {
@@ -91,4 +97,8 @@ input[type="text"] {
     border-radius: 50%;
     margin-bottom: 10px;
     border: 2px solid #ddd;
+}
+
+.profile_password_edit_title{
+    margin-top: 10px;
 }
