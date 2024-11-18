@@ -1,6 +1,6 @@
 // components/Button.tsx
 import React, { useState, ReactElement, isValidElement } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Icon from './Icon';
 
 interface ButtonProps {

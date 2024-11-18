@@ -1,0 +1,120 @@
+.certification_manager_container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.save_button {
+    align-self: flex-end;
+    background: var(--theme_primary_color_dark_gray);
+    color: var(--theme_primary_color_white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-bottom: 20px;
+}
+
+.save_button:hover {
+    background: var(--theme_primary_color_darkest_gray);
+}
+
+.items_list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: var(--theme_primary_color_white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.item_card {
+    width: 250px;
+    background: var(--theme_primary_color_light_gray);
+    border: 1px solid var(--theme_primary_color_dark_gray);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.0);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item_card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.item_card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.item_info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--theme_primary_color_black);
+}
+
+.item_actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: flex-start;
+}
+
+.item_actions button {
+    flex: 1 1 45%;
+    background: var(--theme_primary_color_dark_gray);
+    color: var(--theme_primary_color_white);
+    border: none;
+    border-radius: 4px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.item_actions button:hover {
+    background: var(--theme_primary_color_darkest_gray);
+    color: var(--theme_primary_color_white);
+}
+
+.add_item_section {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+
+
+
+.popup_content .form_group input,
+.popup_content .form_group textarea {
+    padding: 10px;
+    border: 1px solid var(--theme_primary_color_dark_gray);
+    border-radius: 6px;
+    width: 100%;
+    background: var(--theme_primary_color_light_gray);
+    color: var(--theme_primary_color_black);
+}
+
+
+.popup_actions button:hover {
+    background: var(--theme_primary_color_darkest_gray);
+    color: var(--theme_primary_color_white);
+}
+
+.certification_manager_container_popup_title {
+    margin-bottom: 20px;
+    color: var(--theme_primary_color_black);
+    font-size: 18px;
+    font-weight: bold;
+}

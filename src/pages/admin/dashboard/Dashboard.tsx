@@ -8,9 +8,14 @@ const Dashboard: React.FC = () => {
         { label: 'Dashboard' }
     ];
 
+    const menu = [
+        { btn: 'Portfolio', url: '/dashboard/portfolio-manager', type: 'button', icon: 'menu' },
+        { btn: 'Storage', url: '/dashboard/storage', type: 'button', icon: 'menu' }
+    ];
+
     return (
         <div>
-            <AdminLayout breadcrumb={breadcrumb}>
+            <AdminLayout menu_items={menu} breadcrumb={breadcrumb}>
                 <p>Welcome to the Dashboard!</p>
             </AdminLayout>
         </div>

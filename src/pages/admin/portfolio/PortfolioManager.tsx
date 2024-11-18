@@ -1,4 +1,4 @@
-// src/pages/admin/portfolio/PortfolioManager.tsx
+// src/pages/admin/portfolio/CertificationManager.tsx
 
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
@@ -239,8 +239,14 @@ const PortfolioManager: React.FC = () => {
         { label: 'Portfolio Manager' },
     ];
 
+    const menu = [
+        { btn: 'Portfolio', url: '/dashboard/portfolio-manager', type: 'button_active', icon: 'menu' },
+        { btn: 'Certification', url: '/dashboard/certification-manager', type: 'button', icon: 'menu' },
+        { btn: 'Images', url: '/dashboard/image-manager', type: 'button', icon: 'image' },
+    ];
+
     return (
-            <AdminLayout breadcrumb={breadcrumbItems}>
+            <AdminLayout menu_items={menu} breadcrumb={breadcrumbItems}>
 
                 <Title className="portfolio_manager_page_title">
                   &nbsp;

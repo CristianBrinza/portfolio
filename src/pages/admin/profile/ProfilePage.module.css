@@ -41,6 +41,7 @@
     height: 46px;
     box-sizing: border-box;
     max-width: 300px;
+    width: 100%;
 }
 
 .form_group input:focus {
@@ -48,8 +49,7 @@
     border-color: #317ce6;
 }
 
-button[type="submit"],
-button {
+button[type="submit"]{
     display: inline-block;
     padding: 10px 20px;
     font-size: 1rem;
@@ -59,7 +59,6 @@ button {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-top: 10px;
 }
 
 button[type="submit"]:hover,

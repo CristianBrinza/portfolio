@@ -5,7 +5,6 @@ import About from './pages/About.tsx';
 import Blog from './pages/Blog.tsx';
 import Contact from './pages/Contact.tsx';
 import Portfolio from './pages/portfolio/Portfolio.tsx';
-import NotFound from './pages/NotFound.tsx';
 import Resume from './pages/Resume.tsx';
 import QR from './pages/utilities/qr/QR.tsx';
 import Utilities from './pages/Utilities.tsx';
@@ -39,6 +38,9 @@ import GuestPage from "./pages/admin/guest/GuestPage.tsx";
 import FileManager from "./pages/admin/file_manager/FileManager.tsx";
 import ProfilePage from "./pages/admin/profile/ProfilePage.tsx";
 import PasswordPage from "./pages/admin/profile/PasswordPage.tsx";
+import CertificationManager from "./pages/admin/certification/CertificationManager.tsx";
+import ImageManager from "./pages/admin/images/ImageManager.tsx";
+import Login from "./pages/admin/login/Login.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -122,6 +124,10 @@ export const routes = [
     path: '/:lang/portfolio-front-end',
     element: React.createElement(PortfolioFrontEnd),
   },
+  {
+    path: '/:lang/login',
+    element: React.createElement(Login),
+  },
 
   {
   path: '/:lang/dashboard',
@@ -149,6 +155,16 @@ export const routes = [
     allowedRoles: ['admin', 'user'],
   },
   {
+    path: '/:lang/dashboard/certification-manager',
+    element: React.createElement(CertificationManager),
+    allowedRoles: ['admin', 'user'],
+  },
+  {
+    path: '/:lang/dashboard/image-manager',
+    element: React.createElement(ImageManager),
+    allowedRoles: ['admin', 'user'],
+  },
+  {
     path: '/:lang/dashboard/profile',
     element: React.createElement(ProfilePage),
     allowedRoles: ['admin', 'user', 'guest'],
@@ -159,6 +175,7 @@ export const routes = [
     allowedRoles: ['admin', 'user', 'guest'],
   },
 
+
   // { path: '*', element: React.createElement(NotFound) },
-  { path: '/:lang/404', element: React.createElement(NotFound) },
+ // { path: '/:lang/404', element: React.createElement(NotFound) },
 ];

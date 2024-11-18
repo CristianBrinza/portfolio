@@ -6,7 +6,6 @@ import {
   Route,
   useLocation,
   useNavigate,
-  Navigate
 } from 'react-router-dom';
 import './App.css';
 import i18n from './i18n';
@@ -18,6 +17,7 @@ import ConsentBanner from './components/ConsentBanner/ConsentBanner';
 import DynamicPages from './components/DynamicPages/DynamicPages';
 import Login from './pages/admin/login/Login';
 import { AuthProvider } from './context/AuthContext';
+import NotFound from "./pages/NotFound.tsx";
 
 const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG;
 const GTM_ID = import.meta.env.VITE_GTM_ID;
@@ -27,26 +27,35 @@ function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => voi
   const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Add paths that should not have a language prefix
   const excludedPaths = ['/files', '/images', '/json'];
 
   useEffect(() => {
     const pathParts = location.pathname.split('/').filter(Boolean);
-    let detectedLang = pathParts[0];
+    const detectedLang = pathParts[0]; // Extract the first part of the path
+
+    // Skip language redirection for excluded paths
     const isExcludedPath = excludedPaths.some((path) => location.pathname.startsWith(path));
+    if (isExcludedPath) {
+      return; // Do nothing for excluded paths
+    }
 
-    if (isExcludedPath) return;
-
+    // Redirect to default language if no valid language is detected
     if (!['en', 'ro', 'ru'].includes(detectedLang)) {
-      detectedLang = localStorage.getItem('i18nextLng') || 'en';
-      const newPath = '/' + detectedLang + (location.pathname !== '/' ? location.pathname : '/');
+      const defaultLang = localStorage.getItem('i18nextLng') || 'en';
+      const newPath = `/${defaultLang}${location.pathname}`;
       navigate(newPath, { replace: true });
     } else if (detectedLang !== i18n.language) {
+      // Sync the detected language with i18n
       i18n.changeLanguage(detectedLang).then(onLanguageChange);
     }
   }, [location.pathname, i18n.language, navigate, onLanguageChange]);
 
   return null;
 }
+
+
 
 function AppContent() {
   const { t } = useTranslation();
@@ -155,9 +164,8 @@ function AppContent() {
                     <Route key={index} path={path} element={element} />
                 ))}
                 <Route path="/:lang/login" element={<Login />} />
-                <Route path="/login" element={<Navigate to="/en/login" replace />} />
-
-              <Route path="/*" element={<DynamicPages />} />
+                <Route path="/*" element={<DynamicPages />} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
           ) : (
               <Suspense fallback={<div>Loading offline page...</div>}>

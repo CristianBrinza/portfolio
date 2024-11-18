@@ -9,7 +9,7 @@ const Dashboard: React.FC = () => {
   ];
 
     const menu = [
-        { btn: 'Edit Profile', url:'/dashboard/profile', type:'button'}
+        { btn: 'Edit Profile', url:'/dashboard/profile', type:'button', icon:'profile'}
     ];
 
   return (

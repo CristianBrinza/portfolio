@@ -119,7 +119,7 @@ margin-left: calc((100vw - 100%) / -2);
 .home_block_links_btns{
   width: 100%;
   display: flex;
-  gap:0px 10px;
+  gap:10px 10px;
   justify-content: space-between;
   flex-wrap: wrap;
   flex-direction: row;
