@@ -21,12 +21,6 @@ const ImageManager: React.FC = () => {
         message: string;
         type: "success" | "error" | "info" | "warning";
     } | null>(null);
-
-    // States for search and sorting
-    const [searchQuery, setSearchQuery] = useState<string>("");
-    const [sortBy, setSortBy] = useState<string>("name");
-    const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const [currentImage, setCurrentImage] = useState<string | null>(null);
     const [newImageData, setNewImageData] = useState<{
@@ -36,6 +30,7 @@ const ImageManager: React.FC = () => {
         file: null,
         newName: "",
     });
+    const [searchTerm, setSearchTerm] = useState<string>("");
 
     const breadcrumbItems = [
         { label: "Dashboard", url: `/${language}/dashboard` },
@@ -44,17 +39,12 @@ const ImageManager: React.FC = () => {
 
     useEffect(() => {
         fetchImages();
-    }, [searchQuery, sortBy, sortOrder]);
+    }, []);
 
     const fetchImages = async () => {
         try {
             setLoading(true);
             const response = await api.get("/images", {
-                params: {
-                    search: searchQuery,
-                    sortBy,
-                    sortOrder,
-                },
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -77,18 +67,6 @@ const ImageManager: React.FC = () => {
         }
     };
 
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchQuery(e.target.value);
-    };
-
-    const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSortBy(e.target.value);
-    };
-
-    const toggleSortOrder = () => {
-        setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
-    };
-
     const handleUploadImage = async () => {
         if (!newImageData.file) {
             setNotification({
@@ -99,7 +77,7 @@ const ImageManager: React.FC = () => {
         }
 
         const formData = new FormData();
-        formData.append("file", newImageData.file);
+        formData.append("image", newImageData.file);
 
         try {
             await api.post("/images/upload", formData, {
@@ -208,6 +186,23 @@ const ImageManager: React.FC = () => {
         setNewImageData({ ...newImageData, newName: e.target.value });
     };
 
+    const handleCopySrc = (src: string) => {
+        navigator.clipboard
+            .writeText(src)
+            .then(() => {
+                setNotification({
+                    message: "Image src copied to clipboard!",
+                    type: "success",
+                });
+            })
+            .catch(() => {
+                setNotification({
+                    message: "Failed to copy image src.",
+                    type: "error",
+                });
+            });
+    };
+
     const menu = [
         { btn: "Portfolio", url: "/dashboard/portfolio-manager", type: "button", icon: "menu" },
         { btn: "Certification", url: "/dashboard/certification-manager", type: "button", icon: "menu" },
@@ -225,54 +220,70 @@ const ImageManager: React.FC = () => {
                 </Notification>
             )}
 
-            <div className="image_manager_controls">
-                <Button
-                    color="#fff"
-                    bgcolor="#28a745"
-                    border="#28a745"
-                    hover_bgcolor="#218838"
-                    hover_color="#fff"
-                    onClick={() => openPopup()}>Upload Image</Button>
-                <div className="image_manager_search_sort">
+            <div className="image_manager_container">
+                <div className="image_manager_controls">
+                    <Button
+                        color="#fff"
+                        bgcolor="#28a745"
+                        border="#28a745"
+                        hover_bgcolor="#218838"
+                        hover_color="#fff"
+                        onClick={() => openPopup()}
+                    >
+                        Upload Image
+                    </Button>
                     <input
                         type="text"
-                        placeholder="Search..."
-                        value={searchQuery}
-                        onChange={handleSearch}
+                        placeholder="Search images..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="image_search_input"
                     />
-                    <select value={sortBy} className="image_manager_controls_sort_custom" onChange={handleSortChange}>
-                        <option value="name">Name</option>
-                    </select>
-                    <Button onClick={toggleSortOrder}>
-                        {sortOrder === "asc" ? "↑" : "↓"}
-                    </Button>
                 </div>
-            </div>
 
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <div className="images_list">
-                    {images.map((image) => (
-                        <div key={image.name} className="image_card">
-                            <img
-                                src={`${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(
-                                    image.name
-                                )}`}
-                                alt={image.name}
-                            />
-                            <div className="image_info">
-                                <p>{image.name}</p>
-                                <div className="popup_actions">
-                                    <Button
-                                        onClick={() => openPopup(image.name)}>Rename</Button>
-                                    <Button onClick={() => handleDeleteImage(image.name)}>Delete</Button>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : images.length > 0 ? (
+                    <div className="images_list">
+                        {images
+                            .filter((image) =>
+                                image.name.toLowerCase().includes(searchTerm.toLowerCase())
+                            )
+                            .map((image) => (
+                                <div key={image.name} className="image_card">
+                                    <img
+                                        src={`${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(
+                                            image.name
+                                        )}`}
+                                        alt={image.name}
+                                    />
+                                    <div className="image_info">
+                                        <p>{image.name}</p>
+                                        <div className="image_actions">
+                                            <Button onClick={() => openPopup(image.name)}>Rename</Button>
+                                            <Button onClick={() => handleDeleteImage(image.name)}>
+                                                Delete
+                                            </Button>
+                                            <Button
+                                                onClick={() =>
+                                                    handleCopySrc(
+                                                        `${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(
+                                                            image.name
+                                                        )}`
+                                                    )
+                                                }
+                                            >
+                                                Copy src
+                                            </Button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            )}
+                            ))}
+                    </div>
+                ) : (
+                    <p>No images available.</p>
+                )}
+            </div>
 
             {showPopup && (
                 <Popup id="image_manager_popup" isVisible={showPopup} onClose={closePopup}>
@@ -280,30 +291,50 @@ const ImageManager: React.FC = () => {
                         {!currentImage ? (
                             <>
                                 <h2>Upload Image</h2>
-                                <input type="file" accept="image/*" onChange={handleFileChange} />
-                                <Button onClick={handleUploadImage}>Upload</Button>
+                                <div className="form_group">
+                                    <label>Image File</label>
+                                    <input type="file" accept="image/*" onChange={handleFileChange} />
+                                </div>
+                                <div className="popup_actions">
+                                    <Button
+                                        color="#fff"
+                                        bgcolor="#317ce6"
+                                        border="#317ce6"
+                                        hover_bgcolor="#1967D2"
+                                        hover_color="#fff"
+                                        onClick={handleUploadImage}
+                                    >
+                                        Upload
+                                    </Button>
+                                    <Button onClick={closePopup}>Cancel</Button>
+                                </div>
                             </>
                         ) : (
                             <>
                                 <h2>Rename Image</h2>
-                                <input
-                                    type="text"
-                                    value={newImageData.newName}
-                                    onChange={handleInputChange}
-                                />
+                                <div className="form_group">
+                                    <label>New Name</label>
+                                    <input
+                                        type="text"
+                                        value={newImageData.newName}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
                                 <div className="popup_actions">
-                                <Button
-                                    color="#fff"
-                                    bgcolor="#317ce6"
-                                    border="#317ce6"
-                                    hover_bgcolor="#1967D2"
-                                    hover_color="#fff"
-                                    onClick={handleRenameImage}>Rename</Button>
+                                    <Button
+                                        color="#fff"
+                                        bgcolor="#317ce6"
+                                        border="#317ce6"
+                                        hover_bgcolor="#1967D2"
+                                        hover_color="#fff"
+                                        onClick={handleRenameImage}
+                                    >
+                                        Rename
+                                    </Button>
                                     <Button onClick={closePopup}>Cancel</Button>
                                 </div>
                             </>
                         )}
-
                     </div>
                 </Popup>
             )}
@@ -311,4 +342,4 @@ const ImageManager: React.FC = () => {
     );
 };
 
-export default ImageManager
+export default ImageManager;
