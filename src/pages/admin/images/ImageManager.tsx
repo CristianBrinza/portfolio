@@ -34,6 +34,11 @@ const ImageManager: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [uploadProgress, setUploadProgress] = useState<number>(0);
     const [isUploading, setIsUploading] = useState<boolean>(false);
+    const [conflictingFiles, setConflictingFiles] = useState<File[]>([]);
+    const [showConflictPopup, setShowConflictPopup] = useState<boolean>(false);
+    const [conflictResolutions, setConflictResolutions] = useState<{
+        [fileName: string]: "overwrite" | "rename";
+    }>({});
 
     const breadcrumbItems = [
         { label: "Dashboard", url: `/${language}/dashboard` },
@@ -71,6 +76,7 @@ const ImageManager: React.FC = () => {
     };
 
     const handleUploadImages = async () => {
+        setShowPopup(false);
         if (!newImageData.files || newImageData.files.length === 0) {
             setNotification({
                 message: "Please select images to upload.",
@@ -79,13 +85,96 @@ const ImageManager: React.FC = () => {
             return;
         }
 
-        setIsUploading(true);
+        // Check for conflicts
+        const existingImageNames = images.map((image) => image.name);
+        const conflicts = newImageData.files.filter((file) =>
+            existingImageNames.includes(file.name)
+        );
+
+        if (conflicts.length > 0) {
+            // We have conflicts, need to ask user for choices
+            setConflictingFiles(conflicts);
+            setShowConflictPopup(true);
+        } else {
+            // No conflicts, proceed to upload
+            await proceedWithUpload();
+        }
+    };
+
+    const closeConflictPopup = () => {
+        setShowConflictPopup(false);
+    };
+
+    const handleConflictChoice = (
+        fileName: string,
+        choice: "overwrite" | "rename"
+    ) => {
+        setConflictResolutions((prev) => ({
+            ...prev,
+            [fileName]: choice,
+        }));
+    };
+
+    const getUniqueFileName = (originalName: string) => {
+        const nameWithoutExtension = originalName.replace(/\.[^/.]+$/, "");
+        const extension = originalName.substring(originalName.lastIndexOf("."));
+        let newName = `${nameWithoutExtension}(1)${extension}`;
+        let counter = 1;
+
+        const existingImageNames = images.map((image) => image.name);
+
+        while (existingImageNames.includes(newName)) {
+            counter++;
+            newName = `${nameWithoutExtension}(${counter})${extension}`;
+        }
+
+        return newName;
+    };
+
+    const handleConflictResolutionDone = async () => {
+        setShowConflictPopup(false);
         setShowPopup(false);
+        await proceedWithUpload();
+    };
+
+    const proceedWithUpload = async () => {
+        setIsUploading(true);
         setUploadProgress(0);
 
         const totalFiles = newImageData.files.length;
         for (let i = 0; i < totalFiles; i++) {
-            const file = newImageData.files[i];
+            let file = newImageData.files[i];
+            let fileName = file.name;
+
+            // Check if this file had a conflict resolution
+            if (conflictResolutions[fileName]) {
+                const choice = conflictResolutions[fileName];
+                if (choice === "overwrite") {
+                    // Delete the existing image before uploading
+                    try {
+                        await api.delete(`/images/${encodeURIComponent(fileName)}`, {
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                            },
+                        });
+                    } catch (error) {
+                        console.error(`Error deleting image ${fileName}:`, error);
+                        setNotification({
+                            message: `Error overwriting image ${fileName}.`,
+                            type: "error",
+                        });
+                        continue; // Skip uploading this file
+                    }
+                } else if (choice === "rename") {
+                    // Rename the file by adding (1) or similar
+                    const newFileName = getUniqueFileName(fileName);
+                    // Create a new File object with the new name
+                    file = new File([file], newFileName, { type: file.type });
+                    fileName = newFileName;
+                }
+            }
+
+            // Proceed to upload the file
             const formData = new FormData();
             formData.append("image", file);
 
@@ -100,9 +189,9 @@ const ImageManager: React.FC = () => {
                 // Update progress
                 setUploadProgress(Math.round(((i + 1) / totalFiles) * 100));
             } catch (error) {
-                console.error(`Error uploading image ${file.name}:`, error);
+                console.error(`Error uploading image ${fileName}:`, error);
                 setNotification({
-                    message: `Error uploading image ${file.name}.`,
+                    message: `Error uploading image ${fileName}.`,
                     type: "error",
                 });
             }
@@ -115,13 +204,15 @@ const ImageManager: React.FC = () => {
             type: "success",
         });
         fetchImages();
+        // Clear conflict resolutions
+        setConflictResolutions({});
     };
 
     const handleDeleteImage = async (name: string) => {
         if (!window.confirm("Are you sure you want to delete this image?")) return;
 
         try {
-            await api.delete(`${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(name)}`, {
+            await api.delete(`/images/${encodeURIComponent(name)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -241,6 +332,11 @@ const ImageManager: React.FC = () => {
         },
     ];
 
+    // Check if all conflict choices have been made
+    const allChoicesMade = conflictingFiles.every(
+        (file) => conflictResolutions[file.name]
+    );
+
     return (
         <AdminLayout menu_items={menu} breadcrumb={breadcrumbItems}>
             {notification && (
@@ -325,6 +421,7 @@ const ImageManager: React.FC = () => {
                 </Popup>
             )}
 
+
             {showPopup && (
                 <Popup
                     id="image_manager_popup"
@@ -387,6 +484,55 @@ const ImageManager: React.FC = () => {
                     </div>
                 </Popup>
             )}
+
+            {/* Conflict Resolution Popup */}
+            {showConflictPopup && (
+                <Popup
+                    id="conflict_resolution_popup"
+                    isVisible={showConflictPopup}
+                    onClose={closeConflictPopup}
+                >
+                    <div className="popup_content">
+                        <h2>Resolve Filename Conflicts</h2>
+                        {conflictingFiles.map((file) => (
+                            <div key={file.name} className="conflict_item">
+                                <p>File "{file.name}" already exists.</p>
+                                <div className="conflict_actions">
+                                    <Button
+                                        onClick={() => handleConflictChoice(file.name, "overwrite")}
+                                        color="#fff"
+                                        bgcolor="#dc3545"
+                                        border="#dc3545"
+                                        hover_bgcolor="#c82333"
+                                        hover_color="#fff"
+                                    >
+                                        Overwrite
+                                    </Button>
+                                    <Button
+                                        onClick={() => handleConflictChoice(file.name, "rename")}
+                                        color="#fff"
+                                        bgcolor="#17a2b8"
+                                        border="#17a2b8"
+                                        hover_bgcolor="#138496"
+                                        hover_color="#fff"
+                                    >
+                                        Rename to "{getUniqueFileName(file.name)}"
+                                    </Button>
+                                </div>
+                            </div>
+                        ))}
+                        <div className="popup_actions">
+                            <Button
+                                onClick={handleConflictResolutionDone}
+                                disabled={!allChoicesMade}
+                            >
+                                Proceed
+                            </Button>
+                        </div>
+                    </div>
+                </Popup>
+            )}
+
         </AdminLayout>
     );
 };
