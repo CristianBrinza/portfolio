@@ -173,3 +173,7 @@
 .image_search_input{
     width: auto!important;
 }
+
+#popup_block_conflict_resolution_popup{
+    z-index: 999999999999999999;
+}
