@@ -5,6 +5,7 @@ import AdminLayout from "../../../components/Admin/AdminLayout/AdminLayout";
 import Button from "../../../components/Button";
 import Notification from "../../../components/Notification/Notification";
 import Popup from "../../../components/Popup/Popup";
+import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 import "./ImageManager.css";
 
 interface ImageItem {
@@ -24,13 +25,15 @@ const ImageManager: React.FC = () => {
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const [currentImage, setCurrentImage] = useState<string | null>(null);
     const [newImageData, setNewImageData] = useState<{
-        file: File | null;
+        files: File[];
         newName: string;
     }>({
-        file: null,
+        files: [],
         newName: "",
     });
     const [searchTerm, setSearchTerm] = useState<string>("");
+    const [uploadProgress, setUploadProgress] = useState<number>(0);
+    const [isUploading, setIsUploading] = useState<boolean>(false);
 
     const breadcrumbItems = [
         { label: "Dashboard", url: `/${language}/dashboard` },
@@ -67,45 +70,58 @@ const ImageManager: React.FC = () => {
         }
     };
 
-    const handleUploadImage = async () => {
-        if (!newImageData.file) {
+    const handleUploadImages = async () => {
+        if (!newImageData.files || newImageData.files.length === 0) {
             setNotification({
-                message: "Please select an image to upload.",
+                message: "Please select images to upload.",
                 type: "error",
             });
             return;
         }
 
-        const formData = new FormData();
-        formData.append("image", newImageData.file);
+        setIsUploading(true);
+        setShowPopup(false);
+        setUploadProgress(0);
 
-        try {
-            await api.post("/images/upload", formData, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-            setNotification({
-                message: "Image uploaded successfully!",
-                type: "success",
-            });
-            fetchImages();
-            closePopup();
-        } catch (error) {
-            console.error("Error uploading image:", error);
-            setNotification({
-                message: "Error uploading image.",
-                type: "error",
-            });
+        const totalFiles = newImageData.files.length;
+        for (let i = 0; i < totalFiles; i++) {
+            const file = newImageData.files[i];
+            const formData = new FormData();
+            formData.append("image", file);
+
+            try {
+                await api.post("/images/upload", formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`,
+                        "Content-Type": "multipart/form-data",
+                    },
+                });
+
+                // Update progress
+                setUploadProgress(Math.round(((i + 1) / totalFiles) * 100));
+            } catch (error) {
+                console.error(`Error uploading image ${file.name}:`, error);
+                setNotification({
+                    message: `Error uploading image ${file.name}.`,
+                    type: "error",
+                });
+            }
         }
+
+        setIsUploading(false);
+        setUploadProgress(0);
+        setNotification({
+            message: "Images uploaded successfully!",
+            type: "success",
+        });
+        fetchImages();
     };
 
     const handleDeleteImage = async (name: string) => {
         if (!window.confirm("Are you sure you want to delete this image?")) return;
 
         try {
-            await api.delete(`/images/${encodeURIComponent(name)}`, {
+            await api.delete(`${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(name)}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -155,13 +171,14 @@ const ImageManager: React.FC = () => {
                 message: "Error renaming image.",
                 type: "error",
             });
+            closePopup();
         }
     };
 
     const openPopup = (image: string | null = null) => {
         setCurrentImage(image);
         setNewImageData({
-            file: null,
+            files: [],
             newName: image || "",
         });
         setShowPopup(true);
@@ -171,14 +188,14 @@ const ImageManager: React.FC = () => {
         setShowPopup(false);
         setCurrentImage(null);
         setNewImageData({
-            file: null,
+            files: [],
             newName: "",
         });
     };
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length > 0) {
-            setNewImageData({ ...newImageData, file: e.target.files[0] });
+            setNewImageData({ ...newImageData, files: Array.from(e.target.files) });
         }
     };
 
@@ -204,9 +221,24 @@ const ImageManager: React.FC = () => {
     };
 
     const menu = [
-        { btn: "Portfolio", url: "/dashboard/portfolio-manager", type: "button", icon: "menu" },
-        { btn: "Certification", url: "/dashboard/certification-manager", type: "button", icon: "menu" },
-        { btn: "Images", url: "/dashboard/image-manager", type: "button_active", icon: "image" },
+        {
+            btn: "Portfolio",
+            url: "/dashboard/portfolio-manager",
+            type: "button",
+            icon: "menu",
+        },
+        {
+            btn: "Certification",
+            url: "/dashboard/certification-manager",
+            type: "button",
+            icon: "menu",
+        },
+        {
+            btn: "Images",
+            url: "/dashboard/image-manager",
+            type: "button_active",
+            icon: "image",
+        },
     ];
 
     return (
@@ -230,7 +262,7 @@ const ImageManager: React.FC = () => {
                         hover_color="#fff"
                         onClick={() => openPopup()}
                     >
-                        Upload Image
+                        Upload Images
                     </Button>
                     <input
                         type="text"
@@ -252,24 +284,22 @@ const ImageManager: React.FC = () => {
                             .map((image) => (
                                 <div key={image.name} className="image_card">
                                     <img
-                                        src={`${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(
-                                            image.name
-                                        )}`}
+                                        src={`${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(image.name)}`}
                                         alt={image.name}
                                     />
                                     <div className="image_info">
                                         <p>{image.name}</p>
                                         <div className="image_actions">
-                                            <Button onClick={() => openPopup(image.name)}>Rename</Button>
+                                            <Button onClick={() => openPopup(image.name)}>
+                                                Rename
+                                            </Button>
                                             <Button onClick={() => handleDeleteImage(image.name)}>
                                                 Delete
                                             </Button>
                                             <Button
                                                 onClick={() =>
                                                     handleCopySrc(
-                                                        `${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(
-                                                            image.name
-                                                        )}`
+                                                        `${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(image.name)}`
                                                     )
                                                 }
                                             >
@@ -285,15 +315,34 @@ const ImageManager: React.FC = () => {
                 )}
             </div>
 
+            {/* Upload Progress */}
+            {isUploading && (
+                <Popup id="uploadProgressPopup" isVisible={isUploading} onClose={() => {}}>
+                    <div className="upload_progress_popup">
+                        <h2>Uploading Images...</h2>
+                        <ProgressBar progress={uploadProgress} />
+                    </div>
+                </Popup>
+            )}
+
             {showPopup && (
-                <Popup id="image_manager_popup" isVisible={showPopup} onClose={closePopup}>
+                <Popup
+                    id="image_manager_popup"
+                    isVisible={showPopup}
+                    onClose={closePopup}
+                >
                     <div className="popup_content">
                         {!currentImage ? (
                             <>
-                                <h2>Upload Image</h2>
+                                <h2>Upload Images</h2>
                                 <div className="form_group">
-                                    <label>Image File</label>
-                                    <input type="file" accept="image/*" onChange={handleFileChange} />
+                                    <label>Select Images</label>
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleFileChange}
+                                        multiple
+                                    />
                                 </div>
                                 <div className="popup_actions">
                                     <Button
@@ -302,7 +351,7 @@ const ImageManager: React.FC = () => {
                                         border="#317ce6"
                                         hover_bgcolor="#1967D2"
                                         hover_color="#fff"
-                                        onClick={handleUploadImage}
+                                        onClick={handleUploadImages}
                                     >
                                         Upload
                                     </Button>
