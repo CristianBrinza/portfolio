@@ -62,17 +62,21 @@ const ImageManager: React.FC = () => {
                 setImages(response.data.images.map((name: string) => ({ name })));
             } else {
                 setImages([]);
-                console.error("Unexpected response format:", response.data);
             }
             setLoading(false);
         } catch (error) {
-            console.error("Error fetching images:", error);
             setLoading(false);
             setNotification({
                 message: "Error fetching images.",
                 type: "error",
             });
         }
+    };
+
+    const encodeFilenameForURL = (name: string) => {
+        return encodeURIComponent(name)
+            .replace(/\(/g, "%28")
+            .replace(/\)/g, "%29");
     };
 
     const handleUploadImages = async () => {
@@ -85,18 +89,15 @@ const ImageManager: React.FC = () => {
             return;
         }
 
-        // Check for conflicts
         const existingImageNames = images.map((image) => image.name);
         const conflicts = newImageData.files.filter((file) =>
             existingImageNames.includes(file.name)
         );
 
         if (conflicts.length > 0) {
-            // We have conflicts, need to ask user for choices
             setConflictingFiles(conflicts);
             setShowConflictPopup(true);
         } else {
-            // No conflicts, proceed to upload
             await proceedWithUpload();
         }
     };
@@ -146,35 +147,29 @@ const ImageManager: React.FC = () => {
             let file = newImageData.files[i];
             let fileName = file.name;
 
-            // Check if this file had a conflict resolution
             if (conflictResolutions[fileName]) {
                 const choice = conflictResolutions[fileName];
                 if (choice === "overwrite") {
-                    // Delete the existing image before uploading
                     try {
-                        await api.delete(`/images/${encodeURIComponent(fileName)}`, {
+                        await api.delete(`/images/${fileName}`, {
                             headers: {
                                 Authorization: `Bearer ${localStorage.getItem("token")}`,
                             },
                         });
                     } catch (error) {
-                        console.error(`Error deleting image ${fileName}:`, error);
                         setNotification({
                             message: `Error overwriting image ${fileName}.`,
                             type: "error",
                         });
-                        continue; // Skip uploading this file
+                        continue;
                     }
                 } else if (choice === "rename") {
-                    // Rename the file by adding (1) or similar
                     const newFileName = getUniqueFileName(fileName);
-                    // Create a new File object with the new name
                     file = new File([file], newFileName, { type: file.type });
                     fileName = newFileName;
                 }
             }
 
-            // Proceed to upload the file
             const formData = new FormData();
             formData.append("image", file);
 
@@ -185,11 +180,8 @@ const ImageManager: React.FC = () => {
                         "Content-Type": "multipart/form-data",
                     },
                 });
-
-                // Update progress
                 setUploadProgress(Math.round(((i + 1) / totalFiles) * 100));
             } catch (error) {
-                console.error(`Error uploading image ${fileName}:`, error);
                 setNotification({
                     message: `Error uploading image ${fileName}.`,
                     type: "error",
@@ -204,7 +196,6 @@ const ImageManager: React.FC = () => {
             type: "success",
         });
         fetchImages();
-        // Clear conflict resolutions
         setConflictResolutions({});
     };
 
@@ -212,7 +203,7 @@ const ImageManager: React.FC = () => {
         if (!window.confirm("Are you sure you want to delete this image?")) return;
 
         try {
-            await api.delete(`/images/${encodeURIComponent(name)}`, {
+            await api.delete(`/images/${name}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
@@ -230,7 +221,6 @@ const ImageManager: React.FC = () => {
             });
         }
     };
-
     const handleRenameImage = async () => {
         if (!currentImage || !newImageData.newName) {
             setNotification({
@@ -257,7 +247,6 @@ const ImageManager: React.FC = () => {
             fetchImages();
             closePopup();
         } catch (error) {
-            console.error("Error renaming image:", error);
             setNotification({
                 message: "Error renaming image.",
                 type: "error",
@@ -332,7 +321,6 @@ const ImageManager: React.FC = () => {
         },
     ];
 
-    // Check if all conflict choices have been made
     const allChoicesMade = conflictingFiles.every(
         (file) => conflictResolutions[file.name]
     );
@@ -380,7 +368,9 @@ const ImageManager: React.FC = () => {
                             .map((image) => (
                                 <div key={image.name} className="image_card">
                                     <img
-                                        src={`${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(image.name)}`}
+                                        src={`${import.meta.env.VITE_BACKEND}/images/${encodeFilenameForURL(
+                                            image.name
+                                        )}`}
                                         alt={image.name}
                                     />
                                     <div className="image_info">
@@ -395,7 +385,9 @@ const ImageManager: React.FC = () => {
                                             <Button
                                                 onClick={() =>
                                                     handleCopySrc(
-                                                        `${import.meta.env.VITE_BACKEND}/images/${encodeURIComponent(image.name)}`
+                                                        `${import.meta.env.VITE_BACKEND}/images/${encodeFilenameForURL(
+                                                            image.name
+                                                        )}`
                                                     )
                                                 }
                                             >
@@ -411,7 +403,6 @@ const ImageManager: React.FC = () => {
                 )}
             </div>
 
-            {/* Upload Progress */}
             {isUploading && (
                 <Popup id="uploadProgressPopup" isVisible={isUploading} onClose={() => {}}>
                     <div className="upload_progress_popup">
@@ -421,13 +412,8 @@ const ImageManager: React.FC = () => {
                 </Popup>
             )}
 
-
             {showPopup && (
-                <Popup
-                    id="image_manager_popup"
-                    isVisible={showPopup}
-                    onClose={closePopup}
-                >
+                <Popup id="image_manager_popup" isVisible={showPopup} onClose={closePopup}>
                     <div className="popup_content">
                         {!currentImage ? (
                             <>
@@ -485,7 +471,6 @@ const ImageManager: React.FC = () => {
                 </Popup>
             )}
 
-            {/* Conflict Resolution Popup */}
             {showConflictPopup && (
                 <Popup
                     id="conflict_resolution_popup"
@@ -532,7 +517,6 @@ const ImageManager: React.FC = () => {
                     </div>
                 </Popup>
             )}
-
         </AdminLayout>
     );
 };
