@@ -57,7 +57,13 @@ const Certifications: React.FC = () => {
 
     const handleCardClick = (to: string | undefined) => {
         if (to) {
-            navigate(to);
+            if (/^(http|https):\/\//.test(to)) {
+                // External link
+                window.open(to, '_blank', 'noopener,noreferrer');
+            } else {
+                // Internal link
+                navigate(to);
+            }
         }
     };
 
