@@ -169,3 +169,7 @@
     padding: 0 10px;
     height: 46px;
 }
+
+.image_search_input{
+    width: auto!important;
+}
