@@ -24,10 +24,31 @@ export default function QR() {
     if (qrType === 'png') {
       const canvas = document.querySelector('canvas');
       if (canvas) {
-        const link = document.createElement('a');
-        link.download = `qr-code.png`;
-        link.href = canvas.toDataURL('image/png', 1.0);
-        link.click();
+        const offscreenCanvas = document.createElement('canvas');
+        offscreenCanvas.width = qrSize;
+        offscreenCanvas.height = qrSize;
+
+        const ctx = offscreenCanvas.getContext('2d');
+        if (ctx) {
+          // Scale the existing canvas content to the new size
+          ctx.drawImage(
+              canvas,
+              0,
+              0,
+              canvas.width,
+              canvas.height,
+              0,
+              0,
+              qrSize,
+              qrSize
+          );
+
+          // Download the resized canvas as a PNG
+          const link = document.createElement('a');
+          link.download = `qr-code.png`;
+          link.href = offscreenCanvas.toDataURL('image/png', 1.0);
+          link.click();
+        }
       }
     } else if (qrType === 'svg') {
       const svgElement = document.querySelector('svg');
