@@ -1,27 +1,27 @@
 [
   {
-    "img": "/images/blog/blog_533922.jpg",
+    "img": "https://backend.cristianbrinza.com/images/blog_533922.jpg",
     "title": "New look of the Homepage",
     "news_type": "UPDATE",
     "description": "Redesigned homepage, for a fresher and more engaging experience.",
     "to": "/"
   },
   {
-    "img": "/images/blog/blog_234927.jpg",
+    "img": "https://backend.cristianbrinza.com/images/blog_234927.jpg",
     "title": "About page added",
     "news_type": "NEW",
     "description": "Check out the new about page",
     "to": "/2134420"
   },
   {
-    "img": "/images/blog/blog_839903.jpg",
+    "img": "https://backend.cristianbrinza.com/images/blog_839903.jpg",
     "title": "Legal page added",
     "news_type": "NEW",
     "description": "Check out the new legal page",
     "to": "/legal"
   },
   {
-    "img": "/images/blog/blog_232602.jpg",
+    "img": "https://backend.cristianbrinza.com/images/blog_232602.jpg",
     "title": "Front-End page added",
     "news_type": "NEW",
     "description": "Always updating creative Front-end projects with access to source code and demo's",
