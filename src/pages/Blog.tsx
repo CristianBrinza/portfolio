@@ -30,7 +30,7 @@ export default function Blog() {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_BLOG_DATA);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/blog`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
