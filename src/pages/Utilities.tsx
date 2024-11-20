@@ -92,7 +92,7 @@ export default function Utilities() {
         </div>
 
         <div className="utilities_block">
-          <div className="utilities_title">Develop</div>
+          <div className="utilities_title">Develope</div>
           <div className="utilities_items">
             <Button
               to="/random-number-generator"
