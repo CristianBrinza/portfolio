@@ -47,14 +47,22 @@ const Button: React.FC<ButtonProps> = ({
     setIsHovered(false);
   };
 
-  const handleClick = async () => {
-    if (onClick) {
-      await onClick(); // Ensure analytics tracking completes
-    }
-    if (to && !to.startsWith('/files/')) {
-      navigate(to);
-    }
-  };
+    const handleClick = async () => {
+        if (onClick) {
+            await onClick(); // Ensure analytics tracking completes
+        }
+
+        if (to) {
+            if (to.startsWith('http://') || to.startsWith('https://') || to.startsWith('www.')) {
+                // Handle external links
+                window.location.href = to;
+            } else if (!to.startsWith('/files/')) {
+                // Handle internal links
+                navigate(to);
+            }
+        }
+    };
+
 
   const buttonStyle: React.CSSProperties = {
     backgroundColor: isHovered
