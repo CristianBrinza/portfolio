@@ -8,6 +8,7 @@ import Parapraph from "../../components/Text/Parapraph/Parapraph.tsx";
 import styles from "./Certifications.module.css";
 import Footer from "../../components/Footer/Footer.tsx";
 import FeedbackMenu from "../../components/FeedbackMenu/FeedbackMenu.tsx";
+import PageLoading from "../../components/PageLoading/PageLoading.tsx";
 
 interface CertificationsItem {
     to: string;
@@ -47,7 +48,7 @@ const Certifications: React.FC = () => {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <PageLoading/>;
     }
 
     const breadcrumbItems = [

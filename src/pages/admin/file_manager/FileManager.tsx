@@ -11,6 +11,7 @@ import FilePreviewModal from '../../../components/FilePreviewModal/FilePreviewMo
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './FileManager.css';
 import Icon from '../../../components/Icon.tsx';
+import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
 
 interface FileItem {
     name: string;
@@ -632,7 +633,7 @@ const FileManager: React.FC = () => {
             </div>
 
             {loading ? (
-                <p>Loading...</p>
+                <PageLoading/>
             ) : (
                 <div className="file_manager_items">
                     {items.map((item) => (

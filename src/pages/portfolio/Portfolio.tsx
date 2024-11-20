@@ -67,7 +67,7 @@ export default function Portfolio() {
             </div>
             <img
               className={styles.portfolio_page_cards_img}
-              src="/images/portfolio_1.png"
+              src="https://backend.cristianbrinza.com/images/portfolio_1.png"
               alt="Portfolio"
             />
             <LinkButton className={styles.portfolio_page_cards_see_more} to="">
@@ -90,7 +90,7 @@ export default function Portfolio() {
             </div>
             <img
               className={styles.portfolio_page_cards_img}
-              src="/images/portfolio_2.png"
+              src="https://backend.cristianbrinza.com/images/portfolio_2.png"
               alt="Portfolio"
             />
             <LinkButton
@@ -114,7 +114,7 @@ export default function Portfolio() {
             </div>
             <img
               className={styles.portfolio_page_cards_img}
-              src="/images/portfolio_3.png"
+              src="https://backend.cristianbrinza.com/images/portfolio_3.png"
               alt="Portfolio"
             />
             <LinkButton className={styles.portfolio_page_cards_see_more} to="">

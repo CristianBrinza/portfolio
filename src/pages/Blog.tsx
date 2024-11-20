@@ -7,6 +7,7 @@ import '../styles/Blog.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer/Footer.tsx';
+import PageLoading from "../components/PageLoading/PageLoading.tsx";
 
 // Define the type for blog items
 interface BlogItem {
@@ -46,7 +47,7 @@ export default function Blog() {
   }, []); // Ensure the useEffect runs only once on mount
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading message while fetching data
+    return <PageLoading/>; // Show a loading message while fetching data
   }
 
   return (

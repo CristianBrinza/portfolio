@@ -11,6 +11,7 @@ import Notification from '../../../components/Notification/Notification';
 import { AxiosError } from 'axios';
 import './PortfolioManager.css';
 import AdminLayout from "../../../components/Admin/AdminLayout/AdminLayout.tsx";
+import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
 
 interface PortfolioItem {
     img: string;
@@ -262,7 +263,7 @@ const PortfolioManager: React.FC = () => {
                 )}
 
                 {loading ? (
-                    <p>Loading...</p>
+                    <PageLoading/>
                 ) : (
                     <div className="portfolio_manager_container">
                         <Button

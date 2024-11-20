@@ -6,6 +6,7 @@ import Footer from '../../components/Footer/Footer.tsx';
 import Page from '../../components/Page.tsx';
 import ShowCards from '../../components/show_card/ShowCards.tsx';
 import FeedbackMenu from "../../components/FeedbackMenu/FeedbackMenu.tsx";
+import PageLoading from "../../components/PageLoading/PageLoading.tsx";
 
 interface ShowCardItem {
   title: string;
@@ -103,7 +104,7 @@ export default function PortfolioFrontEnd() {
   ];
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <PageLoading/>;
   }
 
   return (

@@ -9,6 +9,7 @@ import Notification from '../../../components/Notification/Notification';
 import { AxiosError } from 'axios';
 import './CertificationManager.css';
 import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout';
+import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
 
 interface CertificationItem {
     img: string;
@@ -185,7 +186,7 @@ const CertificationManager: React.FC = () => {
             )}
 
             {loading ? (
-                <p>Loading...</p>
+                <PageLoading/>
             ) : (
                 <div className="certification_manager_container">
                     <Button

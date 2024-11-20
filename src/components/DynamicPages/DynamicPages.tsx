@@ -21,7 +21,7 @@ const DynamicPages: React.FC = () => {
         // Fetch the pages.json file from the public folder
         const fetchPages = async () => {
             try {
-                const response = await fetch('/json/pages.json');
+                const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/pages`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

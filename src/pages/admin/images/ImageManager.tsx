@@ -7,6 +7,7 @@ import Notification from "../../../components/Notification/Notification";
 import Popup from "../../../components/Popup/Popup";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 import "./ImageManager.css";
+import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
 
 interface ImageItem {
     name: string;
@@ -358,7 +359,7 @@ const ImageManager: React.FC = () => {
                 </div>
 
                 {loading ? (
-                    <p>Loading...</p>
+                    <PageLoading/>
                 ) : images.length > 0 ? (
                     <div className="images_list">
                         {images
