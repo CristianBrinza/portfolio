@@ -1,3 +1,4 @@
+// components/PagesManager.tsx
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -100,16 +101,20 @@ const PagesManager: React.FC = () => {
             });
         }
     };
-
     const openPopup = (item: PageItem | null = null) => {
-        setCurrentItem(item);
+        if (item) {
+            setCurrentItem(item);
+        } else {
+            // Initialize currentItem with default values for a new item
+            setCurrentItem({
+                link: '',
+                type: '',
+                title: '',
+                content: '',
+            });
+        }
         setIsEditing(!!item);
         setShowPopup(true);
-    };
-
-    const closePopup = () => {
-        setShowPopup(false);
-        setCurrentItem(null);
     };
 
     const handleInputChange = (
@@ -117,8 +122,17 @@ const PagesManager: React.FC = () => {
     ) => {
         if (currentItem) {
             setCurrentItem({ ...currentItem, [e.target.name]: e.target.value });
+        } else {
+            // Initialize currentItem if it's null
+            setCurrentItem({ [e.target.name]: e.target.value } as PageItem);
         }
     };
+
+    const closePopup = () => {
+        setShowPopup(false);
+        setCurrentItem(null);
+    };
+
 
     const addItem = () => {
         if (currentItem) {
@@ -260,7 +274,7 @@ const PagesManager: React.FC = () => {
                         </div>
                     </div>
                     <div id="pages_bottom_popup_content">
-                        <div className="form_group">
+                        <div className="form_group form_group_pages_textarea_div">
                             <textarea className="form_group_pages_textarea"
                                 name="content"
                                 value={currentItem?.content || ''}

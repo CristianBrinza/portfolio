@@ -17,12 +17,21 @@
     background: #fff;
     border-radius: 8px;
     text-align: left;
+    width: 50%;
 
 }
 
 .form_group_pages_textarea{
+    min-height: 500px;
     height: 100%;
+    max-width: 100%;
 }
+.form_group_pages_textarea_div{
+    min-height: 500px;
+    height: 100%;
+    max-width: 50%;
+}
+
 .popup_content {
     display: flex;
     flex-direction: column;

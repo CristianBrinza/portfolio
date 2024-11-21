@@ -1,3 +1,4 @@
+// components/BlogManager.tsx
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -89,9 +90,31 @@ const BlogManager: React.FC = () => {
     };
 
     const openPopup = (item: BlogItem | null = null) => {
-        setCurrentItem(item);
+        if (item) {
+            setCurrentItem(item);
+        } else {
+            // Initialize currentItem with default values for a new item
+            setCurrentItem({
+                img: '',
+                title: '',
+                news_type: 'NEW',
+                description: '',
+                to: '',
+            });
+        }
         setIsEditing(!!item);
         setShowPopup(true);
+    };
+
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ) => {
+        if (currentItem) {
+            setCurrentItem({ ...currentItem, [e.target.name]: e.target.value });
+        } else {
+            // Initialize currentItem if it's null
+            setCurrentItem({ [e.target.name]: e.target.value } as BlogItem);
+        }
     };
 
     const closePopup = () => {
@@ -99,11 +122,7 @@ const BlogManager: React.FC = () => {
         setCurrentItem(null);
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        if (currentItem) {
-            setCurrentItem({ ...currentItem, [e.target.name]: e.target.value });
-        }
-    };
+
 
     const addItem = () => {
         if (currentItem) {
