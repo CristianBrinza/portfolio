@@ -314,6 +314,9 @@ const ImageManager: React.FC = () => {
             type: "button",
             icon: "menu",
         },
+        { btn: 'Blogs', url: '/dashboard/blog-manager', type: 'button', icon: 'menu' },
+        { btn: 'Pages', url: '/dashboard/pages-manager', type: 'button', icon: 'menu' },
+
         {
             btn: "Images",
             url: "/dashboard/image-manager",
@@ -354,7 +357,7 @@ const ImageManager: React.FC = () => {
                         placeholder="Search images..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="image_search_input"
+                        className="admin_search_input"
                     />
                 </div>
 

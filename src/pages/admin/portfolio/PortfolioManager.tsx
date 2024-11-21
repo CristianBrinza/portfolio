@@ -243,15 +243,16 @@ const PortfolioManager: React.FC = () => {
     const menu = [
         { btn: 'Portfolio', url: '/dashboard/portfolio-manager', type: 'button_active', icon: 'menu' },
         { btn: 'Certification', url: '/dashboard/certification-manager', type: 'button', icon: 'menu' },
+        { btn: 'Blogs', url: '/dashboard/blog-manager', type: 'button', icon: 'menu' },
+        { btn: 'Pages', url: '/dashboard/pages-manager', type: 'button', icon: 'page' },
         { btn: 'Images', url: '/dashboard/image-manager', type: 'button', icon: 'image' },
     ];
 
     return (
             <AdminLayout menu_items={menu} breadcrumb={breadcrumbItems}>
 
-                <Title className="portfolio_manager_page_title">
-                  &nbsp;
-                </Title>
+                <Title className="certification_manager_page_title">Portfolio Manager</Title>
+
 
                 {notification && (
                     <Notification

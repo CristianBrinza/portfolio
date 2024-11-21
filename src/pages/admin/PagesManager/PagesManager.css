@@ -1,0 +1,67 @@
+.pages_manager_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item_card {
+    background: var(--theme_primary_color_dark_gray);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.page_preview {
+    margin-top: 10px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 8px;
+    text-align: left;
+
+}
+
+.form_group_pages_textarea{
+    height: 100%;
+}
+.popup_content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form_group label {
+    font-weight: bold;
+}
+
+.form_group input,
+.form_group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.page_preview h4 {
+    margin-top: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+
+#pages_top_popup_content{
+    display: flex;
+    width: 100%;
+}
+
+#pages_top_popup_content form_group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+
+#pages_bottom_popup_content{
+    display: flex;
+    width: 100%;
+}

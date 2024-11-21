@@ -1,6 +1,6 @@
-//components/Page.tsx
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// components/Page.tsx
+import React from 'react';
+
 
 interface PageProps {
   gap?: string;
@@ -12,14 +12,13 @@ interface PageProps {
 }
 
 const Page: React.FC<PageProps> = ({
-  gap,
-  className = '',
-  children,
-  minHeight = '55vh',
-  style,
-  id,
-}) => {
-  const location = useLocation(); // Get the current location object
+                                     gap,
+                                     className = '',
+                                     children,
+                                     minHeight = '55vh',
+                                     style,
+                                     id,
+                                   }) => {
 
   const pageStyle: React.CSSProperties = {
     gap: gap,
@@ -27,32 +26,36 @@ const Page: React.FC<PageProps> = ({
     ...style,
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    const savedScrollPosition = sessionStorage.getItem('scrollPosition');
-    if (savedScrollPosition) {
-      // If there's a saved scroll position, restore it
-      window.scrollTo(0, parseInt(savedScrollPosition, 10));
-    } else {
-      // Scroll to top on initial load
-      window.scrollTo(0, 0);
-    }
-
-    const handleScroll = () => {
-      sessionStorage.setItem('scrollPosition', window.scrollY.toString());
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // useEffect(() => {
+  //   const savedPositions = JSON.parse(sessionStorage.getItem('scrollPositions') || '{}');
+  //   const currentPath = location.pathname;
+  //
+  //   // On page load, restore scroll position for the current page
+  //   if (savedPositions[currentPath]) {
+  //     window.scrollTo(0, savedPositions[currentPath]);
+  //   } else {
+  //     // Scroll to top for new pages
+  //     window.scrollTo(0, 0);
+  //   }
+  //
+  //   const handleScroll = () => {
+  //     const currentScrollY = window.scrollY;
+  //     // Save the current scroll position for the current page
+  //     const updatedPositions = {
+  //       ...savedPositions,
+  //       [currentPath]: currentScrollY,
+  //     };
+  //     sessionStorage.setItem('scrollPositions', JSON.stringify(updatedPositions));
+  //   };
+  //
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, [location.pathname]);
 
   return (
-    <div id={id} className={`${className} main`} style={pageStyle}>
-      {children}
-    </div>
+      <div id={id} className={`${className} main`} style={pageStyle}>
+        {children}
+      </div>
   );
 };
 

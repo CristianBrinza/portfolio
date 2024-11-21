@@ -41,6 +41,8 @@ import PasswordPage from "./pages/admin/profile/PasswordPage.tsx";
 import CertificationManager from "./pages/admin/certification/CertificationManager.tsx";
 import ImageManager from "./pages/admin/images/ImageManager.tsx";
 import Login from "./pages/admin/login/Login.tsx";
+import BlogManager from "./pages/admin/BlogManager/BlogManager.tsx";
+import PagesManager from "./pages/admin/PagesManager/PagesManager.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -162,6 +164,15 @@ export const routes = [
   {
     path: '/:lang/dashboard/image-manager',
     element: React.createElement(ImageManager),
+    allowedRoles: ['admin', 'user'],
+  },
+  {
+    path: '/:lang/dashboard/blog-manager',
+    element: React.createElement(BlogManager),
+    allowedRoles: ['admin', 'user'],
+  }, {
+    path: '/:lang/dashboard/pages-manager',
+    element: React.createElement(PagesManager),
     allowedRoles: ['admin', 'user'],
   },
   {

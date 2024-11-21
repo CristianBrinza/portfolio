@@ -53,6 +53,7 @@
     box-sizing: border-box;
     padding: 10px;
     margin-top: 10px;
+    border: 1px solid var(--theme_primary_color_dark_gray);
 }
 
 .item_card {

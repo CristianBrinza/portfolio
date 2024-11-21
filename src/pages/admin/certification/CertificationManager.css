@@ -1,4 +1,4 @@
-.certification_manager_container {
+.manager_container {
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -21,15 +21,6 @@
     background: var(--theme_primary_color_darkest_gray);
 }
 
-.items_list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    background: var(--theme_primary_color_white);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 .item_card {
     width: 250px;

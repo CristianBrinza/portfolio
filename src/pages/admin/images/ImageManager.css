@@ -78,13 +78,6 @@
 }
 
 
-.form_group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 100%;
-}
-
 
 
 .form_group input,
@@ -170,10 +163,26 @@
     height: 46px;
 }
 
-.image_search_input{
+.admin_search_input{
+    background-color: var(--theme_primary_color_white);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
+    color: var(--theme_primary_color_black);
+    padding: 0 10px;
+    height: 46px;
+    box-sizing: border-box;
     width: auto!important;
+
 }
 
 #popup_block_conflict_resolution_popup{
     z-index: 999999999999999999;
+}
+
+.search_section{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
 }
