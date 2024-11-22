@@ -8,6 +8,7 @@ import Popup from "../../../components/Popup/Popup";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 import "./ImageManager.css";
 import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
+import { menu as AdminMenu } from '../menues.ts';
 
 interface ImageItem {
     name: string;
@@ -301,29 +302,12 @@ const ImageManager: React.FC = () => {
             });
     };
 
-    const menu = [
-        {
-            btn: "Portfolio",
-            url: "/dashboard/portfolio-manager",
-            type: "button",
-            icon: "menu",
-        },
-        {
-            btn: "Certification",
-            url: "/dashboard/certification-manager",
-            type: "button",
-            icon: "menu",
-        },
-        { btn: 'Blogs', url: '/dashboard/blog-manager', type: 'button', icon: 'menu' },
-        { btn: 'Pages', url: '/dashboard/pages-manager', type: 'button', icon: 'menu' },
 
-        {
-            btn: "Images",
-            url: "/dashboard/image-manager",
-            type: "button_active",
-            icon: "image",
-        },
-    ];
+    const menu = AdminMenu.map((item) =>
+        item.url === '/dashboard/image-manager'
+            ? { ...item, type: 'button_active' }
+            : item
+    );
 
     const allChoicesMade = conflictingFiles.every(
         (file) => conflictResolutions[file.name]

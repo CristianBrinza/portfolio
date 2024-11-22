@@ -57,15 +57,6 @@
     flex-wrap: wrap;
 }
 
-.file_manager_item {
-    width: 200px;
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    position: relative;
-    cursor: pointer;
-}
 
 .file_manager_item_icon {
     font-size: 40px;

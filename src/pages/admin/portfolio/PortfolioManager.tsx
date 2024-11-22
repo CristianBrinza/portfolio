@@ -12,6 +12,7 @@ import { AxiosError } from 'axios';
 import './PortfolioManager.css';
 import AdminLayout from "../../../components/Admin/AdminLayout/AdminLayout.tsx";
 import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
+import { menu as AdminMenu } from '../menues.ts';
 
 interface PortfolioItem {
     img: string;
@@ -240,13 +241,11 @@ const PortfolioManager: React.FC = () => {
         { label: 'Portfolio Manager' },
     ];
 
-    const menu = [
-        { btn: 'Portfolio', url: '/dashboard/portfolio-manager', type: 'button_active', icon: 'menu' },
-        { btn: 'Certification', url: '/dashboard/certification-manager', type: 'button', icon: 'menu' },
-        { btn: 'Blogs', url: '/dashboard/blog-manager', type: 'button', icon: 'menu' },
-        { btn: 'Pages', url: '/dashboard/pages-manager', type: 'button', icon: 'menu' },
-        { btn: 'Images', url: '/dashboard/image-manager', type: 'button', icon: 'image' },
-    ];
+    const menu = AdminMenu.map((item) =>
+        item.url === '/dashboard/portfolio-manager'
+            ? { ...item, type: 'button_active' }
+            : item
+    );
 
     return (
             <AdminLayout menu_items={menu} breadcrumb={breadcrumbItems}>

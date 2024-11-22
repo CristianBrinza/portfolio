@@ -10,6 +10,7 @@ import { AxiosError } from 'axios';
 import './CertificationManager.css';
 import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout';
 import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
+import { menu as AdminMenu } from '../menues.ts';
 
 interface CertificationItem {
     img: string;
@@ -166,13 +167,13 @@ const CertificationManager: React.FC = () => {
         { label: 'Certification Manager' },
     ];
 
-    const menu = [
-        { btn: 'Portfolio', url: '/dashboard/portfolio-manager', type: 'button', icon: 'menu' },
-        { btn: 'Certification', url: '/dashboard/certification-manager', type: 'button_active', icon: 'menu' },
-        { btn: 'Blogs', url: '/dashboard/blog-manager', type: 'button', icon: 'menu' },
-        { btn: 'Pages', url: '/dashboard/pages-manager', type: 'button', icon: 'menu' },
-        { btn: 'Images', url: '/dashboard/image-manager', type: 'button', icon: 'image' },
-    ];
+
+
+    const menu = AdminMenu.map((item) =>
+        item.url === '/dashboard/certification-manager'
+            ? { ...item, type: 'button_active' }
+            : item
+    );
 
     return (
         <AdminLayout menu_items={menu} breadcrumb={breadcrumbItems}>

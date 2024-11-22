@@ -10,6 +10,7 @@ import Notification from '../../../components/Notification/Notification';
 import PageLoading from "../../../components/PageLoading/PageLoading";
 import AdminLayout from "../../../components/Admin/AdminLayout/AdminLayout";
 import './PagesManager.css';
+import { menu as AdminMenu } from '../menues.ts';
 
 interface PageItem {
     link: string;
@@ -104,6 +105,7 @@ const PagesManager: React.FC = () => {
     const openPopup = (item: PageItem | null = null) => {
         if (item) {
             setCurrentItem(item);
+            setIsEditing(true);
         } else {
             // Initialize currentItem with default values for a new item
             setCurrentItem({
@@ -112,20 +114,16 @@ const PagesManager: React.FC = () => {
                 title: '',
                 content: '',
             });
+            setIsEditing(false);
         }
-        setIsEditing(!!item);
         setShowPopup(true);
     };
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
-        if (currentItem) {
-            setCurrentItem({ ...currentItem, [e.target.name]: e.target.value });
-        } else {
-            // Initialize currentItem if it's null
-            setCurrentItem({ [e.target.name]: e.target.value } as PageItem);
-        }
+        if (!currentItem) return; // Ensure currentItem is not null
+        setCurrentItem({ ...currentItem, [e.target.name]: e.target.value });
     };
 
     const closePopup = () => {
@@ -166,14 +164,12 @@ const PagesManager: React.FC = () => {
         { label: 'Pages Manager' },
     ];
 
-    const menu = [
-        { btn: 'Portfolio', url: '/dashboard/portfolio-manager', type: 'button', icon: 'menu' },
-        { btn: 'Certification', url: '/dashboard/certification-manager', type: 'button', icon: 'menu' },
-        { btn: 'Blogs', url: '/dashboard/blog-manager', type: 'button', icon: 'menu' },
-        { btn: 'Pages', url: '/dashboard/pages-manager', type: 'button_active', icon: 'menu' },
-        { btn: 'Images', url: '/dashboard/image-manager', type: 'button', icon: 'image' },
 
-    ];
+    const menu = AdminMenu.map((item) =>
+        item.url === '/dashboard/pages-manager'
+            ? { ...item, type: 'button_active' }
+            : item
+    );
 
     return (
         <AdminLayout menu_items={menu} breadcrumb={breadcrumbItems}>
