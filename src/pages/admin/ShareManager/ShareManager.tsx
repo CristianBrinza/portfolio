@@ -8,8 +8,9 @@ import Popup from '../../../components/Popup/Popup';
 import Notification from '../../../components/Notification/Notification';
 import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 import PageLoading from '../../../components/PageLoading/PageLoading';
-import { menu as AdminMenu } from '../menues';
+import { storage_menu as AdminMenu } from '../menues.ts';
 import './ShareManager.css';
+import Icon from "../../../components/Icon.tsx";
 
 interface FileItem {
     name: string;
@@ -30,6 +31,7 @@ const ShareManager: React.FC = () => {
     const language = lang || 'en';
 
     const [files, setFiles] = useState<FileItem[]>([]);
+    const [allFiles, setAllFiles] = useState<FileItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [notification, setNotification] = useState<{
         message: string;
@@ -45,11 +47,21 @@ const ShareManager: React.FC = () => {
     const [isUploading, setIsUploading] = useState<boolean>(false);
     const [uploadProgress, setUploadProgress] = useState<number>(0);
     const [currentPath, setCurrentPath] = useState<string>('');
-    const [selectedItems, setSelectedItems] = useState<string[]>([]);
+    const [selectedItem, setSelectedItem] = useState<FileItem | null>(null);
     const [shareLinks, setShareLinks] = useState<ShareLink[]>([]);
     const [showSharePopup, setShowSharePopup] = useState<boolean>(false);
     const [showCreateFolderPopup, setShowCreateFolderPopup] = useState<boolean>(false);
     const [newFolderName, setNewFolderName] = useState<string>('');
+    const [searchQuery, setSearchQuery] = useState<string>('');
+
+    const [showRenamePopup, setShowRenamePopup] = useState<boolean>(false);
+    const [showMovePopup, setShowMovePopup] = useState<boolean>(false);
+
+    const [renameValue, setRenameValue] = useState<string>('');
+    const [movePath, setMovePath] = useState<string>('');
+
+    const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
 
     const breadcrumbItems = [
         { label: 'Dashboard', url: `/${language}/dashboard` },
@@ -62,6 +74,7 @@ const ShareManager: React.FC = () => {
         } else {
             fetchFiles();
             fetchShareLinks();
+            fetchAllFiles();
         }
     }, [role, currentPath]);
 
@@ -82,6 +95,25 @@ const ShareManager: React.FC = () => {
             setLoading(false);
             setNotification({
                 message: 'Error fetching files.',
+                type: 'error',
+            });
+        }
+    };
+
+    const fetchAllFiles = async () => {
+        try {
+            const response = await api.get('/share', {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+                params: {
+                    recursive: true,
+                },
+            });
+            setAllFiles(response.data);
+        } catch (error) {
+            setNotification({
+                message: 'Error fetching all files.',
                 type: 'error',
             });
         }
@@ -189,6 +221,7 @@ const ShareManager: React.FC = () => {
             type: 'success',
         });
         fetchFiles();
+        fetchAllFiles();
         setConflictResolutions({});
     };
 
@@ -259,6 +292,7 @@ const ShareManager: React.FC = () => {
                 type: 'success',
             });
             fetchFiles();
+            fetchAllFiles();
         } catch (error) {
             setNotification({
                 message: `Error deleting ${item.name}.`,
@@ -275,13 +309,19 @@ const ShareManager: React.FC = () => {
         }
     };
 
-    const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, path: string) => {
+    const handleCheckboxChange = (e, path, isFile) => {
+        if (!isFile) {
+            alert("You can only share files, not folders.");
+            return;
+        }
         if (e.target.checked) {
             setSelectedItems((prev) => [...prev, path]);
         } else {
             setSelectedItems((prev) => prev.filter((item) => item !== path));
         }
     };
+
+
 
     const openSharePopup = () => {
         if (selectedItems.length === 0) {
@@ -291,11 +331,21 @@ const ShareManager: React.FC = () => {
             });
             return;
         }
-        setShowSharePopup(true);
+        setShowSharePopup(true); // This should set the state to show the popup
     };
 
+
     const handleCreateShareLink = async () => {
+        if (selectedItems.length === 0) {
+            setNotification({
+                message: 'No items selected for sharing.',
+                type: 'error',
+            });
+            return;
+        }
+
         try {
+            console.log('Selected items:', selectedItems); // Debug log
             await api.post(
                 '/share/create-link',
                 { items: selectedItems },
@@ -311,6 +361,7 @@ const ShareManager: React.FC = () => {
             });
             fetchShareLinks();
             setShowSharePopup(false);
+            setSelectedItems([]);
         } catch (error) {
             setNotification({
                 message: 'Error creating share link.',
@@ -318,6 +369,7 @@ const ShareManager: React.FC = () => {
             });
         }
     };
+
 
     const handleDeleteShareLink = async (code: string) => {
         if (!window.confirm('Are you sure you want to delete this share link?')) return;
@@ -368,6 +420,7 @@ const ShareManager: React.FC = () => {
                 type: 'success',
             });
             fetchFiles();
+            fetchAllFiles();
             setShowCreateFolderPopup(false);
         } catch (error) {
             setNotification({
@@ -376,6 +429,89 @@ const ShareManager: React.FC = () => {
             });
         }
     };
+
+    const handleRename = async () => {
+        if (!selectedItem || !renameValue.trim()) {
+            setNotification({ message: 'Invalid rename operation.', type: 'error' });
+            return;
+        }
+
+        try {
+            await api.put(
+                '/share/rename',
+                {
+                    oldPath: selectedItem.path,
+                    newName: renameValue.trim(),
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                }
+            );
+            setNotification({ message: 'Item renamed successfully!', type: 'success' });
+            setShowRenamePopup(false);
+            fetchFiles();
+        } catch (error) {
+            setNotification({ message: 'Error renaming item.', type: 'error' });
+        }
+    };
+
+
+    const handleMove = async () => {
+        if (!selectedItem || !movePath.trim()) {
+            setNotification({ message: 'Invalid move operation.', type: 'error' });
+            return;
+        }
+
+        try {
+            await api.put(
+                '/share/move',
+                {
+                    itemPath: selectedItem.path,
+                    destinationPath: movePath.trim(),
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    },
+                }
+            );
+            setNotification({ message: 'Item moved successfully!', type: 'success' });
+            setShowMovePopup(false);
+            fetchFiles();
+        } catch (error) {
+            setNotification({ message: 'Error moving item.', type: 'error' });
+        }
+    };
+
+
+    const openRenamePopup = (item: FileItem) => {
+        setSelectedItem(item);
+        setRenameValue(item.name);
+        setShowRenamePopup(true);
+    };
+
+    const openMovePopup = (item: FileItem) => {
+        setSelectedItem(item);
+        setMovePath('');
+        setShowMovePopup(true);
+    };
+
+
+    const closeRenamePopup = () => {
+        setShowRenamePopup(false);
+        setRenameValue('');
+        setSelectedItem(null);
+    };
+
+    const closeMovePopup = () => {
+        setShowMovePopup(false);
+        setMovePath('');
+        setSelectedItem(null);
+    };
+
+
 
     const goBack = () => {
         const pathParts = currentPath.split('/').filter(Boolean);
@@ -387,6 +523,11 @@ const ShareManager: React.FC = () => {
         item.url === '/dashboard/share-manager'
             ? { ...item, type: 'button_active' }
             : item
+    );
+
+    // Filtered files for search
+    const filteredFiles = allFiles.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (
@@ -403,25 +544,96 @@ const ShareManager: React.FC = () => {
             <div className="share_manager_container">
                 <div className="share_manager_controls">
                     <div className="share_manager_actions">
-                        <Button onClick={openUploadPopup}>Upload Files</Button>
-                        <Button onClick={openCreateFolderPopup}>Create Folder</Button>
-                        <Button onClick={openSharePopup}>Create Share Link</Button>
-                        {currentPath && <Button onClick={goBack}>Go Back</Button>}
+                        {currentPath && <Button onClick={goBack}>
+                            <Icon type="arrow" rotate="180" />
+                        </Button>}
+                        <Button
+                            color="#fff"
+                            bgcolor="#317ce6"
+                            border="#317ce6"
+                            hover_bgcolor="#1967D2"
+                            hover_color="#fff"
+                            onClick={openUploadPopup}>Upload Files</Button>
+                        <Button
+                            color="#fff"
+                            bgcolor="#28a745"
+                            border="#28a745"
+                            hover_bgcolor="#218838"
+                            hover_color="#fff"
+                            onClick={openCreateFolderPopup}>Create Folder</Button>
+                        <Button
+                            color="var(--theme_primary_color_black)"
+                            bgcolor="var(--theme_primary_color_dark_gray)"
+                            onClick={openSharePopup}>Create Share Link</Button>
+
+
+                    </div>
+                    <div className="file_manager_search_sort">
+                        <input
+                            type="text"
+                            placeholder="Search files and folders"
+                            value={searchQuery}
+                            className="admin_search_input"
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
                     </div>
                 </div>
 
                 {loading ? (
                     <PageLoading />
+                ) : searchQuery ? (
+                    filteredFiles.length > 0 ? (
+                        <div className="share_manager_items">
+                            {files.map((item) => (
+                                <div key={item.path} className="share_manager_item">
+                                    <input
+                                        type="checkbox"
+                                        onChange={(e) => handleCheckboxChange(e, item)}
+                                    />
+                                    <div
+                                        className={`share_manager_item_content ${
+                                            item.type === 'folder' ? 'file_preview_folder' : ''
+                                        }`}
+                                        onClick={() => handleItemClick(item)}
+                                    >
+                                        {item.type === 'folder' ? (
+                                            <i className="fas fa-folder"></i>
+                                        ) : (
+                                            <i className="fas fa-file"></i>
+                                        )}
+                                        <p>{item.name}</p>
+                                    </div>
+
+                                    <div className="file_manager_item_actions">
+                                        <Button onClick={() => handleDeleteItem(item)}>
+                                            <Icon type="trash" />
+                                        </Button>
+                                        <Button onClick={() => openRenamePopup(item)}>
+                                            <Icon type="rename" />
+                                        </Button>
+                                        <Button onClick={() => openMovePopup(item)}>
+                                            <Icon type="move" />
+                                        </Button>
+                                    </div>
+                                </div>
+                            ))}
+
+                        </div>
+                    ) : (
+                        <p>No items match your search.</p>
+                    )
                 ) : files.length > 0 ? (
                     <div className="share_manager_items">
                         {files.map((item) => (
                             <div key={item.path} className="share_manager_item">
                                 <input
                                     type="checkbox"
-                                    onChange={(e) => handleCheckboxChange(e, item.path)}
+                                    onChange={(e) => handleCheckboxChange(e, item.path, item.type)}
                                 />
                                 <div
-                                    className="share_manager_item_content"
+                                    className={`share_manager_item_content ${
+                                        item.type === 'folder' ? 'file_preview_folder' : ''
+                                    }`}
                                     onClick={() => handleItemClick(item)}
                                 >
                                     {item.type === 'folder' ? (
@@ -431,7 +643,20 @@ const ShareManager: React.FC = () => {
                                     )}
                                     <p>{item.name}</p>
                                 </div>
-                                <Button onClick={() => handleDeleteItem(item)}>Delete</Button>
+
+                                <div className="file_manager_item_actions">
+                                    <Button onClick={() => handleDeleteItem(item)}>
+                                        <Icon type="trash"/>
+                                    </Button>
+                                    <Button onClick={() => openRenamePopup(item)}>
+                                        <Icon type="rename"/>
+                                    </Button>
+                                    <Button onClick={() => openMovePopup(item)}>
+                                        <Icon type="move"/>
+                                    </Button>
+                                </div>
+
+
                             </div>
                         ))}
                     </div>
@@ -459,7 +684,10 @@ const ShareManager: React.FC = () => {
                                     Created At:{' '}
                                     {new Date(link.createdAt).toLocaleString()}
                                 </p>
-                                <Button onClick={() => handleDeleteShareLink(link.code)}>
+                                <Button
+                                    color="var(--theme_primary_color_black)"
+                                    bgcolor="var(--theme_primary_color_dark_gray)"
+                                    onClick={() => handleDeleteShareLink(link.code)}>
                                     Delete Link
                                 </Button>
                             </div>
@@ -496,8 +724,14 @@ const ShareManager: React.FC = () => {
                             />
                         </div>
                         <div className="popup_actions">
-                            <Button onClick={handleUploadFiles}>Upload</Button>
-                            <Button onClick={closeUploadPopup}>Cancel</Button>
+                            <Button onClick={handleUploadFiles}
+                                    color="var(--theme_primary_color_black)"
+                                    bgcolor="var(--theme_primary_color_dark_gray)"
+                            >Upload</Button>
+                            <Button onClick={closeUploadPopup}
+                                    color="var(--theme_primary_color_black)"
+                                    bgcolor="var(--theme_primary_color_dark_gray)"
+                            >Cancel</Button>
                         </div>
                     </div>
                 </Popup>
@@ -516,6 +750,11 @@ const ShareManager: React.FC = () => {
                                 <p>File "{file.name}" already exists.</p>
                                 <div className="conflict_actions">
                                     <Button
+                                        color="#fff"
+                                        bgcolor="#dc3545"
+                                        border="#dc3545"
+                                        hover_bgcolor="#c82333"
+                                        hover_color="#fff"
                                         onClick={() =>
                                             handleConflictChoice(file.name, 'overwrite')
                                         }
@@ -523,6 +762,11 @@ const ShareManager: React.FC = () => {
                                         Overwrite
                                     </Button>
                                     <Button
+                                        color="#fff"
+                                        bgcolor="#17a2b8"
+                                        border="#17a2b8"
+                                        hover_bgcolor="#138496"
+                                        hover_color="#fff"
                                         onClick={() =>
                                             handleConflictChoice(file.name, 'rename')
                                         }
@@ -555,8 +799,13 @@ const ShareManager: React.FC = () => {
                             ))}
                         </ul>
                         <div className="popup_actions">
-                            <Button onClick={handleCreateShareLink}>Create Link</Button>
-                            <Button onClick={() => setShowSharePopup(false)}>Cancel</Button>
+                            <Button
+                                color="var(--theme_primary_color_black)"
+                                bgcolor="var(--theme_primary_color_dark_gray)"onClick={handleCreateShareLink}>Create Link</Button>
+                            <Button
+                                color="var(--theme_primary_color_black)"
+                                bgcolor="var(--theme_primary_color_dark_gray)"
+                                onClick={() => setShowSharePopup(false)}>Cancel</Button>
                         </div>
                     </div>
                 </Popup>
@@ -581,6 +830,48 @@ const ShareManager: React.FC = () => {
                     </div>
                 </Popup>
             )}
+            {/* Rename Popup */}
+            {showRenamePopup && (
+                <Popup id="rename_popup" isVisible={showRenamePopup} onClose={closeRenamePopup}>
+                    <div className="popup_content">
+                        <h2>Rename Item</h2>
+                        <div className="form_group">
+                            <label>New Name</label>
+                            <input
+                                type="text"
+                                value={renameValue}
+                                onChange={(e) => setRenameValue(e.target.value)}
+                            />
+                        </div>
+                        <div className="popup_actions">
+                            <Button onClick={handleRename}>Rename</Button>
+                            <Button onClick={closeRenamePopup}>Cancel</Button>
+                        </div>
+                    </div>
+                </Popup>
+            )}
+            {/* Move Popup */}
+            {showMovePopup && (
+                <Popup id="move_popup" isVisible={showMovePopup} onClose={closeMovePopup}>
+                    <div className="popup_content">
+                        <h2>Move Item</h2>
+                        <div className="form_group">
+                            <label>Destination Path</label>
+                            <input
+                                type="text"
+                                value={movePath}
+                                onChange={(e) => setMovePath(e.target.value)}
+                            />
+                        </div>
+                        <div className="popup_actions">
+                            <Button onClick={handleMove}>Move</Button>
+                            <Button onClick={closeMovePopup}>Cancel</Button>
+                        </div>
+                    </div>
+                </Popup>
+            )}
+
+
         </AdminLayout>
     );
 };

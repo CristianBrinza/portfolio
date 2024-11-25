@@ -8,7 +8,7 @@ import Popup from "../../../components/Popup/Popup";
 import ProgressBar from "../../../components/ProgressBar/ProgressBar";
 import "./ImageManager.css";
 import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
-import { menu as AdminMenu } from '../menues.ts';
+import { portfolio_menu as AdminMenu } from '../menues.ts';
 
 interface ImageItem {
     name: string;

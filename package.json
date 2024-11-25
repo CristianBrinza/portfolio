@@ -14,6 +14,8 @@
     "predeploy": "yarn build"
   },
   "dependencies": {
+    "@types/jwt-decode": "^3.1.0",
+    "archiver": "^7.0.1",
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
     "jwt-decode": "^4.0.0",

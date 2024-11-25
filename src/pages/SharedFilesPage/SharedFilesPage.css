@@ -1,0 +1,31 @@
+
+
+.shared-files-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.shared-file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border: 1px solid var(--theme_primary_color_dark_gray);
+    margin-bottom: 5px;
+    border-radius: 12px;
+}
+
+.shared-file-item p {
+    margin: 0;
+}
+
+.shared-file-item button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.shared-files-list_title{
+    display: flex;
+    gap:5px;
+}

@@ -12,7 +12,7 @@ import { AxiosError } from 'axios';
 import './PortfolioManager.css';
 import AdminLayout from "../../../components/Admin/AdminLayout/AdminLayout.tsx";
 import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
-import { menu as AdminMenu } from '../menues.ts';
+import { portfolio_menu as AdminMenu } from '../menues.ts';
 
 interface PortfolioItem {
     img: string;

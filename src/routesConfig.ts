@@ -44,6 +44,7 @@ import Login from "./pages/admin/login/Login.tsx";
 import BlogManager from "./pages/admin/BlogManager/BlogManager.tsx";
 import PagesManager from "./pages/admin/PagesManager/PagesManager.tsx";
 import ShareManager from "./pages/admin/ShareManager/ShareManager.tsx";
+import SharedFilesPage from "./pages/SharedFilesPage/SharedFilesPage.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -190,6 +191,10 @@ export const routes = [
     path: '/:lang/dashboard/profile/password',
     element: React.createElement(PasswordPage),
     allowedRoles: ['admin', 'user', 'guest'],
+  },
+  {
+    path: '/:lang/share/:code',
+    element: React.createElement(SharedFilesPage),
   },
 
 

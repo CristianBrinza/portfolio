@@ -12,6 +12,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './FileManager.css';
 import Icon from '../../../components/Icon.tsx';
 import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
+import { storage_menu as AdminMenu } from '../menues.ts';
 
 interface FileItem {
     name: string;
@@ -560,8 +561,15 @@ const FileManager: React.FC = () => {
     // Check if current path is in .trash
     const isInTrash = currentPath.startsWith('.trash');
 
+    const menu = AdminMenu.map((item) =>
+        item.url === '/dashboard/storage'
+            ? { ...item, type: 'button_active' }
+            : item
+    );
+
+
     return (
-        <AdminLayout breadcrumb={breadcrumbItems}>
+        <AdminLayout menu_items={menu} breadcrumb={breadcrumbItems}>
             {notification && (
                 <Notification
                     type={notification.type}

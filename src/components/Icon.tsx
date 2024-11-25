@@ -1054,28 +1054,28 @@ export const icons = {
     trash: (
         <path
                 d="M19.5 5.46427H5M18.756 8.25273L18.243 15.9489C18.0455 18.9091 17.9474 20.3892 16.9826 21.2916C16.0178 22.1939 15.6486 22.195 12.6817 22.195H11.8183C8.85142 22.195 8.48223 22.195 7.51742 21.2916C6.55262 20.3892 6.45335 18.9091 6.25704 15.9489C6.06073 12.9887 5.94433 11.2583 5.74396 8.25273M9.09346 3.2335C9.3239 2.58041 9.75125 2.01487 10.3166 1.61484C10.8819 1.21482 11.5574 1 12.25 1C12.9426 1 13.6181 1.21482 14.1834 1.61484C14.7488 2.01487 15.1761 2.58041 15.4065 3.2335"
-                stroke="currentColor" stroke-width="1.67308" stroke-linecap="round"/>
+                stroke="currentColor" strokeWidth="1.67308" strokeLinecap="round"/>
     ),
     rename: (
         <path
                 d="M3 22.1254H20M4.77012 13.824C4.31709 14.2781 4.06261 14.8933 4.0625 15.5347V18.9379H7.48694C8.12869 18.9379 8.74388 18.6829 9.19756 18.2281L19.2913 8.12904C19.7442 7.67493 19.9985 7.05976 19.9985 6.41842C19.9985 5.77708 19.7442 5.16191 19.2913 4.70779L18.2947 3.70904C18.0699 3.48417 17.803 3.3058 17.5093 3.18414C17.2156 3.06247 16.9007 2.9999 16.5828 3C16.2648 3.0001 15.95 3.06287 15.6564 3.18471C15.3627 3.30656 15.0959 3.48509 14.8713 3.71011L4.77012 13.824Z"
-                stroke="currentColor" stroke-width="1.59375" stroke-linecap="round" stroke-linejoin="round"/>
+                stroke="currentColor" strokeWidth="1.59375" strokeLinecap="round" strokeLinejoin="round"/>
 
 
     ),
     share: (
         <path
                 d="M4 12V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V12M16 6L12 2M12 2L8 6M12 2V15"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
 
 
     ),
     preview: (
-       <>    <path d="M3 13C6.6 5 17.4 5 21 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                  stroke-linejoin="round"/>
+       <>    <path d="M3 13C6.6 5 17.4 5 21 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+                  strokeLinejoin="round"/>
             <path
                 d="M12 17C11.606 17 11.2159 16.9224 10.8519 16.7716C10.488 16.6209 10.1573 16.3999 9.87868 16.1213C9.6001 15.8427 9.37913 15.512 9.22836 15.1481C9.0776 14.7841 9 14.394 9 14C9 13.606 9.0776 13.2159 9.22836 12.8519C9.37913 12.488 9.6001 12.1573 9.87868 11.8787C10.1573 11.6001 10.488 11.3791 10.8519 11.2284C11.2159 11.0776 11.606 11 12 11C12.7956 11 13.5587 11.3161 14.1213 11.8787C14.6839 12.4413 15 13.2044 15 14C15 14.7956 14.6839 15.5587 14.1213 16.1213C13.5587 16.6839 12.7956 17 12 17Z"
-                fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                fill="currentColor" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </>
 
     ),
@@ -1083,7 +1083,7 @@ export const icons = {
         <>
             <path
                 d="M12 15V3M12 15L8 11M12 15L16 11M2 17L2.621 19.485C2.72915 19.9177 2.97882 20.3018 3.33033 20.5763C3.68184 20.8508 4.11501 20.9999 4.561 21H19.438C19.884 20.9999 20.3172 20.8508 20.6687 20.5763C21.0202 20.3018 21.2698 19.9177 21.378 19.485L22 17"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </>
 
     ),

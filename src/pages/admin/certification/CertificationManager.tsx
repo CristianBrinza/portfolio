@@ -10,7 +10,7 @@ import { AxiosError } from 'axios';
 import './CertificationManager.css';
 import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout';
 import PageLoading from "../../../components/PageLoading/PageLoading.tsx";
-import { menu as AdminMenu } from '../menues.ts';
+import { portfolio_menu as AdminMenu } from '../menues.ts';
 
 interface CertificationItem {
     img: string;

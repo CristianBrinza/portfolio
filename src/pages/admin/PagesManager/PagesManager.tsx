@@ -10,7 +10,7 @@ import Notification from '../../../components/Notification/Notification';
 import PageLoading from "../../../components/PageLoading/PageLoading";
 import AdminLayout from "../../../components/Admin/AdminLayout/AdminLayout";
 import './PagesManager.css';
-import { menu as AdminMenu } from '../menues.ts';
+import { portfolio_menu as AdminMenu } from '../menues.ts';
 
 interface PageItem {
     link: string;
