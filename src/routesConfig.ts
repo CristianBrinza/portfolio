@@ -43,6 +43,7 @@ import ImageManager from "./pages/admin/images/ImageManager.tsx";
 import Login from "./pages/admin/login/Login.tsx";
 import BlogManager from "./pages/admin/BlogManager/BlogManager.tsx";
 import PagesManager from "./pages/admin/PagesManager/PagesManager.tsx";
+import ShareManager from "./pages/admin/ShareManager/ShareManager.tsx";
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -173,6 +174,11 @@ export const routes = [
   }, {
     path: '/:lang/dashboard/pages-manager',
     element: React.createElement(PagesManager),
+    allowedRoles: ['admin', 'user'],
+  },
+  {
+    path: '/:lang/dashboard/share-manager',
+    element: React.createElement(ShareManager),
     allowedRoles: ['admin', 'user'],
   },
   {

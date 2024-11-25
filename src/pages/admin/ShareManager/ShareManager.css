@@ -1,0 +1,70 @@
+/* src/pages/admin/share/ShareManager.css */
+
+.share_manager_container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.share_manager_controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.share_manager_actions {
+    display: flex;
+    gap: 10px;
+}
+
+.share_manager_items {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.share_manager_item {
+    width: 280px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid var(--theme_primary_color_dark_gray);
+    border-radius: 8px;
+    background-color: var(--theme_primary_color_white);
+    position: relative;
+}
+
+.share_manager_item_content {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.share_manager_item_content i {
+    font-size: 40px;
+    margin-right: 10px;
+}
+
+.share_manager_item_content p {
+    font-weight: bold;
+}
+
+.share_links_list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.share_link_item {
+    border: 1px solid var(--theme_primary_color_dark_gray);
+    border-radius: 8px;
+    padding: 10px;
+    background-color: var(--theme_primary_color_white);
+}
+
+.conflict_item {
+    margin-bottom: 10px;
+}
+
+.conflict_actions {
+    display: flex;
+    gap: 10px;
+}
