@@ -102,7 +102,7 @@ export default function Contact() {
         </div>
         <div id="contact_page_right">
           <form onSubmit={handleSubmit(onSubmit)} className="contact_form">
-            <div className="form_group">
+            <div className="form_group_contact">
               <label htmlFor="name">
                 <Trans>contact.name</Trans>
               </label>
@@ -116,7 +116,7 @@ export default function Contact() {
                 <span className="error_message">{errors.name.message}</span>
               )}
             </div>
-            <div className="form_group">
+            <div className="form_group_contact">
               <label htmlFor="email">
                 <Trans>contact.email</Trans>
               </label>
@@ -136,7 +136,7 @@ export default function Contact() {
                 <span className="error_message">{errors.email.message}</span>
               )}
             </div>
-            <div className="form_group">
+            <div className="form_group_contact">
               <label htmlFor="message">
                 <Trans>contact.message</Trans>
               </label>
