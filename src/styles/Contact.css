@@ -38,19 +38,19 @@
   gap: 20px;
 }
 
-.form_group {
+.form_group_contact {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-.form_group label {
+.form_group_contact label {
   font-weight: 600;
   color: var(--theme_primary_color_black);
 }
 
-.form_group input,
-.form_group textarea {
+.form_group_contact input,
+.form_group_contact textarea {
   padding: 10px 15px;
   border: 1px solid var(--theme_primary_color_dark_gray);
   border-radius: 8px;
@@ -59,10 +59,11 @@
   background-color: var(--theme_primary_color_white);
   outline: none;
   transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
 
-.form_group input:focus,
-.form_group textarea:focus {
+.form_group_contact input:focus,
+.form_group_contact textarea:focus {
   border-color: var(--theme_primary_color_black);
 }
 
