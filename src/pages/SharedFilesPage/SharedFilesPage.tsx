@@ -16,6 +16,12 @@ interface SharedFile {
     exists: boolean; // Add an 'exists' flag to track file availability
 }
 
+interface FileItem {
+    name: string;
+    type: 'file' | 'folder';
+    path: string;
+}
+
 const SharedFilesPage: React.FC = () => {
     const { code } = useParams<{ code: string }>();
     const [files, setFiles] = useState<SharedFile[]>([]);
@@ -35,7 +41,7 @@ const SharedFilesPage: React.FC = () => {
 
             // Check existence of each file
             const fileChecks = await Promise.all(
-                items.map(async (item) => {
+                items.map(async (item: FileItem) => {
                     try {
                         // Make a HEAD request to check file existence
                         await api.head(`/share/${code}/download?path=${encodeURIComponent(item.path)}`);
@@ -78,7 +84,7 @@ const SharedFilesPage: React.FC = () => {
                         {files.map((file) => (
                             <div key={file.path} className="shared-file-item">
                                 <span className="shared-files-list_title">
-                                    {!file.exists && <Icon type="close" />} {<Icon type="empty" />}
+                                    {!file.exists && <Icon type="close" />} {<Icon type="copy" />}
                                     <p>{file.name}</p>
                                 </span>
                                 {file.exists && (

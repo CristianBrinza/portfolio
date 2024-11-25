@@ -309,7 +309,11 @@ const ShareManager: React.FC = () => {
         }
     };
 
-    const handleCheckboxChange = (e, path, isFile) => {
+    const handleCheckboxChange = (
+        e: React.ChangeEvent<HTMLInputElement>,
+        path: string,
+        isFile: string
+    ) => {
         if (!isFile) {
             alert("You can only share files, not folders.");
             return;
@@ -588,7 +592,7 @@ const ShareManager: React.FC = () => {
                                 <div key={item.path} className="share_manager_item">
                                     <input
                                         type="checkbox"
-                                        onChange={(e) => handleCheckboxChange(e, item)}
+                                        onChange={(e) => handleCheckboxChange(e, item.path, item.type)}
                                     />
                                     <div
                                         className={`share_manager_item_content ${
@@ -672,13 +676,14 @@ const ShareManager: React.FC = () => {
                                 <p>
                                     Link:{' '}
                                     <a
-                                        href={`${import.meta.env.VITE_BACKEND}/share/${link.code}`}
+                                        href={`${import.meta.env.VITE_FRONTEND}/share/${link.code}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     >
-                                        {import.meta.env.VITE_BACKEND}/share/{link.code}
+                                        {import.meta.env.VITE_FRONTEND}/share/{link.code}
                                     </a>
                                 </p>
+
                                 <p>Items: {link.paths.join(', ')}</p>
                                 <p>
                                     Created At:{' '}
@@ -702,7 +707,8 @@ const ShareManager: React.FC = () => {
                 <Popup
                     id="uploadProgressPopup"
                     isVisible={isUploading}
-                    onClose={() => {}}
+                    onClose={() => {
+                    }}
                 >
                     <div className="upload_progress_popup">
                         <h2>Uploading Files...</h2>

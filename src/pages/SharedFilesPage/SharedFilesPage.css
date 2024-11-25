@@ -1,12 +1,15 @@
-
-
+/* General shared files list styling */
 .shared-files-list {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    padding: 0 10px; /* Add padding to accommodate smaller screens */
 }
 
+/* Shared file item container */
 .shared-file-item {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 10px 10px;
@@ -14,18 +17,70 @@
     border: 1px solid var(--theme_primary_color_dark_gray);
     margin-bottom: 5px;
     border-radius: 12px;
+    background-color: var(--theme_primary_color_light_gray);
 }
 
+/* Shared file name styling */
 .shared-file-item p {
     margin: 0;
+    word-break: break-word; /* Prevent long names from breaking the layout */
+    flex: 1;
 }
 
+/* Button styling inside the file item */
 .shared-file-item button {
     padding: 5px 10px;
     cursor: pointer;
+    flex-shrink: 0; /* Prevent buttons from shrinking */
 }
 
-.shared-files-list_title{
+/* Shared files title container */
+.shared-files-list_title {
     display: flex;
-    gap:5px;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    /* Adjust padding for smaller screens */
+    .shared-files-list {
+        padding: 0 5px;
+    }
+
+    /* File item: stack content vertically */
+    .shared-file-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* Buttons take full width */
+    .shared-file-item button {
+        width: 100%;
+    }
+
+    /* Center icons and text in title */
+    .shared-files-list_title {
+        justify-content: center;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    /* Reduce padding for smaller devices */
+    .shared-file-item {
+        padding: 8px 8px;
+    }
+
+    /* Adjust text size */
+    .shared-file-item p {
+        font-size: 14px;
+    }
+
+    .shared-files-list_title p {
+        font-size: 16px;
+    }
 }
