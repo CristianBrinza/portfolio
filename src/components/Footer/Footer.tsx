@@ -160,7 +160,7 @@ const Footer: React.FC<FooterProps> = ({
                 </svg>
               </a>
 
-              <a href="" id="footer_main_top_social_x_com">
+              <a href="https://x.com/cristian_brinza" id="footer_main_top_social_x_com">
                 <svg
                   width="27"
                   height="24"
