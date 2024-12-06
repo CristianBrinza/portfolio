@@ -5,8 +5,8 @@ import './PortfolioFrontEnd.css';
 import Footer from '../../components/Footer/Footer.tsx';
 import Page from '../../components/Page.tsx';
 import ShowCards from '../../components/show_card/ShowCards.tsx';
-import FeedbackMenu from "../../components/FeedbackMenu/FeedbackMenu.tsx";
-import PageLoading from "../../components/PageLoading/PageLoading.tsx";
+import FeedbackMenu from '../../components/FeedbackMenu/FeedbackMenu.tsx';
+import PageLoading from '../../components/PageLoading/PageLoading.tsx';
 
 interface ShowCardItem {
   title: string;
@@ -29,11 +29,14 @@ export default function PortfolioFrontEnd() {
   useEffect(() => {
     const fetchshowCardItems1 = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`, {
-          headers: {
-            'ngrok-skip-browser-warning': 'true'
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND}/json/portfolio`,
+          {
+            headers: {
+              'ngrok-skip-browser-warning': 'true',
+            },
           }
-        });
+        );
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -53,11 +56,14 @@ export default function PortfolioFrontEnd() {
 
     const fetchshowCardItems2 = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`, {
-          headers: {
-            'ngrok-skip-browser-warning': 'true'
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND}/json/portfolio`,
+          {
+            headers: {
+              'ngrok-skip-browser-warning': 'true',
+            },
           }
-        });
+        );
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -75,11 +81,14 @@ export default function PortfolioFrontEnd() {
 
     const fetchshowCardItems3 = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`, {
-          headers: {
-            'ngrok-skip-browser-warning': 'true'
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND}/json/portfolio`,
+          {
+            headers: {
+              'ngrok-skip-browser-warning': 'true',
+            },
           }
-        });
+        );
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -104,7 +113,7 @@ export default function PortfolioFrontEnd() {
   ];
 
   if (loading) {
-    return <PageLoading/>;
+    return <PageLoading />;
   }
 
   return (
@@ -140,8 +149,8 @@ export default function PortfolioFrontEnd() {
           further inquiries, feel free to contact me.
         </div>
       </Page>
-      <Footer/>
-      <FeedbackMenu/>
+      <Footer />
+      <FeedbackMenu />
     </>
   );
 }

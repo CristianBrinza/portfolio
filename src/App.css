@@ -16,19 +16,19 @@
   max-width: 1900px;
   border-radius: 12px;
   display: flex;
-  gap:20px;
+  gap: 20px;
   /*border: 1px solid var(--theme_primary_color_dark_gray);*/
 }
-.admin_breadcrumb{
+.admin_breadcrumb {
   width: 100%;
   display: flex;
   justify-content: start;
 }
-.admin_breadcrumb .breadcrumb{
-  width: calc(98vw - 4rem)!important;
-  max-width: 1900px!important;
-  padding: 0rem 0vw 1rem 0vw!important;
-  margin:20px auto 0 !important;
+.admin_breadcrumb .breadcrumb {
+  width: calc(98vw - 4rem) !important;
+  max-width: 1900px !important;
+  padding: 0rem 0vw 1rem 0vw !important;
+  margin: 20px auto 0 !important;
 }
 
 .page {

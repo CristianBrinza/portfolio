@@ -1,7 +1,6 @@
 // components/Page.tsx
 import React from 'react';
 
-
 interface PageProps {
   gap?: string;
   className?: string;
@@ -12,14 +11,13 @@ interface PageProps {
 }
 
 const Page: React.FC<PageProps> = ({
-                                     gap,
-                                     className = '',
-                                     children,
-                                     minHeight = '55vh',
-                                     style,
-                                     id,
-                                   }) => {
-
+  gap,
+  className = '',
+  children,
+  minHeight = '55vh',
+  style,
+  id,
+}) => {
   const pageStyle: React.CSSProperties = {
     gap: gap,
     minHeight: minHeight,
@@ -53,9 +51,9 @@ const Page: React.FC<PageProps> = ({
   // }, [location.pathname]);
 
   return (
-      <div id={id} className={`${className} main`} style={pageStyle}>
-        {children}
-      </div>
+    <div id={id} className={`${className} main`} style={pageStyle}>
+      {children}
+    </div>
   );
 };
 

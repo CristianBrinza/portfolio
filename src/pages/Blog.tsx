@@ -7,7 +7,7 @@ import '../styles/Blog.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer/Footer.tsx';
-import PageLoading from "../components/PageLoading/PageLoading.tsx";
+import PageLoading from '../components/PageLoading/PageLoading.tsx';
 
 // Define the type for blog items
 interface BlogItem {
@@ -30,7 +30,9 @@ export default function Blog() {
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/blog`);
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND}/json/blog`
+        );
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -47,7 +49,7 @@ export default function Blog() {
   }, []); // Ensure the useEffect runs only once on mount
 
   if (loading) {
-    return <PageLoading/>; // Show a loading message while fetching data
+    return <PageLoading />; // Show a loading message while fetching data
   }
 
   return (
@@ -55,12 +57,15 @@ export default function Blog() {
       <Breadcrumb items={breadcrumbItems} />
 
       <Page>
-       <div>
-         <Title style={{ marginTop: '20px' }}>What’s new</Title>
-         <Parapraph style={{ marginBottom: '20px' }}>
-           Welcome to the Blog & Updates section! Here you’ll find news, updates, and documentation on the latest website developments, new features, design changes, and more. Stay tuned as we continuously improve your experience!
-         </Parapraph>
-       </div>
+        <div>
+          <Title style={{ marginTop: '20px' }}>What’s new</Title>
+          <Parapraph style={{ marginBottom: '20px' }}>
+            Welcome to the Blog & Updates section! Here you’ll find news,
+            updates, and documentation on the latest website developments, new
+            features, design changes, and more. Stay tuned as we continuously
+            improve your experience!
+          </Parapraph>
+        </div>
         <div className="blog_cards">
           {showBlogPosts.map((item, index: number) => {
             const hasLink = !!item.to; // Check if the 'to' prop exists
@@ -79,11 +84,19 @@ export default function Blog() {
                 )}
                 <div className="blog_title">
                   {item.news_type ? (
-                      <> <span className='blog_title_type'> {item.news_type}  </span> - </>
-                    ) : (
-                      <></>
-                    )}
-                  {item.title}</div>
+                    <>
+                      {' '}
+                      <span className="blog_title_type">
+                        {' '}
+                        {item.news_type}{' '}
+                      </span>{' '}
+                      -{' '}
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  {item.title}
+                </div>
                 <div className="blog_subtitle">{item.description}</div>
               </Link>
             );

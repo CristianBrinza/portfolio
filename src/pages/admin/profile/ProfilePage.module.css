@@ -1,103 +1,102 @@
 /* src/pages/admin/profile/ProfilePage.module.css */
 
 .profile_page {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile_page h2 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #317ce6;
-    padding-bottom: 5px;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #317ce6;
+  padding-bottom: 5px;
 }
 
 .form_group {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 15px;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+  align-items: center;
+  gap: 10px;
 }
 
 .form_group label {
-    font-size: 1rem;
-    color: #555;
-    width: 150px;
+  font-size: 1rem;
+  color: #555;
+  width: 150px;
 }
 
 .form_group input {
-    background-color: var(--theme_primary_color_white);
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 12px;
-    color: var(--theme_primary_color_black);
-    padding: 0 10px;
-    height: 46px;
-    box-sizing: border-box;
-    max-width: 300px;
-    width: 100%;
+  background-color: var(--theme_primary_color_white);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 12px;
+  color: var(--theme_primary_color_black);
+  padding: 0 10px;
+  height: 46px;
+  box-sizing: border-box;
+  max-width: 300px;
+  width: 100%;
 }
 
 .form_group input:focus {
-    outline: none;
-    border-color: #317ce6;
+  outline: none;
+  border-color: #317ce6;
 }
 
-button[type="submit"]{
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #317ce6;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+button[type='submit'] {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #317ce6;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover,
+button[type='submit']:hover,
 button:hover {
-    background-color: #1967D2;
+  background-color: #1967d2;
 }
 
 .notification {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .popup_actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
 }
 
-input[type="password"],
-input[type="text"] {
-    width: 100%;
+input[type='password'],
+input[type='text'] {
+  width: 100%;
 }
 
 @media (max-width: 600px) {
-    .profile_page {
-        padding: 15px;
-    }
+  .profile_page {
+    padding: 15px;
+  }
 }
-
 
 .profile_image_preview {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    border: 2px solid #ddd;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #ddd;
 }
 
-.profile_password_edit_title{
-    margin-top: 10px;
+.profile_password_edit_title {
+  margin-top: 10px;
 }

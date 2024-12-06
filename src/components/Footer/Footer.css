@@ -67,30 +67,27 @@
   display: flex;
   gap: 15px;
 }
-#footer_main_top_social_tiktok:hover svg path{
-  fill:#ff3797;
+#footer_main_top_social_tiktok:hover svg path {
+  fill: #ff3797;
 }
-#footer_main_top_social_linkedin:hover svg path{
-  fill:#008cc9;
+#footer_main_top_social_linkedin:hover svg path {
+  fill: #008cc9;
 }
-#footer_main_top_social_instagram:hover svg path{
-  fill:#fb324f;
+#footer_main_top_social_instagram:hover svg path {
+  fill: #fb324f;
 }
-#footer_main_top_social_facebook:hover svg path{
-  fill:#45619d;
+#footer_main_top_social_facebook:hover svg path {
+  fill: #45619d;
 }
-#footer_main_top_social_ok:hover svg path{
-  fill:#f2720c;
+#footer_main_top_social_ok:hover svg path {
+  fill: #f2720c;
 }
-#footer_main_top_social_telegram:hover svg path{
-  fill:#32afed;
+#footer_main_top_social_telegram:hover svg path {
+  fill: #32afed;
 }
-#footer_main_top_social_x_com:hover svg path{
-  fill:#55acee;
+#footer_main_top_social_x_com:hover svg path {
+  fill: #55acee;
 }
-
-
-
 
 @media (max-width: 550px) {
   .footer_main_top {

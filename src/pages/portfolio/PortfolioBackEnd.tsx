@@ -5,7 +5,7 @@ import './PortfolioBackEnd.css';
 import Footer from '../../components/Footer/Footer.tsx';
 import Page from '../../components/Page.tsx';
 import ShowCards from '../../components/show_card/ShowCards.tsx';
-import PageLoading from "../../components/PageLoading/PageLoading.tsx";
+import PageLoading from '../../components/PageLoading/PageLoading.tsx';
 
 interface ShowCardItem {
   title: string;
@@ -27,7 +27,9 @@ export default function PortfoliobackEnd() {
   useEffect(() => {
     const fetchshowCardItems1 = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`);
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND}/json/portfolio`
+        );
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -45,7 +47,9 @@ export default function PortfoliobackEnd() {
 
     const fetchshowCardItems2 = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`);
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND}/json/portfolio`
+        );
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -70,7 +74,7 @@ export default function PortfoliobackEnd() {
   ];
 
   if (loading) {
-    return <PageLoading/>;
+    return <PageLoading />;
   }
 
   return (

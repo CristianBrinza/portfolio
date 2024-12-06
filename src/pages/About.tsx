@@ -4,7 +4,7 @@ import Page from '../components/Page.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import PageContents from '../components/page_contents/PageContents.tsx';
 import '../styles/About.css';
-import DynamicMeta from "../components/DynamicMeta/DynamicMeta.tsx";
+import DynamicMeta from '../components/DynamicMeta/DynamicMeta.tsx';
 
 export default function About() {
   const breadcrumbItems = [
@@ -21,9 +21,9 @@ export default function About() {
   return (
     <>
       <DynamicMeta
-          title="Cristian Brinza - About me"
-          description="This the About me page"
-          keywords="Portfolio, About me, Cristian Brinza"
+        title="Cristian Brinza - About me"
+        description="This the About me page"
+        keywords="Portfolio, About me, Cristian Brinza"
       />
       <Breadcrumb items={breadcrumbItems} />
       <Page gap="50px" id="about_page">

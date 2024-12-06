@@ -1,64 +1,63 @@
 /* src/components/FilePreviewModal/FilePreviewModal.css */
 
 .file_preview_modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(8px);
-    z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  z-index: 999;
 }
 
 .file_preview_modal_content {
-    position: relative;
-    max-width: 800px;
-    width: 90%;
-    max-height: 80vh;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    overflow-y: auto;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  max-width: 800px;
+  width: 90%;
+  max-height: 80vh;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-y: auto;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .file_preview_modal img,
 .file_preview_modal iframe,
 .file_preview_modal textarea {
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: auto;
-    border: none;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  border: none;
 }
 
-
 .file_preview_modal .close_button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #555;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
 }
 
 .file_preview_modal .close_button:hover {
-    color: #333;
+  color: #333;
 }
 
 .file_preview_content {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .file_preview_content pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    max-height: 400px;
-    overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  max-height: 400px;
+  overflow-y: auto;
 }

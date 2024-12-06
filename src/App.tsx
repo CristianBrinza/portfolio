@@ -17,13 +17,17 @@ import ConsentBanner from './components/ConsentBanner/ConsentBanner';
 import DynamicPages from './components/DynamicPages/DynamicPages';
 import Login from './pages/admin/login/Login';
 import { AuthProvider } from './context/AuthContext';
-import NotFound from "./pages/NotFound.tsx";
+import NotFound from './pages/NotFound.tsx';
 
 const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG;
 const GTM_ID = import.meta.env.VITE_GTM_ID;
 const OfflinePage = React.lazy(() => import('./pages/OfflinePage'));
 
-function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => void }) {
+function LanguageInitializer({
+  onLanguageChange,
+}: {
+  onLanguageChange: () => void;
+}) {
   const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
@@ -36,7 +40,9 @@ function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => voi
     const detectedLang = pathParts[0]; // Extract the first part of the path
 
     // Skip language redirection for excluded paths
-    const isExcludedPath = excludedPaths.some((path) => location.pathname.startsWith(path));
+    const isExcludedPath = excludedPaths.some(path =>
+      location.pathname.startsWith(path)
+    );
     if (isExcludedPath) {
       return; // Do nothing for excluded paths
     }
@@ -55,15 +61,13 @@ function LanguageInitializer({ onLanguageChange }: { onLanguageChange: () => voi
   return null;
 }
 
-
-
 function AppContent() {
   const { t } = useTranslation();
   const [, setLanguageChanged] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const location = useLocation();
 
-  const handleLanguageChange = () => setLanguageChanged((prev) => !prev);
+  const handleLanguageChange = () => setLanguageChanged(prev => !prev);
 
   useEffect(() => {
     const updateNetworkStatus = () => setIsOnline(navigator.onLine);
@@ -145,46 +149,44 @@ function AppContent() {
   }, []);
 
   return (
-      <AuthProvider>
-        <div id="top_notification">
-          <span style={{ fontWeight: '600' }}>{t('website_warning.sorry')}</span>
-          &nbsp;{t('website_warning.sorry_message')}
-        </div>
-        <Notification>{t('website_warning.sorry_message')}</Notification>
-        {showNotification && (
-            <Notification type="error">
-              Sorry, Back-end is down
-            </Notification>
+    <AuthProvider>
+      <div id="top_notification">
+        <span style={{ fontWeight: '600' }}>{t('website_warning.sorry')}</span>
+        &nbsp;{t('website_warning.sorry_message')}
+      </div>
+      <Notification>{t('website_warning.sorry_message')}</Notification>
+      {showNotification && (
+        <Notification type="error">Sorry, Back-end is down</Notification>
+      )}
+      <LanguageInitializer onLanguageChange={handleLanguageChange} />
+      <LanguageProvider>
+        {isOnline ? (
+          <Routes>
+            {routes.map(({ path, element }, index) => (
+              <Route key={index} path={path} element={element} />
+            ))}
+            <Route path="/:lang/login" element={<Login />} />
+            <Route path="/*" element={<DynamicPages />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        ) : (
+          <Suspense fallback={<div>Loading offline page...</div>}>
+            <OfflinePage />
+          </Suspense>
         )}
-        <LanguageInitializer onLanguageChange={handleLanguageChange} />
-        <LanguageProvider>
-          {isOnline ? (
-              <Routes>
-                {routes.map(({ path, element }, index) => (
-                    <Route key={index} path={path} element={element} />
-                ))}
-                <Route path="/:lang/login" element={<Login />} />
-                <Route path="/*" element={<DynamicPages />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-          ) : (
-              <Suspense fallback={<div>Loading offline page...</div>}>
-                <OfflinePage/>
-              </Suspense>
-          )}
-          <ConsentBanner/>
-        </LanguageProvider>
-      </AuthProvider>
+        <ConsentBanner />
+      </LanguageProvider>
+    </AuthProvider>
   );
 }
 
 function App() {
   return (
-      <I18nextProvider i18n={i18n}>
-        <BrowserRouter>
-          <AppContent/>
-        </BrowserRouter>
-      </I18nextProvider>
+    <I18nextProvider i18n={i18n}>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </I18nextProvider>
   );
 }
 

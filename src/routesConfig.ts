@@ -27,24 +27,24 @@ import PortfolioFrontEnd from './pages/portfolio/PortfolioFrontEnd.tsx';
 import PortfolioDesign from './pages/portfolio/PortfolioDesign.tsx';
 import ScreenSize from './pages/utilities/screen_size/ScreenSize.tsx';
 import OfflinePage from './pages/OfflinePage.tsx';
-import Ip from "./pages/utilities/ip/Ip.tsx";
-import Consent from "./pages/Consent.tsx";
-import Test from "./pages/test/Test.tsx";
-import Certifications from "./pages/certifications/Certifications.tsx";
-import PortfolioManager from "./pages/admin/portfolio/PortfolioManager.tsx";
-import Admin from "./pages/admin/admin/Admin.tsx";
-import Dashboard from "./pages/admin/dashboard/Dashboard.tsx";
-import GuestPage from "./pages/admin/guest/GuestPage.tsx";
-import FileManager from "./pages/admin/file_manager/FileManager.tsx";
-import ProfilePage from "./pages/admin/profile/ProfilePage.tsx";
-import PasswordPage from "./pages/admin/profile/PasswordPage.tsx";
-import CertificationManager from "./pages/admin/certification/CertificationManager.tsx";
-import ImageManager from "./pages/admin/images/ImageManager.tsx";
-import Login from "./pages/admin/login/Login.tsx";
-import BlogManager from "./pages/admin/BlogManager/BlogManager.tsx";
-import PagesManager from "./pages/admin/PagesManager/PagesManager.tsx";
-import ShareManager from "./pages/admin/ShareManager/ShareManager.tsx";
-import SharedFilesPage from "./pages/SharedFilesPage/SharedFilesPage.tsx";
+import Ip from './pages/utilities/ip/Ip.tsx';
+import Consent from './pages/Consent.tsx';
+import Test from './pages/test/Test.tsx';
+import Certifications from './pages/certifications/Certifications.tsx';
+import PortfolioManager from './pages/admin/portfolio/PortfolioManager.tsx';
+import Admin from './pages/admin/admin/Admin.tsx';
+import Dashboard from './pages/admin/dashboard/Dashboard.tsx';
+import GuestPage from './pages/admin/guest/GuestPage.tsx';
+import FileManager from './pages/admin/file_manager/FileManager.tsx';
+import ProfilePage from './pages/admin/profile/ProfilePage.tsx';
+import PasswordPage from './pages/admin/profile/PasswordPage.tsx';
+import CertificationManager from './pages/admin/certification/CertificationManager.tsx';
+import ImageManager from './pages/admin/images/ImageManager.tsx';
+import Login from './pages/admin/login/Login.tsx';
+import BlogManager from './pages/admin/BlogManager/BlogManager.tsx';
+import PagesManager from './pages/admin/PagesManager/PagesManager.tsx';
+import ShareManager from './pages/admin/ShareManager/ShareManager.tsx';
+import SharedFilesPage from './pages/SharedFilesPage/SharedFilesPage.tsx';
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -57,7 +57,10 @@ export const routes = [
   { path: '/:lang/legal', element: React.createElement(Legal) },
   { path: '/:lang/privacy', element: React.createElement(Consent) },
   { path: '/:lang/offline', element: React.createElement(OfflinePage) },
-  { path: '/:lang/certifications', element: React.createElement(Certifications) },
+  {
+    path: '/:lang/certifications',
+    element: React.createElement(Certifications),
+  },
   { path: '/:lang/test', element: React.createElement(Test) },
 
   { path: '/:lang/utilities', element: React.createElement(Utilities) },
@@ -134,10 +137,10 @@ export const routes = [
   },
 
   {
-  path: '/:lang/dashboard',
+    path: '/:lang/dashboard',
     element: React.createElement(Dashboard),
     allowedRoles: ['guest', 'user', 'admin'],
-},
+  },
   {
     path: '/:lang/admin',
     element: React.createElement(Admin),
@@ -172,7 +175,8 @@ export const routes = [
     path: '/:lang/dashboard/blog-manager',
     element: React.createElement(BlogManager),
     allowedRoles: ['admin', 'user'],
-  }, {
+  },
+  {
     path: '/:lang/dashboard/pages-manager',
     element: React.createElement(PagesManager),
     allowedRoles: ['admin', 'user'],
@@ -197,7 +201,6 @@ export const routes = [
     element: React.createElement(SharedFilesPage),
   },
 
-
   // { path: '*', element: React.createElement(NotFound) },
- // { path: '/:lang/404', element: React.createElement(NotFound) },
+  // { path: '/:lang/404', element: React.createElement(NotFound) },
 ];

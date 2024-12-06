@@ -69,7 +69,7 @@
 
 #home_portfolio_block {
   width: 100vw;
-margin-left: calc((100vw - 100%) / -2);
+  margin-left: calc((100vw - 100%) / -2);
   box-sizing: border-box;
   margin-top: -10px;
   background: #1c1c1c;
@@ -77,11 +77,11 @@ margin-left: calc((100vw - 100%) / -2);
   color: white;
 }
 
-.home_footer{
-  margin-top: 30px!important;
+.home_footer {
+  margin-top: 30px !important;
 }
 
-.home_block_work{
+.home_block_work {
   width: 100%;
   display: flex;
   align-items: center;
@@ -89,7 +89,7 @@ margin-left: calc((100vw - 100%) / -2);
   color: #999;
 }
 
-.home_hero_about{
+.home_hero_about {
   position: absolute;
   border-left: 2px solid var(--theme_primary_color_black);
   padding-left: 5px;
@@ -101,46 +101,44 @@ margin-left: calc((100vw - 100%) / -2);
   line-height: 23.04px;
   bottom: 18%;
   right: 10%;
-
 }
 
-.home_loader{
+.home_loader {
   width: 100vw;
   height: 100vh;
   position: absolute;
   background: var(--theme_primary_color_white);
-  top:0px;
+  top: 0px;
   z-index: 999999999;
 }
 
 .home_block_links {
   margin-top: -20px;
 }
-.home_block_links_btns{
+.home_block_links_btns {
   width: 100%;
   display: flex;
-  gap:10px 10px;
+  gap: 10px 10px;
   justify-content: space-between;
   flex-wrap: wrap;
   flex-direction: row;
 }
-.home_block_links_btn{
-width: calc((100% / 2) - 5px);
+.home_block_links_btn {
+  width: calc((100% / 2) - 5px);
   display: flex !important;
-  justify-content: space-between!important;
-  align-items: center!important;
-  font-size: 16.8px!important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 16.8px !important;
 }
 
 .home_block_links_btn_icon {
-  transform: translateX(0)!important;
+  transform: translateX(0) !important;
   transition: transform 0.3s ease; /* Smooth easing for the animation */
 }
 
 .home_block_links_btn:hover .home_block_links_btn_icon {
-  transform: translateX(4px)!important; /* Moves the icon 4px to the right */
+  transform: translateX(4px) !important; /* Moves the icon 4px to the right */
 }
-
 
 @media (max-width: 1100px) {
   .home_page_paraghaph {
@@ -179,10 +177,10 @@ width: calc((100% / 2) - 5px);
     display: none;
   }
 
-  .home_hero_about{
-   display: none;
+  .home_hero_about {
+    display: none;
   }
-  .home_block_links_btn{
+  .home_block_links_btn {
     width: 100%;
   }
 }
@@ -192,5 +190,3 @@ width: calc((100% / 2) - 5px);
     height: 70vh;
   }
 }
-
-

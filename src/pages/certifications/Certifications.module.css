@@ -1,75 +1,76 @@
-.certification_block{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 20px;
+.certification_block {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
 }
 
-.certification_card{
-    width: calc((100% - 60px) / 4);
-    border: 1px solid var(--theme_primary_color_darker_gray);
-    border-radius: 12px;
-    box-sizing: border-box;
-    padding: 20px 20px 0;
-    transform: scale(1.00);
-    transition: transform 0.2s ease-in-out;
+.certification_card {
+  width: calc((100% - 60px) / 4);
+  border: 1px solid var(--theme_primary_color_darker_gray);
+  border-radius: 12px;
+  box-sizing: border-box;
+  padding: 20px 20px 0;
+  transform: scale(1);
+  transition: transform 0.2s ease-in-out;
 }
 .certification_card_pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 .certification_card_not_allowed {
-    cursor: not-allowed;
+  cursor: not-allowed;
 }
-.certification_card:hover{
-    transform: scale(1.02);
+.certification_card:hover {
+  transform: scale(1.02);
 }
 
-.certification_by{
-    height: 12px;
-    font-size: 12px;
-    line-height: 12px;
-    margin-top: 3px;
+.certification_by {
+  height: 12px;
+  font-size: 12px;
+  line-height: 12px;
+  margin-top: 3px;
 }
 
 .certification_title {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 16px;
-    line-height: 1.2;
-    margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
 
-.certification_img{
-    width: 80%;
-margin-left: 10%}
+.certification_img {
+  width: 80%;
+  margin-left: 10%;
+}
 
-.certification_description{
-    font-size: 10px;
-    line-height: 10px;
-    height: 22px;
-    margin-top: 3px;
-    color: var(--theme_primary_color_darkest_gray);
+.certification_description {
+  font-size: 10px;
+  line-height: 10px;
+  height: 22px;
+  margin-top: 3px;
+  color: var(--theme_primary_color_darkest_gray);
 }
 
 @media (max-width: 1300px) {
-    .certification_card {
-        width: calc((100% - 40px) / 3);
-    }
+  .certification_card {
+    width: calc((100% - 40px) / 3);
+  }
 }
 
 @media (max-width: 950px) {
-    .certification_card {
-        width: calc((100% - 20px) / 2);
-    }
+  .certification_card {
+    width: calc((100% - 20px) / 2);
+  }
 }
 
 @media (max-width: 500px) {
-    .certification_card {
-        width: 100%;
-    }
+  .certification_card {
+    width: 100%;
+  }
 }

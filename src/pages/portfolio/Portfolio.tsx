@@ -6,7 +6,7 @@ import LinkButton from '../../components/LinkButton.tsx';
 import Notification from '../../components/Notification/Notification.tsx';
 import { useState } from 'react';
 import styles from './Portfolio.module.css';
-import FeedbackMenu from "../../components/FeedbackMenu/FeedbackMenu.tsx"; // Importing CSS Module
+import FeedbackMenu from '../../components/FeedbackMenu/FeedbackMenu.tsx'; // Importing CSS Module
 import DynamicMeta from '../../components/DynamicMeta/DynamicMeta';
 
 export default function Portfolio() {
@@ -35,9 +35,9 @@ export default function Portfolio() {
   return (
     <>
       <DynamicMeta
-          title="Cristian Brinza - Portfolio"
-          description="This the Portfolio showcase page"
-          keywords="Portfolio, Fontend, Backend, Design"
+        title="Cristian Brinza - Portfolio"
+        description="This the Portfolio showcase page"
+        keywords="Portfolio, Fontend, Backend, Design"
       />
       <Breadcrumb items={breadcrumbItems} />
       <Page minHeight="80vh" gap="50px">
@@ -136,7 +136,7 @@ export default function Portfolio() {
         </div>
       </Page>
       <Footer />
-      <FeedbackMenu/>
+      <FeedbackMenu />
     </>
   );
 }

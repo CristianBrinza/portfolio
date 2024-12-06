@@ -10,11 +10,11 @@ interface LinkButtonProps {
 }
 
 const LinkButton: React.FC<LinkButtonProps> = ({
-                                                 color = '#1967D2',
-                                                 children,
-                                                 className = '',
-                                                 to,
-                                               }) => {
+  color = '#1967D2',
+  children,
+  className = '',
+  to,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   // Calculate a darker color for hover
@@ -49,25 +49,35 @@ const LinkButton: React.FC<LinkButtonProps> = ({
   };
 
   return to ? (
-      <Link
-          to={to}
-          className={`LinkButton ${className}`}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          style={LinkButtonStyle}
-      >
-        {children}
-        <Icon className="LinkButton_arrow" type="arrow" style={arrowStyle} color={isHovered ? darkerColor : color} />
-      </Link>
-  ) : (
-      <span
-          className={`LinkButton ${className}`}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          style={LinkButtonStyle}
-      >
+    <Link
+      to={to}
+      className={`LinkButton ${className}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={LinkButtonStyle}
+    >
       {children}
-        <Icon className="LinkButton_arrow" type="arrow" style={arrowStyle} color={isHovered ? darkerColor : color} />
+      <Icon
+        className="LinkButton_arrow"
+        type="arrow"
+        style={arrowStyle}
+        color={isHovered ? darkerColor : color}
+      />
+    </Link>
+  ) : (
+    <span
+      className={`LinkButton ${className}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={LinkButtonStyle}
+    >
+      {children}
+      <Icon
+        className="LinkButton_arrow"
+        type="arrow"
+        style={arrowStyle}
+        color={isHovered ? darkerColor : color}
+      />
     </span>
   );
 };
@@ -75,18 +85,20 @@ const LinkButton: React.FC<LinkButtonProps> = ({
 // Function to darken the color
 function shadeColor(color: string, percent: number) {
   let num = parseInt(color.replace('#', ''), 16),
-      amt = Math.round(2.55 * percent),
-      R = (num >> 16) + amt,
-      G = ((num >> 8) & 0x00ff) + amt,
-      B = (num & 0x0000ff) + amt;
+    amt = Math.round(2.55 * percent),
+    R = (num >> 16) + amt,
+    G = ((num >> 8) & 0x00ff) + amt,
+    B = (num & 0x0000ff) + amt;
   return (
-      '#' +
-      (0x1000000 +
-          (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
-          (G < 255 ? (G < 1 ? 0 : G) : 255) * 0x100 +
-          (B < 255 ? (B < 1 ? 0 : B) : 255))
-          .toString(16)
-          .slice(1)
+    '#' +
+    (
+      0x1000000 +
+      (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+      (G < 255 ? (G < 1 ? 0 : G) : 255) * 0x100 +
+      (B < 255 ? (B < 1 ? 0 : B) : 255)
+    )
+      .toString(16)
+      .slice(1)
   );
 }
 

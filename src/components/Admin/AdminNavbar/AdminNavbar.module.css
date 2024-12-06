@@ -2,7 +2,7 @@
   margin: auto;
   margin-top: 10px;
   margin-bottom: 4px;
-  max-width: 1900px;;
+  max-width: 1900px;
   width: 98vw;
   display: flex;
   justify-content: start;
@@ -160,20 +160,29 @@
   position: relative;
   border: 1.5px solid #0000 !important;
   border-radius: 12px;
-  background: linear-gradient(var(--theme_primary_color_white), var(--theme_primary_color_white)) padding-box,
-  linear-gradient(var(--angle), #fb6dfeff, #53e1ff) border-box;
+  background:
+    linear-gradient(
+        var(--theme_primary_color_white),
+        var(--theme_primary_color_white)
+      )
+      padding-box,
+    linear-gradient(var(--angle), #fb6dfeff, #53e1ff) border-box;
   animation: 8s rotate linear infinite;
-  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
 }
 
 .home_portfolio_btn:hover::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--theme_primary_color_darkest_gray_20p_opacity); /* Semi-transparent overlay */
+  background: var(
+    --theme_primary_color_darkest_gray_20p_opacity
+  ); /* Semi-transparent overlay */
   border-radius: inherit; /* Ensure the mask follows the button's border-radius */
   pointer-events: none; /* Allow clicking through the mask */
 }
@@ -194,7 +203,8 @@
   cursor: pointer;
 }
 
-.navbar_on_hover, .navbar_on_hover_text {
+.navbar_on_hover,
+.navbar_on_hover_text {
   transition: transform 0.1s ease-in-out;
 }
 
@@ -206,7 +216,6 @@
   transform: scale(1.03);
 }
 
-
 .profileImageContainer {
   position: relative;
 }
@@ -217,11 +226,6 @@
   border-radius: 50%;
   cursor: pointer;
 }
-
-
-
-
-
 
 .profileContainer {
   position: relative;
@@ -237,7 +241,6 @@
   object-fit: cover;
   border: 2px solid #ddd;
 }
-
 
 .profilePopup button {
   display: block;
@@ -258,7 +261,6 @@
   display: flex;
   align-items: center;
 }
-
 
 .initialsCircle {
   width: 36px;
@@ -284,7 +286,7 @@
   top: auto;
   bottom: auto;
   margin-top: 5px;
-  }
+}
 
 .profileImage {
   width: 36px;

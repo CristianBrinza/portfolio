@@ -336,7 +336,6 @@ export default function Legal() {
             Compliance page, including the exercise of your data protection
             rights, please reach out via the contact details provided on the
             website.
-
           </div>
         </div>
         <PageContents id="about_page_contents" sections={sections} />

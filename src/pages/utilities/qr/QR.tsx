@@ -22,7 +22,9 @@ export default function QR() {
 
   const handleDownload = () => {
     if (qrType === 'png') {
-      const canvas = document.querySelector('.qr_container canvas') as HTMLCanvasElement; // Explicitly cast to HTMLCanvasElement
+      const canvas = document.querySelector(
+        '.qr_container canvas'
+      ) as HTMLCanvasElement; // Explicitly cast to HTMLCanvasElement
       if (canvas) {
         const offscreenCanvas = document.createElement('canvas');
         offscreenCanvas.width = qrSize;
@@ -31,15 +33,15 @@ export default function QR() {
         const ctx = offscreenCanvas.getContext('2d');
         if (ctx) {
           ctx.drawImage(
-              canvas,
-              0,
-              0,
-              canvas.width,
-              canvas.height,
-              0,
-              0,
-              qrSize,
-              qrSize
+            canvas,
+            0,
+            0,
+            canvas.width,
+            canvas.height,
+            0,
+            0,
+            qrSize,
+            qrSize
           );
 
           // Download the resized canvas as a PNG
@@ -50,7 +52,9 @@ export default function QR() {
         }
       }
     } else if (qrType === 'svg') {
-      const svgElement = document.querySelector('.qr_container svg') as SVGSVGElement; // Explicitly cast to SVGSVGElement
+      const svgElement = document.querySelector(
+        '.qr_container svg'
+      ) as SVGSVGElement; // Explicitly cast to SVGSVGElement
       if (svgElement) {
         const svgData = new XMLSerializer().serializeToString(svgElement);
         const svgBlob = new Blob([svgData], { type: 'image/svg+xml' });
@@ -64,7 +68,9 @@ export default function QR() {
 
   const handleCopy = () => {
     if (qrType === 'png') {
-      const canvas = document.querySelector('.qr_container canvas') as HTMLCanvasElement; // Explicitly cast to HTMLCanvasElement
+      const canvas = document.querySelector(
+        '.qr_container canvas'
+      ) as HTMLCanvasElement; // Explicitly cast to HTMLCanvasElement
       if (canvas) {
         const offscreenCanvas = document.createElement('canvas');
         offscreenCanvas.width = qrSize;
@@ -73,17 +79,17 @@ export default function QR() {
         const ctx = offscreenCanvas.getContext('2d');
         if (ctx) {
           ctx.drawImage(
-              canvas,
-              0,
-              0,
-              canvas.width,
-              canvas.height,
-              0,
-              0,
-              qrSize,
-              qrSize
+            canvas,
+            0,
+            0,
+            canvas.width,
+            canvas.height,
+            0,
+            0,
+            qrSize,
+            qrSize
           );
-          offscreenCanvas.toBlob((blob) => {
+          offscreenCanvas.toBlob(blob => {
             if (blob) {
               const item = new ClipboardItem({ 'image/png': blob });
               navigator.clipboard.write([item]);
@@ -93,7 +99,9 @@ export default function QR() {
         }
       }
     } else if (qrType === 'svg') {
-      const svgElement = document.querySelector('.qr_container svg') as SVGSVGElement; // Explicitly cast to SVGSVGElement
+      const svgElement = document.querySelector(
+        '.qr_container svg'
+      ) as SVGSVGElement; // Explicitly cast to SVGSVGElement
       if (svgElement) {
         const svgData = new XMLSerializer().serializeToString(svgElement);
         const svgBlob = new Blob([svgData], { type: 'image/svg+xml' });

@@ -13,11 +13,11 @@ import ShowCards from '../../components/show_card/ShowCards.tsx';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Page from "../../components/Page.tsx";
-import FeedbackMenu from "../../components/FeedbackMenu/FeedbackMenu.tsx";
-import Button from "../../components/Button.tsx";
-import Icon from "../../components/Icon.tsx";
-import Navbar from "../../components/Navbar/Navbar.tsx";
+import Page from '../../components/Page.tsx';
+import FeedbackMenu from '../../components/FeedbackMenu/FeedbackMenu.tsx';
+import Button from '../../components/Button.tsx';
+import Icon from '../../components/Icon.tsx';
+import Navbar from '../../components/Navbar/Navbar.tsx';
 
 interface ShowCardItem {
   title: string;
@@ -93,18 +93,19 @@ export default function Home() {
     };
   }, []);
 
-
-
   const [showCardItems, setshowCardItems] = useState<ShowCardItem[]>([]);
 
   useEffect(() => {
     const fetchshowCardItems = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND}/json/portfolio`, {
-          headers: {
-            'ngrok-skip-browser-warning': 'true'
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND}/json/portfolio`,
+          {
+            headers: {
+              'ngrok-skip-browser-warning': 'true',
+            },
           }
-        });
+        );
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -160,7 +161,7 @@ export default function Home() {
         <div className={`main page`}>
           <div className={styles.home_hero}>
             <div className={styles.home_hero_about}>
-              Designer <br/>
+              Designer <br />
               Full-Stack Developer
             </div>
             <svg
@@ -205,31 +206,31 @@ export default function Home() {
       </div>
 
       <div className={`main page`}>
-        <div style={{margin: '40px auto 0 auto', maxWidth: '980px'}}>
+        <div style={{ margin: '40px auto 0 auto', maxWidth: '980px' }}>
           <Hashtags
-              tags={[
-                'design',
-                'development',
-                'frontend',
-                'backend',
-                'html',
-                'css',
-                'js',
-                'react',
-                'nodejs',
-                'jquery',
-                'bootstrap',
-                'tailwind',
-                'figma',
-                'photoshop',
-                'illustrator',
-                'ux',
-                'ui',
-                'mongodb',
-                'python',
-                'express',
-                'jwt',
-              ]}
+            tags={[
+              'design',
+              'development',
+              'frontend',
+              'backend',
+              'html',
+              'css',
+              'js',
+              'react',
+              'nodejs',
+              'jquery',
+              'bootstrap',
+              'tailwind',
+              'figma',
+              'photoshop',
+              'illustrator',
+              'ux',
+              'ui',
+              'mongodb',
+              'python',
+              'express',
+              'jwt',
+            ]}
           />
         </div>
         <div className={styles.home_block}>
@@ -238,25 +239,18 @@ export default function Home() {
             <Trans>about_me.self_description</Trans>
           </Parapraph>
           <div className={`reveal ${styles.home_block_about_me_links}`}>
-            <LinkButton to="/about">
-              See more
-            </LinkButton>
-            <LinkButton to="/contact">
-              Contact me
-            </LinkButton>
+            <LinkButton to="/about">See more</LinkButton>
+            <LinkButton to="/contact">Contact me</LinkButton>
           </div>
         </div>
 
-        <div id={styles.home_portfolio_block} style={{display: "none"}}>
-
+        <div id={styles.home_portfolio_block} style={{ display: 'none' }}>
           <Page minHeight={'100px'}>
-            ddd <br/>
-            ddd <br/>
-            ddd <br/>
-            ddd <br/>
+            ddd <br />
+            ddd <br />
+            ddd <br />
+            ddd <br />
           </Page>
-
-
         </div>
 
         <div className={styles.home_block}>
@@ -269,7 +263,7 @@ export default function Home() {
           </Parapraph>
 
           <div className="reveal" id="home_portfolio_block_top_projects">
-            <ShowCards items={showCardItems} className="show_cards_home"/>
+            <ShowCards items={showCardItems} className="show_cards_home" />
           </div>
         </div>
 
@@ -278,88 +272,123 @@ export default function Home() {
             Useful links
           </Title>
 
-          <div className={`reveal ${styles.home_block_links_btns}`} >
+          <div className={`reveal ${styles.home_block_links_btns}`}>
             <Button
-                to="https://github.com/CristianBrinza/portfolio"
-                className={styles.home_block_links_btn}
-                bgcolor="var(--theme_primary_color_dark_gray)"
-                border="var(--theme_primary_color_dark_gray)"
-                hover_bgcolor="var(--theme_primary_color_darkest_gray)"
+              to="https://github.com/CristianBrinza/portfolio"
+              className={styles.home_block_links_btn}
+              bgcolor="var(--theme_primary_color_dark_gray)"
+              border="var(--theme_primary_color_dark_gray)"
+              hover_bgcolor="var(--theme_primary_color_darkest_gray)"
             >
               Portfolio source code
-              <Icon size='28px' className={styles.home_block_links_btn_icon} type="arrow"  />
+              <Icon
+                size="28px"
+                className={styles.home_block_links_btn_icon}
+                type="arrow"
+              />
             </Button>
             <Button
-                to="/certifications"
-                className={styles.home_block_links_btn}
-                bgcolor="var(--theme_primary_color_dark_gray)"
-                border="var(--theme_primary_color_dark_gray)"
-                hover_bgcolor="var(--theme_primary_color_darkest_gray)"
+              to="/certifications"
+              className={styles.home_block_links_btn}
+              bgcolor="var(--theme_primary_color_dark_gray)"
+              border="var(--theme_primary_color_dark_gray)"
+              hover_bgcolor="var(--theme_primary_color_darkest_gray)"
             >
-              Certifications &
-              Courses
-              <Icon size='28px' className={styles.home_block_links_btn_icon} type="arrow"  />
+              Certifications & Courses
+              <Icon
+                size="28px"
+                className={styles.home_block_links_btn_icon}
+                type="arrow"
+              />
             </Button>
             <Button
-                className={styles.home_block_links_btn}
-                bgcolor="var(--theme_primary_color_dark_gray)"
-                border="var(--theme_primary_color_dark_gray)"
-                hover_bgcolor="var(--theme_primary_color_darkest_gray)"
-
+              className={styles.home_block_links_btn}
+              bgcolor="var(--theme_primary_color_dark_gray)"
+              border="var(--theme_primary_color_dark_gray)"
+              hover_bgcolor="var(--theme_primary_color_darkest_gray)"
             >
               My stack
-              <Icon size='28px' className={styles.home_block_links_btn_icon} type="arrow"  />
+              <Icon
+                size="28px"
+                className={styles.home_block_links_btn_icon}
+                type="arrow"
+              />
             </Button>
-
           </div>
         </div>
 
-
-        <div className={styles.home_block} style={{display: "none"}}>
+        <div className={styles.home_block} style={{ display: 'none' }}>
           <div className={`reveal ${styles.home_block_work}`}>
-
             <Title className={`reveal ${styles.home_block_title}`}>
               Meet my workplaces
             </Title>
           </div>
         </div>
-        <div style={{marginTop: '-60px', display: "none"}}>
+        <div style={{ marginTop: '-60px', display: 'none' }}>
           <Slider {...settings}>
             <div>
-              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
-                                                              src="/images/workplaces/secret.png" alt="work"/></div>
+              <div className={styles.home_my_work_block}>
+                <img
+                  style={{ width: '100%' }}
+                  src="/images/workplaces/secret.png"
+                  alt="work"
+                />
+              </div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
-                                                              src="/images/workplaces/secret.png" alt="work"/></div>
+              <div className={styles.home_my_work_block}>
+                <img
+                  style={{ width: '100%' }}
+                  src="/images/workplaces/secret.png"
+                  alt="work"
+                />
+              </div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
-                                                              src="/images/workplaces/secret.png" alt="work"/></div>
+              <div className={styles.home_my_work_block}>
+                <img
+                  style={{ width: '100%' }}
+                  src="/images/workplaces/secret.png"
+                  alt="work"
+                />
+              </div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
-                                                              src="/images/workplaces/secret.png" alt="work"/></div>
+              <div className={styles.home_my_work_block}>
+                <img
+                  style={{ width: '100%' }}
+                  src="/images/workplaces/secret.png"
+                  alt="work"
+                />
+              </div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
-                                                              src="/images/workplaces/secret.png" alt="work"/></div>
+              <div className={styles.home_my_work_block}>
+                <img
+                  style={{ width: '100%' }}
+                  src="/images/workplaces/secret.png"
+                  alt="work"
+                />
+              </div>
             </div>
             <div>
-              <div className={styles.home_my_work_block}><img style={{width: '100%'}}
-                                                              src="/images/workplaces/secret.png" alt="work"/></div>
+              <div className={styles.home_my_work_block}>
+                <img
+                  style={{ width: '100%' }}
+                  src="/images/workplaces/secret.png"
+                  alt="work"
+                />
+              </div>
             </div>
           </Slider>
         </div>
       </div>
 
-      <BottomMenu/>
-      <Footer className={styles.home_footer}/>
-      <FeedbackMenu/>
+      <BottomMenu />
+      <Footer className={styles.home_footer} />
+      <FeedbackMenu />
 
-      <div className={styles.home_loader} style={{display: "none"}}>
-
-      </div>
+      <div className={styles.home_loader} style={{ display: 'none' }}></div>
     </>
   );
 }

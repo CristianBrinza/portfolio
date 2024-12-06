@@ -40,8 +40,8 @@
   color: var(--theme_primary_color_black);
 }
 
-.blog_title_type{
- /*
+.blog_title_type {
+  /*
   -webkit-text-stroke-width: 1.5px;
   -webkit-text-stroke-color: var(--theme_primary_color_dark_gray);
   color: transparent;
