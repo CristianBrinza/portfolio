@@ -1,13 +1,15 @@
-.app_login_body{
+.app_login_body {
   background: var(--theme_primary_color_red);
   height: 100vh;
   overflow: hidden;
 }
 .app_login {
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   box-sizing: border-box;
   padding: 10px;
+  overflow: hidden;
 }
 
 .app_login_form_block {
@@ -22,9 +24,9 @@
   color: var(--theme_primary_color_white) !important;
 }
 
-.app_login_form_input label{
+.app_login_form_input label {
   color: var(--theme_primary_color_white) !important;
-  background: var(--theme_primary_color_red) !important; ;
+  background: var(--theme_primary_color_red) !important;
 }
 .app_login_form {
   display: flex;
@@ -40,4 +42,42 @@
 }
 .app_login_form_btn {
   height: 55px;
+}
+
+.iosSafariPrompt {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.iosSafariPrompt p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.iosSafariPrompt span {
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.32);
+  color: black;
+  padding: 12px 4px 2px;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.iosSafariPrompt strong {
+  color: #e40523;
+  font-weight: bold;
+  text-decoration: underline;
 }

@@ -1,10 +1,9 @@
 import React from 'react';
 import Button from '../../../components/Button';
-import {useActivePage} from "../../context/AppActivePageContext.tsx";
-
+import { useActivePage } from '../../context/AppActivePageContext.tsx';
 
 const Navigation: React.FC = () => {
-    const { setActivePage } = useActivePage();
+  const { setActivePage } = useActivePage();
   return (
     <div>
       <Button onClick={() => setActivePage('profile')}>Home</Button>

@@ -12,19 +12,21 @@ interface TextFieldProps {
   required?: boolean;
   placeholder?: string;
   className?: string;
+  disabled?: boolean;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
-                                               id,
-                                               label,
-                                               name,
-                                               type = 'text',
-                                               value,
-                                               onChange,
-                                               required = false,
-                                               placeholder = '',
-                                               className = '',
-                                             }) => {
+  id,
+  label,
+  name,
+  type = 'text',
+  value,
+  onChange,
+  required = false,
+  placeholder = '',
+  className = '',
+  disabled = false,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -32,30 +34,31 @@ const TextField: React.FC<TextFieldProps> = ({
   };
 
   return (
-      <div className={`app_form_input ${className}`}>
-        <input
-            id={id}
-            name={name}
-            type={type === 'password' && !showPassword ? 'password' : 'text'}
-            value={value}
-            onChange={onChange}
-            required={required}
-            placeholder={placeholder || label} // Label doubles as a placeholder
-        />
-        <label htmlFor={id}>{label}</label>
-        {type === 'password' && (
-            <div
-                className="password-toggle-icon"
-                onClick={togglePasswordVisibility}
-            >
-              {showPassword ? (
-                  <Icon type="pass_show" color="var(--theme_primary_color_white)" />
-              ) : (
-                  <Icon type="pass_hide" color="var(--theme_primary_color_white)" />
-              )}
-            </div>
-        )}
-      </div>
+    <div className={`app_form_input ${className}`}>
+      <input
+        id={id}
+        name={name}
+        type={type === 'password' && !showPassword ? 'password' : 'text'}
+        value={value}
+        onChange={onChange}
+        required={required}
+        placeholder={placeholder || label}
+        disabled={disabled}
+      />
+      <label htmlFor={id}>{label}</label>
+      {type === 'password' && (
+        <div
+          className="password-toggle-icon"
+          onClick={togglePasswordVisibility}
+        >
+          {showPassword ? (
+            <Icon type="pass_show" color="var(--theme_primary_color_white)" />
+          ) : (
+            <Icon type="pass_hide" color="var(--theme_primary_color_white)" />
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 

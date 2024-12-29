@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AppAuthContext';
 import { useActivePage } from '../../context/AppActivePageContext';
 import Button from '../../../components/Button';
 import TextField from '../../components/textfield/TextField';
 import styles from './AppLogin.module.css';
-import BodyClassManager from "../../components/BodyClassManager.tsx";
-import Notification from "../../../components/Notification/Notification.tsx";
-import MetaAndBodyManager from "../../components/MetaAndBodyManager.tsx";
+import BodyClassManager from '../../components/BodyClassManager.tsx';
+import Notification from '../../../components/Notification/Notification.tsx';
+import MetaAndBodyManager from '../../components/MetaAndBodyManager.tsx';
+import Icon from '../../../components/Icon.tsx';
 
 const AppLogin: React.FC = () => {
   const { login } = useAuth();
@@ -29,10 +30,37 @@ const AppLogin: React.FC = () => {
     }
   };
 
+  const [isIosSafari, setIsIosSafari] = useState(false);
+
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent;
+    const isIos = /iPhone|iPad|iPod/.test(userAgent);
+    const isStandalone =
+      window.navigator.standalone ||
+      window.matchMedia('(display-mode: standalone)').matches;
+
+    setIsIosSafari(isIos && !isStandalone);
+  }, []);
+
   return (
     <div className={styles.app_login}>
+      {isIosSafari && (
+        <div className={styles.iosSafariPrompt}>
+          <p>
+            Tap{' '}
+            <span>
+              <Icon type="share" color="var(--theme_primary_color_white)" />
+            </span>{' '}
+            and then <strong>Add to Home Screen</strong> to install this app.
+          </p>
+        </div>
+      )}
+
       <BodyClassManager className={styles.app_login_body} />
-      <MetaAndBodyManager themeColor="#e40523" bodyBackgroundColor="var(--theme_primary_color_red)" />
+      <MetaAndBodyManager
+        themeColor="#e40523"
+        bodyBackgroundColor="var(--theme_primary_color_red)"
+      />
       <div className={styles.app_login_form_block}>
         <form className={styles.app_login_form} onSubmit={handleSubmit}>
           <div className={styles.app_login_form_title}>Login</div>
@@ -44,6 +72,7 @@ const AppLogin: React.FC = () => {
             onChange={e => setUsername(e.target.value)}
             required
             className={styles.app_login_form_input}
+            disabled={isIosSafari}
           />
 
           <TextField
@@ -55,11 +84,12 @@ const AppLogin: React.FC = () => {
             onChange={e => setPassword(e.target.value)}
             required
             className={styles.app_login_form_input}
+            disabled={isIosSafari}
           />
 
-          {errorMessage && (  <Notification type="error">
-            {errorMessage}
-          </Notification>)}
+          {errorMessage && (
+            <Notification type="error">{errorMessage}</Notification>
+          )}
 
           <Button className={styles.app_login_form_btn} type="submit">
             Login
