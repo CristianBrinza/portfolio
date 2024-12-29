@@ -1,4 +1,4 @@
-//context.LanguageContextProps.tsx
+//context/LanguageContextProps.tsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';

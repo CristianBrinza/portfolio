@@ -4,7 +4,12 @@ import Button from '../Button.tsx';
 import ReactGA from 'react-ga4';
 import { Link } from 'react-router-dom';
 
-const ConsentBanner: React.FC = () => {
+interface ConsentBannerProps {
+  visible: boolean;
+}
+
+const ConsentBanner: React.FC<ConsentBannerProps> = ({ visible }) => {
+
   const [showBanner, setShowBanner] = useState<boolean>(false);
 
   useEffect(() => {
@@ -40,6 +45,10 @@ const ConsentBanner: React.FC = () => {
 
     setShowBanner(false);
   };
+
+  if (!visible) {
+    return null;
+  }
 
   return showBanner ? (
     <div id="bannerStyles">
