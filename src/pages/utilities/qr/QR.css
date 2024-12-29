@@ -9,7 +9,7 @@
   background-color: var(--theme_primary_color_white);
   border-width: 1px;
   border-style: solid;
-  border-radius: 12px;
+  border-radius: 100px;
   color: var(--theme_primary_color_black);
   padding: 0 10px;
   height: 46px;
@@ -19,7 +19,7 @@
   background-color: var(--theme_primary_color_white);
   border-width: 1px;
   border-style: solid;
-  border-radius: 12px;
+  border-radius: 100px;
   color: var(--theme_primary_color_black);
   padding: 0 10px;
   height: 46px;
@@ -29,7 +29,7 @@
   border-width: 1px;
   border-style: solid;
   border-color: var(--theme_primary_color_dark_gray); /* Add a border color */
-  border-radius: 12px;
+  border-radius: 100px;
   height: 46px;
   width: 46px; /* Add width to match the height and create a square input */
   padding: 0;

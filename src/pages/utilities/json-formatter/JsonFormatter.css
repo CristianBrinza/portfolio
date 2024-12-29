@@ -67,7 +67,7 @@
   flex-direction: column;
   align-items: stretch;
   gap: 10px;
-  border-radius: 14px;
+  border-radius: 100px;
   box-sizing: border-box;
   border: 1px solid var(--theme_primary_color_black);
   padding: 10px;
@@ -86,7 +86,7 @@
   background-color: var(--theme_primary_color_white);
   border-width: 1px;
   border-style: solid;
-  border-radius: 12px;
+  border-radius: 100px;
   color: var(--theme_primary_color_black);
   padding: 0 10px;
   height: 46px;

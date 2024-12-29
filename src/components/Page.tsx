@@ -1,5 +1,5 @@
 // components/Page.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface PageProps {
   gap?: string;
@@ -49,6 +49,11 @@ const Page: React.FC<PageProps> = ({
   //   window.addEventListener('scroll', handleScroll);
   //   return () => window.removeEventListener('scroll', handleScroll);
   // }, [location.pathname]);
+
+  useEffect(() => {
+    // Always scroll to top on page load
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div id={id} className={`${className} main`} style={pageStyle}>

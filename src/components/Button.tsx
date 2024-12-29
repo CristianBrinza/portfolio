@@ -74,7 +74,7 @@ const Button: React.FC<ButtonProps> = ({
     borderWidth: '1px',
     borderStyle: 'solid',
     borderColor: isHovered ? hover_bgcolor : border || '#ffffff00',
-    borderRadius: border_radius || '12px',
+    borderRadius: border_radius || '100px',
     cursor: disabled ? 'not-allowed' : 'pointer',
     padding: '0px 28px',
     color: isHovered

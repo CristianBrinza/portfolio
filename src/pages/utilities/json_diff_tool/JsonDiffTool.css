@@ -39,7 +39,7 @@
   color: var(--theme_primary_color_white);
   background-color: var(--theme_primary_color_black);
   border: 2px solid var(--theme_primary_color_black);
-  border-radius: 12px;
+  border-radius: 100px;
   cursor: pointer;
   transition:
     background-color 0.3s ease,
