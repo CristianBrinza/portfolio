@@ -18,6 +18,16 @@ import DynamicPages from './components/DynamicPages/DynamicPages';
 import Login from './pages/admin/login/Login';
 import { AuthProvider } from './context/AuthContext';
 import NotFound from './pages/NotFound.tsx';
+import AppHome from './app/home/AppHome.tsx';
+import { registerSW } from 'virtual:pwa-register';
+
+declare global {
+  interface Navigator {
+    standalone?: boolean;
+  }
+
+
+}
 
 const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG;
 const GTM_ID = import.meta.env.VITE_GTM_ID;
@@ -33,7 +43,7 @@ function LanguageInitializer({
   const navigate = useNavigate();
 
   // Add paths that should not have a language prefix
-  const excludedPaths = ['/files', '/images', '/json'];
+  const excludedPaths = ['/files/', '/images/', '/json/', '/app'];
 
   useEffect(() => {
     const pathParts = location.pathname.split('/').filter(Boolean);
@@ -66,6 +76,43 @@ function AppContent() {
   const [, setLanguageChanged] = useState(false);
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const location = useLocation();
+
+  const navigate = useNavigate();
+  function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  }
+
+  useEffect(() => {
+    if (isStandalone() && location.pathname !== '/app') {
+      navigate('/app', { replace: true });
+    }
+  }, [location.pathname, navigate]);
+
+  useEffect(() => {
+    setShowUpdateNotification(false);
+    if (isStandalone()) {
+      document.body.classList.add('standalone');
+    } else {
+      document.body.classList.remove('standalone');
+    }
+  }, []);
+
+  const updateSW = registerSW({
+    onNeedRefresh() {
+      if (confirm('New content is available. Refresh?')) {
+        updateSW();
+      }
+      // setShowUpdateNotification(true); // Add a state for showing this notification
+    },
+    onOfflineReady() {
+      console.log('App is ready for offline use.');
+    },
+  });
+  useEffect(() => {
+    if (location.pathname.startsWith(`/${i18n.language}/app`)) {
+      navigate('/app', { replace: true });
+    }
+  }, [location.pathname, i18n.language, navigate]);
 
   const handleLanguageChange = () => setLanguageChanged(prev => !prev);
 
@@ -119,6 +166,8 @@ function AppContent() {
   }, []);
 
   const [showNotification, setShowNotification] = useState(false);
+  const [showUpdateNotification, setShowUpdateNotification] = useState(false);
+
   useEffect(() => {
     const checkBackendStatus = async () => {
       try {
@@ -148,20 +197,31 @@ function AppContent() {
     checkBackendStatus();
   }, []);
 
+  const isAppPath = location.pathname === '/app';
   return (
     <AuthProvider>
-      <div id="top_notification">
+      {!isAppPath && (
+      <div id="top_notification" style={{ display: !isStandalone() ? 'block' : 'none' }}>
         <span style={{ fontWeight: '600' }}>{t('website_warning.sorry')}</span>
         &nbsp;{t('website_warning.sorry_message')}
       </div>
+      )}
+      {showNotification && !isAppPath && (
       <Notification>{t('website_warning.sorry_message')}</Notification>
-      {showNotification && (
+      )}
+      {showNotification  && !isAppPath && (
         <Notification type="error">Sorry, Back-end is down</Notification>
+      )}
+      {showUpdateNotification && (
+        <Notification type="info">
+          New version available. <button onClick={updateSW}>Update</button>
+        </Notification>
       )}
       <LanguageInitializer onLanguageChange={handleLanguageChange} />
       <LanguageProvider>
         {isOnline ? (
           <Routes>
+            <Route path="/app" element={<AppHome />} />
             {routes.map(({ path, element }, index) => (
               <Route key={index} path={path} element={element} />
             ))}
@@ -174,7 +234,7 @@ function AppContent() {
             <OfflinePage />
           </Suspense>
         )}
-        <ConsentBanner />
+        <ConsentBanner visible={!isStandalone()} />
       </LanguageProvider>
     </AuthProvider>
   );

@@ -3,6 +3,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { VitePWA } from "vite-plugin-pwa";
 
+const standaloneRoutes = ["/app", "/another-app-route"]; // Define standalone routes
+
 export default defineConfig({
   plugins: [
     react(),
@@ -25,9 +27,41 @@ export default defineConfig({
           },
         ],
       },
+      manifest: {
+        name: "CB",
+        short_name: "CB",
+        description: "Cristian Brinza's portfolio",
+        theme_color: "#ffffff",
+        background_color: "#ffffff",
+        display: "standalone",
+        start_url: "/app/", // Set the default standalone route
+        icons: [
+          {
+            src: "/images/app/icon_logo_app_192.png",
+            sizes: "192x192",
+            type: "image/png",
+          },
+          {
+            src: "/images/app/icon_logo_app_512.png",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      },
       devOptions: {
         enabled: true, // Enable PWA in development mode
       },
     }),
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (standaloneRoutes.some((route) => id.includes(route))) {
+            return "standalone";
+          }
+        },
+      },
+    },
+  },
 });
