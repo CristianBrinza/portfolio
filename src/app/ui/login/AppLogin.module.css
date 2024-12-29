@@ -1,0 +1,43 @@
+.app_login_body{
+  background: var(--theme_primary_color_red);
+  height: 100vh;
+  overflow: hidden;
+}
+.app_login {
+  width: 100vw;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.app_login_form_block {
+  margin: auto;
+  width: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  max-width: 420px;
+}
+.app_login_form_input input {
+  border-color: var(--theme_primary_color_white) !important;
+  color: var(--theme_primary_color_white) !important;
+}
+
+.app_login_form_input label{
+  color: var(--theme_primary_color_white) !important;
+  background: var(--theme_primary_color_red) !important; ;
+}
+.app_login_form {
+  display: flex;
+  gap: 11px;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  height: 100vh;
+}
+.app_login_form_title {
+  color: var(--theme_primary_color_white);
+  display: none;
+}
+.app_login_form_btn {
+  height: 55px;
+}

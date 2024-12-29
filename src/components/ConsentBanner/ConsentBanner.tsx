@@ -9,7 +9,6 @@ interface ConsentBannerProps {
 }
 
 const ConsentBanner: React.FC<ConsentBannerProps> = ({ visible }) => {
-
   const [showBanner, setShowBanner] = useState<boolean>(false);
 
   useEffect(() => {

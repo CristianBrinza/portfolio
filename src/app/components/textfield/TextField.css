@@ -1,0 +1,68 @@
+.app_form_input {
+  position: relative;
+  width: 100%;
+
+}
+
+.app_form_input input::placeholder {
+  opacity: 0;
+}
+
+.app_form_input input {
+  background: transparent;
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  outline: none;
+  border: 1px solid gray;
+  box-sizing: border-box;
+  border-radius: 100px;
+  color: var(--theme_primary_color_black);
+  border: 1px solid var(--theme_primary_color_black);
+}
+
+.app_form_input label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--theme_primary_color_black);
+  letter-spacing: 1px;
+  transition: 0.3s;
+  font-weight: 600;
+  border-radius: 100px;
+}
+
+.app_form_input input:focus + label,
+.app_form_input input:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 0.8rem;
+  padding: 0 7px;
+  background: var(--theme_primary_color_white);
+}
+
+.app_form_input input:focus {
+  border: 2px solid indigo;
+}
+
+.app_login_form_input input {
+  border-color: var(--theme_primary_color_white) !important;
+  color: var(--theme_primary_color_white) !important;
+}
+
+.app_login_form_input label {
+  color: var(--theme_primary_color_white) !important;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}

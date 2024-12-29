@@ -7,6 +7,17 @@ body.standalone {
   margin: 0;
 }
 
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
+
+meta[name="apple-mobile-web-app-status-bar-style"] {
+  content: "black-translucent"; /* Makes the status bar blend with the app background */
+}
 
 :root {
   font-family: Inter, serif;

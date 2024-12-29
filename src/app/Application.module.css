@@ -1,0 +1,13 @@
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.appBody{
+  touch-action: manipulation;
+  -webkit-user-select: none; /* Prevents text selection on iOS */
+  user-select: none;
+
+}

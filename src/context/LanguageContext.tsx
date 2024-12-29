@@ -29,7 +29,7 @@ export const LanguageProvider = ({
   const navigate = useNavigate();
 
   // List of paths to exclude from language redirection
-  const excludedPaths = ['/files/', '/images/', '/json/'];
+  const excludedPaths = ['/files/', '/images/', '/json/', '/app'];
 
   useEffect(() => {
     const pathParts = location.pathname.split('/').filter(Boolean);
