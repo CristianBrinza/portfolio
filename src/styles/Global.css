@@ -17,3 +17,69 @@
 /*    background-color: transparent !important;*/
 /*    color: white !important;*/
 /*}*/
+
+.infractiune_form_input_file {
+  display: none;
+}
+
+.custom-file-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 1000px;
+  border: 1px solid #d9dfff;
+  color: #333;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  cursor: pointer;
+  text-align: center;
+  background-color: white; /* Fundal alb */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Efect hover */
+.custom-file-button:hover {
+  background-color: #d9dfff;
+  color: #fff;
+}
+/* File list styling */
+.file-list {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 10px;
+  color: #535353;
+  line-height: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+  height: 100%;
+  max-width: 80%;
+  flex-wrap: wrap;
+}
+.custom-file-wrapper {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.file-list_block {
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 1000px;
+  border: 1px solid #d9dfff;
+}
+
+input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  direction: ltr;
+}

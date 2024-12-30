@@ -35,12 +35,16 @@ const AppStatus: React.FC = () => {
       <div className={styles.app_status_option_title}>Status</div>
       <div className={styles.app_status_blocks}>
         <div className={styles.app_status_block}>
-          <span className={styles.app_status_block_title}>Backend</span>
+          <span className={styles.app_status_block_title}>
+            Portfolio Backend
+          </span>
           <div className={styles.app_status_block_type} id="backend_status">
             {/* Status color will be applied dynamically */}
           </div>
           <span className={styles.app_status_block_code}>
-            status code: <b>{statusCode !== null ? statusCode : 'Error'}</b>
+            status code: <b>{statusCode !== null ? statusCode : 'Error'}</b>{' '}
+            <br />
+            health: []
           </span>
         </div>
       </div>

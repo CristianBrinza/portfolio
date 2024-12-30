@@ -5,6 +5,7 @@ import TextField from '../../components/textfield/TextField.tsx';
 import Notification from '../../../components/Notification/Notification.tsx';
 import Button from '../../../components/Button.tsx';
 import { useAuth } from '../../context/AppAuthContext.tsx';
+import AppBack from '../../components/appback/AppBack.tsx';
 
 const AppEditProfile: React.FC = () => {
   const { token, logout } = useAuth();
@@ -184,7 +185,8 @@ const AppEditProfile: React.FC = () => {
 
   return (
     <div className={styles.app_edit_profile}>
-      <div className={styles.app_edit_profile_option_title}>
+      <AppBack />
+      <div className={styles.app_edit_profile_title}>
         <span>
           <span style={{ fontWeight: '300' }}>Edit</span> <br />
           <span>Profile</span>
@@ -232,12 +234,27 @@ const AppEditProfile: React.FC = () => {
               className={styles.profile_image_preview}
             />
           )}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className={styles.file_input}
-          />
+          {/*<input*/}
+          {/*    type="file"*/}
+          {/*    accept="image/*"*/}
+          {/*    onChange={handleFileChange}*/}
+          {/*    className={styles.file_input}*/}
+          {/*/>*/}
+
+          <div className="custom-file-wrapper">
+            <input
+              className="infractiune_form_input_file"
+              id="customFileInput"
+              multiple
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+            />{' '}
+            <label className="custom-file-button" htmlFor="customFileInput">
+              Add an image
+            </label>
+            <div className="file-list" id="fileList"></div>
+          </div>
         </div>
 
         <Button

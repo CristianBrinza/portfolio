@@ -12,7 +12,7 @@ const openInAppBrowser = (url: string) => {
 
 const menuOptions = [
   { title: 'Profile', icon: 'profile', page: 'edit_profile' },
-  { title: 'Security', icon: 'lock', page: 'edit_password' },
+  { title: 'Security', icon: 'lock', page: 'security' },
 ];
 
 const AppProfile: React.FC = () => {

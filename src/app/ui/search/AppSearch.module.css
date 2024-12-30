@@ -41,4 +41,5 @@
   box-sizing: border-box;
   border: 1px solid var(--theme_primary_color_dark_gray);
   padding-left: 40px; /* Add enough space for the icon */
+  color: var(--theme_primary_color_black);
 }

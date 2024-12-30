@@ -5,6 +5,7 @@ import TextField from '../../components/textfield/TextField.tsx';
 import Notification from '../../../components/Notification/Notification.tsx';
 import Button from '../../../components/Button.tsx';
 import { useAuth } from '../../context/AppAuthContext.tsx';
+import AppBack from '../../components/appback/AppBack.tsx';
 
 const AppEditPassword: React.FC = () => {
   const { logout, token } = useAuth(); // token is now available
@@ -75,6 +76,7 @@ const AppEditPassword: React.FC = () => {
 
   return (
     <div className={styles.app_edit_password}>
+      <AppBack />
       <div className={styles.app_edit_password_option_title}>
         <span>
           <span style={{ fontWeight: '300' }}>Edit</span> <br />

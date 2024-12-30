@@ -2,9 +2,10 @@
   width: 100vw;
   min-height: 100vh;
 }
-.app_edit_profile_option_title {
+
+.app_edit_profile_title {
   height: 20vh;
-  padding: 20px 20px 0;
+  padding: 25px 20px 0;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -13,14 +14,35 @@
   font-weight: 700;
   line-height: 32px;
 }
-
-.app_edit_profile_option_text {
+.app_edit_profile_text {
   display: flex;
   gap: 10px;
 }
 .input_field {
 }
 .app_edit_profile_form {
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
 }
-.profile_image_upload {
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form_group label {
+  width: 100%;
+  margin-top: 10px;
+  font-weight: 500;
+}
+.profile_image_preview {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #ddd;
 }
