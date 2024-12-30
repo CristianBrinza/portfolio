@@ -19,6 +19,7 @@ interface DecodedToken {
 interface AppAuthContextProps {
   isAuthenticated: boolean;
   role: string | null;
+  token: string | null; // Include token
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
 }
@@ -40,25 +41,29 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [role, setRole] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>(null);
 
   const { setActivePage } = useActivePage();
 
   useEffect(() => {
-    const token = Cookies.get('app_token');
-    if (token) {
+    const storedToken = Cookies.get('app_token');
+    if (storedToken) {
       try {
-        const decoded: DecodedToken = jwtDecode(token);
-        if (decoded?.role) {
+        const decoded: DecodedToken = jwtDecode(storedToken);
+        if (decoded?.role && decoded.exp > Date.now() / 1000) {
           setRole(decoded.role);
           setIsAuthenticated(true);
-          setActivePage('home'); // Redirect on app load if token is valid
+          setToken(storedToken);
+          setActivePage('home'); // Or wherever you want to go on refresh
+        } else {
+          Cookies.remove('app_token'); // Remove expired token
         }
       } catch (err) {
         console.error('Invalid token in cookies:', err);
         Cookies.remove('app_token');
       }
     }
-  }, []);
+  }, [setActivePage]);
 
   const login = async (username: string, password: string) => {
     try {
@@ -76,19 +81,23 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       }
 
       const data = await response.json();
-      const token = data.token;
+      const userToken = data.token;
+      const decoded: DecodedToken = jwtDecode(userToken);
 
-      const decoded: DecodedToken = jwtDecode(token);
+      Cookies.set('app_token', userToken, {
+        secure: true,
+        sameSite: 'None',
+        expires: 7,
+      });
 
-      Cookies.set('app_token', token, { secure: true, sameSite: 'strict' });
       setRole(decoded.role);
       setIsAuthenticated(true);
+      setToken(userToken);
 
-      // Ensure state updates before setting the page
       setTimeout(() => setActivePage('home'), 0);
     } catch (error) {
       console.error('Error during login:', error);
-      throw error; // Propagate error to AppLogin
+      throw error;
     }
   };
 
@@ -96,7 +105,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     Cookies.remove('app_token');
     setRole(null);
     setIsAuthenticated(false);
-    setActivePage('login'); // Redirect to login on logout
+    setToken(null);
+    setActivePage('login');
   };
 
   return (
@@ -104,6 +114,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       value={{
         isAuthenticated,
         role,
+        token,
         login,
         logout,
       }}

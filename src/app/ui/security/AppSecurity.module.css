@@ -1,0 +1,27 @@
+.app_more {
+  width: 100vw;
+  min-height: 100vh;
+}
+.app_more_option_title {
+  height: 20vh;
+  padding: 20px 20px 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+}
+.app_more_option {
+  border-bottom: 1px solid var(--theme_primary_color_darker_gray);
+  padding: 15px 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.app_more_option_text {
+  display: flex;
+  gap: 10px;
+}

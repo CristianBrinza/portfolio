@@ -127,8 +127,14 @@ function AppContent() {
     );
   }
 
+  // useEffect(() => {
+  //   if (isStandalone() && location.pathname !== '/app') {
+  //     navigate('/app', { replace: true });
+  //   }
+  // }, [location.pathname, navigate]);
+
   useEffect(() => {
-    if (isStandalone() && location.pathname !== '/app') {
+    if (isStandalone() && location.pathname === '/') {
       navigate('/app', { replace: true });
     }
   }, [location.pathname, navigate]);

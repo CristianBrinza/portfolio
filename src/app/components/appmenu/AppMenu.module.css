@@ -1,0 +1,19 @@
+.app_menu {
+  width: 100vw;
+  border-top: 1px solid var(--theme_primary_color_dark_gray);
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  background: var(--theme_primary_color_white);
+}
+.app_menu_option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc((100% / 5) - 25px);
+  padding: 8px 0 0 0;
+  font-size: 11.5px;
+}

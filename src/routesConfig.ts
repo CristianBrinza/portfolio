@@ -45,6 +45,7 @@ import BlogManager from './pages/admin/BlogManager/BlogManager.tsx';
 import PagesManager from './pages/admin/PagesManager/PagesManager.tsx';
 import ShareManager from './pages/admin/ShareManager/ShareManager.tsx';
 import SharedFilesPage from './pages/SharedFilesPage/SharedFilesPage.tsx';
+import IconShowcase from './pages/test/IconShowcase.tsx';
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -199,6 +200,10 @@ export const routes = [
   {
     path: '/:lang/share/:code',
     element: React.createElement(SharedFilesPage),
+  },
+  {
+    path: '/:lang/icons-showcase',
+    element: React.createElement(IconShowcase),
   },
 
   // { path: '*', element: React.createElement(NotFound) },

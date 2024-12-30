@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
+import './styles/Global.css';
 import './i18n';
 import { NotificationProvider } from './components/Notification/NotificationContext';
 

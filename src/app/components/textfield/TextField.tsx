@@ -3,7 +3,7 @@ import './TextField.css';
 import Icon from '../../../components/Icon.tsx';
 
 interface TextFieldProps {
-  id: string;
+  id?: string;
   label: string;
   name: string;
   type?: string;
@@ -13,6 +13,7 @@ interface TextFieldProps {
   placeholder?: string;
   className?: string;
   disabled?: boolean;
+  icon_color?: string;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -26,6 +27,7 @@ const TextField: React.FC<TextFieldProps> = ({
   placeholder = '',
   className = '',
   disabled = false,
+  icon_color = 'var(--theme_primary_color_white)',
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -52,9 +54,9 @@ const TextField: React.FC<TextFieldProps> = ({
           onClick={togglePasswordVisibility}
         >
           {showPassword ? (
-            <Icon type="pass_show" color="var(--theme_primary_color_white)" />
+            <Icon type="pass_show" color={icon_color} />
           ) : (
-            <Icon type="pass_hide" color="var(--theme_primary_color_white)" />
+            <Icon type="pass_hide" color={icon_color} />
           )}
         </div>
       )}

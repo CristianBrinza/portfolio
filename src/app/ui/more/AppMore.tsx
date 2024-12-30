@@ -1,9 +1,8 @@
 import React from 'react';
 import { useActivePage } from '../../context/AppActivePageContext';
 import AppMenu from '../../components/appmenu/AppMenu.tsx';
-import styles from './AppProfile.module.css';
+import styles from './AppMore.module.css';
 import Icon, { icons } from '../../../components/Icon.tsx';
-import { useAuth } from '../../context/AppAuthContext.tsx';
 
 // Mock implementation of openInAppBrowser
 const openInAppBrowser = (url: string) => {
@@ -11,12 +10,15 @@ const openInAppBrowser = (url: string) => {
 };
 
 const menuOptions = [
-  { title: 'Profile', icon: 'profile', page: 'edit_profile' },
-  { title: 'Security', icon: 'lock', page: 'edit_password' },
+  {
+    title: 'Web utils',
+    icon: 'utils',
+    page: 'https://cristianbrinza.com/en/utilities',
+  },
+  { title: 'Settings', icon: 'settings', page: 'settings' },
 ];
 
-const AppProfile: React.FC = () => {
-  const { logout } = useAuth();
+const AppMore: React.FC = () => {
   const { setActivePage } = useActivePage();
 
   const handlePageNavigation = (page: string) => {
@@ -29,13 +31,7 @@ const AppProfile: React.FC = () => {
 
   return (
     <div className={styles.app_more}>
-      <div className={styles.app_more_option_title}>
-        <span>
-          {' '}
-          <span style={{ fontWeight: '300' }}>My</span> <br />
-          <span>Profile</span>
-        </span>
-      </div>
+      <div className={styles.app_more_option_title}>More</div>
       {menuOptions.map(({ title, icon, page }) => (
         <div
           key={page}
@@ -49,16 +45,9 @@ const AppProfile: React.FC = () => {
           <Icon type="arrow" />
         </div>
       ))}
-      <div className={styles.app_more_option}>
-        <span className={styles.app_more_option_text} onClick={() => logout()}>
-          <Icon type="logout" />
-          Log out
-        </span>
-        <Icon type="arrow" />
-      </div>
       <AppMenu />
     </div>
   );
 };
 
-export default AppProfile;
+export default AppMore;

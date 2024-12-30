@@ -1,0 +1,19 @@
+/*input:-webkit-autofill {*/
+/*    appearance: menulist-button;*/
+/*    background-color: transparent !important;*/
+/*    color: blue !important;*/
+/*    border: 1px solid blue; !* Add any border styling if needed *!*/
+/*    box-shadow: 0 0 0px 1000px transparent inset !important; !* Ensures the background color is applied *!*/
+/*}*/
+
+/*input:-moz-autofill {*/
+/*    appearance: menulist-button;*/
+/*    background-color: transparent !important;*/
+/*    color: var(--) !important;*/
+/*}*/
+
+/*input:autofill {*/
+/*    appearance: menulist-button;*/
+/*    background-color: transparent !important;*/
+/*    color: white !important;*/
+/*}*/
