@@ -10,7 +10,8 @@ import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 import PageLoading from '../../../components/PageLoading/PageLoading';
 import { storage_menu as AdminMenu } from '../menues.ts';
 import './ShareManager.css';
-import Icon from '../../../components/Icon.tsx';
+import Icon, { icons } from '../../../components/Icon.tsx';
+import { chunkUpload } from '../../../utils/chunkUpload';
 
 interface FileItem {
   name: string;
@@ -163,66 +164,61 @@ const ShareManager: React.FC = () => {
     setIsUploading(true);
     setUploadProgress(0);
 
-    const totalFiles = uploadFilesData.length;
-    for (let i = 0; i < totalFiles; i++) {
-      let file = uploadFilesData[i];
-      let fileName = file.name;
+    // Prepare final list of files after conflict resolution
+    const finalFilesToUpload: File[] = [];
 
-      if (conflictResolutions[fileName]) {
-        const choice = conflictResolutions[fileName];
-        if (choice === 'overwrite') {
-          try {
-            await api.delete('/share/delete', {
-              headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
-              },
-              data: {
-                itemPath: `${currentPath}/${fileName}`,
-              },
-            });
-          } catch (error) {
-            setNotification({
-              message: `Error overwriting file ${fileName}.`,
-              type: 'error',
-            });
-            continue;
-          }
-        } else if (choice === 'rename') {
-          const newFileName = getUniqueFileName(fileName);
-          file = new File([file], newFileName, { type: file.type });
-          fileName = newFileName;
-        }
+    uploadFilesData.forEach(file => {
+      const fileName = file.name;
+      const choice = conflictResolutions[fileName];
+
+      if (choice === 'overwrite') {
+        // Already deleted the original on server side, so just push the file as-is
+        finalFilesToUpload.push(file);
+      } else if (choice === 'rename') {
+        const newFileName = getUniqueFileName(fileName);
+        // Create a new File instance with the new name
+        const renamedFile = new File([file], newFileName, { type: file.type });
+        finalFilesToUpload.push(renamedFile);
+      } else {
+        // No conflict or no action needed
+        finalFilesToUpload.push(file);
       }
+    });
 
-      const formData = new FormData();
-      formData.append('files', file);
-      formData.append('path', currentPath);
-
-      try {
-        await api.post('/share/upload', formData, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-            'Content-Type': 'multipart/form-data',
+    // 2A) For each file, do chunk-based upload
+    try {
+      for (let i = 0; i < finalFilesToUpload.length; i++) {
+        const file = finalFilesToUpload[i];
+        // Generate a random upload ID (could also use something like uuidv4)
+        const uploadId = `${file.name}-${Date.now()}-${Math.random()}`;
+        await chunkUpload({
+          file,
+          uploadId,
+          path: currentPath,
+          chunkSize: 10 * 1024 * 1024, // 10 MB
+          concurrency: 3, // Number of parallel chunks uploaded
+          onProgress: percent => {
+            setUploadProgress(percent);
           },
         });
-        setUploadProgress(Math.round(((i + 1) / totalFiles) * 100));
-      } catch (error) {
-        setNotification({
-          message: `Error uploading file ${fileName}.`,
-          type: 'error',
-        });
       }
-    }
 
-    setIsUploading(false);
-    setUploadProgress(0);
-    setNotification({
-      message: 'Files uploaded successfully!',
-      type: 'success',
-    });
-    fetchFiles();
-    fetchAllFiles();
-    setConflictResolutions({});
+      setNotification({
+        message: 'Files uploaded successfully!',
+        type: 'success',
+      });
+      fetchFiles();
+      fetchAllFiles();
+      setConflictResolutions({});
+    } catch (error) {
+      setNotification({
+        message: 'Error uploading files.',
+        type: 'error',
+      });
+    } finally {
+      setIsUploading(false);
+      setUploadProgress(0);
+    }
   };
 
   const getUniqueFileName = (originalName: string) => {
@@ -530,6 +526,73 @@ const ShareManager: React.FC = () => {
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  // Helper arrays or sets for quick detection
+  const imageExtensions = new Set([
+    '.jpg',
+    '.jpeg',
+    '.png',
+    '.gif',
+    '.webp',
+    '.bmp',
+  ]);
+  const videoExtensions = new Set(['.mp4', '.mov', '.webm', '.ogg', '.avi']);
+  const extensionIconMap: { [ext: string]: string } = {
+    '.zip': 'copy',
+    '.rar': 'copy',
+    '.ai': 'illustrator',
+    '.docx': 'copy',
+    // Add more as needed
+  };
+
+  function getFileExtension(filename: string): string {
+    const dotIndex = filename.lastIndexOf('.');
+    if (dotIndex !== -1) {
+      return filename.substring(dotIndex).toLowerCase();
+    }
+    return ''; // no extension
+  }
+
+  function getFilePreviewElement(item: FileItem) {
+    // If it's a folder
+    if (item.type === 'folder') {
+      return <Icon type="copy" />;
+    }
+
+    // For a file, determine extension
+    const ext = getFileExtension(item.name);
+
+    // If it's an image
+    if (imageExtensions.has(ext)) {
+      // For an image preview, e.g. <img src={`/share/${item.path}`} />
+      return (
+        <img
+          src={`${import.meta.env.VITE_BACKEND}/share/preview/${item.path}`}
+          alt={item.name}
+          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'cover' }}
+        />
+      );
+    }
+
+    // If it's a video
+    if (videoExtensions.has(ext)) {
+      return (
+        <video
+          src={`${import.meta.env.VITE_BACKEND}/share/preview/${item.path}`}
+          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'cover' }}
+          muted
+        />
+      );
+    }
+
+    // If we have a known icon for this extension
+    if (extensionIconMap[ext]) {
+      return <Icon type={extensionIconMap[ext] as keyof typeof icons} />;
+    }
+
+    // Otherwise, fallback to general file icon
+    return <Icon type="empty" />;
+  }
+
   return (
     <AdminLayout menu_items={menu} breadcrumb={breadcrumbItems}>
       {notification && (
@@ -636,10 +699,18 @@ const ShareManager: React.FC = () => {
           <div className="share_manager_items">
             {files.map(item => (
               <div key={item.path} className="share_manager_item">
-                <input
-                  type="checkbox"
-                  onChange={e => handleCheckboxChange(e, item.path, item.type)}
-                />
+                <div className="share_manager_item_block">
+                  <input
+                    type="checkbox"
+                    onChange={e =>
+                      handleCheckboxChange(e, item.path, item.type)
+                    }
+                  />
+                  <div className="share_manager_item_preview">
+                    {' '}
+                    {getFilePreviewElement(item)}
+                  </div>
+                </div>
                 <div
                   className={`share_manager_item_content ${
                     item.type === 'folder' ? 'file_preview_folder' : ''
@@ -713,7 +784,10 @@ const ShareManager: React.FC = () => {
         >
           <div className="upload_progress_popup">
             <h2>Uploading Files...</h2>
-            <ProgressBar progress={uploadProgress} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <ProgressBar progress={uploadProgress} />
+              <span>{uploadProgress}%</span>
+            </div>
           </div>
         </Popup>
       )}

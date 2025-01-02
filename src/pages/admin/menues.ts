@@ -40,4 +40,5 @@ export const storage_menu = [
     type: 'button',
     icon: 'menu',
   },
+  { btn: 'Files', url: '/dashboard/add-files', type: 'button', icon: 'menu' },
 ];

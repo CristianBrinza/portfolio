@@ -89,7 +89,7 @@ const SharedFilesPage: React.FC = () => {
             {files.map(file => (
               <div key={file.path} className="shared-file-item">
                 <span className="shared-files-list_title">
-                  {!file.exists && <Icon type="close" />} {<Icon type="copy" />}
+                  {!file.exists && <Icon type="close" />} {<Icon type="file" />}
                   <p>{file.name}</p>
                 </span>
                 {file.exists && (

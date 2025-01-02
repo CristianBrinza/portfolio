@@ -36,6 +36,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  height: 25px;
 }
 
 .share_manager_item_content i {
@@ -45,6 +46,9 @@
 
 .share_manager_item_content p {
   font-weight: bold;
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  overflow: hidden; /* Hide the overflowed text */
+  text-overflow: ellipsis; /* Add ellipsis (...) for overflowed text */
 }
 
 .share_links_list {
@@ -67,4 +71,26 @@
 .conflict_actions {
   display: flex;
   gap: 10px;
+}
+
+.share_manager_item_preview {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.share_manager_item_preview img,
+.share_manager_item_preview video {
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.share_manager_item_block {
+  width: 100%;
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
 }

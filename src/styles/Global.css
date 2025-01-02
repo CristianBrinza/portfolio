@@ -73,7 +73,7 @@
   border: 1px solid #d9dfff;
 }
 
-input {
+.custom-file-wrapper input {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;

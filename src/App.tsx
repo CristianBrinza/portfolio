@@ -171,7 +171,7 @@ function AppContent() {
       {!isAppPath && (
         <div
           id="top_notification"
-          style={{ display: !isStandalone() ? 'block' : 'none' }}
+          style={{ display: !isStandalone() ? 'flex' : 'none' }}
         >
           <span style={{ fontWeight: '600' }}>
             {t('website_warning.sorry')}
