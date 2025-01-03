@@ -80,6 +80,7 @@ const PublicAddFilesPage: React.FC = () => {
           if (evt.total) {
             const percent = Math.round((evt.loaded * 100) / evt.total);
             setUploadProgress(percent);
+            console.log(`Upload progress: ${percent}%`);
           }
         },
       });

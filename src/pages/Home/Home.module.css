@@ -37,6 +37,8 @@
   background: var(--theme_primary_color_white);
   margin-top: var(--hero-margin-top, 0);
   border-bottom: 0.5px solid #b2b2b2;
+  /*background: url("/public/images/home_bg.png");*/
+  /*background-size: contain;*/
 }
 
 .home_block {
