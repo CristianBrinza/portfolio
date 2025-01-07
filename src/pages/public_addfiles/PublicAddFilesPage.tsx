@@ -10,6 +10,8 @@ import Footer from '../../components/Footer/Footer';
 import Notification from '../../components/Notification/Notification';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import Popup from '../../components/Popup/Popup';
+import { v4 as uuidv4 } from 'uuid';
+import {chunkUploadAddFiles} from "../../utils/chunkUploadAddFiles.ts";
 
 interface FileItem {
   name: string;
@@ -38,16 +40,14 @@ const PublicAddFilesPage: React.FC = () => {
     try {
       const response = await api.get(`/add-files/${code}`);
 
-      // Map response data to include both name and path
       const mappedFiles = response.data.map((file: string) => ({
-        name: file.split('/').pop(), // Extract the file name from the path
-        path: file, // Full path of the file
+        name: file.split('/').pop(),
+        path: file,
       }));
 
       setFiles(mappedFiles);
     } catch (error: any) {
       if (error.response && error.response.status === 404) {
-        // Code doesn't exist => redirect
         navigate('/404');
         return;
       }
@@ -61,32 +61,44 @@ const PublicAddFilesPage: React.FC = () => {
     }
   };
 
+  // UPDATED function with chunkUpload
   const uploadFiles = async () => {
     if (!fileList.length) {
       setNotification({ message: 'No files selected', type: 'error' });
       return;
     }
+
     setIsUploading(true);
     setUploadProgress(0);
 
-    const formData = new FormData();
-    fileList.forEach(file => {
-      formData.append('files', file);
-    });
-
     try {
-      await api.post(`/add-files/${code}`, formData, {
-        onUploadProgress: evt => {
-          if (evt.total) {
-            const percent = Math.round((evt.loaded * 100) / evt.total);
+      // Upload files one-by-one or simultaneously—here we do them sequentially
+      for (let i = 0; i < fileList.length; i++) {
+        const file = fileList[i];
+        // Create a unique uploadId (can be anything)
+       // const uploadId = `public-upload-${file.name}-${Date.now()}-${Math.random()}`;
+        const uploadId = `public-upload-${uuidv4()}`;
+
+        // Perform chunk upload
+        await chunkUploadAddFiles({
+          file,
+          uploadId,
+          // Use code as the path if that’s how your backend expects it.
+          // If your backend expects a different path param, adjust accordingly.
+          path: code || '',
+          chunkSize: 10 * 1024 * 1024, // 10MB chunks
+          concurrency: 3,
+          onProgress: (percent) => {
             setUploadProgress(percent);
-            console.log(`Upload progress: ${percent}%`);
-          }
-        },
-      });
+          },
+        });
+      }
+
       setNotification({ message: 'Upload successful', type: 'success' });
       setFileList([]);
+      // Re-fetch the existing files on the server
       fetchFiles();
+
     } catch (error) {
       setNotification({ message: 'Error uploading files', type: 'error' });
     } finally {
@@ -111,89 +123,90 @@ const PublicAddFilesPage: React.FC = () => {
   ];
 
   return (
-    <>
-      <Breadcrumb items={breadcrumbItems} />
-      <Page gap="40px">
-        {notification && (
-          <Notification
-            type={notification.type}
-            onClose={() => setNotification(null)}
-          >
-            {notification.message}
-          </Notification>
-        )}
-        <div style={{ marginTop: '20px' }}>
-          <h3>Upload Files:</h3>
-          <div
-            style={{
-              display: 'flex',
-              gap: '5px',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-            }}
-          >
-            <input
-              type="file"
-              multiple
-              onChange={handleFileChange}
-              style={{
-                border: '1px solid var(--theme_primary_color_darkest_gray)',
-                borderRadius: '100px',
-                padding: '10px',
-              }}
-            />
-            <Button onClick={uploadFiles} color="#fff" bgcolor="#317ce6">
-              Upload
-            </Button>
-          </div>
-        </div>
+      <>
+        <Breadcrumb items={breadcrumbItems} />
+        <Page gap="40px">
+          {notification && (
+              <Notification
+                  type={notification.type}
+                  onClose={() => setNotification(null)}
+              >
+                {notification.message}
+              </Notification>
+          )}
 
-        {isUploading && (
-          <Popup id="add_publib_popup" isVisible={true} onClose={() => {}}>
-            <div style={{ padding: '20px' }}>
-              <h3>Uploading Files...</h3>
-              <ProgressBar progress={uploadProgress} />
-              <span>{uploadProgress}%</span>
+          <div style={{ marginTop: '20px' }}>
+            <h3>Upload Files:</h3>
+            <div
+                style={{
+                  display: 'flex',
+                  gap: '5px',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                }}
+            >
+              <input
+                  type="file"
+                  multiple
+                  onChange={handleFileChange}
+                  style={{
+                    border: '1px solid var(--theme_primary_color_darkest_gray)',
+                    borderRadius: '100px',
+                    padding: '10px',
+                  }}
+              />
+              <Button onClick={uploadFiles} color="#fff" bgcolor="#317ce6">
+                Upload
+              </Button>
             </div>
-          </Popup>
-        )}
+          </div>
 
-        <div style={{ marginTop: '20px' }}>
-          <h3>Existing Files:</h3>
-          {files.length === 0 ? (
-            <p>No files uploaded yet.</p>
-          ) : (
-            <div className="shared-files-list">
-              {files.map(file => (
-                <div key={file.path} className="shared-file-item">
+          {isUploading && (
+              <Popup id="add_public_popup" isVisible={true} onClose={() => {}}>
+                <div style={{ padding: '20px' }}>
+                  <h3>Uploading Files...</h3>
+                  <ProgressBar progress={uploadProgress} />
+                  <span>{uploadProgress}%</span>
+                </div>
+              </Popup>
+          )}
+
+          <div style={{ marginTop: '20px' }}>
+            <h3>Existing Files:</h3>
+            {files.length === 0 ? (
+                <p>No files uploaded yet.</p>
+            ) : (
+                <div className="shared-files-list">
+                  {files.map(file => (
+                      <div key={file.path} className="shared-file-item">
                   <span className="shared-files-list_title">
                     <Icon type="file" />
                     <p>{file.name}</p>
                   </span>
+                        <Button
+                            color="var(--theme_primary_color_black)"
+                            bgcolor="var(--theme_primary_color_dark_gray)"
+                            onClick={() => downloadFile(file.name)}
+                        >
+                          <Icon type="download" />
+                        </Button>
+                      </div>
+                  ))}
+
                   <Button
-                    color="var(--theme_primary_color_black)"
-                    bgcolor="var(--theme_primary_color_dark_gray)"
-                    onClick={() => downloadFile(file.name)}
+                      color="var(--theme_primary_color_black)"
+                      bgcolor="var(--theme_primary_color_dark_gray)"
+                      onClick={downloadAllFiles}
+                      style={{ marginTop: '10px' }}
                   >
-                    <Icon type="download" />
+                    Download All
                   </Button>
                 </div>
-              ))}
-
-              <Button
-                color="var(--theme_primary_color_black)"
-                bgcolor="var(--theme_primary_color_dark_gray)"
-                onClick={downloadAllFiles}
-                style={{ marginTop: '10px' }}
-              >
-                Download All
-              </Button>
-            </div>
-          )}
-        </div>
-      </Page>
-      <Footer />
-    </>
+            )}
+          </div>
+        </Page>
+        <Footer />
+      </>
   );
 };
 
