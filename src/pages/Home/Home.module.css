@@ -32,7 +32,7 @@
 }
 
 .home_hero_new {
-  width: 100vw;
+  width: 99vw;
   height: var(--hero-height);
   background: var(--theme_primary_color_white);
   margin-top: var(--hero-margin-top, 0);
