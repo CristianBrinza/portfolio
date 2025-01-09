@@ -11,6 +11,7 @@ import PageLoading from '../../../components/PageLoading/PageLoading';
 import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout';
 import './PagesManager.css';
 import { portfolio_menu as AdminMenu } from '../menues.ts';
+import Input from '../../../components/input/Input.tsx';
 
 interface PageItem {
   link: string;
@@ -68,16 +69,15 @@ const PagesManager: React.FC = () => {
     }
   };
 
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    const lowerCaseQuery = query.toLowerCase();
+  useEffect(() => {
+    const lowerCaseQuery = searchQuery.toLowerCase();
     const filtered = pagesData.filter(
       page =>
         page.title.toLowerCase().includes(lowerCaseQuery) ||
         page.link.toLowerCase().includes(lowerCaseQuery)
     );
     setFilteredPages(filtered);
-  };
+  }, [searchQuery, pagesData]);
 
   const handleSave = async () => {
     try {
@@ -194,12 +194,18 @@ const PagesManager: React.FC = () => {
             >
               Save Changes
             </Button>
-            <input
-              className="admin_search_input"
-              type="text"
+            {/*<input*/}
+            {/*  className="admin_search_input"*/}
+            {/*  type="text"*/}
+            {/*  placeholder="Search by title or link"*/}
+            {/*  value={searchQuery}*/}
+            {/*  onChange={e => handleSearch(e.target.value)}*/}
+            {/*/>*/}
+            <Input
               placeholder="Search by title or link"
               value={searchQuery}
-              onChange={e => handleSearch(e.target.value)}
+              onChange={setSearchQuery}
+              icon="search"
             />
           </div>
 

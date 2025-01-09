@@ -59,7 +59,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       {children}
       <Icon
         className="LinkButton_arrow"
-        type="arrow"
+        type="arrow_right"
         style={arrowStyle}
         color={isHovered ? darkerColor : color}
       />
@@ -74,7 +74,7 @@ const LinkButton: React.FC<LinkButtonProps> = ({
       {children}
       <Icon
         className="LinkButton_arrow"
-        type="arrow"
+        type="arrow_right"
         style={arrowStyle}
         color={isHovered ? darkerColor : color}
       />

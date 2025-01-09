@@ -268,7 +268,7 @@ export default function Home() {
         </div>
 
         <div className={`${styles.home_block_links} ${styles.home_block}`}>
-          <Title className={`reveal ${styles.home_block_title}`}>
+          <Title className={`reveal ${styles.home_block_title_links}`}>
             Useful links
           </Title>
 
@@ -284,7 +284,7 @@ export default function Home() {
               <Icon
                 size="28px"
                 className={styles.home_block_links_btn_icon}
-                type="arrow"
+                type="arrow_right"
               />
             </Button>
             <Button
@@ -298,22 +298,36 @@ export default function Home() {
               <Icon
                 size="28px"
                 className={styles.home_block_links_btn_icon}
-                type="arrow"
+                type="arrow_right"
               />
             </Button>
             <Button
+              to="/icons-showcase"
               className={styles.home_block_links_btn}
               bgcolor="var(--theme_primary_color_dark_gray)"
               border="var(--theme_primary_color_dark_gray)"
               hover_bgcolor="var(--theme_primary_color_darkest_gray)"
             >
-              My stack
+              Icons Showcase
               <Icon
                 size="28px"
                 className={styles.home_block_links_btn_icon}
-                type="arrow"
+                type="arrow_right"
               />
             </Button>
+            {/*<Button*/}
+            {/*    className={styles.home_block_links_btn}*/}
+            {/*    bgcolor="var(--theme_primary_color_dark_gray)"*/}
+            {/*    border="var(--theme_primary_color_dark_gray)"*/}
+            {/*    hover_bgcolor="var(--theme_primary_color_darkest_gray)"*/}
+            {/*>*/}
+            {/*  My stack*/}
+            {/*  <Icon*/}
+            {/*      size="28px"*/}
+            {/*      className={styles.home_block_links_btn_icon}*/}
+            {/*      type="arrow_right"*/}
+            {/*  />*/}
+            {/*</Button>*/}
           </div>
         </div>
 

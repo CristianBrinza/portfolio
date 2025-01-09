@@ -12,6 +12,7 @@ import { storage_menu as AdminMenu } from '../menues.ts';
 import './ShareManager.css';
 import Icon, { icons } from '../../../components/Icon.tsx';
 import { chunkUpload } from '../../../utils/chunkUpload';
+import Input from '../../../components/input/Input.tsx';
 
 interface FileItem {
   name: string;
@@ -526,6 +527,13 @@ const ShareManager: React.FC = () => {
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  useEffect(() => {
+    const filtered = allFiles.filter(file =>
+      file.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFiles(filtered);
+  }, [searchQuery, allFiles]);
+
   // Helper arrays or sets for quick detection
   const imageExtensions = new Set([
     '.jpg',
@@ -641,12 +649,11 @@ const ShareManager: React.FC = () => {
             </Button>
           </div>
           <div className="file_manager_search_sort">
-            <input
-              type="text"
+            <Input
               placeholder="Search files and folders"
               value={searchQuery}
-              className="admin_search_input"
-              onChange={e => setSearchQuery(e.target.value)}
+              onChange={setSearchQuery} // Pass the state updater directly
+              icon="search"
             />
           </div>
         </div>

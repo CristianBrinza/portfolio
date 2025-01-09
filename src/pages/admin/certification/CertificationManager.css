@@ -14,7 +14,7 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.2s;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
 }
 
 .save_button:hover {

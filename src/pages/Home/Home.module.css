@@ -58,6 +58,9 @@
 .home_block_title {
   margin-bottom: 0px !important;
 }
+.home_block_title_links {
+  margin-bottom: 10px !important;
+}
 
 .home_my_work_block {
   height: 100px;
