@@ -189,9 +189,8 @@ function AppContent() {
           &nbsp;{t('website_warning.sorry_message')}
         </div>
       )}
-      {showNotification && !isAppPath && (
-        <Notification>{t('website_warning.sorry_message')}</Notification>
-      )}
+      {!isAppPath && <Notification>{t('website_warning.sorry_message')}</Notification>
+      }
       {showNotification && !isAppPath && (
         <Notification type="error">Sorry, Back-end is down</Notification>
       )}
