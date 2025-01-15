@@ -148,12 +148,22 @@ function AppContent() {
     }
   }, []);
 
+  // const updateSW = registerSW({
+  //   onNeedRefresh() {
+  //     if (confirm('New content is available. Refresh?')) {
+  //       updateSW();
+  //     }
+  //     // setShowUpdateNotification(true); // Add a state for showing this notification
+  //   },
+  //   onOfflineReady() {
+  //     console.log('App is ready for offline use.');
+  //   },
+  // });
+
+  // Service Worker Registration for PWA updates
   const updateSW = registerSW({
     onNeedRefresh() {
-      if (confirm('New content is available. Refresh?')) {
-        updateSW();
-      }
-      // setShowUpdateNotification(true); // Add a state for showing this notification
+      setShowUpdateNotification(true);
     },
     onOfflineReady() {
       console.log('App is ready for offline use.');

@@ -45,10 +45,11 @@ import BlogManager from './pages/admin/BlogManager/BlogManager.tsx';
 import PagesManager from './pages/admin/PagesManager/PagesManager.tsx';
 import ShareManager from './pages/admin/ShareManager/ShareManager.tsx';
 import SharedFilesPage from './pages/SharedFilesPage/SharedFilesPage.tsx';
-import IconShowcase from './pages/test/IconShowcase.tsx';
+import IconShowcase from './pages/icons/IconShowcase.tsx';
 import AdminAddFilesPage from './pages/admin/addfiles/AdminAddFilesPage.tsx';
 import PublicAddFilesPage from './pages/public_addfiles/PublicAddFilesPage.tsx';
 import NotFound from './pages/NotFound.tsx';
+import IconInfo from './pages/icons/IconInfo.tsx';
 
 export const routes = [
   { path: '/:lang/', element: React.createElement(Home) },
@@ -207,6 +208,10 @@ export const routes = [
   {
     path: '/:lang/icons-showcase',
     element: React.createElement(IconShowcase),
+  },
+  {
+    path: '/:lang/icon/:code',
+    element: React.createElement(IconInfo),
   },
   {
     path: '/:lang/dashboard/add-files',

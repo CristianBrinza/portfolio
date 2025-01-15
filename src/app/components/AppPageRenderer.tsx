@@ -37,7 +37,9 @@ const AppPageRenderer: React.FC = () => {
     return <AppLogin />;
   }
 
-  const ActiveComponent = pages[activePage] || AppHome;
+  // If authenticated, force homepage for now, regardless of activePage
+  const ActiveComponent =
+    activePage === 'home' || !pages[activePage] ? AppHome : pages[activePage];
   return <ActiveComponent />;
 };
 

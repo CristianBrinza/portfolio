@@ -15,7 +15,6 @@
   line-height: 16px;
   width: auto !important;
   background: transparent;
-  box-sizing: border-box;
 }
 .costume_input::placeholder {
   color: #9e9e9e;

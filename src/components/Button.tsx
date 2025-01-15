@@ -93,6 +93,7 @@ const Button: React.FC<ButtonProps> = ({
     opacity: disabled ? 0.1 : 1,
     pointerEvents: disabled ? 'none' : 'auto',
     boxSizing: 'border-box',
+    gap: '7px',
     ...style,
   };
 

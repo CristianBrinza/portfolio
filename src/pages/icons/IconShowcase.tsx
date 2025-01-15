@@ -6,13 +6,14 @@ import Title from '../../components/Text/Title/Title.tsx';
 import Input from '../../components/input/Input.tsx';
 import { useState } from 'react';
 import Footer from '../../components/Footer/Footer.tsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function IconShowcase() {
   const breadcrumbItems = [
     { label: <Trans>navigation.home</Trans>, url: '/' },
     { label: 'Icons Showcase' },
   ];
-
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   return (
     <>
@@ -54,7 +55,9 @@ export default function IconShowcase() {
                   alignItems: 'center',
                   textAlign: 'center',
                   width: '80px',
+                  cursor: 'pointer',
                 }}
+                onClick={() => navigate(`/icon/${iconKey}`)}
               >
                 <Icon type={iconKey as keyof typeof icons} size="40px" />
                 <span
