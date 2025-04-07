@@ -45,3 +45,17 @@
   border-radius: 12px; /* Apply border-radius to the actual color swatch */
   border: none; /* Remove any internal border */
 }
+
+.advanced_options {
+  margin-top: 20px;
+}
+
+.advanced_table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.advanced_table td {
+  padding: 8px;
+  border: 1px solid var(--theme_primary_color_dark_gray);
+}
