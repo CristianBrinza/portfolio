@@ -21,10 +21,10 @@ export default function IconShowcase() {
       <Page gap="0px">
         <Title>Icons Showcase</Title>
         Welcome to the Icons Showcase! This collection features a variety of
-        open-source icons or sourced from different creators and repositories. Use
-        the search bar to find icons by name and explore the possibilities for
-        your projects. Each icon is labeled with its unique identifier for easy
-        reference and integration.
+        open-source icons or sourced from different creators and repositories.
+        Use the search bar to find icons by name and explore the possibilities
+        for your projects. Each icon is labeled with its unique identifier for
+        easy reference and integration.
         <br />
         <br />
         <Input
@@ -70,10 +70,11 @@ export default function IconShowcase() {
         </div>
         <div id="portfolio_front_page_disclaimer">
           <b>Disclaimer !</b> - The icons displayed on this page are open-source
-          and some may be sourced from various designers and repositories. They are provided
-          as-is and are not exclusively created or owned by this project. Please
-          check the respective licenses of the icons before using them in your
-          applications to ensure compliance with the creators' terms.
+          and some may be sourced from various designers and repositories. They
+          are provided as-is and are not exclusively created or owned by this
+          project. Please check the respective licenses of the icons before
+          using them in your applications to ensure compliance with the
+          creators' terms.
         </div>
       </Page>
       <Footer />

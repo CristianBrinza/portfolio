@@ -11,7 +11,6 @@ const BottomMenu: React.FC = () => {
           bgcolor="var(--theme_primary_color_black)"
           border="transparent"
           hover_bgcolor="var(--theme_primary_color_white)"
-
         >
           Portfolio
         </Button>

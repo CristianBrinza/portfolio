@@ -1,756 +1,3550 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=Space+Grotesk:wght@300..700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { background: #0b0b0c; }
-  .cbroot {
-    --bg: #0b0b0c; --bg2: #141417; --fg: #f1efe8; --muted: #8c8a80;
-    --line: rgba(255,255,255,0.13); --accent: #E40523; --card: #101012;
-  }
-  .cbroot[data-theme="light"] {
-    --bg: #f2f0e8; --bg2: #e7e4da; --fg: #0b0b0c; --muted: #6a685f;
-    --line: rgba(0,0,0,0.14); --accent: #E40523; --card: #ebe8de;
-  }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { color: var(--accent); }
-  @media (hover: hover) and (pointer: fine) {
-    .cbroot, .cbroot * { cursor: none; }
-  }
-  @keyframes cb-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes cb-marquee-rev { from { transform: translateX(-50%); } to { transform: translateX(0); } }
-  @keyframes cb-draw { to { stroke-dashoffset: 0; } }
-  @keyframes cb-blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
-  @keyframes cb-bob { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(9px);} }
-  @keyframes cb-spin { to { transform: rotate(360deg); } }
-  @keyframes cb-pulse { 0%,100%{ opacity:.55;} 50%{ opacity:1;} }
-  .cb-menu[data-open="true"] { transform: translateY(0) !important; }
-  .cb-menu[data-open="true"] .cb-menu-link { opacity: 1 !important; transform: translateY(0) !important; }
-  .cb-work-row:hover .cb-work-name { transform: translateX(34px); color: var(--fg); }
-  .cb-work-row:hover .cb-work-arrow { opacity: 1; transform: translateX(0) rotate(0deg); }
-  .cb-work-row:hover .cb-work-index { color: var(--accent); }
-  .cb-nav-link { position: relative; }
-  .cb-nav-link::after { content: ""; position: absolute; left: 0; bottom: -3px; height: 1px; width: 0; background: var(--fg); transition: width .4s cubic-bezier(.2,.7,.2,1); }
-  .cb-nav-link:hover::after { width: 100%; }
-  .cb-svc2 { position: relative; }
-  .cb-svc2::before { content: ""; position: absolute; inset: 0; background: var(--accent); transform: scaleY(0); transform-origin: top; transition: transform .5s cubic-bezier(.76,0,.24,1); }
-  .cb-svc2:hover::before { transform: scaleY(1); transform-origin: bottom; }
-  .cb-svc2 > * { position: relative; z-index: 1; }
-  .cb-svc2-idx { transition: color .35s ease; }
-  .cb-svc2-title { transition: color .35s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
-  .cb-svc2-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s cubic-bezier(.76,0,.24,1); }
-  .cb-svc2-body > div { overflow: hidden; }
-  .cb-svc2:hover .cb-svc2-body { grid-template-rows: 1fr; }
-  .cb-svc2-desc, .cb-svc2-tag { opacity: 0; transform: translateY(10px); transition: opacity .4s ease .12s, transform .5s cubic-bezier(.2,.7,.2,1) .12s; }
-  .cb-svc2:hover .cb-svc2-desc, .cb-svc2:hover .cb-svc2-tag { opacity: 1; transform: translateY(0); }
-  .cb-svc2:hover .cb-svc2-idx { color: rgba(255,255,255,.65) !important; }
-  .cb-svc2:hover .cb-svc2-title { color: #fff !important; transform: translateX(18px); }
-  .cb-svc2:hover .cb-svc2-desc { color: rgba(255,255,255,.85) !important; }
-  .cb-svc2:hover .cb-svc2-tag { color: #fff !important; border-color: rgba(255,255,255,.4) !important; }
-  .cb-svc2-arrow { transition: transform .5s cubic-bezier(.2,.7,.2,1), color .35s ease, opacity .35s ease; opacity: .35; }
-  .cb-svc2:hover .cb-svc2-arrow { transform: rotate(45deg) scale(1.15); color: #fff !important; opacity: 1; }
-  .cb-svc2-headtag { transition: opacity .3s ease; }
-  .cb-svc2:hover .cb-svc2-headtag { opacity: 0; }
-  .cb-fb-panel[data-open="true"] { transform: translateY(-50%) translateX(0) !important; }
-  .cb-fb-tab:hover { padding-bottom: 22px !important; }
-  .cb-link-card:hover { background: var(--accent); color: #fff !important; border-color: var(--accent) !important; }
-  .cb-link-card:hover .cb-link-arrow { transform: translate(3px,-3px); }
-</style>
-</helmet>
-<div class="cbroot" data-theme="{{ theme }}" style="background: var(--bg); color: var(--fg); font-family: 'Space Grotesk', sans-serif; min-height: 100vh; position: relative; overflow-x: clip;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin=""
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&amp;family=Space+Grotesk:wght@300..700&amp;family=Space+Mono:wght@400;700&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          html {
+            scroll-behavior: smooth;
+          }
+          body {
+            background: #0b0b0c;
+          }
+          .cbroot {
+            --bg: #0b0b0c;
+            --bg2: #141417;
+            --fg: #f1efe8;
+            --muted: #8c8a80;
+            --line: rgba(255, 255, 255, 0.13);
+            --accent: #e40523;
+            --card: #101012;
+          }
+          .cbroot[data-theme='light'] {
+            --bg: #f2f0e8;
+            --bg2: #e7e4da;
+            --fg: #0b0b0c;
+            --muted: #6a685f;
+            --line: rgba(0, 0, 0, 0.14);
+            --accent: #e40523;
+            --card: #ebe8de;
+          }
+          a {
+            color: var(--accent);
+            text-decoration: none;
+          }
+          a:hover {
+            color: var(--accent);
+          }
+          @media (hover: hover) and (pointer: fine) {
+            .cbroot,
+            .cbroot * {
+              cursor: none;
+            }
+          }
+          @keyframes cb-marquee {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
+          @keyframes cb-marquee-rev {
+            from {
+              transform: translateX(-50%);
+            }
+            to {
+              transform: translateX(0);
+            }
+          }
+          @keyframes cb-draw {
+            to {
+              stroke-dashoffset: 0;
+            }
+          }
+          @keyframes cb-blink {
+            0%,
+            100% {
+              opacity: 1;
+            }
+            50% {
+              opacity: 0;
+            }
+          }
+          @keyframes cb-bob {
+            0%,
+            100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(9px);
+            }
+          }
+          @keyframes cb-spin {
+            to {
+              transform: rotate(360deg);
+            }
+          }
+          @keyframes cb-pulse {
+            0%,
+            100% {
+              opacity: 0.55;
+            }
+            50% {
+              opacity: 1;
+            }
+          }
+          .cb-menu[data-open='true'] {
+            transform: translateY(0) !important;
+          }
+          .cb-menu[data-open='true'] .cb-menu-link {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+          }
+          .cb-work-row:hover .cb-work-name {
+            transform: translateX(34px);
+            color: var(--fg);
+          }
+          .cb-work-row:hover .cb-work-arrow {
+            opacity: 1;
+            transform: translateX(0) rotate(0deg);
+          }
+          .cb-work-row:hover .cb-work-index {
+            color: var(--accent);
+          }
+          .cb-nav-link {
+            position: relative;
+          }
+          .cb-nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            height: 1px;
+            width: 0;
+            background: var(--fg);
+            transition: width 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+          }
+          .cb-nav-link:hover::after {
+            width: 100%;
+          }
+          .cb-svc2 {
+            position: relative;
+          }
+          .cb-svc2::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+          }
+          .cb-svc2:hover::before {
+            transform: scaleY(1);
+            transform-origin: bottom;
+          }
+          .cb-svc2 > * {
+            position: relative;
+            z-index: 1;
+          }
+          .cb-svc2-idx {
+            transition: color 0.35s ease;
+          }
+          .cb-svc2-title {
+            transition:
+              color 0.35s ease,
+              transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+          }
+          .cb-svc2-body {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+          }
+          .cb-svc2-body > div {
+            overflow: hidden;
+          }
+          .cb-svc2:hover .cb-svc2-body {
+            grid-template-rows: 1fr;
+          }
+          .cb-svc2-desc,
+          .cb-svc2-tag {
+            opacity: 0;
+            transform: translateY(10px);
+            transition:
+              opacity 0.4s ease 0.12s,
+              transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) 0.12s;
+          }
+          .cb-svc2:hover .cb-svc2-desc,
+          .cb-svc2:hover .cb-svc2-tag {
+            opacity: 1;
+            transform: translateY(0);
+          }
+          .cb-svc2:hover .cb-svc2-idx {
+            color: rgba(255, 255, 255, 0.65) !important;
+          }
+          .cb-svc2:hover .cb-svc2-title {
+            color: #fff !important;
+            transform: translateX(18px);
+          }
+          .cb-svc2:hover .cb-svc2-desc {
+            color: rgba(255, 255, 255, 0.85) !important;
+          }
+          .cb-svc2:hover .cb-svc2-tag {
+            color: #fff !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
+          }
+          .cb-svc2-arrow {
+            transition:
+              transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+              color 0.35s ease,
+              opacity 0.35s ease;
+            opacity: 0.35;
+          }
+          .cb-svc2:hover .cb-svc2-arrow {
+            transform: rotate(45deg) scale(1.15);
+            color: #fff !important;
+            opacity: 1;
+          }
+          .cb-svc2-headtag {
+            transition: opacity 0.3s ease;
+          }
+          .cb-svc2:hover .cb-svc2-headtag {
+            opacity: 0;
+          }
+          .cb-fb-panel[data-open='true'] {
+            transform: translateY(-50%) translateX(0) !important;
+          }
+          .cb-fb-tab:hover {
+            padding-bottom: 22px !important;
+          }
+          .cb-link-card:hover {
+            background: var(--accent);
+            color: #fff !important;
+            border-color: var(--accent) !important;
+          }
+          .cb-link-card:hover .cb-link-arrow {
+            transform: translate(3px, -3px);
+          }
+        </style>
+      </helmet>
+      <div
+        class="cbroot"
+        data-theme="{{ theme }}"
+        style="
+          background: var(--bg);
+          color: var(--fg);
+          font-family: 'Space Grotesk', sans-serif;
+          min-height: 100vh;
+          position: relative;
+          overflow-x: clip;
+        "
+      >
+        <div
+          class="cb-cursor-dot"
+          style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: difference;
+          "
+        ></div>
+        <div
+          class="cb-cursor-ring"
+          style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--fg);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+            transition:
+              width 0.25s ease,
+              height 0.25s ease,
+              opacity 0.25s ease,
+              background 0.25s ease;
+          "
+        ></div>
 
-  <div class="cb-cursor-dot" style="position: fixed; top: 0; left: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: difference"></div>
-  <div class="cb-cursor-ring" style="position: fixed; top: 0; left: 0; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--fg); pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: .5; transition: width .25s ease, height .25s ease, opacity .25s ease, background .25s ease;"></div>
-
-  <div class="cb-preview" style="position: fixed; top: 0; left: 0; width: 320px; height: 220px; z-index: 60; pointer-events: none; opacity: 0; transform: translate(-50%,-50%) scale(.85); transition: opacity .35s ease, transform .35s ease; overflow: hidden; border-radius: 6px; border: 1px solid var(--line);">
-    <div class="cb-preview-fill" style="width:100%;height:100%;background:
-      repeating-linear-gradient(135deg, var(--bg2) 0 14px, var(--card) 14px 28px);
-      display:flex;align-items:flex-end;padding:14px;">
-      <span class="cb-preview-cap" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;">preview</span>
-    </div>
-  </div>
-
-  <!-- side section index -->
-  <nav style="position: fixed; right: 26px; top: 50%; transform: translateY(-50%); z-index: 50; display: flex; flex-direction: column; gap: 16px; align-items: flex-end;">
-    <a href="#hero" data-dot="hero" class="cb-dot" style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">
-      <span class="cb-dot-label" style="opacity:0;transition:opacity .3s ease;">Intro</span>
-      <span class="cb-dot-mark" style="width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);transition:all .3s ease;"></span>
-    </a>
-    <a href="#work" data-dot="work" class="cb-dot" style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">
-      <span class="cb-dot-label" style="opacity:0;transition:opacity .3s ease;">Work</span>
-      <span class="cb-dot-mark" style="width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);transition:all .3s ease;"></span>
-    </a>
-    <a href="#about" data-dot="about" class="cb-dot" style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">
-      <span class="cb-dot-label" style="opacity:0;transition:opacity .3s ease;">About</span>
-      <span class="cb-dot-mark" style="width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);transition:all .3s ease;"></span>
-    </a>
-    <a href="#services" data-dot="services" class="cb-dot" style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">
-      <span class="cb-dot-label" style="opacity:0;transition:opacity .3s ease;">Services</span>
-      <span class="cb-dot-mark" style="width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);transition:all .3s ease;"></span>
-    </a>
-    <a href="#contact" data-dot="contact" class="cb-dot" style="display:flex;align-items:center;gap:10px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);">
-      <span class="cb-dot-label" style="opacity:0;transition:opacity .3s ease;">Contact</span>
-      <span class="cb-dot-mark" style="width:7px;height:7px;border-radius:50%;border:1px solid var(--muted);transition:all .3s ease;"></span>
-    </a>
-  </nav>
-
-  <!-- feedback tab (left edge) -->
-  <button class="cb-fb-tab" onClick="{{ toggleFeedback }}" style="position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:80;writing-mode:vertical-rl;background:var(--accent);color:#fff;border:none;padding:16px 9px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;border-radius:0 4px 4px 0;transition:padding .3s ease;">Feedback</button>
-
-  <aside class="cb-fb-panel" data-open="{{ feedbackOpen }}" style="position:fixed;left:0;top:50%;transform:translateY(-50%) translateX(-110%);z-index:81;width:min(340px,86vw);background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:26px 24px;display:flex;flex-direction:column;gap:14px;transition:transform .5s cubic-bezier(.76,0,.24,1);box-shadow:14px 0 50px rgba(0,0,0,.35);">
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);">Feedback</span>
-      <button onClick="{{ toggleFeedback }}" style="background:transparent;border:none;color:var(--muted);font-size:18px;line-height:1;padding:4px;">×</button>
-    </div>
-    <p style="font-family:'Space Grotesk',sans-serif;font-size:14px;line-height:1.5;color:var(--muted);">Spotted something off, or have an idea? Tell me — it goes straight to my inbox.</p>
-    <textarea class="cb-fb-text" rows="4" placeholder="Your feedback…" style="background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:12px;color:var(--fg);font-family:'Space Grotesk',sans-serif;font-size:14px;resize:vertical;outline:none;"></textarea>
-    <button onClick="{{ sendFeedback }}" data-magnetic="" style="background:var(--accent);border:none;border-radius:100px;padding:12px 20px;color:#fff;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;">{{ fbButtonLabel }}</button>
-  </aside>
-
-  <!-- NAV -->
-  <header data-nav="" style="position: fixed; top: 0; left: 0; width: 100%; z-index: 70; display: flex; align-items: center; justify-content: space-between; padding: 22px clamp(20px,4vw,54px); background: transparent; border-bottom: 1px solid transparent; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); transform: translateY(0); transition: transform .5s cubic-bezier(.2,.7,.2,1), padding .35s ease, background .35s ease, border-color .35s ease, backdrop-filter .35s ease;">
-    <a href="#hero" data-magnetic="" style="display:flex;align-items:center;gap:13px;">
-      <svg width="34" height="34" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-        <rect width="56" height="56" fill="#E40523"></rect>
-        <path d="M26.8802 18.48C26.8802 18.48 26.3183 18.48 14.7994 18.48C3.28037 18.4799 3.28047 37.52 14.7994 37.52C26.3182 37.52 26.8802 37.52 26.8802 37.52" stroke="white" stroke-width="3.92"></path>
-        <path d="M29.6804 18.48C29.6804 18.48 30.2422 18.4801 41.7612 18.48C53.2802 18.48 53.2801 37.52 41.7612 37.52C30.2423 37.52 29.6804 37.52 29.6804 37.52" stroke="white" stroke-width="3.92"></path>
-        <path d="M32.4807 28.0001C32.4807 28.0001 33.0425 28.0001 44.5615 28.0001" stroke="white" stroke-width="3.92"></path>
-        <path d="M31.8008 21.9596C31.8008 21.9596 31.8007 22.5214 31.8008 34.0404" stroke="white" stroke-width="3.92"></path>
-      </svg>
-      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em;color:var(--fg);">Cristian&nbsp;Brinza</span>
-    </a>
-    <div style="display:flex;align-items:center;gap:clamp(16px,2.4vw,34px);">
-      <a href="#work" class="cb-nav-link" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg);display:none;" data-desklink="">Work</a>
-      <a href="#about" class="cb-nav-link" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg);display:none;" data-desklink="">About</a>
-      <a href="#services" class="cb-nav-link" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg);display:none;" data-desklink="">Services</a>
-      <button onClick="{{ toggleTheme }}" data-magnetic="" aria-label="Toggle theme" style="background:transparent;border:1px solid var(--line);border-radius:100px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--fg);">
-        <span style="font-family:'Space Mono',monospace;font-size:13px;">{{ themeIcon }}</span>
-      </button>
-      <button onClick="{{ toggleMenu }}" data-magnetic="" aria-label="Menu" style="background:var(--fg);color:var(--bg);border:none;border-radius:100px;padding:10px 20px;display:flex;align-items:center;gap:9px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;">
-        Menu
-        <span style="display:flex;flex-direction:column;gap:3px;">
-          <span style="width:16px;height:1.5px;background:var(--bg);display:block;"></span>
-          <span style="width:16px;height:1.5px;background:var(--bg);display:block;"></span>
-        </span>
-      </button>
-    </div>
-  </header>
-
-  <!-- FULLSCREEN MENU -->
-  <div class="cb-menu" data-open="{{ menuOpen }}" style="position:fixed;inset:0;z-index:65;background:var(--bg2);transform:translateY(-101%);transition:transform .7s cubic-bezier(.76,0,.24,1);display:flex;flex-direction:column;justify-content:center;padding:clamp(30px,8vw,110px);gap:6px;">
-    <button onClick="{{ toggleMenu }}" style="position:absolute;top:24px;right:clamp(20px,4vw,54px);background:transparent;border:1px solid var(--line);border-radius:100px;padding:10px 20px;color:var(--fg);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;">Close ✕</button>
-    <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;">Navigation — 05</span>
-    <a href="#work" onClick="{{ toggleMenu }}" class="cb-menu-link" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(38px,7vw,88px);line-height:1.02;color:var(--fg);opacity:0;transform:translateY(30px);transition:opacity .5s ease .15s, transform .5s ease .15s;">Selected Work</a>
-    <a href="#about" onClick="{{ toggleMenu }}" class="cb-menu-link" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(38px,7vw,88px);line-height:1.02;color:var(--fg);opacity:0;transform:translateY(30px);transition:opacity .5s ease .22s, transform .5s ease .22s;">About Me</a>
-    <a href="#services" onClick="{{ toggleMenu }}" class="cb-menu-link" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(38px,7vw,88px);line-height:1.02;color:var(--fg);opacity:0;transform:translateY(30px);transition:opacity .5s ease .29s, transform .5s ease .29s;">Services</a>
-    <a href="#contact" onClick="{{ toggleMenu }}" class="cb-menu-link" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(38px,7vw,88px);line-height:1.02;color:var(--fg);opacity:0;transform:translateY(30px);transition:opacity .5s ease .36s, transform .5s ease .36s;">Get in Touch</a>
-    <div style="display:flex;gap:22px;margin-top:40px;flex-wrap:wrap;">
-      <a href="https://github.com/CristianBrinza" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">GitHub</a>
-      <a href="https://www.linkedin.com/in/cristianbrinza/" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">LinkedIn</a>
-      <a href="https://www.instagram.com/brinza_cristian/" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Instagram</a>
-      <a href="https://t.me/CristianBrinza" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Telegram</a>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <section id="hero" data-section="hero" style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px clamp(20px,4vw,54px) 60px;scroll-margin-top:0;">
-    <div data-plx="14" style="position:absolute;right:clamp(70px,7vw,120px);bottom:clamp(90px,12vh,150px);pointer-events:none;" data-showmd="">
-      <svg width="110" height="110" viewBox="0 0 110 110" style="display:block;animation:cb-spin 16s linear infinite;">
-        <defs><path id="cb-circ-h" d="M55,55 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"></path></defs>
-        <text style="font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;fill:var(--fg);opacity:.8;"><textPath href="#cb-circ-h">Design · Code · Craft · Detail · </textPath></text>
-      </svg>
-      <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--accent);font-size:15px;animation:cb-pulse 2.4s ease infinite;">✦</span>
-    </div>
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:auto;">
-      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.9;">
-        <div style="display:flex;align-items:center;gap:9px;"><span style="width:6px;height:6px;border-radius:50%;background:#3ecf6a;display:inline-block;animation:cb-blink 2.4s ease infinite;"></span>Available for work — 2026</div>
-        <div>Chișinău, Moldova · 47°N</div>
-      </div>
-      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;color:var(--muted);max-width:230px;text-align:right;line-height:1.7;">
-        Designer &amp; full-stack developer building precise, memorable digital products.
-      </div>
-    </div>
-
-    <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;line-height:.86;letter-spacing:-.02em;font-size:clamp(56px,15.5vw,260px);color:var(--fg);margin:24px 0;text-wrap:balance;">
-      <span data-reveal="" style="display:flex;align-items:center;gap:14px;font-family:'Space Mono',monospace;font-weight:400;font-size:clamp(14px,1.6vw,22px);letter-spacing:.16em;text-transform:uppercase;color:var(--fg);opacity:.72;line-height:1;margin-bottom:clamp(12px,1.4vw,22px);"><span style="width:clamp(28px,3.5vw,58px);height:1px;background:var(--accent);display:inline-block;"></span>( Hi, I'm )</span>
-      <span data-reveal="" style="display:block;">CRISTIAN</span>
-      <span data-reveal="" data-reveal-delay="120" style="display:flex;align-items:center;gap:clamp(14px,2.5vw,44px);flex-wrap:wrap;color:transparent;-webkit-text-stroke:clamp(1.5px,.18vw,3px) var(--fg);">
-        BRINZA
-        <svg class="cb-herologo" width="0.72em" height="0.72em" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
-          <rect width="56" height="56" fill="#E40523"></rect>
-          <path d="M26.8802 18.48C26.8802 18.48 26.3183 18.48 14.7994 18.48C3.28037 18.4799 3.28047 37.52 14.7994 37.52C26.3182 37.52 26.8802 37.52 26.8802 37.52" stroke="white" stroke-width="3.92" stroke-dasharray="120" stroke-dashoffset="120" style="animation:cb-draw 1.2s ease .3s forwards;"></path>
-          <path d="M29.6804 18.48C29.6804 18.48 30.2422 18.4801 41.7612 18.48C53.2802 18.48 53.2801 37.52 41.7612 37.52C30.2423 37.52 29.6804 37.52 29.6804 37.52" stroke="white" stroke-width="3.92" stroke-dasharray="120" stroke-dashoffset="120" style="animation:cb-draw 1.2s ease .5s forwards;"></path>
-          <path d="M32.4807 28.0001C32.4807 28.0001 33.0425 28.0001 44.5615 28.0001" stroke="white" stroke-width="3.92" stroke-dasharray="40" stroke-dashoffset="40" style="animation:cb-draw .8s ease .9s forwards;"></path>
-          <path d="M31.8008 21.9596C31.8008 21.9596 31.8007 22.5214 31.8008 34.0404" stroke="white" stroke-width="3.92" stroke-dasharray="40" stroke-dashoffset="40" style="animation:cb-draw .8s ease 1s forwards;"></path>
-        </svg>
-      </span>
-    </h1>
-
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:8px;">
-      <div data-reveal="" data-reveal-delay="240" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(19px,2.6vw,34px);line-height:1.1;color:var(--fg);max-width:520px;">
-        <span style="color:var(--accent);">✦</span> Designer <span style="color:var(--muted);">/</span> Full-Stack Developer <span style="color:var(--muted);">/</span> Problem Solver
-      </div>
-      <div data-reveal="" data-reveal-delay="300" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:right;line-height:1.8;" data-showmd="">
-        fig. 01 — form in motion<br>ink study, 2026
-      </div>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);">
-        Scroll
-        <span style="animation:cb-bob 1.8s ease infinite;font-size:16px;color:var(--fg);">↓</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <div style="border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:22px 0;">
-    <div style="display:flex;white-space:nowrap;width:max-content;animation:cb-marquee 34s linear infinite;">
-      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(30px,5vw,64px);text-transform:uppercase;letter-spacing:-.01em;color:var(--fg);display:flex;">
-        Design&nbsp;<span style="color:var(--accent);">✦</span>&nbsp;Development&nbsp;<span style="color:var(--accent);">✦</span>&nbsp;Branding&nbsp;<span style="color:var(--accent);">✦</span>&nbsp;Interfaces&nbsp;<span style="color:var(--accent);">✦</span>&nbsp;
-      </span>
-      <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(30px,5vw,64px);text-transform:uppercase;letter-spacing:-.01em;color:var(--fg);display:flex;">
-        Design&nbsp;<span style="color:var(--accent);">✦</span>&nbsp;Development&nbsp;<span style="color:var(--accent);">✦</span>&nbsp;Branding&nbsp;<span style="color:var(--accent);">✦</span>&nbsp;Interfaces&nbsp;<span style="color:var(--accent);">✦</span>&nbsp;
-      </span>
-    </div>
-  </div>
-
-  <!-- STATS -->
-  <section style="padding:clamp(60px,9vw,130px) clamp(20px,4vw,54px);display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px;border-bottom:1px solid var(--line);">
-    <div data-reveal="">
-      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(48px,7vw,96px);line-height:1;color:var(--fg);"><span data-count="5" data-suffix="+">0</span></div>
-      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;">Years building</div>
-    </div>
-    <div data-reveal="" data-reveal-delay="80">
-      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(48px,7vw,96px);line-height:1;color:var(--fg);"><span data-count="40" data-suffix="+">0</span></div>
-      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;">Projects shipped</div>
-    </div>
-    <div data-reveal="" data-reveal-delay="160">
-      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(48px,7vw,96px);line-height:1;color:var(--fg);"><span data-count="20" data-suffix="+">0</span></div>
-      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;">Technologies</div>
-    </div>
-    <div data-reveal="" data-reveal-delay="240">
-      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(48px,7vw,96px);line-height:1;color:var(--fg);"><span data-count="12" data-suffix="+">0</span></div>
-      <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:10px;">Certifications</div>
-    </div>
-  </section>
-
-  <!-- WORK -->
-  
-
-  <!-- ABOUT -->
-  <section id="about" data-section="about" style="padding:clamp(60px,9vw,140px) clamp(20px,4vw,54px);border-top:1px solid var(--line);scroll-margin-top:80px;display:grid;grid-template-columns:1fr;gap:clamp(40px,6vw,90px);">
-    <div style="display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:clamp(30px,5vw,70px);align-items:start;" data-aboutgrid="">
-      <div>
-        <span data-reveal="" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:24px;">( About )</span>
-        <p data-reveal="" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(24px,3.4vw,46px);line-height:1.22;letter-spacing:-.01em;color:var(--fg);text-wrap:pretty;">
-          I'm Cristian — a software engineer who cares as much about how things <em style="font-style:italic;color:var(--accent);">feel</em> as how they work. I design and build user-friendly, visually sharp products end to end, from the first pixel to the last deploy.
-        </p>
-        <p data-reveal="" style="font-family:'Space Grotesque',sans-serif;font-size:clamp(15px,1.4vw,18px);line-height:1.6;color:var(--muted);max-width:640px;margin-top:26px;">Proven my ability to deliver high-quality work, adapt to new technologies, collaborate with cross-functional teams, and stay currently with industry trends.&nbsp;</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:26px;font-family:'Space Mono',monospace;">
-        <div data-reveal="">
-          <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Based in</div>
-          <div style="font-size:15px;color:var(--fg);">Chișinău, Moldova</div>
-        </div>
-        <div data-reveal="">
-          <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Education</div>
-          <div style="font-size:15px;color:var(--fg);line-height:1.5;">BSc Software Engineering, UTM<br>Programming &amp; Analysis, CEITI</div>
-        </div>
-        <div data-reveal="">
-          <div style="font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Languages</div>
-          <div style="font-size:15px;color:var(--fg);line-height:1.5;">Romanian · English · Russian · French</div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <span data-reveal="" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:20px;">( Stack )</span>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;" data-reveal="">
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">React</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">TypeScript</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">Node.js</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">Express</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">MongoDB</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">Python</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">Figma</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">Tailwind</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">Photoshop</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">Illustrator</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">Git</span>
-        <span class="cb-chip" style="border:1px solid var(--line);border-radius:100px;padding:9px 18px;font-family:'Space Mono',monospace;font-size:13px;color:var(--fg);transition:background .3s ease,color .3s ease;">PWA</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services" data-section="services" style="padding:clamp(60px,9vw,140px) clamp(20px,4vw,54px);border-top:1px solid var(--line);scroll-margin-top:80px;">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;margin-bottom:clamp(30px,5vw,64px);">
-      <h2 data-reveal="" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,52px);letter-spacing:-.02em;color:var(--fg);line-height:.95;">What I Do</h2>
-      <span data-reveal="" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);">( Services )</span>
-    </div>
-    <div style="border-top:1px solid var(--line);">
-      <div class="cb-svc2" data-reveal="" style="border-bottom:1px solid var(--line);padding:clamp(20px,2.4vw,32px) clamp(4px,1.5vw,24px);">
-        <div style="display:flex;align-items:baseline;gap:clamp(18px,3vw,48px);">
-          <span class="cb-svc2-idx" style="font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,15px);color:var(--accent);flex:0 0 3.2em;">(01)</span>
-          <h3 class="cb-svc2-title" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(22px,2.6vw,40px);letter-spacing:-.015em;line-height:1.05;color:var(--fg);">Product Design</h3>
-          <div class="cb-svc2-headtags" style="display:flex;flex-wrap:wrap;gap:8px;align-self:center;">
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Figma</span>
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Design Systems</span>
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Prototyping</span>
+        <div
+          class="cb-preview"
+          style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            height: 220px;
+            z-index: 60;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.85);
+            transition:
+              opacity 0.35s ease,
+              transform 0.35s ease;
+            overflow: hidden;
+            border-radius: 6px;
+            border: 1px solid var(--line);
+          "
+        >
+          <div
+            class="cb-preview-fill"
+            style="
+              width: 100%;
+              height: 100%;
+              background: repeating-linear-gradient(
+                135deg,
+                var(--bg2) 0 14px,
+                var(--card) 14px 28px
+              );
+              display: flex;
+              align-items: flex-end;
+              padding: 14px;
+            "
+          >
+            <span
+              class="cb-preview-cap"
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 11px;
+                letter-spacing: 0.06em;
+                color: var(--muted);
+                text-transform: uppercase;
+              "
+              >preview</span
+            >
           </div>
-          <span class="cb-svc2-arrow" style="margin-left:auto;font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(18px,1.8vw,26px);color:var(--fg);line-height:1;">→</span>
         </div>
-        <div class="cb-svc2-body">
-          <div>
-            <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(18px,3vw,48px);padding-top:clamp(16px,2vw,28px);padding-left:calc(3.2em + clamp(18px,3vw,48px));">
-              <p class="cb-svc2-desc" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.3vw,19px);line-height:1.5;color:var(--muted);max-width:520px;flex:1 1 320px;text-wrap:pretty;">UX/UI, wireframes and design systems that turn ideas into clear, usable interfaces.</p>
-              <div style="display:flex;flex-wrap:wrap;gap:8px;">
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Figma</span>
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Design Systems</span>
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Prototyping</span>
+
+        <!-- side section index -->
+        <nav
+          style="
+            position: fixed;
+            right: 26px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: flex-end;
+          "
+        >
+          <a
+            href="#hero"
+            data-dot="hero"
+            class="cb-dot"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              font-family: 'Space Mono', monospace;
+              font-size: 10px;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              color: var(--muted);
+            "
+          >
+            <span
+              class="cb-dot-label"
+              style="opacity: 0; transition: opacity 0.3s ease"
+              >Intro</span
+            >
+            <span
+              class="cb-dot-mark"
+              style="
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                border: 1px solid var(--muted);
+                transition: all 0.3s ease;
+              "
+            ></span>
+          </a>
+          <a
+            href="#work"
+            data-dot="work"
+            class="cb-dot"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              font-family: 'Space Mono', monospace;
+              font-size: 10px;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              color: var(--muted);
+            "
+          >
+            <span
+              class="cb-dot-label"
+              style="opacity: 0; transition: opacity 0.3s ease"
+              >Work</span
+            >
+            <span
+              class="cb-dot-mark"
+              style="
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                border: 1px solid var(--muted);
+                transition: all 0.3s ease;
+              "
+            ></span>
+          </a>
+          <a
+            href="#about"
+            data-dot="about"
+            class="cb-dot"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              font-family: 'Space Mono', monospace;
+              font-size: 10px;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              color: var(--muted);
+            "
+          >
+            <span
+              class="cb-dot-label"
+              style="opacity: 0; transition: opacity 0.3s ease"
+              >About</span
+            >
+            <span
+              class="cb-dot-mark"
+              style="
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                border: 1px solid var(--muted);
+                transition: all 0.3s ease;
+              "
+            ></span>
+          </a>
+          <a
+            href="#services"
+            data-dot="services"
+            class="cb-dot"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              font-family: 'Space Mono', monospace;
+              font-size: 10px;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              color: var(--muted);
+            "
+          >
+            <span
+              class="cb-dot-label"
+              style="opacity: 0; transition: opacity 0.3s ease"
+              >Services</span
+            >
+            <span
+              class="cb-dot-mark"
+              style="
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                border: 1px solid var(--muted);
+                transition: all 0.3s ease;
+              "
+            ></span>
+          </a>
+          <a
+            href="#contact"
+            data-dot="contact"
+            class="cb-dot"
+            style="
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              font-family: 'Space Mono', monospace;
+              font-size: 10px;
+              letter-spacing: 0.14em;
+              text-transform: uppercase;
+              color: var(--muted);
+            "
+          >
+            <span
+              class="cb-dot-label"
+              style="opacity: 0; transition: opacity 0.3s ease"
+              >Contact</span
+            >
+            <span
+              class="cb-dot-mark"
+              style="
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                border: 1px solid var(--muted);
+                transition: all 0.3s ease;
+              "
+            ></span>
+          </a>
+        </nav>
+
+        <!-- feedback tab (left edge) -->
+        <button
+          class="cb-fb-tab"
+          onClick="{{ toggleFeedback }}"
+          style="
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 80;
+            writing-mode: vertical-rl;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 16px 9px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            border-radius: 0 4px 4px 0;
+            transition: padding 0.3s ease;
+          "
+        >
+          Feedback
+        </button>
+
+        <aside
+          class="cb-fb-panel"
+          data-open="{{ feedbackOpen }}"
+          style="
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) translateX(-110%);
+            z-index: 81;
+            width: min(340px, 86vw);
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 26px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+            box-shadow: 14px 0 50px rgba(0, 0, 0, 0.35);
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <span
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 11px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: var(--accent);
+              "
+              >Feedback</span
+            >
+            <button
+              onClick="{{ toggleFeedback }}"
+              style="
+                background: transparent;
+                border: none;
+                color: var(--muted);
+                font-size: 18px;
+                line-height: 1;
+                padding: 4px;
+              "
+            >
+              ×
+            </button>
+          </div>
+          <p
+            style="
+              font-family: 'Space Grotesk', sans-serif;
+              font-size: 14px;
+              line-height: 1.5;
+              color: var(--muted);
+            "
+          >
+            Spotted something off, or have an idea? Tell me — it goes straight
+            to my inbox.
+          </p>
+          <textarea
+            class="cb-fb-text"
+            rows="4"
+            placeholder="Your feedback…"
+            style="
+              background: var(--bg2);
+              border: 1px solid var(--line);
+              border-radius: 6px;
+              padding: 12px;
+              color: var(--fg);
+              font-family: 'Space Grotesk', sans-serif;
+              font-size: 14px;
+              resize: vertical;
+              outline: none;
+            "
+          ></textarea>
+          <button
+            onClick="{{ sendFeedback }}"
+            data-magnetic=""
+            style="
+              background: var(--accent);
+              border: none;
+              border-radius: 100px;
+              padding: 12px 20px;
+              color: #fff;
+              font-family: 'Space Mono', monospace;
+              font-size: 11px;
+              letter-spacing: 0.1em;
+              text-transform: uppercase;
+            "
+          >
+            {{ fbButtonLabel }}
+          </button>
+        </aside>
+
+        <!-- NAV -->
+        <header
+          data-nav=""
+          style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 70;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px clamp(20px, 4vw, 54px);
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(0px);
+            transform: translateY(0);
+            transition:
+              transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+              padding 0.35s ease,
+              background 0.35s ease,
+              border-color 0.35s ease,
+              backdrop-filter 0.35s ease;
+          "
+        >
+          <a
+            href="#hero"
+            data-magnetic=""
+            style="display: flex; align-items: center; gap: 13px"
+          >
+            <svg
+              width="34"
+              height="34"
+              viewBox="0 0 56 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style="display: block"
+            >
+              <rect width="56" height="56" fill="#E40523"></rect>
+              <path
+                d="M26.8802 18.48C26.8802 18.48 26.3183 18.48 14.7994 18.48C3.28037 18.4799 3.28047 37.52 14.7994 37.52C26.3182 37.52 26.8802 37.52 26.8802 37.52"
+                stroke="white"
+                stroke-width="3.92"
+              ></path>
+              <path
+                d="M29.6804 18.48C29.6804 18.48 30.2422 18.4801 41.7612 18.48C53.2802 18.48 53.2801 37.52 41.7612 37.52C30.2423 37.52 29.6804 37.52 29.6804 37.52"
+                stroke="white"
+                stroke-width="3.92"
+              ></path>
+              <path
+                d="M32.4807 28.0001C32.4807 28.0001 33.0425 28.0001 44.5615 28.0001"
+                stroke="white"
+                stroke-width="3.92"
+              ></path>
+              <path
+                d="M31.8008 21.9596C31.8008 21.9596 31.8007 22.5214 31.8008 34.0404"
+                stroke="white"
+                stroke-width="3.92"
+              ></path>
+            </svg>
+            <span
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 700;
+                font-size: 17px;
+                letter-spacing: -0.01em;
+                color: var(--fg);
+              "
+              >Cristian&nbsp;Brinza</span
+            >
+          </a>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              gap: clamp(16px, 2.4vw, 34px);
+            "
+          >
+            <a
+              href="#work"
+              class="cb-nav-link"
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--fg);
+                display: none;
+              "
+              data-desklink=""
+              >Work</a
+            >
+            <a
+              href="#about"
+              class="cb-nav-link"
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--fg);
+                display: none;
+              "
+              data-desklink=""
+              >About</a
+            >
+            <a
+              href="#services"
+              class="cb-nav-link"
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--fg);
+                display: none;
+              "
+              data-desklink=""
+              >Services</a
+            >
+            <button
+              onClick="{{ toggleTheme }}"
+              data-magnetic=""
+              aria-label="Toggle theme"
+              style="
+                background: transparent;
+                border: 1px solid var(--line);
+                border-radius: 100px;
+                width: 38px;
+                height: 38px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--fg);
+              "
+            >
+              <span
+                style="font-family: 'Space Mono', monospace; font-size: 13px"
+                >{{ themeIcon }}</span
+              >
+            </button>
+            <button
+              onClick="{{ toggleMenu }}"
+              data-magnetic=""
+              aria-label="Menu"
+              style="
+                background: var(--fg);
+                color: var(--bg);
+                border: none;
+                border-radius: 100px;
+                padding: 10px 20px;
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+              "
+            >
+              Menu
+              <span style="display: flex; flex-direction: column; gap: 3px">
+                <span
+                  style="
+                    width: 16px;
+                    height: 1.5px;
+                    background: var(--bg);
+                    display: block;
+                  "
+                ></span>
+                <span
+                  style="
+                    width: 16px;
+                    height: 1.5px;
+                    background: var(--bg);
+                    display: block;
+                  "
+                ></span>
+              </span>
+            </button>
+          </div>
+        </header>
+
+        <!-- FULLSCREEN MENU -->
+        <div
+          class="cb-menu"
+          data-open="{{ menuOpen }}"
+          style="
+            position: fixed;
+            inset: 0;
+            z-index: 65;
+            background: var(--bg2);
+            transform: translateY(-101%);
+            transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: clamp(30px, 8vw, 110px);
+            gap: 6px;
+          "
+        >
+          <button
+            onClick="{{ toggleMenu }}"
+            style="
+              position: absolute;
+              top: 24px;
+              right: clamp(20px, 4vw, 54px);
+              background: transparent;
+              border: 1px solid var(--line);
+              border-radius: 100px;
+              padding: 10px 20px;
+              color: var(--fg);
+              font-family: 'Space Mono', monospace;
+              font-size: 12px;
+              letter-spacing: 0.08em;
+              text-transform: uppercase;
+            "
+          >
+            Close ✕
+          </button>
+          <span
+            style="
+              font-family: 'Space Mono', monospace;
+              font-size: 11px;
+              letter-spacing: 0.2em;
+              text-transform: uppercase;
+              color: var(--muted);
+              margin-bottom: 24px;
+            "
+            >Navigation — 05</span
+          >
+          <a
+            href="#work"
+            onClick="{{ toggleMenu }}"
+            class="cb-menu-link"
+            style="
+              font-family: 'Bricolage Grotesque', sans-serif;
+              font-weight: 700;
+              font-size: clamp(38px, 7vw, 88px);
+              line-height: 1.02;
+              color: var(--fg);
+              opacity: 0;
+              transform: translateY(30px);
+              transition:
+                opacity 0.5s ease 0.15s,
+                transform 0.5s ease 0.15s;
+            "
+            >Selected Work</a
+          >
+          <a
+            href="#about"
+            onClick="{{ toggleMenu }}"
+            class="cb-menu-link"
+            style="
+              font-family: 'Bricolage Grotesque', sans-serif;
+              font-weight: 700;
+              font-size: clamp(38px, 7vw, 88px);
+              line-height: 1.02;
+              color: var(--fg);
+              opacity: 0;
+              transform: translateY(30px);
+              transition:
+                opacity 0.5s ease 0.22s,
+                transform 0.5s ease 0.22s;
+            "
+            >About Me</a
+          >
+          <a
+            href="#services"
+            onClick="{{ toggleMenu }}"
+            class="cb-menu-link"
+            style="
+              font-family: 'Bricolage Grotesque', sans-serif;
+              font-weight: 700;
+              font-size: clamp(38px, 7vw, 88px);
+              line-height: 1.02;
+              color: var(--fg);
+              opacity: 0;
+              transform: translateY(30px);
+              transition:
+                opacity 0.5s ease 0.29s,
+                transform 0.5s ease 0.29s;
+            "
+            >Services</a
+          >
+          <a
+            href="#contact"
+            onClick="{{ toggleMenu }}"
+            class="cb-menu-link"
+            style="
+              font-family: 'Bricolage Grotesque', sans-serif;
+              font-weight: 700;
+              font-size: clamp(38px, 7vw, 88px);
+              line-height: 1.02;
+              color: var(--fg);
+              opacity: 0;
+              transform: translateY(30px);
+              transition:
+                opacity 0.5s ease 0.36s,
+                transform 0.5s ease 0.36s;
+            "
+            >Get in Touch</a
+          >
+          <div
+            style="display: flex; gap: 22px; margin-top: 40px; flex-wrap: wrap"
+          >
+            <a
+              href="https://github.com/CristianBrinza"
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--muted);
+              "
+              >GitHub</a
+            >
+            <a
+              href="https://www.linkedin.com/in/cristianbrinza/"
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--muted);
+              "
+              >LinkedIn</a
+            >
+            <a
+              href="https://www.instagram.com/brinza_cristian/"
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--muted);
+              "
+              >Instagram</a
+            >
+            <a
+              href="https://t.me/CristianBrinza"
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--muted);
+              "
+              >Telegram</a
+            >
+          </div>
+        </div>
+
+        <!-- HERO -->
+        <section
+          id="hero"
+          data-section="hero"
+          style="
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 120px clamp(20px, 4vw, 54px) 60px;
+            scroll-margin-top: 0;
+          "
+        >
+          <div
+            data-plx="14"
+            style="
+              position: absolute;
+              right: clamp(70px, 7vw, 120px);
+              bottom: clamp(90px, 12vh, 150px);
+              pointer-events: none;
+            "
+            data-showmd=""
+          >
+            <svg
+              width="110"
+              height="110"
+              viewBox="0 0 110 110"
+              style="display: block; animation: cb-spin 16s linear infinite"
+            >
+              <defs>
+                <path
+                  id="cb-circ-h"
+                  d="M55,55 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"
+                ></path>
+              </defs>
+              <text
+                style="
+                  font-family: 'Space Mono', monospace;
+                  font-size: 10.5px;
+                  letter-spacing: 0.34em;
+                  text-transform: uppercase;
+                  fill: var(--fg);
+                  opacity: 0.8;
+                "
+              >
+                <textPath href="#cb-circ-h">
+                  Design · Code · Craft · Detail ·
+                </textPath>
+              </text>
+            </svg>
+            <span
+              style="
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: var(--accent);
+                font-size: 15px;
+                animation: cb-pulse 2.4s ease infinite;
+              "
+              >✦</span
+            >
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-start;
+              gap: 20px;
+              flex-wrap: wrap;
+              margin-bottom: auto;
+            "
+          >
+            <div
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--muted);
+                line-height: 1.9;
+              "
+            >
+              <div style="display: flex; align-items: center; gap: 9px">
+                <span
+                  style="
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: #3ecf6a;
+                    display: inline-block;
+                    animation: cb-blink 2.4s ease infinite;
+                  "
+                ></span
+                >Available for work — 2026
               </div>
-              
+              <div>Chișinău, Moldova · 47°N</div>
+            </div>
+            <div
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.06em;
+                color: var(--muted);
+                max-width: 230px;
+                text-align: right;
+                line-height: 1.7;
+              "
+            >
+              Designer &amp; full-stack developer building precise, memorable
+              digital products.
             </div>
           </div>
-        </div>
-      </div>
-      <div class="cb-svc2" data-reveal="" data-reveal-delay="80" style="border-bottom:1px solid var(--line);padding:clamp(20px,2.4vw,32px) clamp(4px,1.5vw,24px);">
-        <div style="display:flex;align-items:baseline;gap:clamp(18px,3vw,48px);">
-          <span class="cb-svc2-idx" style="font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,15px);color:var(--accent);flex:0 0 3.2em;">(02)</span>
-          <h3 class="cb-svc2-title" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(22px,2.6vw,40px);letter-spacing:-.015em;line-height:1.05;color:var(--fg);">Front-End Dev</h3>
-          <div class="cb-svc2-headtags" style="display:flex;flex-wrap:wrap;gap:8px;align-self:center;">
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">React</span>
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">TypeScript</span>
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Motion</span>
-          </div>
-          <span class="cb-svc2-arrow" style="margin-left:auto;font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(18px,1.8vw,26px);color:var(--fg);line-height:1;">→</span>
-        </div>
-        <div class="cb-svc2-body">
-          <div>
-            <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(18px,3vw,48px);padding-top:clamp(16px,2vw,28px);padding-left:calc(3.2em + clamp(18px,3vw,48px));">
-              <p class="cb-svc2-desc" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.3vw,19px);line-height:1.5;color:var(--muted);max-width:520px;flex:1 1 320px;text-wrap:pretty;">Fast, accessible, animated interfaces in React &amp; TypeScript — pixel-precise and responsive.</p>
-              <div style="display:flex;flex-wrap:wrap;gap:8px;">
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">React</span>
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">TypeScript</span>
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Motion</span>
-              </div>
-              
+
+          <h1
+            style="
+              font-family: 'Bricolage Grotesque', sans-serif;
+              font-weight: 800;
+              line-height: 0.86;
+              letter-spacing: -0.02em;
+              font-size: clamp(56px, 15.5vw, 260px);
+              color: var(--fg);
+              margin: 24px 0;
+              text-wrap: balance;
+            "
+          >
+            <span
+              data-reveal=""
+              style="
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                font-family: 'Space Mono', monospace;
+                font-weight: 400;
+                font-size: clamp(14px, 1.6vw, 22px);
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: var(--fg);
+                opacity: 0.72;
+                line-height: 1;
+                margin-bottom: clamp(12px, 1.4vw, 22px);
+              "
+              ><span
+                style="
+                  width: clamp(28px, 3.5vw, 58px);
+                  height: 1px;
+                  background: var(--accent);
+                  display: inline-block;
+                "
+              ></span
+              >( Hi, I'm )</span
+            >
+            <span data-reveal="" style="display: block">CRISTIAN</span>
+            <span
+              data-reveal=""
+              data-reveal-delay="120"
+              style="
+                display: flex;
+                align-items: center;
+                gap: clamp(14px, 2.5vw, 44px);
+                flex-wrap: wrap;
+                color: transparent;
+                -webkit-text-stroke: clamp(1.5px, 0.18vw, 3px) var(--fg);
+              "
+            >
+              BRINZA
+              <svg
+                class="cb-herologo"
+                width="0.72em"
+                height="0.72em"
+                viewBox="0 0 56 56"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="flex-shrink: 0"
+              >
+                <rect width="56" height="56" fill="#E40523"></rect>
+                <path
+                  d="M26.8802 18.48C26.8802 18.48 26.3183 18.48 14.7994 18.48C3.28037 18.4799 3.28047 37.52 14.7994 37.52C26.3182 37.52 26.8802 37.52 26.8802 37.52"
+                  stroke="white"
+                  stroke-width="3.92"
+                  stroke-dasharray="120"
+                  stroke-dashoffset="120"
+                  style="animation: cb-draw 1.2s ease 0.3s forwards"
+                ></path>
+                <path
+                  d="M29.6804 18.48C29.6804 18.48 30.2422 18.4801 41.7612 18.48C53.2802 18.48 53.2801 37.52 41.7612 37.52C30.2423 37.52 29.6804 37.52 29.6804 37.52"
+                  stroke="white"
+                  stroke-width="3.92"
+                  stroke-dasharray="120"
+                  stroke-dashoffset="120"
+                  style="animation: cb-draw 1.2s ease 0.5s forwards"
+                ></path>
+                <path
+                  d="M32.4807 28.0001C32.4807 28.0001 33.0425 28.0001 44.5615 28.0001"
+                  stroke="white"
+                  stroke-width="3.92"
+                  stroke-dasharray="40"
+                  stroke-dashoffset="40"
+                  style="animation: cb-draw 0.8s ease 0.9s forwards"
+                ></path>
+                <path
+                  d="M31.8008 21.9596C31.8008 21.9596 31.8007 22.5214 31.8008 34.0404"
+                  stroke="white"
+                  stroke-width="3.92"
+                  stroke-dasharray="40"
+                  stroke-dashoffset="40"
+                  style="animation: cb-draw 0.8s ease 1s forwards"
+                ></path>
+              </svg>
+            </span>
+          </h1>
+
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+              gap: 24px;
+              flex-wrap: wrap;
+              margin-top: 8px;
+            "
+          >
+            <div
+              data-reveal=""
+              data-reveal-delay="240"
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 300;
+                font-size: clamp(19px, 2.6vw, 34px);
+                line-height: 1.1;
+                color: var(--fg);
+                max-width: 520px;
+              "
+            >
+              <span style="color: var(--accent)">✦</span> Designer
+              <span style="color: var(--muted)">/</span> Full-Stack Developer
+              <span style="color: var(--muted)">/</span> Problem Solver
+            </div>
+            <div
+              data-reveal=""
+              data-reveal-delay="300"
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 11px;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+                text-align: right;
+                line-height: 1.8;
+              "
+              data-showmd=""
+            >
+              fig. 01 — form in motion<br />ink study, 2026
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+                font-family: 'Space Mono', monospace;
+                font-size: 10px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: var(--muted);
+              "
+            >
+              Scroll
+              <span
+                style="
+                  animation: cb-bob 1.8s ease infinite;
+                  font-size: 16px;
+                  color: var(--fg);
+                "
+                >↓</span
+              >
             </div>
           </div>
-        </div>
-      </div>
-      <div class="cb-svc2" data-reveal="" data-reveal-delay="160" style="border-bottom:1px solid var(--line);padding:clamp(20px,2.4vw,32px) clamp(4px,1.5vw,24px);">
-        <div style="display:flex;align-items:baseline;gap:clamp(18px,3vw,48px);">
-          <span class="cb-svc2-idx" style="font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,15px);color:var(--accent);flex:0 0 3.2em;">(03)</span>
-          <h3 class="cb-svc2-title" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(22px,2.6vw,40px);letter-spacing:-.015em;line-height:1.05;color:var(--fg);">Back-End &amp; APIs</h3>
-          <div class="cb-svc2-headtags" style="display:flex;flex-wrap:wrap;gap:8px;align-self:center;">
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Node</span>
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Express</span>
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">MongoDB</span>
+        </section>
+
+        <!-- MARQUEE -->
+        <div
+          style="
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            overflow: hidden;
+            padding: 22px 0;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              white-space: nowrap;
+              width: max-content;
+              animation: cb-marquee 34s linear infinite;
+            "
+          >
+            <span
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 700;
+                font-size: clamp(30px, 5vw, 64px);
+                text-transform: uppercase;
+                letter-spacing: -0.01em;
+                color: var(--fg);
+                display: flex;
+              "
+            >
+              Design&nbsp;<span style="color: var(--accent)">✦</span
+              >&nbsp;Development&nbsp;<span style="color: var(--accent)">✦</span
+              >&nbsp;Branding&nbsp;<span style="color: var(--accent)">✦</span
+              >&nbsp;Interfaces&nbsp;<span style="color: var(--accent)">✦</span
+              >&nbsp;
+            </span>
+            <span
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 700;
+                font-size: clamp(30px, 5vw, 64px);
+                text-transform: uppercase;
+                letter-spacing: -0.01em;
+                color: var(--fg);
+                display: flex;
+              "
+            >
+              Design&nbsp;<span style="color: var(--accent)">✦</span
+              >&nbsp;Development&nbsp;<span style="color: var(--accent)">✦</span
+              >&nbsp;Branding&nbsp;<span style="color: var(--accent)">✦</span
+              >&nbsp;Interfaces&nbsp;<span style="color: var(--accent)">✦</span
+              >&nbsp;
+            </span>
           </div>
-          <span class="cb-svc2-arrow" style="margin-left:auto;font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(18px,1.8vw,26px);color:var(--fg);line-height:1;">→</span>
         </div>
-        <div class="cb-svc2-body">
-          <div>
-            <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(18px,3vw,48px);padding-top:clamp(16px,2vw,28px);padding-left:calc(3.2em + clamp(18px,3vw,48px));">
-              <p class="cb-svc2-desc" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.3vw,19px);line-height:1.5;color:var(--muted);max-width:520px;flex:1 1 320px;text-wrap:pretty;">Node, Express and MongoDB services with auth, storage and everything the front-end needs.</p>
-              <div style="display:flex;flex-wrap:wrap;gap:8px;">
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Node</span>
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Express</span>
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">MongoDB</span>
-              </div>
-              
+
+        <!-- STATS -->
+        <section
+          style="
+            padding: clamp(60px, 9vw, 130px) clamp(20px, 4vw, 54px);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 40px;
+            border-bottom: 1px solid var(--line);
+          "
+        >
+          <div data-reveal="">
+            <div
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 800;
+                font-size: clamp(48px, 7vw, 96px);
+                line-height: 1;
+                color: var(--fg);
+              "
+            >
+              <span data-count="5" data-suffix="+">0</span>
+            </div>
+            <div
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 10px;
+              "
+            >
+              Years building
             </div>
           </div>
-        </div>
-      </div>
-      <div class="cb-svc2" data-reveal="" data-reveal-delay="240" style="border-bottom:1px solid var(--line);padding:clamp(20px,2.4vw,32px) clamp(4px,1.5vw,24px);">
-        <div style="display:flex;align-items:baseline;gap:clamp(18px,3vw,48px);">
-          <span class="cb-svc2-idx" style="font-family:'Space Mono',monospace;font-size:clamp(12px,1.1vw,15px);color:var(--accent);flex:0 0 3.2em;">(04)</span>
-          <h3 class="cb-svc2-title" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(22px,2.6vw,40px);letter-spacing:-.015em;line-height:1.05;color:var(--fg);">Brand &amp; Identity</h3>
-          <div class="cb-svc2-headtags" style="display:flex;flex-wrap:wrap;gap:8px;align-self:center;">
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Logo</span>
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Identity</span>
-            <span class="cb-svc2-headtag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Art Direction</span>
-          </div>
-          <span class="cb-svc2-arrow" style="margin-left:auto;font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(18px,1.8vw,26px);color:var(--fg);line-height:1;">→</span>
-        </div>
-        <div class="cb-svc2-body">
-          <div>
-            <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(18px,3vw,48px);padding-top:clamp(16px,2vw,28px);padding-left:calc(3.2em + clamp(18px,3vw,48px));">
-              <p class="cb-svc2-desc" style="font-family:'Space Grotesk',sans-serif;font-size:clamp(15px,1.3vw,19px);line-height:1.5;color:var(--muted);max-width:520px;flex:1 1 320px;text-wrap:pretty;">Logos, visual systems and the small details that make a personal or product brand stick.</p>
-              <div style="display:flex;flex-wrap:wrap;gap:8px;">
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Logo</span>
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Identity</span>
-                <span class="cb-svc2-tag" style="border:1px solid var(--line);border-radius:100px;padding:6px 14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">Art Direction</span>
-              </div>
-              
+          <div data-reveal="" data-reveal-delay="80">
+            <div
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 800;
+                font-size: clamp(48px, 7vw, 96px);
+                line-height: 1;
+                color: var(--fg);
+              "
+            >
+              <span data-count="40" data-suffix="+">0</span>
+            </div>
+            <div
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 10px;
+              "
+            >
+              Projects shipped
             </div>
           </div>
-        </div>
+          <div data-reveal="" data-reveal-delay="160">
+            <div
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 800;
+                font-size: clamp(48px, 7vw, 96px);
+                line-height: 1;
+                color: var(--fg);
+              "
+            >
+              <span data-count="20" data-suffix="+">0</span>
+            </div>
+            <div
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 10px;
+              "
+            >
+              Technologies
+            </div>
+          </div>
+          <div data-reveal="" data-reveal-delay="240">
+            <div
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 800;
+                font-size: clamp(48px, 7vw, 96px);
+                line-height: 1;
+                color: var(--fg);
+              "
+            >
+              <span data-count="12" data-suffix="+">0</span>
+            </div>
+            <div
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: var(--muted);
+                margin-top: 10px;
+              "
+            >
+              Certifications
+            </div>
+          </div>
+        </section>
+
+        <!-- WORK -->
+
+        <!-- ABOUT -->
+        <section
+          id="about"
+          data-section="about"
+          style="
+            padding: clamp(60px, 9vw, 140px) clamp(20px, 4vw, 54px);
+            border-top: 1px solid var(--line);
+            scroll-margin-top: 80px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(40px, 6vw, 90px);
+          "
+        >
+          <div
+            style="
+              display: grid;
+              grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+              gap: clamp(30px, 5vw, 70px);
+              align-items: start;
+            "
+            data-aboutgrid=""
+          >
+            <div>
+              <span
+                data-reveal=""
+                style="
+                  font-family: 'Space Mono', monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.14em;
+                  text-transform: uppercase;
+                  color: var(--muted);
+                  display: block;
+                  margin-bottom: 24px;
+                "
+                >( About )</span
+              >
+              <p
+                data-reveal=""
+                style="
+                  font-family: 'Bricolage Grotesque', sans-serif;
+                  font-weight: 300;
+                  font-size: clamp(24px, 3.4vw, 46px);
+                  line-height: 1.22;
+                  letter-spacing: -0.01em;
+                  color: var(--fg);
+                  text-wrap: pretty;
+                "
+              >
+                I'm Cristian — a software engineer who cares as much about how
+                things
+                <em style="font-style: italic; color: var(--accent)">feel</em>
+                as how they work. I design and build user-friendly, visually
+                sharp products end to end, from the first pixel to the last
+                deploy.
+              </p>
+              <p
+                data-reveal=""
+                style="
+                  font-family: 'Space Grotesque', sans-serif;
+                  font-size: clamp(15px, 1.4vw, 18px);
+                  line-height: 1.6;
+                  color: var(--muted);
+                  max-width: 640px;
+                  margin-top: 26px;
+                "
+              >
+                Proven my ability to deliver high-quality work, adapt to new
+                technologies, collaborate with cross-functional teams, and stay
+                currently with industry trends.&nbsp;
+              </p>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 26px;
+                font-family: 'Space Mono', monospace;
+              "
+            >
+              <div data-reveal="">
+                <div
+                  style="
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: var(--muted);
+                    margin-bottom: 6px;
+                  "
+                >
+                  Based in
+                </div>
+                <div style="font-size: 15px; color: var(--fg)">
+                  Chișinău, Moldova
+                </div>
+              </div>
+              <div data-reveal="">
+                <div
+                  style="
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: var(--muted);
+                    margin-bottom: 6px;
+                  "
+                >
+                  Education
+                </div>
+                <div
+                  style="font-size: 15px; color: var(--fg); line-height: 1.5"
+                >
+                  BSc Software Engineering, UTM<br />Programming &amp; Analysis,
+                  CEITI
+                </div>
+              </div>
+              <div data-reveal="">
+                <div
+                  style="
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    color: var(--muted);
+                    margin-bottom: 6px;
+                  "
+                >
+                  Languages
+                </div>
+                <div
+                  style="font-size: 15px; color: var(--fg); line-height: 1.5"
+                >
+                  Romanian · English · Russian · French
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <span
+              data-reveal=""
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--muted);
+                display: block;
+                margin-bottom: 20px;
+              "
+              >( Stack )</span
+            >
+            <div
+              style="display: flex; flex-wrap: wrap; gap: 10px"
+              data-reveal=""
+            >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >React</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >TypeScript</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >Node.js</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >Express</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >MongoDB</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >Python</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >Figma</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >Tailwind</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >Photoshop</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >Illustrator</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >Git</span
+              >
+              <span
+                class="cb-chip"
+                style="
+                  border: 1px solid var(--line);
+                  border-radius: 100px;
+                  padding: 9px 18px;
+                  font-family: 'Space Mono', monospace;
+                  font-size: 13px;
+                  color: var(--fg);
+                  transition:
+                    background 0.3s ease,
+                    color 0.3s ease;
+                "
+                >PWA</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section
+          id="services"
+          data-section="services"
+          style="
+            padding: clamp(60px, 9vw, 140px) clamp(20px, 4vw, 54px);
+            border-top: 1px solid var(--line);
+            scroll-margin-top: 80px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: baseline;
+              flex-wrap: wrap;
+              gap: 16px;
+              margin-bottom: clamp(30px, 5vw, 64px);
+            "
+          >
+            <h2
+              data-reveal=""
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 800;
+                font-size: clamp(28px, 3.6vw, 52px);
+                letter-spacing: -0.02em;
+                color: var(--fg);
+                line-height: 0.95;
+              "
+            >
+              What I Do
+            </h2>
+            <span
+              data-reveal=""
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--muted);
+              "
+              >( Services )</span
+            >
+          </div>
+          <div style="border-top: 1px solid var(--line)">
+            <div
+              class="cb-svc2"
+              data-reveal=""
+              style="
+                border-bottom: 1px solid var(--line);
+                padding: clamp(20px, 2.4vw, 32px) clamp(4px, 1.5vw, 24px);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: clamp(18px, 3vw, 48px);
+                "
+              >
+                <span
+                  class="cb-svc2-idx"
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: clamp(12px, 1.1vw, 15px);
+                    color: var(--accent);
+                    flex: 0 0 3.2em;
+                  "
+                  >(01)</span
+                >
+                <h3
+                  class="cb-svc2-title"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(22px, 2.6vw, 40px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                    color: var(--fg);
+                  "
+                >
+                  Product Design
+                </h3>
+                <div
+                  class="cb-svc2-headtags"
+                  style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    align-self: center;
+                  "
+                >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >Figma</span
+                  >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >Design Systems</span
+                  >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >Prototyping</span
+                  >
+                </div>
+                <span
+                  class="cb-svc2-arrow"
+                  style="
+                    margin-left: auto;
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: clamp(18px, 1.8vw, 26px);
+                    color: var(--fg);
+                    line-height: 1;
+                  "
+                  >→</span
+                >
+              </div>
+              <div class="cb-svc2-body">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-wrap: wrap;
+                      align-items: flex-start;
+                      gap: clamp(18px, 3vw, 48px);
+                      padding-top: clamp(16px, 2vw, 28px);
+                      padding-left: calc(3.2em + clamp(18px, 3vw, 48px));
+                    "
+                  >
+                    <p
+                      class="cb-svc2-desc"
+                      style="
+                        font-family: 'Space Grotesk', sans-serif;
+                        font-size: clamp(15px, 1.3vw, 19px);
+                        line-height: 1.5;
+                        color: var(--muted);
+                        max-width: 520px;
+                        flex: 1 1 320px;
+                        text-wrap: pretty;
+                      "
+                    >
+                      UX/UI, wireframes and design systems that turn ideas into
+                      clear, usable interfaces.
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >Figma</span
+                      >
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >Design Systems</span
+                      >
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >Prototyping</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="cb-svc2"
+              data-reveal=""
+              data-reveal-delay="80"
+              style="
+                border-bottom: 1px solid var(--line);
+                padding: clamp(20px, 2.4vw, 32px) clamp(4px, 1.5vw, 24px);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: clamp(18px, 3vw, 48px);
+                "
+              >
+                <span
+                  class="cb-svc2-idx"
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: clamp(12px, 1.1vw, 15px);
+                    color: var(--accent);
+                    flex: 0 0 3.2em;
+                  "
+                  >(02)</span
+                >
+                <h3
+                  class="cb-svc2-title"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(22px, 2.6vw, 40px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                    color: var(--fg);
+                  "
+                >
+                  Front-End Dev
+                </h3>
+                <div
+                  class="cb-svc2-headtags"
+                  style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    align-self: center;
+                  "
+                >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >React</span
+                  >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >TypeScript</span
+                  >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >Motion</span
+                  >
+                </div>
+                <span
+                  class="cb-svc2-arrow"
+                  style="
+                    margin-left: auto;
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: clamp(18px, 1.8vw, 26px);
+                    color: var(--fg);
+                    line-height: 1;
+                  "
+                  >→</span
+                >
+              </div>
+              <div class="cb-svc2-body">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-wrap: wrap;
+                      align-items: flex-start;
+                      gap: clamp(18px, 3vw, 48px);
+                      padding-top: clamp(16px, 2vw, 28px);
+                      padding-left: calc(3.2em + clamp(18px, 3vw, 48px));
+                    "
+                  >
+                    <p
+                      class="cb-svc2-desc"
+                      style="
+                        font-family: 'Space Grotesk', sans-serif;
+                        font-size: clamp(15px, 1.3vw, 19px);
+                        line-height: 1.5;
+                        color: var(--muted);
+                        max-width: 520px;
+                        flex: 1 1 320px;
+                        text-wrap: pretty;
+                      "
+                    >
+                      Fast, accessible, animated interfaces in React &amp;
+                      TypeScript — pixel-precise and responsive.
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >React</span
+                      >
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >TypeScript</span
+                      >
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >Motion</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="cb-svc2"
+              data-reveal=""
+              data-reveal-delay="160"
+              style="
+                border-bottom: 1px solid var(--line);
+                padding: clamp(20px, 2.4vw, 32px) clamp(4px, 1.5vw, 24px);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: clamp(18px, 3vw, 48px);
+                "
+              >
+                <span
+                  class="cb-svc2-idx"
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: clamp(12px, 1.1vw, 15px);
+                    color: var(--accent);
+                    flex: 0 0 3.2em;
+                  "
+                  >(03)</span
+                >
+                <h3
+                  class="cb-svc2-title"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(22px, 2.6vw, 40px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                    color: var(--fg);
+                  "
+                >
+                  Back-End &amp; APIs
+                </h3>
+                <div
+                  class="cb-svc2-headtags"
+                  style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    align-self: center;
+                  "
+                >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >Node</span
+                  >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >Express</span
+                  >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >MongoDB</span
+                  >
+                </div>
+                <span
+                  class="cb-svc2-arrow"
+                  style="
+                    margin-left: auto;
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: clamp(18px, 1.8vw, 26px);
+                    color: var(--fg);
+                    line-height: 1;
+                  "
+                  >→</span
+                >
+              </div>
+              <div class="cb-svc2-body">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-wrap: wrap;
+                      align-items: flex-start;
+                      gap: clamp(18px, 3vw, 48px);
+                      padding-top: clamp(16px, 2vw, 28px);
+                      padding-left: calc(3.2em + clamp(18px, 3vw, 48px));
+                    "
+                  >
+                    <p
+                      class="cb-svc2-desc"
+                      style="
+                        font-family: 'Space Grotesk', sans-serif;
+                        font-size: clamp(15px, 1.3vw, 19px);
+                        line-height: 1.5;
+                        color: var(--muted);
+                        max-width: 520px;
+                        flex: 1 1 320px;
+                        text-wrap: pretty;
+                      "
+                    >
+                      Node, Express and MongoDB services with auth, storage and
+                      everything the front-end needs.
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >Node</span
+                      >
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >Express</span
+                      >
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >MongoDB</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="cb-svc2"
+              data-reveal=""
+              data-reveal-delay="240"
+              style="
+                border-bottom: 1px solid var(--line);
+                padding: clamp(20px, 2.4vw, 32px) clamp(4px, 1.5vw, 24px);
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  align-items: baseline;
+                  gap: clamp(18px, 3vw, 48px);
+                "
+              >
+                <span
+                  class="cb-svc2-idx"
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: clamp(12px, 1.1vw, 15px);
+                    color: var(--accent);
+                    flex: 0 0 3.2em;
+                  "
+                  >(04)</span
+                >
+                <h3
+                  class="cb-svc2-title"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(22px, 2.6vw, 40px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                    color: var(--fg);
+                  "
+                >
+                  Brand &amp; Identity
+                </h3>
+                <div
+                  class="cb-svc2-headtags"
+                  style="
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 8px;
+                    align-self: center;
+                  "
+                >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >Logo</span
+                  >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >Identity</span
+                  >
+                  <span
+                    class="cb-svc2-headtag"
+                    style="
+                      border: 1px solid var(--line);
+                      border-radius: 100px;
+                      padding: 6px 14px;
+                      font-family: 'Space Mono', monospace;
+                      font-size: 11px;
+                      letter-spacing: 0.06em;
+                      text-transform: uppercase;
+                      color: var(--muted);
+                    "
+                    >Art Direction</span
+                  >
+                </div>
+                <span
+                  class="cb-svc2-arrow"
+                  style="
+                    margin-left: auto;
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: clamp(18px, 1.8vw, 26px);
+                    color: var(--fg);
+                    line-height: 1;
+                  "
+                  >→</span
+                >
+              </div>
+              <div class="cb-svc2-body">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      flex-wrap: wrap;
+                      align-items: flex-start;
+                      gap: clamp(18px, 3vw, 48px);
+                      padding-top: clamp(16px, 2vw, 28px);
+                      padding-left: calc(3.2em + clamp(18px, 3vw, 48px));
+                    "
+                  >
+                    <p
+                      class="cb-svc2-desc"
+                      style="
+                        font-family: 'Space Grotesk', sans-serif;
+                        font-size: clamp(15px, 1.3vw, 19px);
+                        line-height: 1.5;
+                        color: var(--muted);
+                        max-width: 520px;
+                        flex: 1 1 320px;
+                        text-wrap: pretty;
+                      "
+                    >
+                      Logos, visual systems and the small details that make a
+                      personal or product brand stick.
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px">
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >Logo</span
+                      >
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >Identity</span
+                      >
+                      <span
+                        class="cb-svc2-tag"
+                        style="
+                          border: 1px solid var(--line);
+                          border-radius: 100px;
+                          padding: 6px 14px;
+                          font-family: 'Space Mono', monospace;
+                          font-size: 11px;
+                          letter-spacing: 0.06em;
+                          text-transform: uppercase;
+                          color: var(--muted);
+                        "
+                        >Art Direction</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- USEFUL LINKS -->
+        <section
+          id="links"
+          data-section="links"
+          style="
+            background: var(--fg);
+            color: var(--bg);
+            padding: clamp(60px, 9vw, 140px) clamp(20px, 4vw, 54px);
+            scroll-margin-top: 80px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: baseline;
+              flex-wrap: wrap;
+              gap: 16px;
+              margin-bottom: clamp(30px, 5vw, 64px);
+            "
+          >
+            <h2
+              data-reveal=""
+              style="
+                font-family: 'Bricolage Grotesque', sans-serif;
+                font-weight: 800;
+                font-size: clamp(28px, 3.6vw, 52px);
+                letter-spacing: -0.02em;
+                color: var(--bg);
+                line-height: 0.95;
+              "
+            >
+              Useful Links
+            </h2>
+            <span
+              data-reveal=""
+              style="
+                font-family: 'Space Mono', monospace;
+                font-size: 12px;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--bg);
+                opacity: 0.55;
+              "
+              >( Resources )</span
+            >
+          </div>
+          <div
+            data-reveal=""
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+              gap: 14px;
+            "
+          >
+            <a
+              href="https://cristianbrinza.com/cv"
+              class="cb-link-card"
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: clamp(26px, 4vw, 54px);
+                border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
+                padding: clamp(18px, 2vw, 26px);
+                color: var(--bg);
+                transition:
+                  background 0.35s ease,
+                  color 0.35s ease,
+                  border-color 0.35s ease;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  gap: 12px;
+                "
+              >
+                <span
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                  "
+                  >(01)</span
+                >
+                <span
+                  class="cb-link-arrow"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: 22px;
+                    line-height: 1;
+                    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+                  "
+                  >↗</span
+                >
+              </div>
+              <div>
+                <div
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(20px, 1.9vw, 27px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                  "
+                >
+                  CV / Resume
+                </div>
+                <div
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                    margin-top: 8px;
+                  "
+                >
+                  Experience &amp; skills — PDF
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://cristianbrinza.com/portfolio"
+              class="cb-link-card"
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: clamp(26px, 4vw, 54px);
+                border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
+                padding: clamp(18px, 2vw, 26px);
+                color: var(--bg);
+                transition:
+                  background 0.35s ease,
+                  color 0.35s ease,
+                  border-color 0.35s ease;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  gap: 12px;
+                "
+              >
+                <span
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                  "
+                  >(02)</span
+                >
+                <span
+                  class="cb-link-arrow"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: 22px;
+                    line-height: 1;
+                    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+                  "
+                  >↗</span
+                >
+              </div>
+              <div>
+                <div
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(20px, 1.9vw, 27px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                  "
+                >
+                  Portfolio
+                </div>
+                <div
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                    margin-top: 8px;
+                  "
+                >
+                  Selected projects &amp; case studies
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://cristianbrinza.com/certifications"
+              class="cb-link-card"
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: clamp(26px, 4vw, 54px);
+                border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
+                padding: clamp(18px, 2vw, 26px);
+                color: var(--bg);
+                transition:
+                  background 0.35s ease,
+                  color 0.35s ease,
+                  border-color 0.35s ease;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  gap: 12px;
+                "
+              >
+                <span
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                  "
+                  >(03)</span
+                >
+                <span
+                  class="cb-link-arrow"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: 22px;
+                    line-height: 1;
+                    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+                  "
+                  >↗</span
+                >
+              </div>
+              <div>
+                <div
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(20px, 1.9vw, 27px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                  "
+                >
+                  Certifications
+                </div>
+                <div
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                    margin-top: 8px;
+                  "
+                >
+                  Credentials — 12+
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://github.com/CristianBrinza"
+              class="cb-link-card"
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: clamp(26px, 4vw, 54px);
+                border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
+                padding: clamp(18px, 2vw, 26px);
+                color: var(--bg);
+                transition:
+                  background 0.35s ease,
+                  color 0.35s ease,
+                  border-color 0.35s ease;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  gap: 12px;
+                "
+              >
+                <span
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                  "
+                  >(04)</span
+                >
+                <span
+                  class="cb-link-arrow"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: 22px;
+                    line-height: 1;
+                    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+                  "
+                  >↗</span
+                >
+              </div>
+              <div>
+                <div
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(20px, 1.9vw, 27px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                  "
+                >
+                  GitHub
+                </div>
+                <div
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                    margin-top: 8px;
+                  "
+                >
+                  Code &amp; open source
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://cristianbrinza.com/blog"
+              class="cb-link-card"
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: clamp(26px, 4vw, 54px);
+                border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
+                padding: clamp(18px, 2vw, 26px);
+                color: var(--bg);
+                transition:
+                  background 0.35s ease,
+                  color 0.35s ease,
+                  border-color 0.35s ease;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  gap: 12px;
+                "
+              >
+                <span
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                  "
+                  >(05)</span
+                >
+                <span
+                  class="cb-link-arrow"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: 22px;
+                    line-height: 1;
+                    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+                  "
+                  >↗</span
+                >
+              </div>
+              <div>
+                <div
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(20px, 1.9vw, 27px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                  "
+                >
+                  Blog
+                </div>
+                <div
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                    margin-top: 8px;
+                  "
+                >
+                  Notes &amp; write-ups
+                </div>
+              </div>
+            </a>
+            <a
+              href="https://cristianbrinza.com/utilities"
+              class="cb-link-card"
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: clamp(26px, 4vw, 54px);
+                border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
+                padding: clamp(18px, 2vw, 26px);
+                color: var(--bg);
+                transition:
+                  background 0.35s ease,
+                  color 0.35s ease,
+                  border-color 0.35s ease;
+              "
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  gap: 12px;
+                "
+              >
+                <span
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.12em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                  "
+                  >(06)</span
+                >
+                <span
+                  class="cb-link-arrow"
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 300;
+                    font-size: 22px;
+                    line-height: 1;
+                    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+                  "
+                  >↗</span
+                >
+              </div>
+              <div>
+                <div
+                  style="
+                    font-family: 'Bricolage Grotesque', sans-serif;
+                    font-weight: 700;
+                    font-size: clamp(20px, 1.9vw, 27px);
+                    letter-spacing: -0.015em;
+                    line-height: 1.05;
+                  "
+                >
+                  Utilities
+                </div>
+                <div
+                  style="
+                    font-family: 'Space Mono', monospace;
+                    font-size: 11px;
+                    letter-spacing: 0.06em;
+                    text-transform: uppercase;
+                    opacity: 0.55;
+                    margin-top: 8px;
+                  "
+                >
+                  Tools &amp; handy resources
+                </div>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section
+          id="contact"
+          data-section="contact"
+          style="
+            padding: clamp(70px, 11vw, 170px) clamp(20px, 4vw, 54px);
+            border-top: 1px solid var(--line);
+            text-align: center;
+          "
+        >
+          <span
+            data-reveal=""
+            style="
+              font-family: 'Space Mono', monospace;
+              font-size: 12px;
+              letter-spacing: 0.16em;
+              text-transform: uppercase;
+              color: var(--muted);
+            "
+            >Have a project in mind?</span
+          >
+          <a
+            href="mailto:inbox.cristian.brinza@gmail.com"
+            data-magnetic=""
+            data-reveal=""
+            style="
+              display: block;
+              font-family: 'Bricolage Grotesque', sans-serif;
+              font-weight: 800;
+              font-size: clamp(44px, 11vw, 180px);
+              line-height: 0.92;
+              letter-spacing: -0.03em;
+              color: var(--fg);
+              margin: 26px auto;
+            "
+            >Let's&nbsp;talk</a
+          >
+          <a
+            href="mailto:inbox.cristian.brinza@gmail.com"
+            data-magnetic=""
+            data-reveal=""
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 12px;
+              border: 1px solid var(--line);
+              border-radius: 100px;
+              padding: 16px 32px;
+              font-family: 'Space Mono', monospace;
+              font-size: 14px;
+              letter-spacing: 0.04em;
+              color: var(--fg);
+              margin-top: 10px;
+            "
+          >
+            inbox@cristianbrinza.com <span style="color: var(--accent)">↗</span>
+          </a>
+        </section>
+
+        <!-- FOOTER -->
+        <footer
+          style="
+            border-top: 1px solid var(--line);
+            padding: clamp(40px, 5vw, 70px) clamp(20px, 4vw, 54px) 34px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 30px;
+            "
+          >
+            <div style="display: flex; align-items: center; gap: 14px">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 56 56"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="56" height="56" fill="#E40523"></rect>
+                <path
+                  d="M26.8802 18.48C26.8802 18.48 26.3183 18.48 14.7994 18.48C3.28037 18.4799 3.28047 37.52 14.7994 37.52C26.3182 37.52 26.8802 37.52 26.8802 37.52"
+                  stroke="white"
+                  stroke-width="3.92"
+                ></path>
+                <path
+                  d="M29.6804 18.48C29.6804 18.48 30.2422 18.4801 41.7612 18.48C53.2802 18.48 53.2801 37.52 41.7612 37.52C30.2423 37.52 29.6804 37.52 29.6804 37.52"
+                  stroke="white"
+                  stroke-width="3.92"
+                ></path>
+                <path
+                  d="M32.4807 28.0001C32.4807 28.0001 33.0425 28.0001 44.5615 28.0001"
+                  stroke="white"
+                  stroke-width="3.92"
+                ></path>
+                <path
+                  d="M31.8008 21.9596C31.8008 21.9596 31.8007 22.5214 31.8008 34.0404"
+                  stroke="white"
+                  stroke-width="3.92"
+                ></path>
+              </svg>
+              <div
+                style="
+                  font-family: 'Bricolage Grotesque', sans-serif;
+                  font-weight: 700;
+                  font-size: 18px;
+                  color: var(--fg);
+                "
+              >
+                Cristian Brinza
+              </div>
+            </div>
+            <div style="display: flex; gap: 22px; flex-wrap: wrap">
+              <a
+                href="https://github.com/CristianBrinza"
+                class="cb-nav-link"
+                style="
+                  font-family: 'Space Mono', monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.06em;
+                  text-transform: uppercase;
+                  color: var(--fg);
+                "
+                >GitHub</a
+              >
+              <a
+                href="https://www.linkedin.com/in/cristianbrinza/"
+                class="cb-nav-link"
+                style="
+                  font-family: 'Space Mono', monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.06em;
+                  text-transform: uppercase;
+                  color: var(--fg);
+                "
+                >LinkedIn</a
+              >
+              <a
+                href="https://www.instagram.com/brinza_cristian/"
+                class="cb-nav-link"
+                style="
+                  font-family: 'Space Mono', monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.06em;
+                  text-transform: uppercase;
+                  color: var(--fg);
+                "
+                >Instagram</a
+              >
+              <a
+                href="https://x.com/cristian_brinza"
+                class="cb-nav-link"
+                style="
+                  font-family: 'Space Mono', monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.06em;
+                  text-transform: uppercase;
+                  color: var(--fg);
+                "
+                >X</a
+              >
+              <a
+                href="https://t.me/CristianBrinza"
+                class="cb-nav-link"
+                style="
+                  font-family: 'Space Mono', monospace;
+                  font-size: 12px;
+                  letter-spacing: 0.06em;
+                  text-transform: uppercase;
+                  color: var(--fg);
+                "
+                >Telegram</a
+              >
+            </div>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: flex-end;
+              flex-wrap: wrap;
+              gap: 14px;
+              margin-top: clamp(40px, 6vw, 80px);
+              font-family: 'Space Mono', monospace;
+              font-size: 11px;
+              letter-spacing: 0.06em;
+              text-transform: uppercase;
+              color: var(--muted);
+            "
+          >
+            <div
+              style="
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+              "
+            >
+              <div
+                style="
+                  box-sizing: border-box;
+                  display: flex;
+                  flex-direction: row;
+                  gap: 20px;
+                "
+              >
+                <div
+                  style="
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 2-;
+                    color: #1967d2;
+                  "
+                >
+                  Utilities →
+                </div>
+                <div
+                  style="
+                    box-sizing: border-box;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 2-;
+                    color: #1967d2;
+                  "
+                >
+                  LEGAL →
+                </div>
+              </div>
+              <span>© 2026 Cristian Brinza</span>
+            </div>
+            <button
+              onClick="{{ scrollTop }}"
+              data-magnetic=""
+              style="
+                background: transparent;
+                border: 1px solid var(--line);
+                border-radius: 100px;
+                padding: 9px 18px;
+                color: var(--fg);
+                font-family: 'Space Mono', monospace;
+                font-size: 11px;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+              "
+            >
+              Back to top ↑
+            </button>
+            <span>Chișinău · MD</span>
+          </div>
+        </footer>
       </div>
-    </div>
-  </section>
+    </x-dc>
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{"$preview":{"width":"100%","height":"100%"},"theme":{"editor":"enum","options":["dark","light"],"default":"dark","tsType":"string","section":"Appearance"},"showCursor":{"editor":"boolean","default":true,"tsType":"boolean","section":"Appearance"}}'
+    >
+      class Component extends DCLogic {
+        state = { theme: this.props.theme || 'dark', menuOpen: false, feedbackOpen: false, fbSent: false };
 
-  <!-- USEFUL LINKS -->
-  <section id="links" data-section="links" style="background:var(--fg);color:var(--bg);padding:clamp(60px,9vw,140px) clamp(20px,4vw,54px);scroll-margin-top:80px;">
-    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px;margin-bottom:clamp(30px,5vw,64px);">
-      <h2 data-reveal="" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,52px);letter-spacing:-.02em;color:var(--bg);line-height:.95;">Useful Links</h2>
-      <span data-reveal="" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--bg);opacity:.55;">( Resources )</span>
-    </div>
-    <div data-reveal="" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;">
-      <a href="https://cristianbrinza.com/cv" class="cb-link-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:clamp(26px,4vw,54px);border:1px solid color-mix(in srgb, var(--bg) 22%, transparent);padding:clamp(18px,2vw,26px);color:var(--bg);transition:background .35s ease,color .35s ease,border-color .35s ease;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-          <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;">(01)</span>
-          <span class="cb-link-arrow" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:22px;line-height:1;transition:transform .4s cubic-bezier(.2,.7,.2,1);">↗</span>
-        </div>
-        <div>
-          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(20px,1.9vw,27px);letter-spacing:-.015em;line-height:1.05;">CV / Resume</div>
-          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.55;margin-top:8px;">Experience &amp; skills — PDF</div>
-        </div>
-      </a>
-      <a href="https://cristianbrinza.com/portfolio" class="cb-link-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:clamp(26px,4vw,54px);border:1px solid color-mix(in srgb, var(--bg) 22%, transparent);padding:clamp(18px,2vw,26px);color:var(--bg);transition:background .35s ease,color .35s ease,border-color .35s ease;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-          <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;">(02)</span>
-          <span class="cb-link-arrow" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:22px;line-height:1;transition:transform .4s cubic-bezier(.2,.7,.2,1);">↗</span>
-        </div>
-        <div>
-          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(20px,1.9vw,27px);letter-spacing:-.015em;line-height:1.05;">Portfolio</div>
-          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.55;margin-top:8px;">Selected projects &amp; case studies</div>
-        </div>
-      </a>
-      <a href="https://cristianbrinza.com/certifications" class="cb-link-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:clamp(26px,4vw,54px);border:1px solid color-mix(in srgb, var(--bg) 22%, transparent);padding:clamp(18px,2vw,26px);color:var(--bg);transition:background .35s ease,color .35s ease,border-color .35s ease;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-          <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;">(03)</span>
-          <span class="cb-link-arrow" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:22px;line-height:1;transition:transform .4s cubic-bezier(.2,.7,.2,1);">↗</span>
-        </div>
-        <div>
-          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(20px,1.9vw,27px);letter-spacing:-.015em;line-height:1.05;">Certifications</div>
-          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.55;margin-top:8px;">Credentials — 12+</div>
-        </div>
-      </a>
-      <a href="https://github.com/CristianBrinza" class="cb-link-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:clamp(26px,4vw,54px);border:1px solid color-mix(in srgb, var(--bg) 22%, transparent);padding:clamp(18px,2vw,26px);color:var(--bg);transition:background .35s ease,color .35s ease,border-color .35s ease;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-          <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;">(04)</span>
-          <span class="cb-link-arrow" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:22px;line-height:1;transition:transform .4s cubic-bezier(.2,.7,.2,1);">↗</span>
-        </div>
-        <div>
-          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(20px,1.9vw,27px);letter-spacing:-.015em;line-height:1.05;">GitHub</div>
-          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.55;margin-top:8px;">Code &amp; open source</div>
-        </div>
-      </a>
-      <a href="https://cristianbrinza.com/blog" class="cb-link-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:clamp(26px,4vw,54px);border:1px solid color-mix(in srgb, var(--bg) 22%, transparent);padding:clamp(18px,2vw,26px);color:var(--bg);transition:background .35s ease,color .35s ease,border-color .35s ease;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-          <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;">(05)</span>
-          <span class="cb-link-arrow" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:22px;line-height:1;transition:transform .4s cubic-bezier(.2,.7,.2,1);">↗</span>
-        </div>
-        <div>
-          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(20px,1.9vw,27px);letter-spacing:-.015em;line-height:1.05;">Blog</div>
-          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.55;margin-top:8px;">Notes &amp; write-ups</div>
-        </div>
-      </a>
-      <a href="https://cristianbrinza.com/utilities" class="cb-link-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:clamp(26px,4vw,54px);border:1px solid color-mix(in srgb, var(--bg) 22%, transparent);padding:clamp(18px,2vw,26px);color:var(--bg);transition:background .35s ease,color .35s ease,border-color .35s ease;">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
-          <span style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.55;">(06)</span>
-          <span class="cb-link-arrow" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:22px;line-height:1;transition:transform .4s cubic-bezier(.2,.7,.2,1);">↗</span>
-        </div>
-        <div>
-          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(20px,1.9vw,27px);letter-spacing:-.015em;line-height:1.05;">Utilities</div>
-          <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.55;margin-top:8px;">Tools &amp; handy resources</div>
-        </div>
-      </a>
-      </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" data-section="contact" style="padding:clamp(70px,11vw,170px) clamp(20px,4vw,54px);border-top:1px solid var(--line);text-align:center;">
-    <span data-reveal="" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);">Have a project in mind?</span>
-    <a href="mailto:inbox.cristian.brinza@gmail.com" data-magnetic="" data-reveal="" style="display:block;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(44px,11vw,180px);line-height:.92;letter-spacing:-.03em;color:var(--fg);margin:26px auto;">Let's&nbsp;talk</a>
-    <a href="mailto:inbox.cristian.brinza@gmail.com" data-magnetic="" data-reveal="" style="display:inline-flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:100px;padding:16px 32px;font-family:'Space Mono',monospace;font-size:14px;letter-spacing:.04em;color:var(--fg);margin-top:10px;">
-      inbox@cristianbrinza.com <span style="color: var(--accent);">↗</span>
-    </a>
-  </section>
-
-  <!-- FOOTER -->
-  <footer style="border-top:1px solid var(--line);padding:clamp(40px,5vw,70px) clamp(20px,4vw,54px) 34px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 30px">
-      <div style="display:flex;align-items:center;gap:14px;">
-        <svg width="40" height="40" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="56" height="56" fill="#E40523"></rect>
-          <path d="M26.8802 18.48C26.8802 18.48 26.3183 18.48 14.7994 18.48C3.28037 18.4799 3.28047 37.52 14.7994 37.52C26.3182 37.52 26.8802 37.52 26.8802 37.52" stroke="white" stroke-width="3.92"></path>
-          <path d="M29.6804 18.48C29.6804 18.48 30.2422 18.4801 41.7612 18.48C53.2802 18.48 53.2801 37.52 41.7612 37.52C30.2423 37.52 29.6804 37.52 29.6804 37.52" stroke="white" stroke-width="3.92"></path>
-          <path d="M32.4807 28.0001C32.4807 28.0001 33.0425 28.0001 44.5615 28.0001" stroke="white" stroke-width="3.92"></path>
-          <path d="M31.8008 21.9596C31.8008 21.9596 31.8007 22.5214 31.8008 34.0404" stroke="white" stroke-width="3.92"></path>
-        </svg>
-        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:18px;color:var(--fg);">Cristian Brinza</div>
-      </div>
-      <div style="display:flex;gap:22px;flex-wrap:wrap;">
-        <a href="https://github.com/CristianBrinza" class="cb-nav-link" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);">GitHub</a>
-        <a href="https://www.linkedin.com/in/cristianbrinza/" class="cb-nav-link" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);">LinkedIn</a>
-        <a href="https://www.instagram.com/brinza_cristian/" class="cb-nav-link" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);">Instagram</a>
-        <a href="https://x.com/cristian_brinza" class="cb-nav-link" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);">X</a>
-        <a href="https://t.me/CristianBrinza" class="cb-nav-link" style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg);">Telegram</a>
-      </div>
-    </div>
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 14px; margin-top: clamp(40px,6vw,80px); font-family: 'Space Mono',monospace; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted)">
-      <div style="box-sizing: border-box; display: flex; flex-direction: column; gap: 24px"><div style="box-sizing: border-box; display: flex; flex-direction: row; gap: 20px"><div style="box-sizing: border-box; display: flex; flex-direction: row; gap: 2-; color: #1967D2">Utilities →</div><div style="box-sizing: border-box; display: flex; flex-direction: row; gap: 2-; color: #1967D2">LEGAL →</div></div><span>© 2026 Cristian Brinza</span></div>
-      <button onClick="{{ scrollTop }}" data-magnetic="" style="background:transparent;border:1px solid var(--line);border-radius:100px;padding:9px 18px;color:var(--fg);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;">Back to top ↑</button>
-      <span>Chișinău · MD</span>
-    </div>
-  </footer>
-
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:&quot;100%&quot;},&quot;theme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Appearance&quot;},&quot;showCursor&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Appearance&quot;}}">
-class Component extends DCLogic {
-  state = { theme: this.props.theme || 'dark', menuOpen: false, feedbackOpen: false, fbSent: false };
-
-  renderVals() {
-    return {
-      theme: this.state.theme,
-      themeIcon: this.state.theme === 'dark' ? '☀' : '☾',
-      menuOpen: String(this.state.menuOpen),
-      toggleTheme: () => this.setState(s => ({ theme: s.theme === 'dark' ? 'light' : 'dark' })),
-      toggleMenu: () => { if (this.showNav) this.showNav(); this.setState(s => ({ menuOpen: !s.menuOpen })); },
-      scrollTop: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
-      feedbackOpen: String(this.state.feedbackOpen),
-      fbButtonLabel: this.state.fbSent ? 'Opening mail…' : 'Send feedback',
-      toggleFeedback: () => this.setState(s => ({ feedbackOpen: !s.feedbackOpen, fbSent: false })),
-      sendFeedback: () => {
-        const ta = document.querySelector('.cb-fb-text');
-        const msg = ta ? ta.value.trim() : '';
-        if (!msg) { if (ta) ta.focus(); return; }
-        window.location.href = 'mailto:inbox.cristian.brinza@gmail.com?subject=' + encodeURIComponent('Website feedback') + '&body=' + encodeURIComponent(msg);
-        this.setState({ fbSent: true });
-        setTimeout(() => this.setState({ feedbackOpen: false, fbSent: false }), 1200);
-      },
-      onEnterProject: (e) => this.enterProject(e),
-      onLeaveProject: () => this.leaveProject(),
-    };
-  }
-
-  componentDidMount() {
-    this.root = document.querySelector('.cbroot');
-    if (!this.root) return;
-    this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    this.ring = { x: this.mouse.x, y: this.mouse.y };
-    this.previewActive = false;
-
-    this.setupNavScroll();
-    this.setupReveal();
-    this.setupCounters();
-    this.setupSectionSpy();
-    this.setupResponsive();
-
-    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (fine && this.props.showCursor !== false) {
-      this.dot = this.root.querySelector('.cb-cursor-dot');
-      this.ringEl = this.root.querySelector('.cb-cursor-ring');
-      this.preview = this.root.querySelector('.cb-preview');
-      this.magnets = Array.from(this.root.querySelectorAll('[data-magnetic]'));
-      this.onMove = (e) => { this.mouse.x = e.clientX; this.mouse.y = e.clientY; };
-      window.addEventListener('mousemove', this.onMove);
-      this.bindCursorHovers();
-      this.raf = requestAnimationFrame(this.loop);
-    } else {
-      // no custom cursor on touch — hide the helpers
-      ['.cb-cursor-dot', '.cb-cursor-ring'].forEach(s => {
-        const el = this.root.querySelector(s); if (el) el.style.display = 'none';
-      });
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.onNavScroll) window.removeEventListener('scroll', this.onNavScroll);
-    if (this.onMove) window.removeEventListener('mousemove', this.onMove);
-    if (this.raf) cancelAnimationFrame(this.raf);
-    if (this.io) this.io.disconnect();
-    if (this.spyIo) this.spyIo.disconnect();
-    if (this.countIo) this.countIo.disconnect();
-    if (this.mqCleanup) this.mqCleanup();
-  }
-
-  loop = () => {
-    this.ring.x += (this.mouse.x - this.ring.x) * 0.16;
-    this.ring.y += (this.mouse.y - this.ring.y) * 0.16;
-    if (this.dot) this.dot.style.transform = `translate(${this.mouse.x}px, ${this.mouse.y}px) translate(-50%,-50%)`;
-    if (this.ringEl) this.ringEl.style.transform = `translate(${this.ring.x}px, ${this.ring.y}px) translate(-50%,-50%)`;
-    if (this.preview && this.previewActive) {
-      this.preview.style.left = this.ring.x + 'px';
-      this.preview.style.top = this.ring.y + 'px';
-    }
-    for (const m of this.magnets) {
-      const r = m.getBoundingClientRect();
-      const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-      const dx = this.mouse.x - cx, dy = this.mouse.y - cy;
-      const dist = Math.hypot(dx, dy);
-      const radius = Math.max(r.width * 0.7, 70);
-      if (dist < radius) {
-        const pull = 0.12 * (1 - dist / radius);
-        m.style.transform = `translate(${dx * pull}px, ${dy * pull}px)`;
-      } else {
-        m.style.transform = 'translate(0px, 0px)';
-      }
-      m.style.transition = dist < radius ? 'transform .08s linear' : 'transform .4s cubic-bezier(.2,.7,.2,1)';
-    }
-    if (!this.plx) this.plx = Array.from(this.root.querySelectorAll('[data-plx]'));
-    const nx = this.mouse.x / window.innerWidth - 0.5, ny = this.mouse.y / window.innerHeight - 0.5;
-    for (const p of this.plx) {
-      const d = parseFloat(p.getAttribute('data-plx')) || 20;
-      p.style.transform = `translate(${(-nx * d).toFixed(1)}px, ${(-ny * d).toFixed(1)}px)`;
-    }
-    this.raf = requestAnimationFrame(this.loop);
-  };
-
-  bindCursorHovers() {
-    const grow = () => { if (this.ringEl) { this.ringEl.style.width = '64px'; this.ringEl.style.height = '64px'; this.ringEl.style.opacity = '.9'; this.ringEl.style.background = 'rgba(228,5,35,0.12)'; } };
-    const reset = () => { if (this.ringEl) { this.ringEl.style.width = '40px'; this.ringEl.style.height = '40px'; this.ringEl.style.opacity = '.5'; this.ringEl.style.background = 'transparent'; } };
-    this.root.querySelectorAll('a, button, .cb-work-row').forEach(el => {
-      el.addEventListener('mouseenter', grow);
-      el.addEventListener('mouseleave', reset);
-    });
-  }
-
-  enterProject(e) {
-    const row = e.currentTarget;
-    const name = row.querySelector('.cb-work-name');
-    if (this.preview) {
-      const cap = this.preview.querySelector('.cb-preview-cap');
-      if (cap && name) cap.textContent = name.textContent.trim();
-      this.previewActive = true;
-      this.preview.style.opacity = '1';
-      this.preview.style.transform = 'translate(-50%,-50%) scale(1)';
-    }
-  }
-  leaveProject() {
-    if (this.preview) {
-      this.previewActive = false;
-      this.preview.style.opacity = '0';
-      this.preview.style.transform = 'translate(-50%,-50%) scale(.85)';
-    }
-  }
-
-  setupNavScroll() {
-    const nav = this.root.querySelector('[data-nav]');
-    if (!nav) return;
-    let lastY = window.scrollY, hidden = false, ticking = false;
-    const update = () => {
-      ticking = false;
-      const y = window.scrollY;
-      const scrolled = y > 24;
-      // condensed glass bar once off the top
-      nav.style.background = scrolled ? 'color-mix(in srgb, var(--bg) 78%, transparent)' : 'transparent';
-      nav.style.backdropFilter = scrolled ? 'blur(14px)' : 'blur(0px)';
-      nav.style.webkitBackdropFilter = scrolled ? 'blur(14px)' : 'blur(0px)';
-      nav.style.borderBottomColor = scrolled ? 'var(--line)' : 'transparent';
-      nav.style.paddingTop = scrolled ? '12px' : '22px';
-      nav.style.paddingBottom = scrolled ? '12px' : '22px';
-      // hide on scroll down, reveal on scroll up (never while menu is open)
-      const goingDown = y > lastY + 4, goingUp = y < lastY - 4;
-      if (goingDown && y > 320 && !this.state.menuOpen && !hidden) { hidden = true; nav.style.transform = 'translateY(-110%)'; }
-      else if ((goingUp || y <= 320) && hidden) { hidden = false; nav.style.transform = 'translateY(0)'; }
-      if (goingDown || goingUp) lastY = y;
-    };
-    this.onNavScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-    window.addEventListener('scroll', this.onNavScroll, { passive: true });
-    update();
-    this.showNav = () => { hidden = false; nav.style.transform = 'translateY(0)'; };
-  }
-
-  setupReveal() {
-    const els = Array.from(this.root.querySelectorAll('[data-reveal]'));
-    els.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(42px)';
-      el.style.willChange = 'opacity, transform';
-    });
-    this.io = new IntersectionObserver((entries) => {
-      entries.forEach(en => {
-        if (en.isIntersecting) {
-          const el = en.target;
-          const d = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
-          el.style.transition = `opacity .9s cubic-bezier(.2,.7,.2,1) ${d}ms, transform .9s cubic-bezier(.2,.7,.2,1) ${d}ms`;
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-          this.io.unobserve(el);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    els.forEach(el => this.io.observe(el));
-  }
-
-  setupCounters() {
-    const nums = Array.from(this.root.querySelectorAll('[data-count]'));
-    this.countIo = new IntersectionObserver((entries) => {
-      entries.forEach(en => {
-        if (en.isIntersecting) {
-          const el = en.target;
-          const target = parseInt(el.getAttribute('data-count'), 10);
-          const suffix = el.getAttribute('data-suffix') || '';
-          const dur = 1400; const start = performance.now();
-          const tick = (now) => {
-            const p = Math.min((now - start) / dur, 1);
-            const eased = 1 - Math.pow(1 - p, 3);
-            el.textContent = Math.round(target * eased) + (p === 1 ? suffix : '');
-            if (p < 1) requestAnimationFrame(tick);
+        renderVals() {
+          return {
+            theme: this.state.theme,
+            themeIcon: this.state.theme === 'dark' ? '☀' : '☾',
+            menuOpen: String(this.state.menuOpen),
+            toggleTheme: () => this.setState(s => ({ theme: s.theme === 'dark' ? 'light' : 'dark' })),
+            toggleMenu: () => { if (this.showNav) this.showNav(); this.setState(s => ({ menuOpen: !s.menuOpen })); },
+            scrollTop: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+            feedbackOpen: String(this.state.feedbackOpen),
+            fbButtonLabel: this.state.fbSent ? 'Opening mail…' : 'Send feedback',
+            toggleFeedback: () => this.setState(s => ({ feedbackOpen: !s.feedbackOpen, fbSent: false })),
+            sendFeedback: () => {
+              const ta = document.querySelector('.cb-fb-text');
+              const msg = ta ? ta.value.trim() : '';
+              if (!msg) { if (ta) ta.focus(); return; }
+              window.location.href = 'mailto:inbox.cristian.brinza@gmail.com?subject=' + encodeURIComponent('Website feedback') + '&body=' + encodeURIComponent(msg);
+              this.setState({ fbSent: true });
+              setTimeout(() => this.setState({ feedbackOpen: false, fbSent: false }), 1200);
+            },
+            onEnterProject: (e) => this.enterProject(e),
+            onLeaveProject: () => this.leaveProject(),
           };
-          requestAnimationFrame(tick);
-          this.countIo.unobserve(el);
         }
-      });
-    }, { threshold: 0.6 });
-    nums.forEach(el => this.countIo.observe(el));
-  }
 
-  setupSectionSpy() {
-    const sections = Array.from(this.root.querySelectorAll('[data-section]'));
-    const dots = Array.from(this.root.querySelectorAll('.cb-dot'));
-    const setActive = (id) => {
-      dots.forEach(dot => {
-        const on = dot.getAttribute('data-dot') === id;
-        const mark = dot.querySelector('.cb-dot-mark');
-        const label = dot.querySelector('.cb-dot-label');
-        if (mark) {
-          mark.style.background = on ? 'var(--accent)' : 'transparent';
-          mark.style.borderColor = on ? 'var(--accent)' : 'var(--muted)';
-          mark.style.transform = on ? 'scale(1.35)' : 'scale(1)';
+        componentDidMount() {
+          this.root = document.querySelector('.cbroot');
+          if (!this.root) return;
+          this.mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+          this.ring = { x: this.mouse.x, y: this.mouse.y };
+          this.previewActive = false;
+
+          this.setupNavScroll();
+          this.setupReveal();
+          this.setupCounters();
+          this.setupSectionSpy();
+          this.setupResponsive();
+
+          const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+          if (fine && this.props.showCursor !== false) {
+            this.dot = this.root.querySelector('.cb-cursor-dot');
+            this.ringEl = this.root.querySelector('.cb-cursor-ring');
+            this.preview = this.root.querySelector('.cb-preview');
+            this.magnets = Array.from(this.root.querySelectorAll('[data-magnetic]'));
+            this.onMove = (e) => { this.mouse.x = e.clientX; this.mouse.y = e.clientY; };
+            window.addEventListener('mousemove', this.onMove);
+            this.bindCursorHovers();
+            this.raf = requestAnimationFrame(this.loop);
+          } else {
+            // no custom cursor on touch — hide the helpers
+            ['.cb-cursor-dot', '.cb-cursor-ring'].forEach(s => {
+              const el = this.root.querySelector(s); if (el) el.style.display = 'none';
+            });
+          }
         }
-        if (label) label.style.opacity = on ? '1' : '0';
-        dot.style.color = on ? 'var(--fg)' : 'var(--muted)';
-      });
-    };
-    this.spyIo = new IntersectionObserver((entries) => {
-      entries.forEach(en => { if (en.isIntersecting) setActive(en.target.id); });
-    }, { threshold: 0.4, rootMargin: '-30% 0px -50% 0px' });
-    sections.forEach(s => this.spyIo.observe(s));
-    setActive('hero');
-  }
 
-  setupResponsive() {
-    const mq = window.matchMedia('(min-width: 860px)');
-    const apply = () => {
-      const on = mq.matches;
-      this.root.querySelectorAll('[data-desklink]').forEach(el => el.style.display = on ? 'inline-flex' : 'none');
-      this.root.querySelectorAll('[data-showmd]').forEach(el => el.style.display = on ? 'block' : 'none');
-      const sideNav = this.root.querySelector('nav[style*="right: 26px"]');
-      if (sideNav) sideNav.style.display = on ? 'flex' : 'none';
-      const ag = this.root.querySelector('[data-aboutgrid]');
-      if (ag) ag.style.gridTemplateColumns = on ? 'minmax(0,2fr) minmax(0,1fr)' : '1fr';
-    };
-    apply();
-    mq.addEventListener('change', apply);
-    this.mqCleanup = () => mq.removeEventListener('change', apply);
-  }
-}
-</script>
-</body>
+        componentWillUnmount() {
+          if (this.onNavScroll) window.removeEventListener('scroll', this.onNavScroll);
+          if (this.onMove) window.removeEventListener('mousemove', this.onMove);
+          if (this.raf) cancelAnimationFrame(this.raf);
+          if (this.io) this.io.disconnect();
+          if (this.spyIo) this.spyIo.disconnect();
+          if (this.countIo) this.countIo.disconnect();
+          if (this.mqCleanup) this.mqCleanup();
+        }
+
+        loop = () => {
+          this.ring.x += (this.mouse.x - this.ring.x) * 0.16;
+          this.ring.y += (this.mouse.y - this.ring.y) * 0.16;
+          if (this.dot) this.dot.style.transform = `translate(${this.mouse.x}px, ${this.mouse.y}px) translate(-50%,-50%)`;
+          if (this.ringEl) this.ringEl.style.transform = `translate(${this.ring.x}px, ${this.ring.y}px) translate(-50%,-50%)`;
+          if (this.preview && this.previewActive) {
+            this.preview.style.left = this.ring.x + 'px';
+            this.preview.style.top = this.ring.y + 'px';
+          }
+          for (const m of this.magnets) {
+            const r = m.getBoundingClientRect();
+            const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+            const dx = this.mouse.x - cx, dy = this.mouse.y - cy;
+            const dist = Math.hypot(dx, dy);
+            const radius = Math.max(r.width * 0.7, 70);
+            if (dist < radius) {
+              const pull = 0.12 * (1 - dist / radius);
+              m.style.transform = `translate(${dx * pull}px, ${dy * pull}px)`;
+            } else {
+              m.style.transform = 'translate(0px, 0px)';
+            }
+            m.style.transition = dist < radius ? 'transform .08s linear' : 'transform .4s cubic-bezier(.2,.7,.2,1)';
+          }
+          if (!this.plx) this.plx = Array.from(this.root.querySelectorAll('[data-plx]'));
+          const nx = this.mouse.x / window.innerWidth - 0.5, ny = this.mouse.y / window.innerHeight - 0.5;
+          for (const p of this.plx) {
+            const d = parseFloat(p.getAttribute('data-plx')) || 20;
+            p.style.transform = `translate(${(-nx * d).toFixed(1)}px, ${(-ny * d).toFixed(1)}px)`;
+          }
+          this.raf = requestAnimationFrame(this.loop);
+        };
+
+        bindCursorHovers() {
+          const grow = () => { if (this.ringEl) { this.ringEl.style.width = '64px'; this.ringEl.style.height = '64px'; this.ringEl.style.opacity = '.9'; this.ringEl.style.background = 'rgba(228,5,35,0.12)'; } };
+          const reset = () => { if (this.ringEl) { this.ringEl.style.width = '40px'; this.ringEl.style.height = '40px'; this.ringEl.style.opacity = '.5'; this.ringEl.style.background = 'transparent'; } };
+          this.root.querySelectorAll('a, button, .cb-work-row').forEach(el => {
+            el.addEventListener('mouseenter', grow);
+            el.addEventListener('mouseleave', reset);
+          });
+        }
+
+        enterProject(e) {
+          const row = e.currentTarget;
+          const name = row.querySelector('.cb-work-name');
+          if (this.preview) {
+            const cap = this.preview.querySelector('.cb-preview-cap');
+            if (cap && name) cap.textContent = name.textContent.trim();
+            this.previewActive = true;
+            this.preview.style.opacity = '1';
+            this.preview.style.transform = 'translate(-50%,-50%) scale(1)';
+          }
+        }
+        leaveProject() {
+          if (this.preview) {
+            this.previewActive = false;
+            this.preview.style.opacity = '0';
+            this.preview.style.transform = 'translate(-50%,-50%) scale(.85)';
+          }
+        }
+
+        setupNavScroll() {
+          const nav = this.root.querySelector('[data-nav]');
+          if (!nav) return;
+          let lastY = window.scrollY, hidden = false, ticking = false;
+          const update = () => {
+            ticking = false;
+            const y = window.scrollY;
+            const scrolled = y > 24;
+            // condensed glass bar once off the top
+            nav.style.background = scrolled ? 'color-mix(in srgb, var(--bg) 78%, transparent)' : 'transparent';
+            nav.style.backdropFilter = scrolled ? 'blur(14px)' : 'blur(0px)';
+            nav.style.webkitBackdropFilter = scrolled ? 'blur(14px)' : 'blur(0px)';
+            nav.style.borderBottomColor = scrolled ? 'var(--line)' : 'transparent';
+            nav.style.paddingTop = scrolled ? '12px' : '22px';
+            nav.style.paddingBottom = scrolled ? '12px' : '22px';
+            // hide on scroll down, reveal on scroll up (never while menu is open)
+            const goingDown = y > lastY + 4, goingUp = y < lastY - 4;
+            if (goingDown && y > 320 && !this.state.menuOpen && !hidden) { hidden = true; nav.style.transform = 'translateY(-110%)'; }
+            else if ((goingUp || y <= 320) && hidden) { hidden = false; nav.style.transform = 'translateY(0)'; }
+            if (goingDown || goingUp) lastY = y;
+          };
+          this.onNavScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+          window.addEventListener('scroll', this.onNavScroll, { passive: true });
+          update();
+          this.showNav = () => { hidden = false; nav.style.transform = 'translateY(0)'; };
+        }
+
+        setupReveal() {
+          const els = Array.from(this.root.querySelectorAll('[data-reveal]'));
+          els.forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(42px)';
+            el.style.willChange = 'opacity, transform';
+          });
+          this.io = new IntersectionObserver((entries) => {
+            entries.forEach(en => {
+              if (en.isIntersecting) {
+                const el = en.target;
+                const d = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+                el.style.transition = `opacity .9s cubic-bezier(.2,.7,.2,1) ${d}ms, transform .9s cubic-bezier(.2,.7,.2,1) ${d}ms`;
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+                this.io.unobserve(el);
+              }
+            });
+          }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+          els.forEach(el => this.io.observe(el));
+        }
+
+        setupCounters() {
+          const nums = Array.from(this.root.querySelectorAll('[data-count]'));
+          this.countIo = new IntersectionObserver((entries) => {
+            entries.forEach(en => {
+              if (en.isIntersecting) {
+                const el = en.target;
+                const target = parseInt(el.getAttribute('data-count'), 10);
+                const suffix = el.getAttribute('data-suffix') || '';
+                const dur = 1400; const start = performance.now();
+                const tick = (now) => {
+                  const p = Math.min((now - start) / dur, 1);
+                  const eased = 1 - Math.pow(1 - p, 3);
+                  el.textContent = Math.round(target * eased) + (p === 1 ? suffix : '');
+                  if (p < 1) requestAnimationFrame(tick);
+                };
+                requestAnimationFrame(tick);
+                this.countIo.unobserve(el);
+              }
+            });
+          }, { threshold: 0.6 });
+          nums.forEach(el => this.countIo.observe(el));
+        }
+
+        setupSectionSpy() {
+          const sections = Array.from(this.root.querySelectorAll('[data-section]'));
+          const dots = Array.from(this.root.querySelectorAll('.cb-dot'));
+          const setActive = (id) => {
+            dots.forEach(dot => {
+              const on = dot.getAttribute('data-dot') === id;
+              const mark = dot.querySelector('.cb-dot-mark');
+              const label = dot.querySelector('.cb-dot-label');
+              if (mark) {
+                mark.style.background = on ? 'var(--accent)' : 'transparent';
+                mark.style.borderColor = on ? 'var(--accent)' : 'var(--muted)';
+                mark.style.transform = on ? 'scale(1.35)' : 'scale(1)';
+              }
+              if (label) label.style.opacity = on ? '1' : '0';
+              dot.style.color = on ? 'var(--fg)' : 'var(--muted)';
+            });
+          };
+          this.spyIo = new IntersectionObserver((entries) => {
+            entries.forEach(en => { if (en.isIntersecting) setActive(en.target.id); });
+          }, { threshold: 0.4, rootMargin: '-30% 0px -50% 0px' });
+          sections.forEach(s => this.spyIo.observe(s));
+          setActive('hero');
+        }
+
+        setupResponsive() {
+          const mq = window.matchMedia('(min-width: 860px)');
+          const apply = () => {
+            const on = mq.matches;
+            this.root.querySelectorAll('[data-desklink]').forEach(el => el.style.display = on ? 'inline-flex' : 'none');
+            this.root.querySelectorAll('[data-showmd]').forEach(el => el.style.display = on ? 'block' : 'none');
+            const sideNav = this.root.querySelector('nav[style*="right: 26px"]');
+            if (sideNav) sideNav.style.display = on ? 'flex' : 'none';
+            const ag = this.root.querySelector('[data-aboutgrid]');
+            if (ag) ag.style.gridTemplateColumns = on ? 'minmax(0,2fr) minmax(0,1fr)' : '1fr';
+          };
+          apply();
+          mq.addEventListener('change', apply);
+          this.mqCleanup = () => mq.removeEventListener('change', apply);
+        }
+      }
+    </script>
+  </body>
 </html>

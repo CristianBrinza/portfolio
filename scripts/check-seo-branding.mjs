@@ -2,7 +2,18 @@ import { readFile, readdir } from "node:fs/promises";
 import { extname, resolve } from "node:path";
 
 const projectRoot = process.cwd();
-const rootsToCheck = ["index.html", "vite.config.ts", "src", "public", "dist"];
+// Keep former-client branding out of portfolio identity and SEO surfaces while
+// allowing it to appear legitimately in work-history content and built bundles.
+const rootsToCheck = [
+  "index.html",
+  "vite.config.ts",
+  "src/seo",
+  "src/components/SEO",
+  "public",
+  "dist/index.html",
+  "dist/manifest.webmanifest",
+  "dist/sitemap.xml",
+];
 const textExtensions = new Set([
   ".css",
   ".html",

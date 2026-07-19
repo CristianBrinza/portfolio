@@ -24,10 +24,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     // Initialize role from localStorage synchronously
     const savedToken = localStorage.getItem('token');
     const savedRole = localStorage.getItem('role') as
-      | 'admin'
-      | 'user'
-      | 'guest'
-      | null;
+      'admin' | 'user' | 'guest' | null;
     if (savedToken && savedRole) {
       return savedRole;
     } else {

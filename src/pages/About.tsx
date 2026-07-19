@@ -8,39 +8,172 @@ import '../styles/About.css';
 
 const aboutSections = [
   { id: 'about-story', label: 'Profile' },
+  { id: 'about-work', label: 'Work' },
   { id: 'about-education', label: 'Education' },
   { id: 'about-connect', label: 'Connect' },
 ];
 
-const education = [
+interface WorkItem {
+  number: string;
+  company: string;
+  role: string;
+  period: string;
+  location?: string;
+  description?: string;
+  projects?: { label: string; url: string }[];
+}
+
+const workGroups: { label: string; items: WorkItem[] }[] = [
+  {
+    label: 'Professional Experience',
+    items: [
+      {
+        number: '01',
+        company: 'Freelance',
+        role: 'Full-Stack Developer and UI/UX Design',
+        period: '2020 — Present',
+        description:
+          'I design and build complete websites for organizations and businesses, from interface and front-end implementation to backend development, deployment, and ongoing improvements.',
+        projects: [
+          { label: 'Science.md', url: 'https://www.science.md/ro/' },
+          {
+            label: 'Utilitas Energy',
+            url: 'https://www.utilitasenergy.net/ro',
+          },
+          { label: 'Shades.md', url: 'https://shades.md/' },
+          {
+            label: 'Trafficking Escape',
+            url: 'https://www.traffickingescape.com/',
+          },
+          { label: 'Spatium UTM', url: 'https://spatium.utm.md/' },
+        ],
+      },
+      {
+        number: '02',
+        company: 'Moldtelecom',
+        role: 'Full-Stack Developer',
+        period: 'March 2023 — Present',
+        location: 'Chișinău, Moldova',
+        description:
+          'Built more than 200 landing pages and delivered the official Zero website across front-end, backend, and DevOps. Improved UI/UX, created a reusable web kit and direct-mail experiences, optimized databases and loading performance, developed animations, wrote unit and integration tests, integrated APIs, documented code, and managed FTP server workflows.',
+        projects: [{ label: 'Moldtelecom.md', url: 'https://moldtelecom.md/' }],
+      },
+    ],
+  },
+  {
+    label: 'Internships',
+    items: [
+      {
+        number: '01',
+        company: 'EBS Integrator',
+        role: 'React Front-End Developer',
+        period: 'Summer 2022',
+        projects: [
+          {
+            label: 'CEITI × EBS Internship',
+            url: 'https://github.com/CristianBrinza/ceiti-ebs-internship',
+          },
+        ],
+      },
+      {
+        number: '02',
+        company: 'Esempla',
+        role: 'Full-Stack Developer · UTM Practice',
+        period: 'Summer 2023',
+        projects: [
+          {
+            label: 'thePOS Project',
+            url: 'https://github.com/FAF-UTM/thePOS',
+          },
+        ],
+      },
+      {
+        number: '03',
+        company: 'AMDARIS',
+        role: 'Full-Stack Developer · UTM Practice',
+        period: 'Winter 2023–2024',
+        description:
+          'Contributed to the StudySpace project as a full-stack developer.',
+      },
+    ],
+  },
+];
+
+interface EducationItem {
+  number: string;
+  period: string;
+  institution: string;
+  program: string;
+  courseLabel: string;
+  courses: string[];
+  professors?: string;
+  address: string;
+  map: string;
+  website: string;
+}
+
+const education: EducationItem[] = [
   {
     number: '01',
+    period: '2025 — Present',
     institution: 'Technical University of Moldova',
-    program: 'Bachelor of Science in Software Engineering',
+    program: "Master's Degree in Digital Marketing",
+    courseLabel: 'Courses',
     courses: [
-      'Data Structures',
-      'Algorithms',
-      'Applied Sciences',
-      'Numerical Methods',
-      'Probability',
-      'Discrete Math',
+      'Inteligența artificială în business',
+      'Marketing internațional',
+      'Publicitate și planificare media',
+      'Managementul proiectelor',
+      'Comportamentul consumatorului',
+      'Fundamentele marketingului',
+      'Cercetări avansate de marketing',
     ],
+    professors:
+      'Dumitru Talmazan (Talmazan School), Dumitru Slonovschi (Magenta Consulting), V. Cunev (Deeplace), and others.',
     address: '9/7 Studenților Street, Chișinău, Moldova',
     map: 'https://maps.app.goo.gl/Le3h2QtwcFxHBGaf7',
     website: 'https://utm.md/en/',
   },
   {
     number: '02',
+    period: '2021 — 2025',
+    institution: 'Technical University of Moldova',
+    program: 'Bachelor of Science in Software Engineering',
+    courseLabel: 'Courses (first year)',
+    courses: [
+      'Data Structures',
+      'Algorithms',
+      'Applied Sciences',
+      'Equivalent Models',
+      'Numerical Methods',
+      'Probability and Statistics Applied',
+      'Discrete Math',
+      'Ethics and Academic Integrity',
+    ],
+    address: '9/7 Studenților Street, Chișinău, Moldova',
+    map: 'https://maps.app.goo.gl/Le3h2QtwcFxHBGaf7',
+    website: 'https://utm.md/en/',
+  },
+  {
+    number: '03',
+    period: '2018 — 2022',
     institution:
       'Center of Excellence in Informatics and Information Technologies',
     program: 'Programming and Program Analysis',
+    courseLabel: 'Courses',
     courses: [
-      'OOP / C++',
+      'OOP in C++',
       'Compilers',
+      'Algorithms',
       'Operating Systems',
+      'Data Structures',
+      'Software Project Planning',
+      'Database Support',
+      'Basics of Legislation in the Field',
+      'Structural and Procedural Programming',
       'SQL',
-      'Databases',
       'Visual Programming',
+      'Information Processing',
     ],
     address: '48 Sarmizegetusa Street, Chișinău, Moldova',
     map: 'https://maps.app.goo.gl/eCz3HBmwwMMt6WqTA',
@@ -147,11 +280,66 @@ export default function About() {
               </div>
             </section>
 
-            <section id="about-education">
+            <section id="about-work">
               <div className="aboutPage_sectionNumber">(02)</div>
               <div className="aboutPage_sectionBody">
+                <span className="aboutPage_sectionLabel">Work</span>
+                <h2>Professional experience and selected client work.</h2>
+
+                {workGroups.map(group => (
+                  <div className="aboutPage_workGroup" key={group.label}>
+                    <h3 className="aboutPage_workGroupLabel">{group.label}</h3>
+                    <div className="aboutPage_workList">
+                      {group.items.map(item => (
+                        <article
+                          className="aboutPage_workCard"
+                          key={item.number}
+                        >
+                          <div className="aboutPage_workHead">
+                            <span>({item.number})</span>
+                            <time>{item.period}</time>
+                          </div>
+
+                          <div className="aboutPage_workTitle">
+                            <h3>{item.company}</h3>
+                            <strong>{item.role}</strong>
+                            {item.location && <small>{item.location}</small>}
+                          </div>
+
+                          {item.description && <p>{item.description}</p>}
+
+                          {item.projects && (
+                            <div className="aboutPage_projectLinks">
+                              {item.projects.map(project => (
+                                <a
+                                  href={project.url}
+                                  key={project.url}
+                                  rel="noreferrer"
+                                  target="_blank"
+                                >
+                                  {project.label} ↗
+                                </a>
+                              ))}
+                              {item.company === 'Freelance' && (
+                                <span>and more</span>
+                              )}
+                            </div>
+                          )}
+                        </article>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section id="about-education">
+              <div className="aboutPage_sectionNumber">(03)</div>
+              <div className="aboutPage_sectionBody">
                 <span className="aboutPage_sectionLabel">Education</span>
-                <h2>Software engineering and programming education.</h2>
+                <h2>
+                  Digital marketing, software engineering, and programming.
+                </h2>
 
                 <div className="aboutPage_educationList">
                   {education.map(item => (
@@ -161,17 +349,27 @@ export default function About() {
                     >
                       <div className="aboutPage_educationHead">
                         <span>({item.number})</span>
-                        <a href={item.website} rel="noreferrer" target="_blank">
-                          Website ↗
-                        </a>
+                        <time>{item.period}</time>
                       </div>
-                      <h3>{item.institution}</h3>
-                      <strong>{item.program}</strong>
-                      <div className="aboutPage_courseList">
-                        {item.courses.map(course => (
-                          <span key={course}>{course}</span>
-                        ))}
-                      </div>
+                      <h3>{item.program}</h3>
+                      <strong>{item.institution}</strong>
+                      <p className="aboutPage_courseSummary">
+                        <strong>{item.courseLabel}:</strong>{' '}
+                        {item.courses.join(', ')}, …
+                      </p>
+                      {item.professors && (
+                        <p className="aboutPage_professorSummary">
+                          <strong>Professors include:</strong> {item.professors}
+                        </p>
+                      )}
+                      <a
+                        className="aboutPage_address"
+                        href={item.website}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        Website ↗
+                      </a>
                       <a
                         className="aboutPage_address"
                         href={item.map}
@@ -187,7 +385,7 @@ export default function About() {
             </section>
 
             <section id="about-connect">
-              <div className="aboutPage_sectionNumber">(03)</div>
+              <div className="aboutPage_sectionNumber">(04)</div>
               <div className="aboutPage_sectionBody">
                 <span className="aboutPage_sectionLabel">Connect</span>
                 <h2>Portfolio and professional profiles.</h2>
