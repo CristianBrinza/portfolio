@@ -15,7 +15,7 @@ export default defineConfig({
         navigateFallbackDenylist: [/^\/files\//, /^\/images\//, /^\/json\//],
         runtimeCaching: [
           {
-            urlPattern: /\.(?:js|css|html|png|svg|jpg|jpeg|pdf|json)$/,
+            urlPattern: /\.(?:png|svg|jpg|jpeg|webp|gif|pdf)$/,
             handler: "CacheFirst",
             options: {
               cacheName: "assets-cache",
@@ -49,7 +49,7 @@ export default defineConfig({
         ],
       },
       devOptions: {
-        enabled: true, // Enable PWA in development mode
+        enabled: false,
       },
     }),
   ],
