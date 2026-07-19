@@ -15,7 +15,7 @@ export default function NameValidator() {
 
   const validateName = (name: string) => {
     // Remove invalid characters for Windows file names: \ / : * ? " < > |
-    const sanitized = name.replace(/[\\\/:*?"<>|]/g, '_');
+    const sanitized = name.replace(/[\\/:*?"<>|]/g, '_');
     setValidName(sanitized);
     setCopied(false); // Reset the copied state when a new name is validated
   };

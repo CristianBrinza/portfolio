@@ -20,7 +20,17 @@
 
 ## Getting Started
 
-TBD
+Use Node.js 22 and Yarn Classic (the versions are recorded in `.nvmrc` and
+`package.json`):
+
+```bash
+nvm use
+corepack enable
+yarn install --frozen-lockfile
+yarn dev
+```
+
+Before opening a pull request, run `yarn lint`, `yarn build`, and `yarn audit`.
 
 ## Documentation
 
