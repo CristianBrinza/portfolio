@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
 import { Trans } from 'react-i18next';
 import '../styles/Contact.css';

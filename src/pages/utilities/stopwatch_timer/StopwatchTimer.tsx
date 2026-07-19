@@ -21,7 +21,7 @@ export default function StopwatchTimer() {
 
   // Timer logic
   useEffect(() => {
-    let interval: NodeJS.Timeout | null = null;
+    let interval: ReturnType<typeof setInterval> | null = null;
     if (isRunning) {
       interval = setInterval(() => {
         setTime(prevTime => {
@@ -100,7 +100,7 @@ export default function StopwatchTimer() {
 
   // Hide controls after 2 seconds of non-hover
   useEffect(() => {
-    let timeout: NodeJS.Timeout | null = null;
+    let timeout: ReturnType<typeof setTimeout> | null = null;
     if (!showControls && isFullScreen) {
       timeout = setTimeout(() => {
         setShowControls(false);

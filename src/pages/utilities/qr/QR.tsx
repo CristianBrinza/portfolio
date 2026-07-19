@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Trans } from 'react-i18next';
-import QRCode from 'qrcode.react';
+import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react';
 import Breadcrumb from '../../../components/Breadcrumb/Breadcrumb.tsx';
 import Title from '../../../components/Text/Title/Title.tsx';
 import Button from '../../../components/Button.tsx';
@@ -140,6 +140,7 @@ export default function QR() {
     { label: <Trans>navigation.qr_page</Trans> },
   ];
 
+  const QRCode = qrType === 'png' ? QRCodeCanvas : QRCodeSVG;
   return (
       <>
         <Breadcrumb items={breadcrumbItems} />
@@ -151,7 +152,6 @@ export default function QR() {
             <QRCode
                 value={qrValue}
                 size={qrSize}
-                renderAs={qrType === 'png' ? 'canvas' : 'svg'}
                 bgColor={qrType === 'png' ? 'transparent' : '#ffffff'}
                 fgColor={qrColor}
                 level="H" // Increase error correction to handle logo overlay
