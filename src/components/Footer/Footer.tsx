@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import './Footer.css';
+import { openConsentSettings } from '../../utils/consent';
 
 export type FooterType = '1' | '2';
 
@@ -100,6 +101,13 @@ const Footer: React.FC<FooterProps> = ({
               {t('home_v2.resources.utilities.title')} →
             </Link>
             <Link to={`/${language}/legal`}>{t('home_v2.footer.legal')} →</Link>
+            <button
+              className="siteFooter_cookieSettings"
+              onClick={openConsentSettings}
+              type="button"
+            >
+              {t('cookie_consent.manage')} →
+            </button>
           </nav>
 
           {copyright && (

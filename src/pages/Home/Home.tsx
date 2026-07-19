@@ -30,16 +30,6 @@ export default function Home() {
   }, [theme]);
 
   useEffect(() => {
-    const language = (i18n.resolvedLanguage ?? i18n.language ?? 'en')
-      .split('-')[0]
-      .toLowerCase();
-    document.documentElement.lang = ['en', 'ro', 'ru'].includes(language)
-      ? language
-      : 'en';
-    document.title = `Cristian Brinza — ${i18n.t('home_v2.meta_title')}`;
-  }, [i18n, i18n.language]);
-
-  useEffect(() => {
     const elements = Array.from(
       document.querySelectorAll<HTMLElement>('[data-home-reveal]')
     );

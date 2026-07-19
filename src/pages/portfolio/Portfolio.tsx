@@ -7,7 +7,6 @@ import Notification from '../../components/Notification/Notification.tsx';
 import { useState } from 'react';
 import styles from './Portfolio.module.css';
 import FeedbackMenu from '../../components/FeedbackMenu/FeedbackMenu.tsx'; // Importing CSS Module
-import DynamicMeta from '../../components/DynamicMeta/DynamicMeta';
 
 export default function Portfolio() {
   const breadcrumbItems = [
@@ -34,11 +33,6 @@ export default function Portfolio() {
 
   return (
     <>
-      <DynamicMeta
-        title="Cristian Brinza - Portfolio"
-        description="This the Portfolio showcase page"
-        keywords="Portfolio, Fontend, Backend, Design"
-      />
       <Breadcrumb items={breadcrumbItems} />
       <Page minHeight="80vh" gap="50px">
         <div className={styles.main}>

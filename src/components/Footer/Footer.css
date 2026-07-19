@@ -138,6 +138,23 @@
   color: #1967d2;
 }
 
+.siteFooter_legal .siteFooter_cookieSettings {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: #1967d2;
+  font: inherit;
+  min-height: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.siteFooter_legal .siteFooter_cookieSettings:hover {
+  background: transparent;
+  color: #1967d2;
+  transform: none;
+}
+
 .siteFooter_bottom button {
   background: transparent;
   border: 1px solid var(--site-footer-line);

@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import SEO from '../SEO/SEO';
+import { getRouteSeo } from '../../seo/siteSeo';
 
 interface DynamicMetaProps {
   title: string;
@@ -6,46 +9,20 @@ interface DynamicMetaProps {
   keywords?: string;
 }
 
-const DynamicMeta: React.FC<DynamicMetaProps> = ({
-  title,
-  description,
-  keywords,
-}) => {
-  useEffect(() => {
-    // Update the document title
-    document.title = title;
+const DynamicMeta: React.FC<DynamicMetaProps> = ({ title, description }) => {
+  const { pathname } = useLocation();
+  const routeSeo = getRouteSeo(pathname);
 
-    // Update the meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', description);
-    } else {
-      const newMetaDescription = document.createElement('meta');
-      newMetaDescription.name = 'description';
-      newMetaDescription.content = description;
-      document.head.appendChild(newMetaDescription);
-    }
-
-    // Update the meta keywords (if provided)
-    if (keywords) {
-      const metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (metaKeywords) {
-        metaKeywords.setAttribute('content', keywords);
-      } else {
-        const newMetaKeywords = document.createElement('meta');
-        newMetaKeywords.name = 'keywords';
-        newMetaKeywords.content = keywords;
-        document.head.appendChild(newMetaKeywords);
-      }
-    }
-
-    // Clean up the changes when the component unmounts
-    return () => {
-      // Optionally reset the title or meta tags back to defaults if needed
-    };
-  }, [title, description, keywords]);
-
-  return null; // This component doesn't render anything
+  return (
+    <SEO
+      title={title}
+      description={description}
+      canonicalPath={routeSeo.canonicalPath}
+      language={routeSeo.language}
+      noIndex={routeSeo.noIndex}
+      pageType={routeSeo.pageType}
+    />
+  );
 };
 
 export default DynamicMeta;

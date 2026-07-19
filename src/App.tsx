@@ -12,23 +12,15 @@ import i18n from './i18n';
 import { routes } from './routesConfig';
 import Notification from './components/Notification/Notification';
 import { LanguageProvider } from './context/LanguageContext';
-import ReactGA from 'react-ga4';
 import ConsentBanner from './components/ConsentBanner/ConsentBanner';
 import DynamicPages from './components/DynamicPages/DynamicPages';
 import Login from './pages/admin/login/Login';
 import { AuthProvider } from './context/AuthContext';
 import NotFound from './pages/NotFound.tsx';
-import { registerSW } from 'virtual:pwa-register';
 import Application from './app/Application';
+import { trackPageview } from './utils/consent';
+import RouteSEO from './components/SEO/RouteSEO';
 
-declare global {
-  interface Navigator {
-    standalone?: boolean;
-  }
-}
-
-const TRACKING_ID = import.meta.env.VITE_GOOGLE_TRACKING_TAG;
-const GTM_ID = import.meta.env.VITE_GTM_ID;
 const OfflinePage = React.lazy(() => import('./pages/OfflinePage'));
 
 function AppContent() {
@@ -49,46 +41,12 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    // Initialize Google Analytics if the tracking ID is available
-    if (TRACKING_ID) {
-      ReactGA.initialize(TRACKING_ID, { testMode: import.meta.env.DEV });
-    }
-  }, []);
-
-  useEffect(() => {
-    const consentGiven = localStorage.getItem('userConsent');
-    if (consentGiven === 'granted' && !ReactGA.ga()) {
-      ReactGA.initialize(TRACKING_ID);
-      ReactGA.send('pageview');
-      console.log('Google Analytics initialized');
-    }
-  }, []);
-
-  useEffect(() => {
     const page = location.pathname;
     const pageTitle = document.title || 'Website';
-    ReactGA.send({ hitType: 'pageview', page, title: pageTitle });
-    console.log(`Pageview sent: ${page} - ${pageTitle}`);
+    trackPageview(page, pageTitle);
   }, [location.pathname]);
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.innerHTML = `
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','${GTM_ID}');
-    `;
-    document.head.appendChild(script);
-
-    const noscript = document.createElement('noscript');
-    noscript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`;
-    document.body.appendChild(noscript);
-  }, []);
-
   const [showNotification, setShowNotification] = useState(false);
-  const [showUpdateNotification, setShowUpdateNotification] = useState(false);
 
   useEffect(() => {
     const checkBackendStatus = async () => {
@@ -140,35 +98,12 @@ function AppContent() {
   }, [location.pathname, navigate]);
 
   useEffect(() => {
-    setShowUpdateNotification(false);
     if (isStandalone()) {
       document.body.classList.add('standalone');
     } else {
       document.body.classList.remove('standalone');
     }
   }, []);
-
-  // const updateSW = registerSW({
-  //   onNeedRefresh() {
-  //     if (confirm('New content is available. Refresh?')) {
-  //       updateSW();
-  //     }
-  //     // setShowUpdateNotification(true); // Add a state for showing this notification
-  //   },
-  //   onOfflineReady() {
-  //     console.log('App is ready for offline use.');
-  //   },
-  // });
-
-  // Service Worker Registration for PWA updates
-  const updateSW = registerSW({
-    onNeedRefresh() {
-      setShowUpdateNotification(true);
-    },
-    onOfflineReady() {
-      console.log('App is ready for offline use.');
-    },
-  });
   // useEffect(() => {
   //   if (location.pathname.startsWith(`/${i18n.language}/app`)) {
   //     navigate('/app', { replace: true });
@@ -197,12 +132,8 @@ function AppContent() {
       {showNotification && !isAppPath && (
         <Notification type="error">Sorry, Back-end is down</Notification>
       )}
-      {showUpdateNotification && (
-        <Notification type="info">
-          New version available. <button onClick={updateSW}>Update</button>
-        </Notification>
-      )}
       <LanguageProvider>
+        <RouteSEO />
         {isOnline ? (
           <Routes>
             <Route path="/app" element={<Application />} />

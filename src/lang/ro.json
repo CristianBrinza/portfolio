@@ -11,6 +11,7 @@
     "back": "Inapoi"
   },
   "navigation": {
+    "breadcrumb": "Traseu de navigare",
     "home": "Acasă",
     "about_page": "Despre mine",
     "resume_page": "Resume",
@@ -28,6 +29,32 @@
     "subtitle": "Fiți atenți la erori și la schimbări",
     "sorry": "Ne pare rău.",
     "sorry_message": "Site-ul este în curs de dezvoltare, fiți atenți la erori și la schimbări"
+  },
+  "cookie_consent": {
+    "eyebrow": "Confidențialitate și cookie-uri",
+    "title": "Alegerile tale, datele tale",
+    "description": "Stocarea necesară menține site-ul funcțional. Cu acordul tău, folosesc și instrumente de analiză pentru performanță și tehnologii de marketing pentru măsurarea campaniilor. Poți accepta, respinge sau alege fiecare categorie.",
+    "policy": "Politica privind cookie-urile",
+    "reject_all": "Respinge toate",
+    "customize": "Personalizează",
+    "accept_all": "Acceptă toate",
+    "settings": "Setări cookie",
+    "manage_title": "Gestionează preferințele",
+    "manage_description": "Tehnologiile necesare sunt mereu active. Categoriile opționale rămân oprite dacă nu alegi să le activezi, iar decizia poate fi schimbată oricând.",
+    "categories_label": "Categorii de cookie-uri",
+    "necessary_title": "Necesare",
+    "necessary_description": "Securitate, alegerea limbii, preferințele de consimțământ și funcțiile de bază ale site-ului.",
+    "analytics_title": "Analiză și performanță",
+    "analytics_description": "Mă ajută să înțeleg vizitele și să îmbunătățesc performanța portofoliului.",
+    "marketing_title": "Marketing",
+    "marketing_description": "Permite măsurarea campaniilor și tehnologiile asociate publicității.",
+    "always_on": "Mereu active",
+    "on": "Pornit",
+    "off": "Oprit",
+    "save": "Salvează alegerile",
+    "back": "Înapoi",
+    "close": "Închide setările cookie",
+    "manage": "Setări cookie"
   },
   "notification": {
     "info": "Info",

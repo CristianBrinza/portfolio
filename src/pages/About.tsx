@@ -1,157 +1,233 @@
+import { useEffect } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
-import { Trans } from 'react-i18next';
-import Page from '../components/Page.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import PageContents from '../components/page_contents/PageContents.tsx';
 import '../styles/About.css';
-import DynamicMeta from '../components/DynamicMeta/DynamicMeta.tsx';
+
+const aboutSections = [
+  { id: 'about-story', label: 'Profile' },
+  { id: 'about-education', label: 'Education' },
+  { id: 'about-connect', label: 'Connect' },
+];
+
+const education = [
+  {
+    number: '01',
+    institution: 'Technical University of Moldova',
+    program: 'Bachelor of Science in Software Engineering',
+    courses: [
+      'Data Structures',
+      'Algorithms',
+      'Applied Sciences',
+      'Numerical Methods',
+      'Probability',
+      'Discrete Math',
+    ],
+    address: '9/7 Studenților Street, Chișinău, Moldova',
+    map: 'https://maps.app.goo.gl/Le3h2QtwcFxHBGaf7',
+    website: 'https://utm.md/en/',
+  },
+  {
+    number: '02',
+    institution:
+      'Center of Excellence in Informatics and Information Technologies',
+    program: 'Programming and Program Analysis',
+    courses: [
+      'OOP / C++',
+      'Compilers',
+      'Operating Systems',
+      'SQL',
+      'Databases',
+      'Visual Programming',
+    ],
+    address: '48 Sarmizegetusa Street, Chișinău, Moldova',
+    map: 'https://maps.app.goo.gl/eCz3HBmwwMMt6WqTA',
+    website: 'https://ceiti.md/',
+  },
+];
 
 export default function About() {
+  const { i18n } = useTranslation();
+  const language = ['en', 'ro', 'ru'].includes(i18n.resolvedLanguage ?? '')
+    ? i18n.resolvedLanguage
+    : 'en';
   const breadcrumbItems = [
     { label: <Trans>navigation.home</Trans>, url: '/' },
     { label: <Trans>navigation.about_page</Trans> },
   ];
 
-  const sections = [
-    { id: 'about_page_text', label: 'About' },
-    { id: 'about_page_text_title_2', label: 'Education' },
-    { id: 'about_page_text_title_3', label: 'More' },
-  ];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
-      <DynamicMeta
-        title="Cristian Brinza - About me"
-        description="This the About me page"
-        keywords="Portfolio, About me, Cristian Brinza"
-      />
       <Breadcrumb items={breadcrumbItems} />
-      <Page gap="50px" id="about_page">
-        <div id="about_page_text">
-          <div>
-            <div>
-              <div id="about_page_title">
-                Meet the Designer <br />
-                and Developer <br />
-              </div>
 
-              <div id="about_page_title_small">
-                "The Person Behind the Projects"
-              </div>
+      <main className="aboutPage" id="about-page">
+        <header className="aboutPage_hero">
+          <span className="aboutPage_eyebrow">( About / Profile )</span>
+          <h1>
+            Meet the designer
+            <span>&amp; developer</span>
+          </h1>
 
-              <div id="about_page_text_first_sub_block">
-                <div
-                  className="about_page_text_color"
-                  style={{ marginTop: '10px' }}
-                >
-                  Hi, I'm Cristian Brinza. As a proficient Developer, I have a
-                  passion for visually appealing and user-friendly websites,
-                  applications and other types of projects. Proven my ability to
-                  deliver high-quality work, adapt to new technologies,
-                  collaborate with cross-functional teams, and stay currently
-                  with industry trends. I am a young software-engineer student,
-                  at the beginning of my career, having a ton of ambitious ideas
-                  and the motivation and discipline to realize them in
-                  management, design and development.
-                </div>
-              </div>
-              <img
-                src="/images/.jpg"
-                style={{ display: 'none' }}
-                id="about_page_img"
-                alt="About Me"
-              />
-              <br />
-              <div>
-                <b>Age:</b>{' '}
-                <span className="about_page_text_color">22 years</span>
-              </div>
-              <div>
-                <b>Location:</b>{' '}
-                <span className="about_page_text_color">
-                  Chisinau, Moldova Republic of
-                </span>
-              </div>
-              <div>
-                <b>Languages:</b>{' '}
-                <span className="about_page_text_color">
-                  Romanian (maternal); English, Russian (High level); French
-                  (intermediate)
-                </span>
-              </div>
-            </div>
+          <div className="aboutPage_heroBottom">
+            <p>
+              Software engineer and product designer based in Chișinău, building
+              web products from interface to backend.
+            </p>
 
-            <div className="about_page_text_title" id="about_page_text_title_2">
-              Education
-            </div>
-
-            <div
-              style={{ marginTop: '10px' }}
-              className="about_page_text_color"
-            >
-              <b>Technical University of Moldova</b>
-              <br />
-              <div style={{ marginLeft: '10px' }}>
-                Bachelor of Science of Software Engineering (EnglishTaught
-                Honors Program on Software Engineering)
-                <br />
-                <div style={{ margin: '5px 0' }}>
-                  • Courses: (First year) Data structures and algorithms,
-                  Applied Sciences, Equivalent Models, Numerical methods,
-                  Probability and statistics applied, Discrete math, Ethics and
-                  Academic Integrity, …
-                </div>
-                <a href="https://maps.app.goo.gl/Le3h2QtwcFxHBGaf7">
-                  9/7 Sudenilor street, Chisinau, Moldova
-                </a>
-                , <a href="https://utm.md/en/">https://utm.md/en/</a>
-              </div>
-            </div>
-            <div style={{ marginTop: '20px' }}>
-              <b>
-                I.P. Center of Excellence in Informatics and Information
-                Technologies
-              </b>
-              <br />
-              <div style={{ marginLeft: '10px' }}>
-                Baccalaureate diploma and Programming and Program Analysis
-                Student
-                <div style={{ margin: '5px 0' }}>
-                  • Courses: OOP in C++, Compilers, Algorithms, Operating
-                  Systems, Data Structures, Software project planning, Database
-                  support, Basics of legislation in the field, Structural and
-                  procedural programming, SQL, Visual programming, Information
-                  processing, …
-                </div>
-                <a href="https://maps.app.goo.gl/eCz3HBmwwMMt6WqTA">
-                  48 Sarmizegetusa, Chișinău, Republic of Moldova
-                </a>
-                , <a href="https://ceiti.md/">https://ceiti.md/</a>
-              </div>
+            <div aria-hidden="true" className="aboutPage_motionMark">
+              <svg viewBox="0 0 180 180">
+                <circle cx="90" cy="90" r="69" />
+                <path d="M21 90h138" />
+                <path d="M90 21v138" />
+                <circle className="aboutPage_motionDot" cx="90" cy="21" r="7" />
+              </svg>
+              <span>Form / Function / Feeling</span>
             </div>
           </div>
+        </header>
 
-          <div>
-            <div className="about_page_text_title" id="about_page_text_title_3">
-              Useful Links
-            </div>
-            <div>
-              <b>Github: </b>
-              <a href="https://www.github.com/CristianBrinza">
-                github.com/CristianBrinza
-              </a>
-            </div>
-            <div>
-              <b>LinkedIn: </b>
-              <a href="https://www.linkedin.com/in/cristianbrinza/">
-                linkedin.com/in/cristianbrinza/
-              </a>
-            </div>
-          </div>
+        <div className="aboutPage_layout">
+          <PageContents id="about_page_contents" sections={aboutSections} />
+
+          <article className="aboutPage_content">
+            <section id="about-story">
+              <div className="aboutPage_sectionNumber">(01)</div>
+              <div className="aboutPage_sectionBody">
+                <span className="aboutPage_sectionLabel">Profile</span>
+                <h2>Software engineer and product designer.</h2>
+
+                <div className="aboutPage_profileLayout">
+                  <figure className="aboutPage_portrait">
+                    <div className="aboutPage_portraitFrame">
+                      <img
+                        alt="Portrait of Cristian Brinza"
+                        decoding="async"
+                        height="2400"
+                        loading="lazy"
+                        src="/images/about/cristian-brinza-portrait.jpg"
+                        width="2399"
+                      />
+                      <span aria-hidden="true">( Portrait / 01 )</span>
+                    </div>
+                    <figcaption>
+                      <span>Cristian Brinza</span>
+                      <span>Chișinău · MD</span>
+                    </figcaption>
+                  </figure>
+
+                  <div>
+                    <p className="aboutPage_profileCopy">
+                      I design and develop websites and applications from
+                      product structure and interface design through front-end
+                      and backend implementation.
+                    </p>
+
+                    <dl className="aboutPage_facts">
+                      <div>
+                        <dt>Based in</dt>
+                        <dd>Chișinău, Moldova</dd>
+                      </div>
+                      <div>
+                        <dt>Education</dt>
+                        <dd>Software Engineering · UTM</dd>
+                      </div>
+                      <div>
+                        <dt>Languages</dt>
+                        <dd>Romanian · English · Russian · French</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="about-education">
+              <div className="aboutPage_sectionNumber">(02)</div>
+              <div className="aboutPage_sectionBody">
+                <span className="aboutPage_sectionLabel">Education</span>
+                <h2>Software engineering and programming education.</h2>
+
+                <div className="aboutPage_educationList">
+                  {education.map(item => (
+                    <article
+                      className="aboutPage_educationCard"
+                      key={item.number}
+                    >
+                      <div className="aboutPage_educationHead">
+                        <span>({item.number})</span>
+                        <a href={item.website} rel="noreferrer" target="_blank">
+                          Website ↗
+                        </a>
+                      </div>
+                      <h3>{item.institution}</h3>
+                      <strong>{item.program}</strong>
+                      <div className="aboutPage_courseList">
+                        {item.courses.map(course => (
+                          <span key={course}>{course}</span>
+                        ))}
+                      </div>
+                      <a
+                        className="aboutPage_address"
+                        href={item.map}
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        {item.address} ↗
+                      </a>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section id="about-connect">
+              <div className="aboutPage_sectionNumber">(03)</div>
+              <div className="aboutPage_sectionBody">
+                <span className="aboutPage_sectionLabel">Connect</span>
+                <h2>Portfolio and professional profiles.</h2>
+
+                <div className="aboutPage_links">
+                  <a
+                    href="https://github.com/CristianBrinza"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span>GitHub</span>
+                    <small>Code &amp; open source</small>
+                    <b aria-hidden="true">↗</b>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/cristianbrinza/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <span>LinkedIn</span>
+                    <small>Experience &amp; network</small>
+                    <b aria-hidden="true">↗</b>
+                  </a>
+                  <Link to={`/${language}/portfolio`}>
+                    <span>Portfolio</span>
+                    <small>Selected projects</small>
+                    <b aria-hidden="true">→</b>
+                  </Link>
+                  <a href="mailto:inbox.cristian.brinza@gmail.com">
+                    <span>Email</span>
+                    <small>Start a conversation</small>
+                    <b aria-hidden="true">↗</b>
+                  </a>
+                </div>
+              </div>
+            </section>
+          </article>
         </div>
-        {/* Use the PageContents component */}
-        <PageContents id="about_page_contents" sections={sections} />
-      </Page>
+      </main>
+
       <Footer />
     </>
   );

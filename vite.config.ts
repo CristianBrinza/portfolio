@@ -10,7 +10,11 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
+      injectRegister: false,
       workbox: {
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
         navigateFallback: "/index.html",
         navigateFallbackDenylist: [/^\/files\//, /^\/images\//, /^\/json\//],
         runtimeCaching: [
@@ -28,9 +32,10 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: "CB",
-        short_name: "CB",
-        description: "Cristian Brinza's portfolio",
+        name: "Cristian Brinza's Portfolio",
+        short_name: "CB Portfolio",
+        description:
+          "Cristian Brinza's software engineering, full-stack development and design portfolio.",
         theme_color: "#ffffff",
         background_color: "#ffffff",
         display: "standalone",
@@ -45,6 +50,12 @@ export default defineConfig({
             src: "/images/app/icon_logo_app_512.png",
             sizes: "512x512",
             type: "image/png",
+          },
+          {
+            src: "/images/app/icon_logo_app_maskable.svg",
+            sizes: "any",
+            type: "image/svg+xml",
+            purpose: "maskable",
           },
         ],
       },

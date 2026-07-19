@@ -11,6 +11,7 @@
     "back": "Back"
   },
   "navigation": {
+    "breadcrumb": "Breadcrumb",
     "home": "Home",
     "about_page": "About me",
     "resume_page": "Resume",
@@ -28,6 +29,32 @@
     "subtitle": "Mind the bugs and the changes",
     "sorry": "We are sorry.",
     "sorry_message": "The website under development, mind the bugs and the changes"
+  },
+  "cookie_consent": {
+    "eyebrow": "Privacy & cookies",
+    "title": "Your choices, your data",
+    "description": "Necessary storage keeps the site working. With your permission, I also use analytics to understand performance and marketing technologies to measure campaigns. You can accept, reject, or choose each category.",
+    "policy": "Cookie policy",
+    "reject_all": "Reject all",
+    "customize": "Customize",
+    "accept_all": "Accept all",
+    "settings": "Cookie settings",
+    "manage_title": "Manage your preferences",
+    "manage_description": "Necessary technologies are always active. Optional categories stay off unless you choose to enable them, and you can change your decision at any time.",
+    "categories_label": "Cookie categories",
+    "necessary_title": "Necessary",
+    "necessary_description": "Security, language choice, consent preferences, and core site functions.",
+    "analytics_title": "Analytics & performance",
+    "analytics_description": "Helps me understand visits and improve how the portfolio performs.",
+    "marketing_title": "Marketing",
+    "marketing_description": "Allows campaign measurement and advertising-related technologies.",
+    "always_on": "Always on",
+    "on": "On",
+    "off": "Off",
+    "save": "Save choices",
+    "back": "Back",
+    "close": "Close cookie settings",
+    "manage": "Cookie settings"
   },
   "notification": {
     "info": "Info",

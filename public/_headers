@@ -1,0 +1,61 @@
+# Keep Cloudflare Pages preview and branch deployments out of search results.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+# The service worker must be revalidated after every deployment. Cloudflare's
+# default JavaScript TTL otherwise lets Chrome reuse an outdated sw.js.
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+  Service-Worker-Allowed: /
+
+/manifest.webmanifest
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Internal, private, temporary and utility-support routes.
+/app*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/login
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/test
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/offline
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/admin*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/guest*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/dashboard*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/share/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/icons-showcase
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/icon/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/add-files/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/404
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/not-found
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/404
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/:lang/not-found
+  X-Robots-Tag: noindex, nofollow, noarchive

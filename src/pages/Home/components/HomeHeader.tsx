@@ -134,12 +134,26 @@ export default function HomeHeader({ theme, onToggleTheme }: HomeHeaderProps) {
 
   const closeMenu = () => setMenuOpen(false);
   const menuItems = [
+    {
+      href: `/${currentLanguage}/portfolio`,
+      label: 'home_v2.resources.portfolio.title',
+      route: true,
+    },
+    {
+      href: `/${currentLanguage}/about`,
+      label: 'home_v2.nav.about',
+      route: true,
+    },
+    { href: '#services', label: 'home_v2.nav.services', route: false },
+    { href: '#contact', label: 'home_v2.nav.contact', route: false },
+  ];
+  const sectionItems = [
+    ['#hero', 'home_v2.nav.intro'],
     ['#work', 'home_v2.nav.work'],
     ['#about', 'home_v2.nav.about'],
     ['#services', 'home_v2.nav.services'],
     ['#contact', 'home_v2.nav.contact'],
   ];
-  const sectionItems = [['#hero', 'home_v2.nav.intro'], ...menuItems];
 
   return (
     <>
@@ -161,15 +175,17 @@ export default function HomeHeader({ theme, onToggleTheme }: HomeHeaderProps) {
           className={styles.desktopNav}
           aria-label={t('home_v2.nav.primary')}
         >
-          {[
-            ['#work', 'home_v2.nav.work_short'],
-            ['#about', 'home_v2.nav.about_short'],
-            ['#services', 'home_v2.nav.services'],
-          ].map(([href, label]) => (
-            <a key={href} href={href}>
-              {t(label)}
-            </a>
-          ))}
+          {menuItems.slice(0, 3).map(item =>
+            item.route ? (
+              <Link key={item.href} to={item.href}>
+                {t(item.label)}
+              </Link>
+            ) : (
+              <a href={item.href} key={item.href}>
+                {t(item.label)}
+              </a>
+            )
+          )}
         </nav>
 
         <div className={styles.headerActions}>
@@ -229,11 +245,17 @@ export default function HomeHeader({ theme, onToggleTheme }: HomeHeaderProps) {
       >
         <div className={styles.menuEyebrow}>{t('home_v2.nav.navigation')}</div>
         <nav aria-label={t('home_v2.nav.menu')}>
-          {menuItems.map(([href, label]) => (
-            <a href={href} key={href} onClick={closeMenu}>
-              {t(label)}
-            </a>
-          ))}
+          {menuItems.map(item =>
+            item.route ? (
+              <Link key={item.href} onClick={closeMenu} to={item.href}>
+                {t(item.label)}
+              </Link>
+            ) : (
+              <a href={item.href} key={item.href} onClick={closeMenu}>
+                {t(item.label)}
+              </a>
+            )
+          )}
         </nav>
         <div className={styles.menuSocials}>
           <a href="https://github.com/CristianBrinza">GitHub</a>
