@@ -176,9 +176,11 @@ function AppContent() {
   // }, [location.pathname, i18n.language, navigate]);
 
   const isAppPath = location.pathname === '/app';
+  const isHomePath =
+    location.pathname === '/' || /^\/(en|ro|ru)\/?$/.test(location.pathname);
   return (
     <AuthProvider>
-      {!isAppPath && (
+      {!isAppPath && !isHomePath && (
         <div
           id="top_notification"
           style={{ display: !isStandalone() ? 'flex' : 'none' }}
@@ -189,8 +191,9 @@ function AppContent() {
           &nbsp;{t('website_warning.sorry_message')}
         </div>
       )}
-      {!isAppPath && <Notification>{t('website_warning.sorry_message')}</Notification>
-      }
+      {!isAppPath && (
+        <Notification>{t('website_warning.sorry_message')}</Notification>
+      )}
       {showNotification && !isAppPath && (
         <Notification type="error">Sorry, Back-end is down</Notification>
       )}

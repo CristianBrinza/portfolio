@@ -29,9 +29,156 @@
     "sorry": "We are sorry.",
     "sorry_message": "The website under development, mind the bugs and the changes"
   },
+  "notification": {
+    "info": "Info",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "close": "Close notification"
+  },
   "home": {
     "hello": "Hello",
     "imcristian": "I’m Cristian"
+  },
+  "home_v2": {
+    "meta_title": "Designer & Full-Stack Developer",
+    "nav": {
+      "skip": "Skip to content",
+      "primary": "Primary navigation",
+      "sections": "Page sections",
+      "navigation": "Navigation — 05",
+      "intro": "Intro",
+      "work": "Selected work",
+      "work_short": "Work",
+      "about": "About me",
+      "about_short": "About",
+      "services": "Services",
+      "contact": "Get in touch",
+      "menu": "Menu",
+      "close": "Close",
+      "language": "Language",
+      "theme": "Switch to {{theme}} theme",
+      "light": "light",
+      "dark": "dark"
+    },
+    "hero": {
+      "available": "Available for work — 2026",
+      "location": "Chișinău, Moldova · 47°N",
+      "summary": "Designer & full-stack developer building precise, memorable digital products.",
+      "hello": "Hi, I'm",
+      "scroll": "Scroll",
+      "figure": "fig. 01 — form in motion",
+      "study": "ink study, 2026",
+      "roles": {
+        "design": "Designer",
+        "development": "Full-Stack Developer",
+        "problem": "Problem Solver"
+      }
+    },
+    "marquee": {
+      "design": "Design",
+      "development": "Development",
+      "branding": "Branding",
+      "interfaces": "Interfaces"
+    },
+    "stats": {
+      "label": "Career highlights",
+      "years": "Years building",
+      "projects": "Projects shipped",
+      "technologies": "Technologies",
+      "certifications": "Certifications"
+    },
+    "work": {
+      "eyebrow": "( Selected work )",
+      "title": "Built with purpose",
+      "intro": "A selection of disciplines I bring together to turn an idea into a polished, working product.",
+      "all": "Explore all projects",
+      "product": {
+        "title": "Product & Interface Design",
+        "description": "Clear digital experiences shaped through research, systems thinking and precise visual craft."
+      },
+      "frontend": {
+        "title": "Front-End Experiences",
+        "description": "Responsive, accessible interfaces with purposeful motion and dependable performance."
+      },
+      "backend": {
+        "title": "Back-End Systems",
+        "description": "APIs and services that keep products secure, maintainable and ready to grow."
+      }
+    },
+    "about": {
+      "eyebrow": "( About )",
+      "lead": "I'm Cristian — a software engineer who cares as much about how things <accent>feel</accent> as how they work. I design and build user-friendly, visually sharp products end to end, from the first pixel to the last deploy.",
+      "body": "Proven my ability to deliver high-quality work, adapt to new technologies, collaborate with cross-functional teams, and stay currently with industry trends.",
+      "based_label": "Based in",
+      "based": "Chișinău, Moldova",
+      "education_label": "Education",
+      "education": "BSc Software Engineering, UTM\nProgramming & Analysis, CEITI",
+      "languages_label": "Languages",
+      "languages": "Romanian · English · Russian · French",
+      "stack": "( Stack )"
+    },
+    "services": {
+      "title": "What I Do",
+      "eyebrow": "( Services )",
+      "product": {
+        "title": "Product Design",
+        "description": "UX/UI, wireframes and design systems that turn ideas into clear, usable interfaces."
+      },
+      "frontend": {
+        "title": "Front-End Dev",
+        "description": "Fast, accessible, animated interfaces in React & TypeScript — pixel-precise and responsive."
+      },
+      "backend": {
+        "title": "Back-End & APIs",
+        "description": "Node, Express and MongoDB services with auth, storage and everything the front-end needs."
+      },
+      "brand": {
+        "title": "Brand & Identity",
+        "description": "Logos, visual systems and the small details that make a personal or product brand stick."
+      }
+    },
+    "resources": {
+      "title": "Useful Links",
+      "eyebrow": "( Resources )",
+      "cv": {
+        "title": "CV / Resume",
+        "description": "Experience & skills — PDF"
+      },
+      "portfolio": {
+        "title": "Portfolio",
+        "description": "Selected projects & case studies"
+      },
+      "certifications": {
+        "title": "Certifications",
+        "description": "Credentials — 12+"
+      },
+      "github": { "title": "GitHub", "description": "Code & open source" },
+      "blog": { "title": "Blog", "description": "Notes & write-ups" },
+      "utilities": {
+        "title": "Utilities",
+        "description": "Tools & handy resources"
+      }
+    },
+    "contact": {
+      "eyebrow": "Have a project in mind?",
+      "title": "Let's talk"
+    },
+    "footer": {
+      "social": "Social links",
+      "legal": "Legal",
+      "top": "Back to top",
+      "location": "Chișinău · MD"
+    },
+    "feedback": {
+      "tab": "Feedback",
+      "title": "Feedback",
+      "description": "Spotted something off, or have an idea? Tell me — it goes straight to my inbox.",
+      "placeholder": "Your feedback…",
+      "send": "Send feedback",
+      "close": "Close feedback",
+      "subject": "Website feedback"
+    }
   },
   "footer": {
     "scroll_up": "Scroll up"

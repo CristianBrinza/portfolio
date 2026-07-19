@@ -1,6 +1,7 @@
 // src/components/Notification/Notification.tsx
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNotification } from './NotificationContext'; // If you're using a notification context
 import Icon from '../Icon'; // Adjust the import path as necessary
 import './Notification.css';
@@ -22,6 +23,7 @@ const Notification: React.FC<NotificationProps> = ({
   const [fadeOut, setFadeOut] = useState(false);
   const idRef = useRef<number>(Date.now());
   const elementRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
   const { addNotification, removeNotification, getNotificationOffset } =
     useNotification(); // If you're using a notification context
 
@@ -52,7 +54,8 @@ const Notification: React.FC<NotificationProps> = ({
     const updatePosition = () => {
       const offset = getNotificationOffset(idRef.current);
       if (elementRef.current) {
-        elementRef.current.style.bottom = `${30 + offset}px`;
+        const viewportInset = window.innerWidth <= 480 ? 16 : 30;
+        elementRef.current.style.bottom = `${viewportInset + offset}px`;
       }
     };
 
@@ -72,23 +75,19 @@ const Notification: React.FC<NotificationProps> = ({
     }, 1000);
   };
 
-  const iconColor =
-    type === 'info' ? 'var(--costume_info_loading_notification)' : '#ffffff';
-  const textColor = type === 'info' ? '#222222' : '#ffffff';
-  const bgColor =
+  const accentColor =
     type === 'error'
-      ? '#EA5F51'
+      ? '#e40523'
       : type === 'warning'
-        ? '#EA8B3F'
+        ? '#d97812'
         : type === 'success'
-          ? '#4DD181'
-          : 'var(--costume_info_notification)';
-  const borderColor = bgColor;
+          ? '#218b50'
+          : '#1967d2';
 
   const iconTypeMap = {
     info: 'info',
     error: 'error',
-    success: 'info',
+    success: 'success',
     warning: 'warning',
   } as const;
 
@@ -98,31 +97,31 @@ const Notification: React.FC<NotificationProps> = ({
         <div
           ref={elementRef}
           className={`WebsiteWarning WebsiteWarning_${type} ${fadeOut ? 'fadeOut' : ''}`}
-          style={{
-            transition: 'bottom 1s ease-in-out',
-            background: `${bgColor}`,
-            borderColor: `${borderColor}`,
-          }}
+          style={
+            {
+              transition: 'bottom 1s ease-in-out',
+              '--notification-accent': accentColor,
+            } as CSSProperties
+          }
         >
-          <div className="WebsiteWarning_close" onClick={handleClose}>
-            <Icon type="close" color={iconColor} />
-          </div>
+          <button
+            aria-label={t('notification.close')}
+            className="WebsiteWarning_close"
+            onClick={handleClose}
+            type="button"
+          >
+            <Icon type="close" color="var(--theme_primary_color_black)" />
+          </button>
           <div className="WebsiteWarning_block">
             <div className="WebsiteWarning_block_icon">
-              <Icon type={iconTypeMap[type]} color={iconColor} />
+              <Icon type={iconTypeMap[type]} color="#ffffff" />
             </div>
             <div className="WebsiteWarning_text">
-              <span
-                className="WebsiteWarning_type"
-                style={{ color: `${textColor}` }}
-              >
-                {type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}
+              <span className="WebsiteWarning_type">
+                {t(`notification.${type}`)}
               </span>
               <br />
-              <span
-                className="WebsiteWarning_text_gray"
-                style={{ color: `${textColor}` }}
-              >
+              <span className="WebsiteWarning_text_gray">
                 {children || '\u00A0'}
               </span>
             </div>
@@ -131,7 +130,6 @@ const Notification: React.FC<NotificationProps> = ({
             className="WebsiteWarning_fill"
             style={{
               animationDuration: `${time}ms`,
-              background: `${textColor}`,
             }}
           />
         </div>

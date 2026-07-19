@@ -29,9 +29,156 @@
     "sorry": "Ne pare rău.",
     "sorry_message": "Site-ul este în curs de dezvoltare, fiți atenți la erori și la schimbări"
   },
+  "notification": {
+    "info": "Info",
+    "error": "Eroare",
+    "success": "Succes",
+    "warning": "Avertizare",
+    "close": "Închide notificarea"
+  },
   "home": {
     "hello": "Salut",
     "imcristian": "Sunt Cristian"
+  },
+  "home_v2": {
+    "meta_title": "Designer și dezvoltator Full-Stack",
+    "nav": {
+      "skip": "Sari la conținut",
+      "primary": "Navigare principală",
+      "sections": "Secțiunile paginii",
+      "navigation": "Navigare — 05",
+      "intro": "Intro",
+      "work": "Proiecte selectate",
+      "work_short": "Proiecte",
+      "about": "Despre mine",
+      "about_short": "Despre",
+      "services": "Servicii",
+      "contact": "Contact",
+      "menu": "Meniu",
+      "close": "Închide",
+      "language": "Limbă",
+      "theme": "Schimbă la tema {{theme}}",
+      "light": "luminoasă",
+      "dark": "întunecată"
+    },
+    "hero": {
+      "available": "Disponibil pentru proiecte — 2026",
+      "location": "Chișinău, Moldova · 47°N",
+      "summary": "Designer și dezvoltator full-stack care creează produse digitale precise și memorabile.",
+      "hello": "Salut, sunt",
+      "scroll": "Derulează",
+      "figure": "fig. 01 — formă în mișcare",
+      "study": "studiu în cerneală, 2026",
+      "roles": {
+        "design": "Designer",
+        "development": "Dezvoltator Full-Stack",
+        "problem": "Rezolv probleme"
+      }
+    },
+    "marquee": {
+      "design": "Design",
+      "development": "Dezvoltare",
+      "branding": "Identitate",
+      "interfaces": "Interfețe"
+    },
+    "stats": {
+      "label": "Repere profesionale",
+      "years": "Ani de experiență",
+      "projects": "Proiecte livrate",
+      "technologies": "Tehnologii",
+      "certifications": "Certificări"
+    },
+    "work": {
+      "eyebrow": "( Proiecte selectate )",
+      "title": "Creat cu un scop",
+      "intro": "O selecție de discipline pe care le combin pentru a transforma o idee într-un produs finisat și funcțional.",
+      "all": "Vezi toate proiectele",
+      "product": {
+        "title": "Design de produs și interfață",
+        "description": "Experiențe digitale clare, conturate prin cercetare, gândire sistemică și execuție vizuală precisă."
+      },
+      "frontend": {
+        "title": "Experiențe Front-End",
+        "description": "Interfețe responsive și accesibile, cu animații utile și performanță stabilă."
+      },
+      "backend": {
+        "title": "Sisteme Back-End",
+        "description": "API-uri și servicii sigure, ușor de întreținut și pregătite să crească."
+      }
+    },
+    "about": {
+      "eyebrow": "( Despre mine )",
+      "lead": "Sunt Cristian — un inginer software căruia îi pasă la fel de mult de cum se <accent>simt</accent> lucrurile, cât și de cum funcționează. Proiectez și dezvolt produse intuitive și bine finisate de la un capăt la altul, de la primul pixel până la ultima implementare.",
+      "body": "Mi-am demonstrat capacitatea de a livra lucrări de calitate, de a mă adapta la tehnologii noi, de a colabora cu echipe multidisciplinare și de a rămâne la curent cu tendințele industriei.",
+      "based_label": "Locație",
+      "based": "Chișinău, Moldova",
+      "education_label": "Educație",
+      "education": "Licență în Ingineria Software, UTM\nProgramare și analiză, CEITI",
+      "languages_label": "Limbi",
+      "languages": "Română · Engleză · Rusă · Franceză",
+      "stack": "( Tehnologii )"
+    },
+    "services": {
+      "title": "Ce fac",
+      "eyebrow": "( Servicii )",
+      "product": {
+        "title": "Design de produs",
+        "description": "UX/UI, wireframe-uri și sisteme de design care transformă ideile în interfețe clare și ușor de folosit."
+      },
+      "frontend": {
+        "title": "Dezvoltare Front-End",
+        "description": "Interfețe rapide, accesibile și animate în React și TypeScript — precise la nivel de pixel și responsive."
+      },
+      "backend": {
+        "title": "Back-End și API-uri",
+        "description": "Servicii Node, Express și MongoDB cu autentificare, stocare și tot ce are nevoie interfața."
+      },
+      "brand": {
+        "title": "Brand și identitate",
+        "description": "Logo-uri, sisteme vizuale și micile detalii care fac un brand personal sau de produs ușor de reținut."
+      }
+    },
+    "resources": {
+      "title": "Linkuri utile",
+      "eyebrow": "( Resurse )",
+      "cv": {
+        "title": "CV / Rezumat",
+        "description": "Experiență și competențe — PDF"
+      },
+      "portfolio": {
+        "title": "Portofoliu",
+        "description": "Proiecte și studii de caz selectate"
+      },
+      "certifications": {
+        "title": "Certificări",
+        "description": "Acreditări — 12+"
+      },
+      "github": { "title": "GitHub", "description": "Cod și open source" },
+      "blog": { "title": "Blog", "description": "Note și articole" },
+      "utilities": {
+        "title": "Utilitare",
+        "description": "Instrumente și resurse practice"
+      }
+    },
+    "contact": {
+      "eyebrow": "Ai un proiect în minte?",
+      "title": "Hai să vorbim"
+    },
+    "footer": {
+      "social": "Rețele sociale",
+      "legal": "Legal",
+      "top": "Înapoi sus",
+      "location": "Chișinău · MD"
+    },
+    "feedback": {
+      "tab": "Feedback",
+      "title": "Feedback",
+      "description": "Ai observat ceva greșit sau ai o idee? Spune-mi — mesajul ajunge direct în inboxul meu.",
+      "placeholder": "Feedbackul tău…",
+      "send": "Trimite feedback",
+      "close": "Închide feedbackul",
+      "subject": "Feedback pentru site"
+    }
   },
   "footer": {
     "scroll_up": "Scroll up"
