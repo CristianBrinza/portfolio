@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
@@ -190,10 +189,6 @@ export default function About() {
     { label: <Trans>navigation.home</Trans>, url: '/' },
     { label: <Trans>navigation.about_page</Trans> },
   ];
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <>

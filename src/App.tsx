@@ -20,6 +20,7 @@ import NotFound from './pages/NotFound.tsx';
 import Application from './app/Application';
 import { trackPageview } from './utils/consent';
 import RouteSEO from './components/SEO/RouteSEO';
+import ScrollRestoration from './components/ScrollRestoration';
 
 const OfflinePage = React.lazy(() => import('./pages/OfflinePage'));
 
@@ -159,6 +160,7 @@ function App() {
   return (
     <I18nextProvider i18n={i18n}>
       <BrowserRouter>
+        <ScrollRestoration />
         <AppContent />
       </BrowserRouter>
     </I18nextProvider>

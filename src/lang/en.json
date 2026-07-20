@@ -22,6 +22,7 @@
     "portfolio_page": "Portfolio",
     "contact_page": "Contact me",
     "not_found_page": "Not Found",
+    "offline_page": "Offline",
     "consent_page": "Cookies"
   },
   "website_warning": {
@@ -29,6 +30,38 @@
     "subtitle": "Mind the bugs and the changes",
     "sorry": "We are sorry.",
     "sorry_message": "The website under development, mind the bugs and the changes"
+  },
+  "offline": {
+    "eyebrow": "( System / Offline )",
+    "title": "You're offline.",
+    "message": "It looks like this device is not connected to the internet. Reconnect, then retry to continue.",
+    "status_label": "Connection status",
+    "status_offline": "Offline",
+    "status_online": "Back online",
+    "retry_action": "Retry connection",
+    "checking": "Checking…",
+    "home_action": "Go back home",
+    "hint": "Your current page is preserved while you reconnect.",
+    "still_offline": "No connection yet. Check your network and try again.",
+    "restored": "Connection restored. You can continue.",
+    "meta_problem": "Status",
+    "meta_problem_value": "Network unavailable",
+    "meta_next": "Next step",
+    "meta_next_value": "Reconnect and retry",
+    "meta_page": "Current page",
+    "meta_page_value": "Preserved"
+  },
+  "not_found": {
+    "eyebrow": "( Navigation / Missing )",
+    "title": "Page not found.",
+    "message": "This address does not lead to a page. Check the URL, return home, or continue through the portfolio.",
+    "home_action": "Go back home",
+    "portfolio_action": "View portfolio",
+    "requested_path": "Requested path",
+    "suggestion": "Suggested route",
+    "suggestion_value": "Home or Portfolio",
+    "report_label": "Unexpected error?",
+    "report_action": "Report this route"
   },
   "cookie_consent": {
     "eyebrow": "Privacy & cookies",

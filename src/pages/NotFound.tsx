@@ -1,68 +1,86 @@
-import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router-dom';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
-import { Trans } from 'react-i18next';
 import Footer from '../components/Footer/Footer.tsx';
 import styles from '../styles/NotFound.module.css';
-import Page from '../components/Page.tsx';
-import Icon from '../components/Icon.tsx';
 
 export default function NotFound() {
-  const [pageHeight, setPageHeight] = useState('calc(100vh - 160px)');
-
-  useEffect(() => {
-    // Update the height based on the actual viewport height for mobile devices
-    const handleResize = () => {
-      const vh = window.innerHeight * 0.01;
-      setPageHeight(`calc(${vh * 100}px - 160px)`);
-    };
-
-    handleResize(); // Initial calculation
-    window.addEventListener('resize', handleResize); // Recalculate on resize
-
-    return () => {
-      window.removeEventListener('resize', handleResize); // Cleanup
-    };
-  }, []);
+  const { i18n, t } = useTranslation();
+  const location = useLocation();
+  const routeLanguage = location.pathname.split('/')[1];
+  const activeLanguage = ['en', 'ro', 'ru'].includes(routeLanguage)
+    ? routeLanguage
+    : i18n.resolvedLanguage;
+  const language = ['en', 'ro', 'ru'].includes(activeLanguage ?? '')
+    ? activeLanguage
+    : 'en';
+  const homePath = `/${language}/`;
+  const portfolioPath = `/${language}/portfolio`;
+  const issueUrl = `https://github.com/CristianBrinza/portfolio/issues/new?title=${encodeURIComponent(
+    `[cristianbrinza.com] 404: ${location.pathname}`
+  )}&labels=bug`;
 
   const breadcrumbItems = [
-    { label: <Trans>navigation.home</Trans>, url: '/' },
-    { label: <Trans>navigation.not_found_page</Trans> },
+    { label: t('navigation.home'), url: homePath },
+    { label: t('navigation.not_found_page') },
   ];
 
   return (
     <>
       <Breadcrumb items={breadcrumbItems} />
-      <Page
-        className={styles.not_found_page}
-        gap="20px"
-        style={{ minHeight: pageHeight }}
-      >
-        <div style={{ height: '80px', width: '80px' }}>
-          <Icon
-            type="info"
-            size="80px"
-            color="var(--theme_primary_color_darkest_gray"
-          />
-        </div>
-        <h1>
-          404 <span id={styles.not_found_page_dash}>-</span>
-          <br id={styles.not_found_page_br} /> Not Found
-        </h1>
 
-        <div className={styles.not_found_page_under}>
-          There’s no page at this address <br />
-          Check the URL and try again, or use the search field to find what you
-          need.
-          <br />
-          <br />
-          If there should be something here{' '}
-          <a href="https://github.com/CristianBrinza/portfolio/issues/new?title=[cristianbrinza.com] 404 not found&amp;labels=polaris.shopify.com">
-            let us know
+      <main className={styles.notFoundPage} id="not-found-page">
+        <section aria-labelledby="not-found-title" className={styles.hero}>
+          <div aria-hidden="true" className={styles.codeVisual}>
+            <span className={styles.codeLabel}>( Error / 404 )</span>
+            <div className={styles.digits}>
+              <span>4</span>
+              <span className={styles.zero}>
+                0<i />
+              </span>
+              <span>4</span>
+            </div>
+            <span className={styles.codeCaption}>Route / unresolved</span>
+          </div>
+
+          <div className={styles.copy}>
+            <span className={styles.eyebrow}>{t('not_found.eyebrow')}</span>
+            <h1 id="not-found-title">{t('not_found.title')}</h1>
+            <p>{t('not_found.message')}</p>
+
+            <div className={styles.actions}>
+              <Link className={styles.primaryAction} to={homePath}>
+                <span>{t('not_found.home_action')}</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link to={portfolioPath}>
+                <span>{t('not_found.portfolio_action')}</span>
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <div className={styles.details}>
+          <div>
+            <span>(01)</span>
+            <small>{t('not_found.requested_path')}</small>
+            <code>{location.pathname}</code>
+          </div>
+          <div>
+            <span>(02)</span>
+            <small>{t('not_found.suggestion')}</small>
+            <strong>{t('not_found.suggestion_value')}</strong>
+          </div>
+          <a href={issueUrl} rel="noreferrer" target="_blank">
+            <span>(03)</span>
+            <small>{t('not_found.report_label')}</small>
+            <strong>{t('not_found.report_action')} ↗</strong>
           </a>
-          .
         </div>
-      </Page>
-      <Footer />
+      </main>
+
+      <Footer type="2" />
     </>
   );
 }

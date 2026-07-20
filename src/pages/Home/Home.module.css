@@ -2022,21 +2022,94 @@
   }
 
   .hero {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    justify-content: stretch;
     min-height: 100svh;
+    padding-bottom: 28px;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 108px;
   }
 
   .heroMeta {
-    gap: 1rem;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 12px;
+    margin-bottom: 0;
+    text-align: center;
+  }
+
+  .heroMeta > div {
+    text-align: center;
+  }
+
+  .heroMeta p {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    line-height: 1.75;
+  }
+
+  .heroMeta .heroSummary {
+    max-width: 310px;
+    text-align: center;
+  }
+
+  .availability {
+    justify-content: center;
+  }
+
+  .heroTitle {
+    align-self: center;
+    font-size: clamp(43px, 13.5vw, 82px);
+    line-height: 0.88;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .heroTitle > span {
+    justify-content: center;
+  }
+
+  .heroHello {
+    font-size: clamp(11px, 3.2vw, 14px);
+    gap: 10px;
+    letter-spacing: 0.13em;
+    margin-bottom: 14px;
   }
 
   .outlinedName {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: clamp(10px, 3vw, 16px);
+  }
+
+  .heroMark {
+    flex: 0 0 auto;
+    height: 0.66em;
+    width: 0.66em;
   }
 
   .heroBottom {
-    align-items: flex-start;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 18px;
+    margin-top: 0;
+    text-align: center;
+  }
+
+  .roles {
+    font-size: clamp(16px, 4.5vw, 19px);
+    line-height: 1.18;
+    max-width: 350px;
+    text-wrap: balance;
+  }
+
+  .scrollCue {
+    align-items: center;
+    text-align: center;
   }
 
   .stats {
@@ -2126,6 +2199,27 @@
     height: 38px;
     padding: 0;
     width: 38px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero {
+    padding-bottom: 22px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 100px;
+  }
+
+  .heroMeta p {
+    font-size: 10px;
+  }
+
+  .heroTitle {
+    font-size: clamp(40px, 13.4vw, 48px);
+  }
+
+  .roles {
+    font-size: 16px;
   }
 }
 

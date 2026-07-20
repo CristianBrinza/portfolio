@@ -21,7 +21,8 @@
     "legal_page": "Legal",
     "blog_page": "Blog & Updates",
     "portfolio_page": "Portfolio",
-    "not_found_page": "Not Found",
+    "not_found_page": "Pagina nu a fost găsită",
+    "offline_page": "Fără conexiune",
     "consent_page": "Cookies"
   },
   "website_warning": {
@@ -29,6 +30,38 @@
     "subtitle": "Fiți atenți la erori și la schimbări",
     "sorry": "Ne pare rău.",
     "sorry_message": "Site-ul este în curs de dezvoltare, fiți atenți la erori și la schimbări"
+  },
+  "offline": {
+    "eyebrow": "( Sistem / Offline )",
+    "title": "Nu ai conexiune.",
+    "message": "Acest dispozitiv nu pare să fie conectat la internet. Reconectează-te, apoi încearcă din nou.",
+    "status_label": "Starea conexiunii",
+    "status_offline": "Offline",
+    "status_online": "Conexiune restabilită",
+    "retry_action": "Încearcă din nou",
+    "checking": "Se verifică…",
+    "home_action": "Înapoi acasă",
+    "hint": "Pagina curentă este păstrată cât timp te reconectezi.",
+    "still_offline": "Conexiunea lipsește încă. Verifică rețeaua și încearcă din nou.",
+    "restored": "Conexiunea a fost restabilită. Poți continua.",
+    "meta_problem": "Stare",
+    "meta_problem_value": "Rețea indisponibilă",
+    "meta_next": "Pasul următor",
+    "meta_next_value": "Reconectează-te și reîncearcă",
+    "meta_page": "Pagina curentă",
+    "meta_page_value": "Păstrată"
+  },
+  "not_found": {
+    "eyebrow": "( Navigare / Lipsește )",
+    "title": "Pagina nu a fost găsită.",
+    "message": "Această adresă nu duce la o pagină. Verifică URL-ul, revino acasă sau continuă prin portofoliu.",
+    "home_action": "Înapoi acasă",
+    "portfolio_action": "Vezi portofoliul",
+    "requested_path": "Adresa solicitată",
+    "suggestion": "Rută recomandată",
+    "suggestion_value": "Acasă sau Portofoliu",
+    "report_label": "Eroare neașteptată?",
+    "report_action": "Raportează această rută"
   },
   "cookie_consent": {
     "eyebrow": "Confidențialitate și cookie-uri",
