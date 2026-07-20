@@ -14,21 +14,50 @@ const resources = [
   ['06', 'utilities', 'utilities'],
 ];
 
+let feedbackDismissedForPageLoad = false;
+
 export default function ContactFooter() {
   const { t, i18n } = useTranslation();
   const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [feedbackTabVisible, setFeedbackTabVisible] = useState(false);
   const [feedback, setFeedback] = useState('');
   const language = ['en', 'ro', 'ru'].includes(i18n.resolvedLanguage ?? '')
     ? i18n.resolvedLanguage
     : 'en';
 
   useEffect(() => {
+    const revealTimer = window.setTimeout(() => {
+      if (!feedbackDismissedForPageLoad) setFeedbackTabVisible(true);
+    }, 3000);
+
+    return () => window.clearTimeout(revealTimer);
+  }, []);
+
+  useEffect(() => {
+    if (!feedbackOpen) return;
+
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setFeedbackOpen(false);
+      if (event.key === 'Escape') {
+        feedbackDismissedForPageLoad = true;
+        setFeedbackOpen(false);
+        setFeedbackTabVisible(false);
+      }
     };
     window.addEventListener('keydown', closeOnEscape);
     return () => window.removeEventListener('keydown', closeOnEscape);
-  }, []);
+  }, [feedbackOpen]);
+
+  const openFeedback = () => {
+    feedbackDismissedForPageLoad = true;
+    setFeedbackTabVisible(false);
+    setFeedbackOpen(true);
+  };
+
+  const closeFeedback = () => {
+    feedbackDismissedForPageLoad = true;
+    setFeedbackOpen(false);
+    setFeedbackTabVisible(false);
+  };
 
   const sendFeedback = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -38,7 +67,7 @@ export default function ContactFooter() {
     const body = encodeURIComponent(message);
     window.location.href = `mailto:inbox.cristian.brinza@gmail.com?subject=${subject}&body=${body}`;
     setFeedback('');
-    setFeedbackOpen(false);
+    closeFeedback();
   };
 
   return (
@@ -110,9 +139,12 @@ export default function ContactFooter() {
       <Footer type="1" />
 
       <button
+        aria-hidden={!feedbackTabVisible}
         aria-expanded={feedbackOpen}
         className={styles.feedbackTab}
-        onClick={() => setFeedbackOpen(open => !open)}
+        data-visible={feedbackTabVisible}
+        onClick={openFeedback}
+        tabIndex={feedbackTabVisible ? 0 : -1}
         type="button"
       >
         {t('home_v2.feedback.tab')}
@@ -127,7 +159,7 @@ export default function ContactFooter() {
           <span>{t('home_v2.feedback.title')}</span>
           <button
             aria-label={t('home_v2.feedback.close')}
-            onClick={() => setFeedbackOpen(false)}
+            onClick={closeFeedback}
             type="button"
           >
             ×

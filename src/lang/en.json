@@ -63,6 +63,49 @@
     "report_label": "Unexpected error?",
     "report_action": "Report this route"
   },
+  "portfolio_v2": {
+    "hero": {
+      "eyebrow": "( Portfolio / Selected work )",
+      "line_one": "Selected",
+      "line_two": "work, built",
+      "line_three": "with intent.",
+      "summary": "A multidisciplinary collection spanning product design, expressive interfaces, and dependable engineering — shaped from first idea to shipped product.",
+      "disciplines": "Disciplines",
+      "projects": "Projects shipped",
+      "years": "Years building",
+      "figure": "Form / Logic / Motion"
+    },
+    "marquee": {
+      "design": "Product design",
+      "engineering": "Engineering",
+      "motion": "Motion",
+      "systems": "Design systems"
+    },
+    "disciplines": {
+      "eyebrow": "( 01 / Explore the work )",
+      "title": "Three disciplines. One product mindset.",
+      "description": "Design, front-end, and back-end — three connected parts of one product.",
+      "open": "Explore practice",
+      "design": {
+        "title": "Product & UI/UX Design",
+        "description": "Research, flows, wireframes, interfaces, and scalable visual systems that turn complexity into usable products."
+      },
+      "frontend": {
+        "title": "Front-End Development",
+        "description": "Responsive React interfaces with precise typography, meaningful motion, accessibility, and production-quality behavior."
+      },
+      "backend": {
+        "title": "Back-End & APIs",
+        "description": "Services, data models, authentication, and integrations designed to keep digital products reliable beyond the interface."
+      }
+    },
+    "contact": {
+      "eyebrow": "Have a project in mind?",
+      "title": "Let's build it.",
+      "description": "Available for thoughtful product, design, and full-stack collaborations."
+    },
+    "note": "Some portfolio work uses open-source technologies or adapted learning material. Original contribution, context, and attribution are identified within the relevant project whenever applicable."
+  },
   "cookie_consent": {
     "eyebrow": "Privacy & cookies",
     "title": "Your choices, your data",
@@ -127,6 +170,8 @@
       "summary": "Designer & full-stack developer building precise, memorable digital products.",
       "hello": "Hi, I'm",
       "scroll": "Scroll",
+      "explore": "Explore the work",
+      "say_hello": "or say hello",
       "figure": "fig. 01 — form in motion",
       "study": "ink study, 2026",
       "roles": {

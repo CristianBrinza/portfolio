@@ -536,6 +536,13 @@
   justify-content: space-between;
 }
 
+.heroIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  max-width: 560px;
+}
+
 .roles {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(1.1rem, 2.5vw, 2rem);
@@ -551,6 +558,66 @@
 
 .roles span {
   color: var(--home-muted);
+}
+
+.heroActions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.heroCta {
+  align-items: center;
+  border: 1px solid var(--home-fg);
+  border-radius: 100px;
+  display: inline-flex;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  gap: 12px;
+  letter-spacing: 0.1em;
+  padding: 14px 28px;
+  text-transform: uppercase;
+  transition:
+    background 350ms ease,
+    border-color 350ms ease,
+    color 350ms ease,
+    transform 400ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.heroCta span {
+  transition: transform 350ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.heroCta:hover,
+.heroCta:focus-visible {
+  background: var(--home-accent);
+  border-color: var(--home-accent);
+  color: #fff;
+}
+
+.heroCta:hover span,
+.heroCta:focus-visible span {
+  transform: translateX(3px);
+}
+
+.heroHelloLink {
+  border-bottom: 1px solid var(--home-line);
+  color: var(--home-muted) !important;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  padding-bottom: 3px;
+  text-transform: uppercase;
+  transition:
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+.heroHelloLink:hover,
+.heroHelloLink:focus-visible {
+  border-color: var(--home-fg);
+  color: var(--home-fg) !important;
 }
 
 .scrollCue {
@@ -1323,10 +1390,21 @@
   position: fixed;
   text-transform: uppercase;
   top: 50%;
-  transform: translateY(-50%);
-  transition: padding 200ms ease;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-110%, -50%);
+  transition:
+    opacity 250ms ease,
+    padding 200ms ease,
+    transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
   writing-mode: vertical-rl;
   z-index: 80;
+}
+
+.feedbackTab[data-visible='true'] {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, -50%);
 }
 
 .feedbackTab:hover {
@@ -1436,7 +1514,7 @@
 /* Measurements transcribed from Home.dc.html. */
 .hero {
   min-height: 100vh;
-  padding: 120px clamp(20px, 4vw, 54px) 60px;
+  padding: 120px clamp(20px, 4vw, 54px) 30px;
 }
 
 .heroMeta {
@@ -1798,7 +1876,10 @@
   letter-spacing: 0.18em;
   line-height: normal;
   padding: 16px 9px;
-  transition: padding 300ms ease;
+  transition:
+    opacity 250ms ease,
+    padding 300ms ease,
+    transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
   z-index: 80;
 }
 
@@ -2012,13 +2093,68 @@
 
 @media (max-width: 680px) {
   .header {
-    padding-left: 20px;
-    padding-right: 20px;
+    gap: 12px;
+    padding: 16px max(16px, env(safe-area-inset-right)) 16px
+      max(16px, env(safe-area-inset-left));
+    z-index: 90;
+  }
+
+  .headerActions {
+    flex-shrink: 0;
+    gap: 10px;
+  }
+
+  .headerToggles {
+    gap: 8px;
+  }
+
+  .languageControl {
+    display: none;
+  }
+
+  .iconButton,
+  .menuButton {
+    min-height: 44px;
+    min-width: 44px;
   }
 
   .menuOverlay {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: max(96px, calc(env(safe-area-inset-top) + 80px))
+      max(20px, env(safe-area-inset-right))
+      max(28px, env(safe-area-inset-bottom))
+      max(20px, env(safe-area-inset-left));
+    z-index: 85;
+  }
+
+  .menuEyebrow {
+    margin-bottom: 12px;
+  }
+
+  .menuOverlay > nav {
+    gap: 4px;
+  }
+
+  .menuOverlay > nav a {
+    font-size: clamp(34px, 10.5vw, 54px);
+    line-height: 1.08;
+    min-height: 44px;
+    padding: 4px 0;
+  }
+
+  .menuSocials {
+    gap: 14px 20px;
+    margin-top: 28px;
+  }
+
+  .menuLanguages {
+    margin-top: 20px;
+  }
+
+  .menuLanguages button {
+    min-height: 44px;
   }
 
   .hero {
@@ -2105,6 +2241,15 @@
     line-height: 1.18;
     max-width: 350px;
     text-wrap: balance;
+  }
+
+  .heroIntro {
+    align-items: center;
+    gap: 18px;
+  }
+
+  .heroActions {
+    justify-content: center;
   }
 
   .scrollCue {
@@ -2195,10 +2340,38 @@
     display: none;
   }
 
+  .menuSocials {
+    column-gap: 16px;
+  }
+
   .menuButton {
-    height: 38px;
+    height: 44px;
     padding: 0;
-    width: 38px;
+    width: 44px;
+  }
+}
+
+@media (max-width: 520px) and (max-height: 680px) {
+  .menuOverlay {
+    padding-top: max(82px, calc(env(safe-area-inset-top) + 72px));
+  }
+
+  .menuEyebrow {
+    margin-bottom: 6px;
+  }
+
+  .menuOverlay > nav a {
+    font-size: clamp(30px, 9.5vw, 42px);
+    padding-bottom: 2px;
+    padding-top: 2px;
+  }
+
+  .menuSocials {
+    margin-top: 18px;
+  }
+
+  .menuLanguages {
+    margin-top: 14px;
   }
 }
 

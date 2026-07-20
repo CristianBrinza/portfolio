@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { useTranslation } from 'react-i18next';
 import styles from '../Home.module.css';
 import BrandMark from './BrandMark';
@@ -44,18 +45,35 @@ export default function HeroSection() {
         </span>
       </h1>
 
-      <div className={styles.heroBottom} data-home-reveal>
-        <p className={styles.roles}>
-          <b>✦</b> {t('home_v2.hero.roles.design')} <span>/</span>{' '}
-          {t('home_v2.hero.roles.development')} <span>/</span>{' '}
-          {t('home_v2.hero.roles.problem')}
-        </p>
-        <p className={styles.figureCaption}>
+      <div className={styles.heroBottom}>
+        <div className={styles.heroIntro}>
+          <p className={styles.roles} data-home-reveal>
+            <b>✦</b> {t('home_v2.hero.roles.design')} <span>/</span>{' '}
+            {t('home_v2.hero.roles.development')} <span>/</span>{' '}
+            {t('home_v2.hero.roles.problem')}
+          </p>
+          <div
+            className={styles.heroActions}
+            data-home-reveal
+            style={{ '--delay': '620ms' } as CSSProperties}
+          >
+            <a className={styles.heroCta} data-magnetic="" href="/portfolio">
+              {t('home_v2.hero.explore')} <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              className={styles.heroHelloLink}
+              href="mailto:inbox.cristian.brinza@gmail.com"
+            >
+              {t('home_v2.hero.say_hello')} ↗
+            </a>
+          </div>
+        </div>
+        <p className={styles.figureCaption} data-home-reveal>
           {t('home_v2.hero.figure')}
           <br />
           {t('home_v2.hero.study')}
         </p>
-        <a className={styles.scrollCue} href="#work">
+        <a className={styles.scrollCue} data-home-reveal href="#work">
           {t('home_v2.hero.scroll')} <span aria-hidden="true">↓</span>
         </a>
       </div>

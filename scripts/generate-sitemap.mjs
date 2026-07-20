@@ -30,9 +30,9 @@ const slugs = [
   "image-color-picker",
   "screen-size",
   "ip",
-  "portfolio-design",
-  "portfolio-front-end",
-  "portfolio-back-end",
+  "portfolio/design",
+  "portfolio/front-end",
+  "portfolio/back-end",
 ];
 
 const urlFor = (language, slug) =>

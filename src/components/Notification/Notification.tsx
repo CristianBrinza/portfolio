@@ -1,6 +1,12 @@
 // src/components/Notification/Notification.tsx
 
-import React, { CSSProperties, useEffect, useRef, useState } from 'react';
+import React, {
+  CSSProperties,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNotification } from './NotificationContext'; // If you're using a notification context
 import Icon from '../Icon'; // Adjust the import path as necessary
@@ -13,6 +19,20 @@ interface NotificationProps {
   onClose?: () => void; // Added onClose prop
 }
 
+let nextNotificationId = 0;
+
+const getStackMetrics = () => {
+  if (window.innerWidth <= 480) {
+    return { gap: 6, inset: 12 };
+  }
+
+  if (window.innerWidth <= 768) {
+    return { gap: 8, inset: 16 };
+  }
+
+  return { gap: 10, inset: 30 };
+};
+
 const Notification: React.FC<NotificationProps> = ({
   children,
   type = 'info',
@@ -21,17 +41,30 @@ const Notification: React.FC<NotificationProps> = ({
 }) => {
   const [visible, setVisible] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
-  const idRef = useRef<number>(Date.now());
+  const [notificationId] = useState(() => ++nextNotificationId);
   const elementRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
   const { addNotification, removeNotification, getNotificationOffset } =
     useNotification(); // If you're using a notification context
 
-  useEffect(() => {
-    const id = idRef.current;
-    const height = elementRef.current?.offsetHeight || 0;
+  useLayoutEffect(() => {
+    const element = elementRef.current;
+    if (!visible || !element) return;
 
-    addNotification(id, height);
+    const updateHeight = () => {
+      addNotification(notificationId, element.getBoundingClientRect().height);
+    };
+
+    updateHeight();
+
+    const resizeObserver = new ResizeObserver(updateHeight);
+    resizeObserver.observe(element);
+
+    return () => resizeObserver.disconnect();
+  }, [addNotification, notificationId, visible]);
+
+  useEffect(() => {
+    const id = notificationId;
 
     const timeout = setTimeout(() => {
       setFadeOut(true);
@@ -46,31 +79,35 @@ const Notification: React.FC<NotificationProps> = ({
       clearTimeout(timeout);
       removeNotification(id);
     };
-  }, [addNotification, removeNotification, time, onClose]);
+  }, [notificationId, removeNotification, time, onClose]);
 
   useEffect(() => {
     if (!visible) return;
 
     const updatePosition = () => {
-      const offset = getNotificationOffset(idRef.current);
+      const { gap, inset } = getStackMetrics();
+      const offset = getNotificationOffset(notificationId, gap);
       if (elementRef.current) {
-        const viewportInset = window.innerWidth <= 480 ? 16 : 30;
-        elementRef.current.style.bottom = `${viewportInset + offset}px`;
+        elementRef.current.style.bottom = `calc(${inset + offset}px + env(safe-area-inset-bottom))`;
       }
     };
 
     updatePosition();
 
-    const interval = setInterval(updatePosition, 100);
+    window.addEventListener('resize', updatePosition);
+    window.visualViewport?.addEventListener('resize', updatePosition);
 
-    return () => clearInterval(interval);
-  }, [visible, getNotificationOffset]);
+    return () => {
+      window.removeEventListener('resize', updatePosition);
+      window.visualViewport?.removeEventListener('resize', updatePosition);
+    };
+  }, [visible, getNotificationOffset, notificationId]);
 
   const handleClose = () => {
     setFadeOut(true);
     setTimeout(() => {
       setVisible(false);
-      removeNotification(idRef.current);
+      removeNotification(notificationId);
       if (onClose) onClose(); // Call onClose when close button is clicked
     }, 1000);
   };
@@ -99,7 +136,7 @@ const Notification: React.FC<NotificationProps> = ({
           className={`WebsiteWarning WebsiteWarning_${type} ${fadeOut ? 'fadeOut' : ''}`}
           style={
             {
-              transition: 'bottom 1s ease-in-out',
+              transition: 'bottom 240ms cubic-bezier(0.2, 0.7, 0.2, 1)',
               '--notification-accent': accentColor,
             } as CSSProperties
           }

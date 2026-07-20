@@ -63,6 +63,49 @@
     "report_label": "Eroare neașteptată?",
     "report_action": "Raportează această rută"
   },
+  "portfolio_v2": {
+    "hero": {
+      "eyebrow": "( Portofoliu / Lucrări selectate )",
+      "line_one": "Lucrări",
+      "line_two": "construite",
+      "line_three": "cu intenție.",
+      "summary": "O colecție multidisciplinară de design de produs, interfețe expresive și inginerie solidă — de la prima idee până la produsul lansat.",
+      "disciplines": "Discipline",
+      "projects": "Proiecte livrate",
+      "years": "Ani de experiență",
+      "figure": "Formă / Logică / Mișcare"
+    },
+    "marquee": {
+      "design": "Design de produs",
+      "engineering": "Inginerie",
+      "motion": "Animație",
+      "systems": "Sisteme de design"
+    },
+    "disciplines": {
+      "eyebrow": "( 01 / Explorează lucrările )",
+      "title": "Trei discipline. O singură viziune de produs.",
+      "description": "Design, front-end și back-end — trei părți conectate ale aceluiași produs.",
+      "open": "Explorează practica",
+      "design": {
+        "title": "Design de produs & UI/UX",
+        "description": "Cercetare, fluxuri, wireframe-uri, interfețe și sisteme vizuale scalabile care transformă complexitatea în produse ușor de folosit."
+      },
+      "frontend": {
+        "title": "Dezvoltare Front-End",
+        "description": "Interfețe React responsive, cu tipografie precisă, animații relevante, accesibilitate și comportament pregătit pentru producție."
+      },
+      "backend": {
+        "title": "Back-End & API-uri",
+        "description": "Servicii, modele de date, autentificare și integrări concepute pentru produse digitale fiabile dincolo de interfață."
+      }
+    },
+    "contact": {
+      "eyebrow": "Ai un proiect în minte?",
+      "title": "Hai să-l construim.",
+      "description": "Disponibil pentru colaborări atent gândite de produs, design și dezvoltare full-stack."
+    },
+    "note": "Unele lucrări folosesc tehnologii open-source sau materiale educaționale adaptate. Contribuția originală, contextul și atribuirea sunt precizate în proiectul relevant atunci când este cazul."
+  },
   "cookie_consent": {
     "eyebrow": "Confidențialitate și cookie-uri",
     "title": "Alegerile tale, datele tale",
@@ -127,6 +170,8 @@
       "summary": "Designer și dezvoltator full-stack care creează produse digitale precise și memorabile.",
       "hello": "Salut, sunt",
       "scroll": "Derulează",
+      "explore": "Explorează proiectele",
+      "say_hello": "sau salută-mă",
       "figure": "fig. 01 — formă în mișcare",
       "study": "studiu în cerneală, 2026",
       "roles": {

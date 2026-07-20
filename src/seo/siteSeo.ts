@@ -159,19 +159,19 @@ const PUBLIC_PAGE_SEO: Record<string, PageSeoDefinition> = {
     description:
       'View basic information about your current public IP address with this online utility.',
   },
-  'portfolio-design': {
+  'portfolio/design': {
     title: `Product & UI/UX Design | ${SITE_NAME}`,
     description:
       "Explore Cristian Brinza's product design and UI/UX work, process and selected interface projects.",
     pageType: 'CollectionPage',
   },
-  'portfolio-front-end': {
+  'portfolio/front-end': {
     title: `Front-End Development | ${SITE_NAME}`,
     description:
       "Explore Cristian Brinza's front-end development work, including responsive interfaces and modern web applications.",
     pageType: 'CollectionPage',
   },
-  'portfolio-back-end': {
+  'portfolio/back-end': {
     title: `Back-End Development | ${SITE_NAME}`,
     description:
       "Explore Cristian Brinza's back-end development work, APIs, integrations and full-stack application architecture.",

@@ -85,8 +85,8 @@
   #top_notification {
     font-size: 9px;
     line-height: 14px;
-    padding: 7px 20px 7px 34px;
-    text-align: left;
+    padding: 7px 34px;
+    text-align: center;
   }
 
   #top_notification::before {

@@ -125,15 +125,15 @@ export const routes = [
     element: React.createElement(Ip),
   },
   {
-    path: '/:lang/portfolio-design',
+    path: '/:lang/portfolio/design',
     element: React.createElement(PortfolioDesign),
   },
   {
-    path: '/:lang/portfolio-back-end',
+    path: '/:lang/portfolio/back-end',
     element: React.createElement(PortfolioBackEnd),
   },
   {
-    path: '/:lang/portfolio-front-end',
+    path: '/:lang/portfolio/front-end',
     element: React.createElement(PortfolioFrontEnd),
   },
   {

@@ -33,11 +33,23 @@ export default function Home() {
     const elements = Array.from(
       document.querySelectorAll<HTMLElement>('[data-home-reveal]')
     );
+    const heroElements = elements.filter(element => element.closest('#hero'));
+    const scrollElements = elements.filter(
+      element => !element.closest('#hero')
+    );
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       elements.forEach(element => element.classList.add(styles.visible));
       return;
     }
+
+    let loadFrame = 0;
+    let animationFrame = 0;
+    loadFrame = window.requestAnimationFrame(() => {
+      animationFrame = window.requestAnimationFrame(() => {
+        heroElements.forEach(element => element.classList.add(styles.visible));
+      });
+    });
 
     const observer = new IntersectionObserver(
       entries => {
@@ -51,8 +63,12 @@ export default function Home() {
       { threshold: 0.12, rootMargin: '0px 0px -7% 0px' }
     );
 
-    elements.forEach(element => observer.observe(element));
-    return () => observer.disconnect();
+    scrollElements.forEach(element => observer.observe(element));
+    return () => {
+      window.cancelAnimationFrame(loadFrame);
+      window.cancelAnimationFrame(animationFrame);
+      observer.disconnect();
+    };
   }, []);
 
   return (
