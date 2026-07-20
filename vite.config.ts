@@ -15,9 +15,25 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
-        navigateFallback: "/index.html",
-        navigateFallbackDenylist: [/^\/files\//, /^\/images\//, /^\/json\//],
+        navigateFallback: null,
+        navigationPreload: true,
+        globIgnores: ["**/index.html"],
         runtimeCaching: [
+          {
+            urlPattern: ({ request, sameOrigin }) =>
+              sameOrigin && request.mode === "navigate",
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "pages-cache",
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 7,
+              },
+            },
+          },
           {
             urlPattern: /\.(?:png|svg|jpg|jpeg|webp|gif|pdf)$/,
             handler: "CacheFirst",

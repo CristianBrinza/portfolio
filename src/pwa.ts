@@ -1,7 +1,11 @@
 import { registerSW } from 'virtual:pwa-register';
 
 const UPDATE_INTERVAL_MS = 60 * 60 * 1000;
-const DEV_CACHE_PREFIXES = ['workbox-precache', 'assets-cache'];
+const DEV_CACHE_PREFIXES = [
+  'workbox-precache',
+  'assets-cache',
+  'pages-cache',
+];
 const DEV_RELOAD_KEY = 'portfolio-pwa-dev-cleanup-reload';
 
 async function disablePWAInDevelopment() {

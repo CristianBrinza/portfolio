@@ -8,7 +8,9 @@ https://:version.:project.pages.dev/*
 # The service worker must be revalidated after every deployment. Cloudflare's
 # default JavaScript TTL otherwise lets Chrome reuse an outdated sw.js.
 /sw.js
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  CDN-Cache-Control: no-store
+  Cloudflare-CDN-Cache-Control: no-store
   Service-Worker-Allowed: /
 
 /manifest.webmanifest
