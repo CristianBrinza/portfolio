@@ -36,12 +36,28 @@
 }
 @media (max-width: 650px) {
   #portfolio_front_page_title {
-    text-align: center;
+    font-family: 'Bricolage Grotesque', Inter, sans-serif;
+    font-size: clamp(46px, 14vw, 62px);
+    letter-spacing: -0.045em;
+    line-height: 0.84;
+    margin: 34px 0 54px;
+    max-width: 7ch;
+    text-align: left;
   }
 
   #portfolio_front_page_disclaimer {
-    margin-bottom: -30px;
-    margin-top: 0px;
+    border-top: 1px solid var(--theme_primary_color_dark_gray);
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    line-height: 1.45;
+    margin: 54px 0 0;
+    padding-top: 18px;
+  }
+
+  .portfolio_front_page_main_title {
+    font-family: 'Bricolage Grotesque', Inter, sans-serif;
+    font-size: 28px;
+    line-height: 1;
   }
 }
 

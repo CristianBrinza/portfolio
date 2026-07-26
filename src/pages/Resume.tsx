@@ -33,7 +33,7 @@ export default function Resume() {
   return (
     <>
       <Breadcrumb items={breadcrumbItems} />
-      <Page gap="20px">
+      <Page className="resume_page" gap="20px">
         <Title>Resume</Title>
 
         <div className="resume_page_btns">

@@ -106,6 +106,110 @@
     },
     "note": "Some portfolio work uses open-source technologies or adapted learning material. Original contribution, context, and attribution are identified within the relevant project whenever applicable."
   },
+  "blog_v2": {
+    "hero": {
+      "eyebrow": "( Journal / Blog )",
+      "title": "Blog.",
+      "summary": "Design, engineering, and product notes."
+    },
+    "archive": {
+      "eyebrow": "( 01 / The archive )",
+      "title": "Posts.",
+      "description": "Short essays, practical observations, and updates from work in progress.",
+      "count": "{{count}} articles in the archive"
+    },
+    "card": {
+      "note": "Journal note",
+      "read": "Read article",
+      "soon": "Coming soon"
+    },
+    "error": {
+      "eyebrow": "( Feed / Offline )",
+      "title": "The archive is between updates.",
+      "description": "The article feed is temporarily unavailable.",
+      "retry": "Try again"
+    },
+    "empty": {
+      "eyebrow": "( Archive / Quiet )",
+      "title": "Nothing published here yet.",
+      "description": "New notes are being prepared. Selected projects remain available in the portfolio.",
+      "portfolio": "View portfolio"
+    }
+  },
+  "certifications_v2": {
+    "hero": {
+      "eyebrow": "( Learning / Verified work )",
+      "title": "Certifications.",
+      "summary": "Selected courses and credentials across design, engineering, and digital products."
+    },
+    "list": {
+      "eyebrow": "( 01 / Credentials )",
+      "title": "Credentials.",
+      "count": "{{count}} in the collection"
+    },
+    "card": {
+      "issuer": "Course provider",
+      "verify": "View credential",
+      "unavailable": "Reference only"
+    },
+    "error": {
+      "eyebrow": "( Feed / Offline )",
+      "title": "Credentials are temporarily unavailable.",
+      "description": "The certification feed could not be loaded.",
+      "retry": "Try again"
+    },
+    "empty": {
+      "eyebrow": "( Collection / Quiet )",
+      "title": "No credentials are published yet.",
+      "description": "The collection is being prepared.",
+      "portfolio": "View portfolio"
+    }
+  },
+  "contact_v2": {
+    "breadcrumb": "Contact",
+    "hero": {
+      "eyebrow": "( Contact / New project )",
+      "title": "Let's work together.",
+      "summary": "Have a project, collaboration, or question? Send the essentials and I’ll get back to you."
+    },
+    "details": {
+      "eyebrow": "Prefer email?",
+      "title": "Contact me directly.",
+      "phone": "Phone",
+      "location": "Location",
+      "location_value": "Chișinău, Moldova",
+      "hours": "Availability",
+      "hours_value": "Monday–Friday · 09:00–17:00",
+      "response": "Response",
+      "response_value": "Usually within 1–3 hours"
+    },
+    "form": {
+      "aria_label": "Contact message form",
+      "eyebrow": "Message form",
+      "title": "Send a message.",
+      "instruction": "Complete the three required fields below.",
+      "name": "Name",
+      "name_placeholder": "Your name",
+      "email": "Email",
+      "email_placeholder": "you@example.com",
+      "message": "Project or message",
+      "message_placeholder": "A short outline, timeline, and what you need help with…",
+      "send": "Send message",
+      "sending": "Sending…",
+      "privacy_prefix": "By sending this form, you agree to the",
+      "privacy_link": "privacy policy"
+    },
+    "validation": {
+      "name_required": "Name is required",
+      "email_required": "Email is required",
+      "email_invalid": "Enter a valid email address",
+      "message_required": "Message is required"
+    },
+    "status": {
+      "success": "Your message was sent successfully.",
+      "error": "The message could not be sent. Please try again later."
+    }
+  },
   "cookie_consent": {
     "eyebrow": "Privacy & cookies",
     "title": "Your choices, your data",

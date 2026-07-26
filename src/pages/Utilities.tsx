@@ -18,7 +18,7 @@ export default function Utilities() {
     <>
       <Breadcrumb items={breadcrumbItems} />
 
-      <Page gap="40px">
+      <Page className="utilities_page" gap="40px">
         <Title>Utilities & Resources</Title>
         <div className="utilities_block">
           <div className="utilities_title">General</div>

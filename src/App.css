@@ -3,12 +3,18 @@
 #root {
 }
 .main {
-  width: 90vw;
-  max-width: 1180px;
+  box-sizing: border-box;
+  width: min(1180px, calc(100vw - 40px));
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  gap: 80px;
+  gap: clamp(44px, 6vw, 80px);
+  min-width: 0;
+}
+
+.main > * {
+  max-width: 100%;
+  min-width: 0;
 }
 .admin_main {
   width: 98vw;
@@ -82,15 +88,26 @@
 }
 
 @media (max-width: 600px) {
+  .main {
+    gap: 42px;
+  }
+
   #top_notification {
-    font-size: 9px;
-    line-height: 14px;
-    padding: 7px 34px;
+    font-size: 8px;
+    line-height: 12px;
+    min-height: 48px;
+    padding: 6px 34px;
     text-align: center;
   }
 
   #top_notification::before {
     left: 15px;
+  }
+}
+
+@media (max-width: 380px) {
+  .main {
+    width: calc(100vw - 32px);
   }
 }
 

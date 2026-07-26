@@ -1,189 +1,311 @@
-import { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
-import Breadcrumb from '../components/Breadcrumb/Breadcrumb';
-import { Trans } from 'react-i18next';
-import '../styles/Contact.css';
-import Button from '../components/Button';
-import Parapraph from '../components/Text/Parapraph/Parapraph.tsx';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router-dom';
+import ArrowUpRight from '../components/ArrowUpRight/ArrowUpRight.tsx';
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
+import FeedbackMenu from '../components/FeedbackMenu/FeedbackMenu.tsx';
 import Footer from '../components/Footer/Footer.tsx';
-import Page from '../components/Page.tsx';
-import Title from '../components/Text/Title/Title.tsx';
+import { isSupportedLanguage } from '../seo/siteSeo.ts';
+import styles from './Contact.module.css';
 
 type FormValues = {
-  name: string;
   email: string;
   message: string;
+  name: string;
 };
 
+type ContactDetailIconName = 'clock' | 'location' | 'phone' | 'reply';
+
+function ContactDetailIcon({ name }: { name: ContactDetailIconName }) {
+  const paths: Record<ContactDetailIconName, React.ReactNode> = {
+    clock: (
+      <>
+        <circle cx="12" cy="12" r="8.25" />
+        <path d="M12 7.5v4.85l3.15 1.9" />
+      </>
+    ),
+    location: (
+      <>
+        <path d="M12 21s6-5.15 6-11a6 6 0 1 0-12 0c0 5.85 6 11 6 11Z" />
+        <circle cx="12" cy="10" r="2" />
+      </>
+    ),
+    phone: (
+      <path d="M8.1 4.35 10 8.6 7.8 10a15.25 15.25 0 0 0 6.2 6.2l1.4-2.2 4.25 1.9-.45 3.35a2 2 0 0 1-2.1 1.7C9.55 20.25 3.75 14.45 3.05 6.9a2 2 0 0 1 1.7-2.1l3.35-.45Z" />
+    ),
+    reply: (
+      <>
+        <path d="M5 6.75h14v9.5H9l-4 3v-12.5Z" />
+        <path d="m8.25 10 3.75 2.7 3.75-2.7" />
+      </>
+    ),
+  };
+
+  return (
+    <svg
+      aria-hidden="true"
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+        {paths[name]}
+      </g>
+    </svg>
+  );
+}
+
 export default function Contact() {
+  const { t } = useTranslation();
+  const { pathname } = useLocation();
+  const routeLanguage = pathname.split('/').filter(Boolean)[0] ?? '';
+  const language = isSupportedLanguage(routeLanguage) ? routeLanguage : 'en';
   const {
-    register,
-    handleSubmit,
-    reset,
     formState: { errors, isSubmitting, isSubmitSuccessful },
+    handleSubmit,
+    register,
+    reset,
   } = useForm<FormValues>();
   const [isError, setIsError] = useState(false);
 
   const onSubmit: SubmitHandler<FormValues> = async data => {
     try {
-      const templateParams = {
-        from_name: data.name,
-        to_name: 'Recipient Name', // Replace this with the actual recipient's name
-        message: data.message,
-        reply_to: data.email,
-      };
-
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID!,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID!,
-        templateParams,
+        {
+          from_name: data.name,
+          message: data.message,
+          reply_to: data.email,
+          to_name: 'Cristian Brinza',
+        },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
       );
       reset();
       setIsError(false);
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      if (import.meta.env.DEV) {
+        console.error('EmailJS Error:', error);
+      }
       setIsError(true);
     }
   };
 
+  const breadcrumbItems = [
+    { label: t('navigation.home'), url: '/' },
+    { label: t('contact_v2.breadcrumb') },
+  ];
+
+  const contactDetails = [
+    {
+      label: t('contact_v2.details.phone'),
+      value: '+373 (68) 74-54-34',
+      href: 'tel:+37368745434',
+      icon: 'phone' as const,
+    },
+    {
+      label: t('contact_v2.details.location'),
+      value: t('contact_v2.details.location_value'),
+      icon: 'location' as const,
+    },
+    {
+      label: t('contact_v2.details.hours'),
+      value: t('contact_v2.details.hours_value'),
+      icon: 'clock' as const,
+    },
+    {
+      label: t('contact_v2.details.response'),
+      value: t('contact_v2.details.response_value'),
+      icon: 'reply' as const,
+    },
+  ];
+
   return (
     <>
-      <Breadcrumb
-        items={[
-          { label: <Trans>navigation.home</Trans>, url: '/' },
-          { label: <Trans>navigation.contact_page</Trans> },
-        ]}
-      />
-      <Page className="main contact_page">
-        <div id="contact_page_left">
-          <Title>
-            Let's start a
-            <br />
-            project together
-          </Title>
-          <br />
-          <Parapraph>
-            I’m always excited to connect and explore new opportunities. Whether
-            you have a project in mind, want to collaborate, or just want to say
-            hello, feel free to reach out.
-          </Parapraph>
-          <br />
-          <div className="contact_info">
-            <span className="contact_info_row">
-              <b>Phone: </b>
-              <a style={{ textDecoration: 'none' }} href="tel:+37368745434">
-                +373 (68) 74-54-34
-              </a>
-            </span>
-            <span className="contact_info_row">
-              <b>Email: </b>
-              <a href="mailto:inbox@cristianbrinza.com">
-                inbox@cristianbrinza.com
-              </a>
-            </span>
-            <span className="contact_info_row">
-              <b>Location: </b>
-              <span>Chisinau, Moldova Republic of</span>
-            </span>
-            <br />
-            <span className="contact_info_row">
-              <b>Office Hours: </b>{' '}
-              <br className="contact_br_hide_on_desktop" />
-              <span>Available Monday to Friday, 9 AM - 5 PM</span>
-            </span>
-            <span className="contact_info_row">
-              <b>Response Time: </b>{' '}
-              <br className="contact_br_hide_on_desktop" />
-              <span>I usually respond within 1-3 hours</span>
-            </span>
+      <Breadcrumb items={breadcrumbItems} />
+
+      <main className={styles.page}>
+        <header className={styles.hero}>
+          <div className={styles.heroCopy}>
+            <span>{t('contact_v2.hero.eyebrow')}</span>
+            <h1>{t('contact_v2.hero.title')}</h1>
+            <p>{t('contact_v2.hero.summary')}</p>
           </div>
-        </div>
-        <div id="contact_page_right">
-          <form onSubmit={handleSubmit(onSubmit)} className="contact_form">
-            <div className="form_group_contact">
-              <label htmlFor="name">
-                <Trans>contact.name</Trans>
-              </label>
-              <input
-                id="name"
-                type="text"
-                {...register('name', { required: 'Name is required' })}
-                placeholder="Your Name"
-              />
-              {errors.name && (
-                <span className="error_message">{errors.name.message}</span>
-              )}
-            </div>
-            <div className="form_group_contact">
-              <label htmlFor="email">
-                <Trans>contact.email</Trans>
-              </label>
-              <input
-                id="email"
-                type="email"
-                {...register('email', {
-                  required: 'Email is required',
-                  pattern: {
-                    value: /^\S+@\S+$/i,
-                    message: 'Enter a valid email address',
-                  },
-                })}
-                placeholder="your.email@example.com"
-              />
-              {errors.email && (
-                <span className="error_message">{errors.email.message}</span>
-              )}
-            </div>
-            <div className="form_group_contact">
-              <label htmlFor="message">
-                <Trans>contact.message</Trans>
-              </label>
-              <textarea
-                id="message"
-                {...register('message', { required: 'Message is required' })}
-                placeholder="Your Message"
-                rows={5}
-              />
-              {errors.message && (
-                <span className="error_message">{errors.message.message}</span>
-              )}
+        </header>
+
+        <div className={styles.contactLayout}>
+          <section
+            aria-labelledby="contact-form-title"
+            className={styles.formPanel}
+          >
+            <div className={styles.panelHeading}>
+              <span>{t('contact_v2.form.eyebrow')}</span>
+              <h2 id="contact-form-title">{t('contact_v2.form.title')}</h2>
+              <p>{t('contact_v2.form.instruction')}</p>
             </div>
 
-            {isSubmitSuccessful && !isError && (
-              <span className="success_message">
-                <Trans>contact.success_message</Trans>
-              </span>
-            )}
-            {isError && (
-              <span className="error_message">
-                <Trans>contact.error_message</Trans>
-              </span>
-            )}
-
-            <Button
-              color="var(--theme_primary_color_white)"
-              bgcolor="var(--theme_primary_color_black)"
-              border="var(--theme_primary_color_black)"
-              type="submit"
-              disabled={isSubmitting}
+            <form
+              aria-label={t('contact_v2.form.aria_label')}
+              className={styles.form}
+              noValidate
+              onSubmit={handleSubmit(onSubmit)}
             >
-              {isSubmitting ? (
-                <Trans>contact.sending</Trans>
-              ) : (
-                <Trans>contact.send_message</Trans>
-              )}
-            </Button>
+              <div className={styles.formRow}>
+                <div className={styles.formGroup}>
+                  <label htmlFor="contact-name">
+                    <span>{t('contact_v2.form.name')}</span>
+                    <b aria-hidden="true">*</b>
+                  </label>
+                  <input
+                    aria-invalid={Boolean(errors.name)}
+                    aria-required="true"
+                    id="contact-name"
+                    placeholder={t('contact_v2.form.name_placeholder')}
+                    required
+                    type="text"
+                    {...register('name', {
+                      required: t('contact_v2.validation.name_required'),
+                    })}
+                  />
+                  {errors.name && (
+                    <span className={styles.errorMessage}>
+                      {errors.name.message}
+                    </span>
+                  )}
+                </div>
 
-            <span style={{ fontSize: '12px', lineHeight: '12px' }}>
-              By submitting this form, you acknowledge receipt of our company
-              Privacy and policy.
-            </span>
-          </form>
+                <div className={styles.formGroup}>
+                  <label htmlFor="contact-email">
+                    <span>{t('contact_v2.form.email')}</span>
+                    <b aria-hidden="true">*</b>
+                  </label>
+                  <input
+                    aria-invalid={Boolean(errors.email)}
+                    aria-required="true"
+                    id="contact-email"
+                    placeholder={t('contact_v2.form.email_placeholder')}
+                    required
+                    type="email"
+                    {...register('email', {
+                      pattern: {
+                        message: t('contact_v2.validation.email_invalid'),
+                        value: /^\S+@\S+$/i,
+                      },
+                      required: t('contact_v2.validation.email_required'),
+                    })}
+                  />
+                  {errors.email && (
+                    <span className={styles.errorMessage}>
+                      {errors.email.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="contact-message">
+                  <span>{t('contact_v2.form.message')}</span>
+                  <b aria-hidden="true">*</b>
+                </label>
+                <textarea
+                  aria-invalid={Boolean(errors.message)}
+                  aria-required="true"
+                  id="contact-message"
+                  placeholder={t('contact_v2.form.message_placeholder')}
+                  required
+                  rows={5}
+                  {...register('message', {
+                    required: t('contact_v2.validation.message_required'),
+                  })}
+                />
+                {errors.message && (
+                  <span className={styles.errorMessage}>
+                    {errors.message.message}
+                  </span>
+                )}
+              </div>
+
+              {isSubmitSuccessful && !isError && (
+                <p className={styles.successMessage} role="status">
+                  {t('contact_v2.status.success')}
+                </p>
+              )}
+              {isError && (
+                <p className={styles.errorMessage} role="alert">
+                  {t('contact_v2.status.error')}
+                </p>
+              )}
+
+              <div className={styles.formFooter}>
+                <button disabled={isSubmitting} type="submit">
+                  <span>
+                    {isSubmitting
+                      ? t('contact_v2.form.sending')
+                      : t('contact_v2.form.send')}
+                  </span>
+                  <b aria-hidden="true">
+                    <ArrowUpRight />
+                  </b>
+                </button>
+                <p>
+                  {t('contact_v2.form.privacy_prefix')}{' '}
+                  <Link to={`/${language}/privacy`}>
+                    {t('contact_v2.form.privacy_link')}
+                  </Link>
+                  .
+                </p>
+              </div>
+            </form>
+          </section>
+
+          <aside
+            aria-labelledby="contact-details-title"
+            className={styles.detailsPanel}
+          >
+            <div className={styles.panelHeading}>
+              <span>{t('contact_v2.details.eyebrow')}</span>
+              <h2 id="contact-details-title">
+                {t('contact_v2.details.title')}
+              </h2>
+            </div>
+
+            <a
+              className={styles.emailLink}
+              href="mailto:inbox@cristianbrinza.com"
+            >
+              <span>inbox@cristianbrinza.com</span>
+              <b aria-hidden="true">
+                <ArrowUpRight />
+              </b>
+            </a>
+
+            <dl className={styles.detailList}>
+              {contactDetails.map(detail => (
+                <div key={detail.label}>
+                  <span className={styles.detailIcon}>
+                    <ContactDetailIcon name={detail.icon} />
+                  </span>
+                  <div>
+                    <dt>{detail.label}</dt>
+                    <dd>
+                      {detail.href ? (
+                        <a href={detail.href}>{detail.value}</a>
+                      ) : (
+                        detail.value
+                      )}
+                    </dd>
+                  </div>
+                </div>
+              ))}
+            </dl>
+          </aside>
         </div>
-      </Page>
-      <Footer />
+      </main>
+
+      <Footer type="2" />
+      <FeedbackMenu />
     </>
   );
 }

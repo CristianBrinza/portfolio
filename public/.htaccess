@@ -1,0 +1,13 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Redirect the legacy plural contact URL to its canonical page.
+RewriteRule ^contacts/?$ /contact [R=301,L,NE]
+RewriteRule ^(en|ro|ru)/contacts/?$ /$1/contact [R=301,L,NE]
+
+# Serve React Router routes through the Vite application.
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]

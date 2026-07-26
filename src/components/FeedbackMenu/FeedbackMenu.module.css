@@ -7,6 +7,13 @@
   top: 50%;
   cursor: pointer;
   transform: translateY(-50%); /* This keeps it centered vertically */
+  z-index: 80;
+}
+
+@media (max-width: 680px) {
+  .FeedbackMenu_side {
+    display: none;
+  }
 }
 
 .FeedbackMenu_side:hover path {

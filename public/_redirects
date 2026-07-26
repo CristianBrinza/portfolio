@@ -1,0 +1,5 @@
+# Canonical contact-page redirects for Cloudflare Pages.
+/contacts          /contact          301
+/contacts/         /contact          301
+/:lang/contacts    /:lang/contact    301
+/:lang/contacts/   /:lang/contact    301

@@ -60,10 +60,7 @@ export default function HeroSection() {
             <a className={styles.heroCta} data-magnetic="" href="/portfolio">
               {t('home_v2.hero.explore')} <span aria-hidden="true">↗</span>
             </a>
-            <a
-              className={styles.heroHelloLink}
-              href="mailto:inbox.cristian.brinza@gmail.com"
-            >
+            <a className={styles.heroHelloLink} href="/contact">
               {t('home_v2.hero.say_hello')} ↗
             </a>
           </div>

@@ -1,0 +1,719 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:wght@400;700&display=swap');
+
+.blogPage {
+  --blog-accent: #e40523;
+  --blog-blue: #1967d2;
+  --blog-bg: var(--theme_primary_color_white, #fff);
+  --blog-fg: var(--theme_primary_color_black, #0b0b0c);
+  --blog-line: color-mix(in srgb, var(--blog-fg) 15%, transparent);
+  --blog-muted: color-mix(in srgb, var(--blog-fg) 58%, transparent);
+
+  box-sizing: border-box;
+  color: var(--blog-fg);
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0 auto;
+  max-width: 1440px;
+  overflow: hidden;
+  width: 92vw;
+}
+
+.blogPage *,
+.blogPage *::before,
+.blogPage *::after {
+  box-sizing: border-box;
+}
+
+.hero {
+  border-bottom: 1px solid var(--blog-line);
+  border-top: 1px solid var(--blog-line);
+  padding: clamp(28px, 3.5vw, 44px) 0;
+}
+
+.heroCopy {
+  align-items: end;
+  display: grid;
+  gap: 12px clamp(34px, 7vw, 110px);
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.55fr);
+  min-width: 0;
+}
+
+.eyebrow,
+.archiveHeading > div:first-child > span,
+.archiveCount,
+.postTopline,
+.postAction,
+.emptyCopy > span,
+.emptyActions {
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  color: var(--blog-accent);
+  font-size: 11px;
+  grid-column: 1 / -1;
+  letter-spacing: 0.11em;
+  margin-bottom: 4px;
+}
+
+.hero h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(46px, 5vw, 68px);
+  font-weight: 760;
+  letter-spacing: -0.045em;
+  line-height: 0.84;
+  margin: 0;
+  max-width: 820px;
+  text-wrap: balance;
+}
+
+.heroCopy > p {
+  color: var(--blog-muted);
+  font-size: clamp(16px, 1.35vw, 19px);
+  letter-spacing: -0.025em;
+  line-height: 1.48;
+  margin: 0 0 4px;
+  max-width: 430px;
+  text-wrap: pretty;
+}
+
+.archive {
+  border-bottom: 1px solid var(--blog-line);
+  padding: clamp(26px, 3vw, 40px) 0 clamp(64px, 7vw, 96px);
+}
+
+.archiveHeading {
+  align-items: end;
+  display: flex;
+  gap: 32px;
+  justify-content: space-between;
+  margin-bottom: clamp(20px, 2vw, 28px);
+}
+
+.archiveHeading > div:first-child > span,
+.emptyCopy > span {
+  color: var(--blog-accent);
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+}
+
+.archiveHeading h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.archiveCount {
+  border: 1px solid var(--blog-line);
+  border-radius: 999px;
+  color: var(--blog-muted);
+  flex: 0 0 auto;
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  max-width: 100%;
+  padding: 8px 12px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.postGrid {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.postCard,
+.postCard:visited {
+  background: var(--blog-bg);
+  border: 1px solid var(--blog-line);
+  color: var(--blog-fg);
+  display: grid;
+  grid-column: span 6;
+  grid-template-rows: auto 300px 1fr;
+  min-height: 650px;
+  overflow: hidden;
+  position: relative;
+  text-decoration: none;
+  transition:
+    background 360ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 360ms ease,
+    color 360ms ease,
+    transform 360ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.postCardFeatured {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+  grid-template-rows: auto minmax(440px, 1fr);
+  min-height: 540px;
+}
+
+.postCardFeatured .postTopline {
+  grid-column: 1 / -1;
+}
+
+.postCardFeatured .postVisual {
+  border-bottom: 0;
+  border-right: 1px solid var(--blog-line);
+  grid-column: 1;
+  grid-row: 2;
+  height: auto;
+}
+
+.postCardFeatured .postCopy {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.postTopline {
+  align-items: center;
+  color: var(--blog-muted);
+  display: flex;
+  font-size: 9px;
+  gap: 16px;
+  justify-content: space-between;
+  letter-spacing: 0.08em;
+  min-width: 0;
+  padding: 18px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.postTopline span:first-child {
+  color: var(--blog-accent);
+  flex: 0 0 auto;
+}
+
+.postTopline span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.postVisual {
+  background: var(--blog-bg);
+  border-bottom: 1px solid var(--blog-line);
+  border-top: 1px solid var(--blog-line);
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  transition: border-color 300ms ease;
+}
+
+.postVisual img {
+  display: block;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  width: 100%;
+}
+
+.postFallback {
+  align-items: center;
+  background-image:
+    linear-gradient(var(--blog-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--blog-line) 1px, transparent 1px);
+  background-size: 30px 30px;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.postFallback > span {
+  color: var(--blog-fg);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(100px, 14vw, 210px);
+  font-weight: 760;
+  letter-spacing: -0.08em;
+  line-height: 0.8;
+}
+
+.postFallback > i {
+  border: 2px solid var(--blog-accent);
+  border-radius: 50%;
+  height: 86px;
+  position: absolute;
+  right: 12%;
+  top: 15%;
+  transition: transform 480ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  width: 86px;
+}
+
+.postFallback > b {
+  bottom: 16px;
+  color: var(--blog-accent);
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  position: absolute;
+  right: 18px;
+}
+
+.postCopy {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(26px, 3.5vw, 48px);
+  position: relative;
+  z-index: 2;
+}
+
+.postCopy h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 730;
+  letter-spacing: -0.045em;
+  line-height: 0.94;
+  margin: 0;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.postCopy p {
+  color: var(--blog-muted);
+  display: -webkit-box;
+  font-size: clamp(15px, 1.2vw, 18px);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  line-height: 1.5;
+  margin: 20px 0 32px;
+  max-width: 590px;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  transition: color 300ms ease;
+}
+
+.postAction {
+  align-items: center;
+  align-self: flex-start;
+  border: 1px solid var(--blog-fg);
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 9px;
+  gap: 20px;
+  justify-content: space-between;
+  letter-spacing: 0.07em;
+  margin-top: auto;
+  min-width: 170px;
+  padding: 7px 7px 7px 15px;
+}
+
+.postAction b {
+  align-items: center;
+  background: var(--blog-fg);
+  border-radius: 50%;
+  color: var(--blog-bg);
+  display: flex;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 30px;
+  justify-content: center;
+  transition:
+    background 300ms ease,
+    color 300ms ease,
+    transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  width: 30px;
+}
+
+.postAction b svg {
+  display: block;
+  height: 17px;
+  width: 17px;
+}
+
+.postCardLinked:hover,
+.postCardLinked:focus-visible {
+  background: var(--blog-accent);
+  border-color: var(--blog-accent);
+  color: #fff;
+  outline: 0;
+  transform: translateY(-5px);
+}
+
+.postCardLinked:nth-child(3n):hover,
+.postCardLinked:nth-child(3n):focus-visible {
+  background: var(--blog-blue);
+  border-color: var(--blog-blue);
+}
+
+.postCardLinked:hover .postVisual,
+.postCardLinked:focus-visible .postVisual,
+.postCardLinked:hover .postCardFeatured .postVisual,
+.postCardLinked:focus-visible .postCardFeatured .postVisual {
+  border-color: rgb(255 255 255 / 35%);
+}
+
+.postCardLinked:hover .postCopy p,
+.postCardLinked:focus-visible .postCopy p,
+.postCardLinked:hover .postTopline,
+.postCardLinked:focus-visible .postTopline,
+.postCardLinked:hover .postTopline span:first-child,
+.postCardLinked:focus-visible .postTopline span:first-child {
+  color: rgb(255 255 255 / 78%);
+}
+
+.postCardLinked:hover .postVisual img,
+.postCardLinked:focus-visible .postVisual img {
+  transform: scale(1.04);
+}
+
+.postCardLinked:hover .postFallback,
+.postCardLinked:focus-visible .postFallback {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 18%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 18%) 1px, transparent 1px);
+}
+
+.postCardLinked:hover .postFallback > span,
+.postCardLinked:focus-visible .postFallback > span,
+.postCardLinked:hover .postFallback > b,
+.postCardLinked:focus-visible .postFallback > b {
+  color: #fff;
+}
+
+.postCardLinked:hover .postFallback > i,
+.postCardLinked:focus-visible .postFallback > i {
+  border-color: #fff;
+  transform: scale(1.16) rotate(45deg);
+}
+
+.postCardLinked:hover .postAction,
+.postCardLinked:focus-visible .postAction {
+  border-color: rgb(255 255 255 / 75%);
+}
+
+.postCardLinked:hover .postAction b,
+.postCardLinked:focus-visible .postAction b {
+  background: #fff;
+  color: #0b0b0c;
+  transform: rotate(45deg);
+}
+
+.postCardUnavailable {
+  cursor: default;
+}
+
+.postCardUnavailable .postAction {
+  border-color: var(--blog-line);
+  color: var(--blog-muted);
+}
+
+.postCardUnavailable .postAction b {
+  background: var(--blog-line);
+  color: var(--blog-muted);
+}
+
+.loadingGrid {
+  display: grid;
+  gap: 1px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.loadingCard {
+  border: 1px solid var(--blog-line);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 520px;
+  padding: 28px;
+}
+
+.loadingCard:first-child {
+  grid-column: 1 / -1;
+}
+
+.loadingCard span {
+  animation: blogPulse 1.4s ease-in-out infinite alternate;
+  background: var(--blog-line);
+  display: block;
+}
+
+.loadingCard span:first-child {
+  height: 58%;
+  width: 100%;
+}
+
+.loadingCard span:nth-child(2) {
+  height: 42px;
+  width: 72%;
+}
+
+.loadingCard span:nth-child(3) {
+  height: 16px;
+  width: 46%;
+}
+
+.emptyState {
+  align-items: center;
+  border: 1px solid var(--blog-line);
+  border-top: 3px solid var(--blog-accent);
+  display: grid;
+  gap: clamp(28px, 5vw, 72px);
+  grid-template-columns: minmax(300px, 1fr) auto;
+  min-height: 190px;
+  padding: clamp(26px, 3.5vw, 46px);
+}
+
+.emptyState h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(30px, 3.5vw, 48px);
+  font-weight: 720;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+  margin: 0;
+  max-width: 760px;
+}
+
+.emptyState p {
+  color: var(--blog-muted);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.5;
+  margin: 16px 0 0;
+  max-width: 680px;
+}
+
+.emptyActions {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  font-size: 9px;
+  gap: 10px;
+  letter-spacing: 0.07em;
+}
+
+.emptyActions a,
+.emptyActions a:visited,
+.emptyActions button {
+  background: transparent;
+  border: 1px solid var(--blog-fg);
+  border-radius: 999px;
+  color: var(--blog-fg);
+  cursor: pointer;
+  font: inherit;
+  min-width: 168px;
+  padding: 13px 18px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background 240ms ease,
+    color 240ms ease;
+}
+
+.emptyActions a,
+.emptyActions a:visited {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.emptyActions a svg {
+  height: 13px;
+  width: 13px;
+}
+
+.emptyActions a:hover,
+.emptyActions a:focus-visible,
+.emptyActions button:hover,
+.emptyActions button:focus-visible {
+  background: var(--blog-fg);
+  color: var(--blog-bg);
+  outline: 0;
+}
+
+.blogPage + :global(.siteFooter) {
+  margin-top: 0;
+}
+
+@keyframes blogPulse {
+  to {
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 1050px) {
+  .postCardFeatured {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .emptyState {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 820px) {
+  .heroCopy {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .heroCopy > p {
+    max-width: 560px;
+  }
+
+  .archiveHeading {
+    align-items: end;
+    gap: 24px;
+  }
+
+  .postCard,
+  .postCardFeatured {
+    grid-column: 1 / -1;
+  }
+
+  .postCardFeatured {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 340px 1fr;
+    min-height: 680px;
+  }
+
+  .postCardFeatured .postTopline,
+  .postCardFeatured .postVisual,
+  .postCardFeatured .postCopy {
+    grid-column: 1;
+  }
+
+  .postCardFeatured .postTopline {
+    grid-row: 1;
+  }
+
+  .postCardFeatured .postVisual {
+    border-bottom: 1px solid var(--blog-line);
+    border-right: 0;
+    grid-row: 2;
+    height: 340px;
+  }
+
+  .postCardFeatured .postCopy {
+    grid-row: 3;
+  }
+
+  .emptyState {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .blogPage {
+    width: calc(100vw - 32px);
+  }
+
+  .hero {
+    padding: 28px 0;
+  }
+
+  .heroCopy {
+    gap: 14px;
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 13vw, 58px);
+    line-height: 0.9;
+  }
+
+  .heroCopy > p {
+    font-size: 16px;
+  }
+
+  .archive {
+    padding-top: 26px;
+  }
+
+  .archiveHeading h2 {
+    font-size: 32px;
+  }
+
+  .archiveHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .postGrid,
+  .loadingGrid {
+    display: block;
+  }
+
+  .postCard,
+  .postCardFeatured {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto clamp(220px, 64vw, 250px) 1fr;
+    margin-bottom: 12px;
+    min-height: 580px;
+  }
+
+  .postCardFeatured .postVisual,
+  .postVisual {
+    height: clamp(220px, 64vw, 250px);
+  }
+
+  .postCopy {
+    padding: 24px 20px;
+  }
+
+  .postCopy h3 {
+    font-size: clamp(34px, 9.7vw, 38px);
+  }
+
+  .postCopy p {
+    margin: 18px 0 26px;
+  }
+
+  .postAction {
+    align-self: stretch;
+  }
+
+  .loadingCard {
+    margin-bottom: 12px;
+    min-height: 460px;
+  }
+
+  .emptyState {
+    align-items: start;
+    gap: 22px;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 24px 20px;
+  }
+
+  .emptyState h3 {
+    font-size: 34px;
+  }
+
+  .emptyActions {
+    flex-direction: column;
+  }
+
+  .emptyActions a,
+  .emptyActions button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loadingCard span {
+    animation: none;
+  }
+
+  .postCard,
+  .postCard *,
+  .emptyActions * {
+    transition: none;
+  }
+}

@@ -7,6 +7,7 @@ import {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
+import ArrowUpRight from '../../components/ArrowUpRight/ArrowUpRight.tsx';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.tsx';
 import FeedbackMenu from '../../components/FeedbackMenu/FeedbackMenu.tsx';
 import Footer from '../../components/Footer/Footer.tsx';
@@ -118,7 +119,9 @@ function DisciplineVisual({ type }: { type: DisciplineKey }) {
         <div className={styles.codeLine} />
         <div className={styles.interfaceCard}>
           <span />
-          <strong>↗</strong>
+          <strong>
+            <ArrowUpRight />
+          </strong>
         </div>
       </div>
     );
@@ -255,7 +258,10 @@ export default function Portfolio() {
               >
                 <div className={styles.cardTopline}>
                   <span>({discipline.number})</span>
-                  <span>{t('portfolio_v2.disciplines.open')} ↗</span>
+                  <span>
+                    {t('portfolio_v2.disciplines.open')}
+                    <ArrowUpRight />
+                  </span>
                 </div>
 
                 <DisciplineVisual type={discipline.key} />
@@ -277,7 +283,9 @@ export default function Portfolio() {
                     </div>
                     <span className={styles.cardAction}>
                       <span>{t('portfolio_v2.disciplines.open')}</span>
-                      <b aria-hidden="true">↗</b>
+                      <b aria-hidden="true">
+                        <ArrowUpRight />
+                      </b>
                     </span>
                   </div>
                 </div>
@@ -295,7 +303,9 @@ export default function Portfolio() {
             <h2 id="portfolio-contact-title">
               {t('portfolio_v2.contact.title')}
             </h2>
-            <b aria-hidden="true">↗</b>
+            <b aria-hidden="true">
+              <ArrowUpRight />
+            </b>
           </a>
           <p>{t('portfolio_v2.contact.description')}</p>
         </section>

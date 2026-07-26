@@ -356,6 +356,8 @@
 }
 
 .aboutPage_projectLinks {
+  align-items: flex-start;
+  align-self: start;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;

@@ -74,7 +74,34 @@
 }
 
 @media (max-width: 500px) {
-  .resume_page_image_container {
+  .resume_page > .title:first-child {
+    font-family: 'Bricolage Grotesque', Inter, sans-serif !important;
+    font-size: clamp(46px, 14vw, 60px) !important;
+    letter-spacing: -0.045em;
+    line-height: 0.9 !important;
+    margin: 24px 0 0 !important;
+  }
+
+  .resume_page_btns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+  }
+
+  .resume_page_btns > * {
+    min-width: 0;
+    padding-left: 14px !important;
+    padding-right: 14px !important;
     width: 100%;
+  }
+
+  .resume_page_image_container {
+    border-radius: 0;
+    min-height: 200px;
+    width: 100%;
+  }
+
+  #resume_page_cv {
+    border-radius: 0;
   }
 }

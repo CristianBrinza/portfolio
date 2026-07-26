@@ -1,0 +1,514 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Space+Grotesk:wght@300..700&family=Space+Mono:wght@400;700&display=swap');
+
+.page {
+  --contact-accent: #e40523;
+  --contact-blue: #1967d2;
+  --contact-bg: var(--theme_primary_color_white, #fff);
+  --contact-fg: var(--theme_primary_color_black, #0b0b0c);
+  --contact-line: color-mix(in srgb, var(--contact-fg) 15%, transparent);
+  --contact-muted: color-mix(in srgb, var(--contact-fg) 58%, transparent);
+  --contact-field: color-mix(
+    in srgb,
+    var(--contact-bg) 95%,
+    var(--contact-fg) 5%
+  );
+
+  box-sizing: border-box;
+  color: var(--contact-fg);
+  font-family: 'Space Grotesk', sans-serif;
+  margin: 0 auto;
+  max-width: 1440px;
+  overflow: hidden;
+  width: 92vw;
+}
+
+.page *,
+.page *::before,
+.page *::after {
+  box-sizing: border-box;
+}
+
+.hero {
+  border-bottom: 1px solid var(--contact-line);
+  border-top: 1px solid var(--contact-line);
+  padding: clamp(28px, 3.4vw, 46px) 0;
+}
+
+.heroCopy {
+  align-items: end;
+  display: grid;
+  gap: 12px clamp(34px, 7vw, 110px);
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.55fr);
+  min-width: 0;
+}
+
+.heroCopy > span,
+.panelHeading > span,
+.detailList dt,
+.formGroup label,
+.formFooter > p,
+.errorMessage,
+.successMessage {
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+}
+
+.heroCopy > span {
+  color: var(--contact-accent);
+  font-size: 11px;
+  grid-column: 1 / -1;
+  letter-spacing: 0.11em;
+  margin-bottom: 4px;
+}
+
+.hero h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(48px, 6vw, 82px);
+  font-weight: 760;
+  letter-spacing: -0.05em;
+  line-height: 0.84;
+  margin: 0;
+  max-width: 860px;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.hero p {
+  color: var(--contact-muted);
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.48;
+  margin: 0 0 4px;
+  max-width: 440px;
+  overflow-wrap: anywhere;
+}
+
+.contactLayout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: clamp(100px, 8vw, 140px);
+}
+
+.detailsPanel,
+.formPanel {
+  min-width: 0;
+  padding: clamp(32px, 3.2vw, 46px);
+}
+
+.detailsPanel {
+  background: var(--contact-blue);
+  border-bottom: 1px solid var(--contact-line);
+  border-right: 1px solid var(--contact-line);
+  color: #fff;
+}
+
+.formPanel {
+  border-bottom: 1px solid var(--contact-line);
+  border-left: 1px solid var(--contact-line);
+  border-right: 1px solid var(--contact-line);
+  box-shadow: inset 0 4px 0 var(--contact-accent);
+}
+
+.panelHeading > span {
+  color: var(--contact-accent);
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  margin-bottom: 10px;
+}
+
+.detailsPanel .panelHeading > span {
+  color: color-mix(in srgb, #fff 68%, transparent);
+}
+
+.panelHeading h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 720;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.panelHeading > p {
+  color: var(--contact-muted);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 12px 0 0;
+}
+
+.emailLink,
+.emailLink:visited {
+  align-items: center;
+  border-bottom: 1px solid color-mix(in srgb, #fff 28%, transparent);
+  border-top: 1px solid color-mix(in srgb, #fff 28%, transparent);
+  color: #fff;
+  display: flex;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(13px, 1.08vw, 17px);
+  font-weight: 650;
+  gap: 8px;
+  justify-content: space-between;
+  letter-spacing: -0.035em;
+  margin-top: 26px;
+  min-width: 0;
+  padding: 16px 0;
+  text-decoration: none;
+}
+
+.emailLink > span {
+  min-width: 0;
+  overflow-wrap: normal;
+  white-space: nowrap;
+}
+
+.emailLink b,
+.formFooter button b {
+  align-items: center;
+  background: #fff;
+  border-radius: 50%;
+  color: #0b0b0c;
+  display: flex;
+  flex: 0 0 auto;
+  height: 30px;
+  justify-content: center;
+  transition:
+    background 260ms ease,
+    color 260ms ease,
+    transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  width: 30px;
+}
+
+.emailLink b svg,
+.formFooter button b svg {
+  display: block;
+  height: 18px;
+  width: 18px;
+}
+
+.emailLink:hover b,
+.emailLink:focus-visible b {
+  transform: rotate(45deg);
+}
+
+.emailLink:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 6px;
+}
+
+.detailList {
+  border-top: 1px solid color-mix(in srgb, #fff 28%, transparent);
+  margin: 24px 0 0;
+}
+
+.detailList > div {
+  align-items: center;
+  border-bottom: 1px solid color-mix(in srgb, #fff 28%, transparent);
+  display: grid;
+  gap: 13px;
+  grid-template-columns: 34px minmax(0, 1fr);
+  padding: 13px 0;
+}
+
+.detailList dt {
+  color: color-mix(in srgb, #fff 66%, transparent);
+  font-size: 9px;
+  letter-spacing: 0.07em;
+}
+
+.detailIcon {
+  align-items: center;
+  border: 1px solid color-mix(in srgb, #fff 36%, transparent);
+  border-radius: 50%;
+  display: flex;
+  height: 34px;
+  justify-content: center;
+  width: 34px;
+}
+
+.detailIcon svg {
+  height: 16px;
+  width: 16px;
+}
+
+.detailList dd {
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.detailList a,
+.detailList a:visited {
+  color: #fff;
+  text-decoration-color: color-mix(in srgb, #fff 45%, transparent);
+  text-underline-offset: 4px;
+}
+
+.form {
+  margin-top: 26px;
+}
+
+.formRow {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.formGroup label {
+  align-items: center;
+  color: var(--contact-muted);
+  display: flex;
+  font-size: 9px;
+  gap: 5px;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+
+.formGroup label b {
+  color: var(--contact-accent);
+  font-size: 12px;
+}
+
+.formGroup input,
+.formGroup textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--contact-field);
+  border: 1px solid var(--contact-line);
+  border-radius: 0;
+  color: var(--contact-fg);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  outline: 0;
+  padding: 13px 15px;
+  resize: vertical;
+  transition: border-color 220ms ease;
+  width: 100%;
+}
+
+.formGroup textarea {
+  min-height: 116px;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: color-mix(in srgb, var(--contact-fg) 36%, transparent);
+  opacity: 1;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: var(--contact-blue);
+  box-shadow: inset 0 0 0 1px var(--contact-blue);
+}
+
+.formGroup input[aria-invalid='true'],
+.formGroup textarea[aria-invalid='true'] {
+  border-color: var(--contact-accent);
+}
+
+.formGroup + .formGroup,
+.formRow + .formGroup {
+  margin-top: 18px;
+}
+
+.formRow .formGroup + .formGroup {
+  margin-top: 0;
+}
+
+.errorMessage,
+.successMessage {
+  color: var(--contact-accent);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  line-height: 1.45;
+  margin: 8px 0 0;
+}
+
+.successMessage {
+  color: var(--contact-blue);
+  margin-top: 18px;
+}
+
+.formFooter {
+  align-items: center;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: auto minmax(180px, 1fr);
+  margin-top: 22px;
+}
+
+.formFooter button {
+  align-items: center;
+  background: var(--contact-fg);
+  border: 1px solid var(--contact-fg);
+  border-radius: 999px;
+  color: var(--contact-bg);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  gap: 24px;
+  justify-content: space-between;
+  letter-spacing: 0.07em;
+  min-width: 190px;
+  padding: 7px 7px 7px 18px;
+  text-transform: uppercase;
+  transition:
+    background 240ms ease,
+    color 240ms ease,
+    opacity 240ms ease;
+}
+
+.formFooter button b {
+  background: var(--contact-bg);
+  color: var(--contact-fg);
+  height: 32px;
+  width: 32px;
+}
+
+.formFooter button:hover:not(:disabled),
+.formFooter button:focus-visible:not(:disabled) {
+  background: var(--contact-accent);
+  border-color: var(--contact-accent);
+  color: #fff;
+  outline: 0;
+}
+
+.formFooter button:hover:not(:disabled) b,
+.formFooter button:focus-visible:not(:disabled) b {
+  background: #fff;
+  color: #0b0b0c;
+  transform: rotate(45deg);
+}
+
+.formFooter button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+.formFooter > p {
+  color: var(--contact-muted);
+  font-size: 8px;
+  letter-spacing: 0.05em;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 400px;
+  overflow-wrap: anywhere;
+}
+
+.formFooter > p a,
+.formFooter > p a:visited {
+  color: var(--contact-fg);
+  text-underline-offset: 3px;
+}
+
+.page + :global(.siteFooter) {
+  margin-top: 0;
+}
+
+@media (max-width: 1080px) {
+  .heroCopy {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .hero p {
+    max-width: 600px;
+  }
+
+  .contactLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .detailsPanel,
+  .formPanel {
+    padding: clamp(30px, 5vw, 44px);
+  }
+
+  .detailsPanel {
+    border-left: 1px solid var(--contact-line);
+  }
+
+  .formPanel {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .page {
+    width: calc(100vw - 32px);
+  }
+
+  .hero {
+    padding: 30px 0;
+  }
+
+  .heroCopy {
+    gap: 14px;
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 13vw, 60px);
+    line-height: 0.88;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .detailsPanel,
+  .formPanel {
+    padding: 30px 20px;
+  }
+
+  .panelHeading h2 {
+    font-size: 34px;
+  }
+
+  .emailLink {
+    font-size: 16px;
+    margin-top: 24px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .formRow .formGroup + .formGroup {
+    margin-top: 18px;
+  }
+
+  .formFooter {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .formFooter button {
+    min-height: 48px;
+    width: 100%;
+  }
+
+  .formFooter > p {
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emailLink b,
+  .formFooter button,
+  .formFooter button b,
+  .formGroup input,
+  .formGroup textarea {
+    transition: none;
+  }
+}
