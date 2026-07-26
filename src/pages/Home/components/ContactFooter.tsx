@@ -26,11 +26,27 @@ export default function ContactFooter() {
     : 'en';
 
   useEffect(() => {
+    let revealReady = false;
+    const updateFeedbackVisibility = () => {
+      if (feedbackDismissedForPageLoad) return;
+      setFeedbackTabVisible(
+        revealReady && window.scrollY > Math.max(280, window.innerHeight * 0.55)
+      );
+    };
     const revealTimer = window.setTimeout(() => {
-      if (!feedbackDismissedForPageLoad) setFeedbackTabVisible(true);
+      revealReady = true;
+      updateFeedbackVisibility();
     }, 3000);
+    window.addEventListener('scroll', updateFeedbackVisibility, {
+      passive: true,
+    });
+    window.addEventListener('resize', updateFeedbackVisibility);
 
-    return () => window.clearTimeout(revealTimer);
+    return () => {
+      window.clearTimeout(revealTimer);
+      window.removeEventListener('scroll', updateFeedbackVisibility);
+      window.removeEventListener('resize', updateFeedbackVisibility);
+    };
   }, []);
 
   useEffect(() => {

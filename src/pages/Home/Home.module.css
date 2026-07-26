@@ -2396,6 +2396,498 @@
   }
 }
 
+/*
+ * Mobile art direction
+ *
+ * Keep the asymmetric, editorial character of the desktop layout instead of
+ * collapsing the homepage into one long, centred column.
+ */
+@media (max-width: 680px) {
+  .header {
+    padding: max(14px, env(safe-area-inset-top))
+      max(18px, env(safe-area-inset-right)) 14px
+      max(18px, env(safe-area-inset-left));
+  }
+
+  .header[data-scrolled='true'] {
+    padding-bottom: 10px;
+    padding-top: max(10px, env(safe-area-inset-top));
+  }
+
+  .brand {
+    font-size: clamp(13px, 3.7vw, 16px);
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .brand span {
+    display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .brandMark {
+    flex: 0 0 auto;
+    height: 36px;
+    width: 36px;
+  }
+
+  .iconButton {
+    height: 44px;
+    width: 44px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-rows: auto minmax(290px, 1fr) auto;
+    min-height: max(700px, 100svh);
+    padding: max(104px, calc(env(safe-area-inset-top) + 88px))
+      max(20px, env(safe-area-inset-right))
+      max(26px, env(safe-area-inset-bottom))
+      max(20px, env(safe-area-inset-left));
+  }
+
+  .hero::before {
+    background: var(--home-line);
+    content: '';
+    height: 1px;
+    left: 20px;
+    position: absolute;
+    right: 20px;
+    top: 84px;
+  }
+
+  .hero::after {
+    color: var(--home-muted);
+    content: '01 / 05';
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    position: absolute;
+    right: 20px;
+    top: 91px;
+  }
+
+  .heroMeta {
+    align-items: start;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: minmax(0, 1fr) minmax(122px, 0.74fr);
+    text-align: left;
+  }
+
+  .heroMeta > div {
+    text-align: left;
+  }
+
+  .heroMeta p {
+    font-size: clamp(9px, 2.65vw, 11px);
+    letter-spacing: 0.09em;
+    line-height: 1.7;
+  }
+
+  .heroMeta .heroSummary {
+    max-width: 165px;
+    text-align: right;
+    text-wrap: pretty;
+  }
+
+  .availability {
+    justify-content: flex-start;
+  }
+
+  .heroTitle {
+    align-self: center;
+    font-size: clamp(48px, 15.8vw, 74px);
+    line-height: 0.82;
+    margin: clamp(42px, 8vh, 72px) 0 34px;
+    text-align: left;
+  }
+
+  .heroTitle > span {
+    justify-content: flex-start;
+  }
+
+  .heroHello {
+    font-size: clamp(10px, 2.8vw, 13px);
+    gap: 9px;
+    letter-spacing: 0.14em;
+    margin-bottom: 16px;
+    padding-left: 2px;
+  }
+
+  .heroHello i {
+    width: clamp(28px, 9vw, 42px);
+  }
+
+  .outlinedName {
+    gap: clamp(9px, 2.8vw, 15px);
+    justify-content: flex-end !important;
+    padding-right: 1px;
+  }
+
+  .heroMark {
+    height: 0.68em;
+    width: 0.68em;
+  }
+
+  .orbit {
+    bottom: auto;
+    display: block;
+    height: 68px;
+    opacity: 0.42;
+    right: 16px;
+    top: 27%;
+    width: 68px;
+  }
+
+  .orbit text {
+    font-size: 9px;
+  }
+
+  .heroBottom {
+    align-items: end;
+    display: grid;
+    gap: 18px 16px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .heroIntro {
+    align-items: flex-start;
+    gap: 20px;
+    max-width: none;
+  }
+
+  .roles {
+    font-size: clamp(17px, 4.75vw, 21px);
+    line-height: 1.16;
+    max-width: 330px;
+    text-align: left;
+    text-wrap: pretty;
+  }
+
+  .heroActions {
+    gap: 12px 15px;
+    justify-content: flex-start;
+  }
+
+  .heroCta {
+    background: var(--home-fg);
+    color: var(--home-bg) !important;
+    min-height: 46px;
+    padding: 13px 20px;
+  }
+
+  .heroHelloLink {
+    min-height: 32px;
+    padding-top: 8px;
+  }
+
+  .scrollCue {
+    display: none;
+  }
+
+  .marquee {
+    padding: 17px 0;
+  }
+
+  .marquee span {
+    font-size: clamp(28px, 8.5vw, 38px);
+  }
+
+  .stats {
+    gap: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0 20px;
+  }
+
+  .stats div {
+    min-height: 158px;
+    padding: 30px 12px 25px;
+  }
+
+  .stats div:nth-child(odd) {
+    border-right: 1px solid var(--home-line);
+    padding-left: 0;
+  }
+
+  .stats div:nth-child(even) {
+    padding-left: 22px;
+  }
+
+  .stats div:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--home-line);
+  }
+
+  .stats strong {
+    font-size: clamp(46px, 15vw, 66px);
+  }
+
+  .stats span {
+    font-size: 10px;
+    line-height: 1.45;
+    max-width: 120px;
+  }
+
+  .section,
+  .resources {
+    padding-bottom: clamp(72px, 20vw, 92px);
+    padding-top: clamp(72px, 20vw, 92px);
+  }
+
+  .aboutGrid {
+    gap: 48px;
+  }
+
+  .aboutLead {
+    font-size: clamp(26px, 7.5vw, 34px);
+    line-height: 1.16;
+    margin-top: 20px;
+  }
+
+  .aboutBody {
+    font-size: 15px;
+    margin-top: 22px;
+  }
+
+  .aboutFacts {
+    border-bottom: 1px solid var(--home-line);
+    border-top: 1px solid var(--home-line);
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .aboutFacts > div {
+    min-width: 0;
+    padding: 20px 0;
+  }
+
+  .aboutFacts > div:first-child {
+    border-right: 1px solid var(--home-line);
+    padding-right: 16px;
+  }
+
+  .aboutFacts > div:nth-child(2) {
+    padding-left: 18px;
+  }
+
+  .aboutFacts > div:last-child {
+    border-top: 1px solid var(--home-line);
+    grid-column: 1 / -1;
+  }
+
+  .aboutFacts dd {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  .stack {
+    margin-top: 48px;
+  }
+
+  .chips {
+    gap: 8px;
+  }
+
+  .chips span {
+    font-size: 11px;
+    padding: 8px 13px;
+  }
+
+  .titleRow {
+    align-items: flex-end;
+    margin-bottom: 36px;
+  }
+
+  .titleRow h2 {
+    font-size: clamp(38px, 11vw, 52px);
+    max-width: 75%;
+  }
+
+  .titleRow > span {
+    padding-bottom: 3px;
+  }
+
+  .workRowTrigger {
+    min-height: 108px;
+    padding: 25px 2px;
+  }
+
+  .workRowHead {
+    gap: 10px 12px;
+    grid-template-columns: 30px minmax(0, 1fr) 24px;
+  }
+
+  .workRowHead h3 {
+    font-size: clamp(24px, 7vw, 31px);
+    line-height: 0.96;
+  }
+
+  .workHeadTags {
+    display: none;
+  }
+
+  .workArrow {
+    height: 22px;
+    width: 22px;
+  }
+
+  .workDescriptionInner {
+    gap: 16px;
+    padding-left: 42px;
+    padding-top: 18px;
+  }
+
+  .workDescription p {
+    flex-basis: 100%;
+    font-size: 14px;
+  }
+
+  .workRow[data-expanded='true'] .workRowTrigger {
+    min-height: 238px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+
+  .workTags span {
+    font-size: 9px;
+    padding: 6px 9px;
+  }
+
+  .pillButton {
+    min-height: 46px;
+  }
+
+  .resourceGrid {
+    gap: 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resourceCard {
+    min-height: 158px;
+    padding: 18px;
+  }
+
+  .resourceCard:first-child,
+  .resourceCard:last-child {
+    grid-column: 1 / -1;
+    min-height: 142px;
+  }
+
+  .resourceCard h3 {
+    font-size: clamp(20px, 5.6vw, 25px);
+  }
+
+  .resourceCard p {
+    font-size: 9px;
+    line-height: 1.4;
+  }
+
+  .contact {
+    padding-bottom: 82px;
+    padding-top: 82px;
+    text-align: left;
+  }
+
+  .contact > a:not(.emailButton) {
+    font-size: clamp(62px, 20vw, 88px);
+    margin: 22px 0 26px;
+  }
+
+  .emailButton {
+    font-size: 10px;
+    gap: 8px;
+    margin-top: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    padding: 13px 16px;
+  }
+
+  .feedbackTab {
+    bottom: 14px;
+    left: auto;
+    right: 14px;
+    top: auto;
+    transform: translateY(calc(100% + 18px));
+    writing-mode: horizontal-tb;
+  }
+
+  .feedbackTab[data-visible='true'] {
+    transform: translateY(0);
+  }
+
+  .feedbackPanel {
+    border-left-width: 1px;
+    border-radius: 10px 10px 0 0;
+    bottom: 0;
+    max-width: none;
+    padding: 20px;
+    top: auto;
+    transform: translateY(110%);
+    width: 100%;
+  }
+
+  .feedbackPanel[data-open='true'] {
+    transform: translateY(0);
+  }
+
+  .cursorDot,
+  .cursorRing {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand span {
+    display: none;
+  }
+
+  .hero {
+    grid-template-rows: auto minmax(270px, 1fr) auto;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero::before {
+    left: 16px;
+    right: 16px;
+  }
+
+  .hero::after {
+    right: 16px;
+  }
+
+  .heroMeta {
+    grid-template-columns: 1fr 118px;
+  }
+
+  .heroTitle {
+    font-size: clamp(46px, 15.6vw, 56px);
+  }
+
+  .heroCta {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .heroHelloLink {
+    font-size: 10px;
+  }
+
+  .section,
+  .resources,
+  .contact,
+  .footer,
+  .stats {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .root *,
   .root *::before,

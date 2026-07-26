@@ -37,7 +37,7 @@
   font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(48px, 8vw, 106px);
   font-weight: 750;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.05em;
   line-height: 0.82;
   margin: 0;
   max-width: 1080px;
@@ -46,7 +46,7 @@
 
 .aboutPage h1 span {
   display: block;
-  padding-left: clamp(24px, 7vw, 110px);
+  /*padding-left: clamp(24px, 7vw, 110px);*/
 }
 
 .aboutPage_portrait {
