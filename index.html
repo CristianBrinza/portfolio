@@ -104,33 +104,33 @@
     <div id="root"></div>
     <script>
       (() => {
-        const recoveryKey = 'portfolio-pwa-recovery-v2';
+        const recoveryKey = "portfolio-pwa-recovery-v2";
         const cachePrefixes = [
-          'workbox-precache',
-          'assets-cache',
-          'pages-cache',
+          "workbox-precache",
+          "assets-cache",
+          "pages-cache",
         ];
 
         const recoverFromStalePWA = async () => {
-          if (sessionStorage.getItem(recoveryKey) === '1') return;
-          sessionStorage.setItem(recoveryKey, '1');
+          if (sessionStorage.getItem(recoveryKey) === "1") return;
+          sessionStorage.setItem(recoveryKey, "1");
 
-          if ('serviceWorker' in navigator) {
+          if ("serviceWorker" in navigator) {
             const registrations =
               await navigator.serviceWorker.getRegistrations();
             await Promise.all(
-              registrations.map(registration => registration.unregister())
+              registrations.map((registration) => registration.unregister()),
             );
           }
 
-          if ('caches' in window) {
+          if ("caches" in window) {
             const cacheNames = await caches.keys();
             await Promise.all(
               cacheNames
-                .filter(cacheName =>
-                  cachePrefixes.some(prefix => cacheName.startsWith(prefix))
+                .filter((cacheName) =>
+                  cachePrefixes.some((prefix) => cacheName.startsWith(prefix)),
                 )
-                .map(cacheName => caches.delete(cacheName))
+                .map((cacheName) => caches.delete(cacheName)),
             );
           }
 
@@ -138,8 +138,8 @@
         };
 
         window.addEventListener(
-          'error',
-          event => {
+          "error",
+          (event) => {
             if (
               event.target instanceof HTMLScriptElement ||
               event.target instanceof HTMLLinkElement
@@ -147,11 +147,11 @@
               void recoverFromStalePWA();
             }
           },
-          true
+          true,
         );
 
         window.setTimeout(() => {
-          const root = document.getElementById('root');
+          const root = document.getElementById("root");
           if (root && !root.hasChildNodes()) {
             void recoverFromStalePWA();
             return;
