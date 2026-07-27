@@ -13,6 +13,12 @@ const rootsToCheck = [
   "dist/index.html",
   "dist/manifest.webmanifest",
   "dist/sitemap.xml",
+  "dist/llms.txt",
+  "dist/llms-full.txt",
+  "dist/ai-index.json",
+  "dist/answers.json",
+  "dist/knowledge-graph.jsonld",
+  "dist/en",
 ];
 const textExtensions = new Set([
   ".css",
@@ -73,9 +79,23 @@ const indexHtml = await readFile(resolve(projectRoot, "index.html"), "utf8");
 for (const requiredValue of [
   "Cristian Brinza's Portfolio",
   "https://cristianbrinza.com/",
+  'href="/llms.txt"',
 ]) {
   if (!indexHtml.includes(requiredValue)) {
     errors.push(`index.html: missing required value ${requiredValue}`);
+  }
+}
+
+for (const generatedFile of [
+  "dist/llms.txt",
+  "dist/llms-full.txt",
+  "dist/ai-index.json",
+  "dist/answers.json",
+  "dist/knowledge-graph.jsonld",
+]) {
+  const content = await readFile(resolve(projectRoot, generatedFile), "utf8");
+  if (!content.includes("Cristian Brinza")) {
+    errors.push(`${generatedFile}: missing portfolio owner identity`);
   }
 }
 

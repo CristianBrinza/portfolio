@@ -14,6 +14,7 @@ import Notification from './components/Notification/Notification';
 import { LanguageProvider } from './context/LanguageContext';
 import ConsentBanner from './components/ConsentBanner/ConsentBanner';
 import DynamicPages from './components/DynamicPages/DynamicPages';
+import FeedbackMenu from './components/FeedbackMenu/FeedbackMenu';
 import Login from './pages/admin/login/Login';
 import { AuthProvider } from './context/AuthContext';
 import NotFound from './pages/NotFound.tsx';
@@ -114,6 +115,11 @@ function AppContent() {
   const isAppPath = location.pathname === '/app';
   const isHomePath =
     location.pathname === '/' || /^\/(en|ro|ru)\/?$/.test(location.pathname);
+  const isPrivatePath =
+    location.pathname === '/app' ||
+    /^\/(en|ro|ru)\/(?:login|dashboard(?:\/|$)|admin(?:\/|$)|guest(?:\/|$)|offline\/?$)/.test(
+      location.pathname
+    );
   return (
     <AuthProvider>
       {!isAppPath && !isHomePath && (
@@ -149,6 +155,9 @@ function AppContent() {
           <Suspense fallback={<div>Loading offline page...</div>}>
             <OfflinePage />
           </Suspense>
+        )}
+        {isOnline && !isPrivatePath && (
+          <FeedbackMenu key={location.pathname} revealOnScroll={isHomePath} />
         )}
         {!isAppPath && <ConsentBanner visible={!isStandalone()} />}
       </LanguageProvider>

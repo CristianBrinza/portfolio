@@ -36,6 +36,23 @@ Before opening a pull request, run `yarn lint`, `yarn build`, and `yarn audit`.
 
 TBD
 
+### AI and crawler discovery
+
+Every production build generates AI-readable content from
+[`scripts/site-content.mjs`](./scripts/site-content.mjs):
+
+- `/llms.txt` — concise, curated site guide following the llms.txt proposal.
+- `/llms-full.txt` — expanded professional and site context.
+- `/ai-index.json` — machine-readable public-page directory.
+- `/answers.json` — concise, source-linked answer feed for AEO/GEO retrieval.
+- `/knowledge-graph.jsonld` — portable Schema.org knowledge graph.
+- `/en/answers/` — visible answer page with matching FAQPage JSON-LD.
+- `/en/**/index.html.md` — clean Markdown mirrors of all public English pages.
+- `/sitemap.xml` — localized sitemap generated from the same public-page list.
+
+Run `yarn generate:ai` after `dist/` exists to regenerate only the AI files.
+`yarn build` and `yarn deploy` generate them automatically.
+
 ## Features
 
 TBD
@@ -46,7 +63,7 @@ Read the [contribution guidelines](/CONTRIBUTING.md) before contributing.
 
 ## Made with ❤️
 
-This (my portofolio) is an open source project and will always remain free to use. If you think it's cool, please star it 🌟. Also feel free contact me at [inbox.cristian.brinza@gmail.com](mailto:inbox.cristian.brinza@gmail.com) if you need any help with these or just want to say hi!
+This (my portofolio) is an open source project and will always remain free to use. If you think it's cool, please star it 🌟. Also feel free contact me at [inbox@cristianbrinza.com](mailto:inbox@cristianbrinza.com) if you need any help with these or just want to say hi!
 
 <hr>
 <h1 align='center'><i>Stay awesome!</i></h1>

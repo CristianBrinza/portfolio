@@ -16,6 +16,32 @@ https://:version.:project.pages.dev/*
 /manifest.webmanifest
   Cache-Control: public, max-age=0, must-revalidate
 
+# AI-readable discovery and context files are revalidated frequently so every
+# deployment can publish updated professional information quickly.
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/llms-full.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/*.jsonld
+  Content-Type: application/ld+json; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/ai-index.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/answers.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/*/index.html.md
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
 # Internal, private, temporary and utility-support routes.
 /app*
   X-Robots-Tag: noindex, nofollow, noarchive

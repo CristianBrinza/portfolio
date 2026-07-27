@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import ArrowUpRight from '../components/ArrowUpRight/ArrowUpRight.tsx';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
-import FeedbackMenu from '../components/FeedbackMenu/FeedbackMenu.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import { isSupportedLanguage } from '../seo/siteSeo.ts';
 import styles from './Contact.module.css';
@@ -15,6 +14,8 @@ type FormValues = {
   message: string;
   name: string;
 };
+
+type SubmitStatus = 'error' | 'idle' | 'success';
 
 type ContactDetailIconName = 'clock' | 'location' | 'phone' | 'reply';
 
@@ -63,33 +64,42 @@ export default function Contact() {
   const routeLanguage = pathname.split('/').filter(Boolean)[0] ?? '';
   const language = isSupportedLanguage(routeLanguage) ? routeLanguage : 'en';
   const {
-    formState: { errors, isSubmitting, isSubmitSuccessful },
+    formState: { errors, isSubmitting },
     handleSubmit,
     register,
     reset,
   } = useForm<FormValues>();
-  const [isError, setIsError] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
 
   const onSubmit: SubmitHandler<FormValues> = async data => {
     try {
+      setSubmitStatus('idle');
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS environment variables are not configured.');
+      }
+
       await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID!,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID!,
+        serviceId,
+        templateId,
         {
           from_name: data.name,
           message: data.message,
           reply_to: data.email,
-          to_name: 'Cristian Brinza',
+          to_name: 'Recipient Name',
         },
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+        publicKey
       );
       reset();
-      setIsError(false);
+      setSubmitStatus('success');
     } catch (error) {
       if (import.meta.env.DEV) {
         console.error('EmailJS Error:', error);
       }
-      setIsError(true);
+      setSubmitStatus('error');
     }
   };
 
@@ -227,12 +237,12 @@ export default function Contact() {
                 )}
               </div>
 
-              {isSubmitSuccessful && !isError && (
+              {submitStatus === 'success' && (
                 <p className={styles.successMessage} role="status">
                   {t('contact_v2.status.success')}
                 </p>
               )}
-              {isError && (
+              {submitStatus === 'error' && (
                 <p className={styles.errorMessage} role="alert">
                   {t('contact_v2.status.error')}
                 </p>
@@ -305,7 +315,6 @@ export default function Contact() {
       </main>
 
       <Footer type="2" />
-      <FeedbackMenu />
     </>
   );
 }

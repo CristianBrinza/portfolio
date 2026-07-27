@@ -409,7 +409,7 @@ export default function About() {
                     <small>Selected projects</small>
                     <b aria-hidden="true">→</b>
                   </Link>
-                  <a href="mailto:inbox.cristian.brinza@gmail.com">
+                  <a href="mailto:inbox@cristianbrinza.com">
                     <span>Email</span>
                     <small>Start a conversation</small>
                     <b aria-hidden="true">↗</b>

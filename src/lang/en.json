@@ -382,9 +382,19 @@
     "feedback": {
       "tab": "Feedback",
       "title": "Feedback",
-      "description": "Spotted something off, or have an idea? Tell me — it goes straight to my inbox.",
-      "placeholder": "Your feedback…",
+      "description": "Rate the portfolio and share what I can improve.",
+      "questions": {
+        "design": "How would you rate the overall design?",
+        "usability": "How would you rate usability and navigation?",
+        "work": "How likely are you to consider working with me?"
+      },
+      "rating_label": "{{value}} out of 5",
+      "placeholder": "How can I improve?",
       "send": "Send feedback",
+      "sending": "Sending…",
+      "success": "Thank you — your feedback was sent.",
+      "validation_error": "Please complete all ratings and add your feedback.",
+      "error": "Feedback could not be sent. Please try again.",
       "close": "Close feedback",
       "subject": "Website feedback"
     }

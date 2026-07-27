@@ -323,9 +323,9 @@ export default function Legal() {
                   {section.id === 'legal-contact' && (
                     <a
                       className="legalPage_email"
-                      href="mailto:inbox.cristian.brinza@gmail.com"
+                      href="mailto:inbox@cristianbrinza.com"
                     >
-                      inbox.cristian.brinza@gmail.com ↗
+                      inbox@cristianbrinza.com ↗
                     </a>
                   )}
                 </div>

@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/generate-sitemap.mjs && node scripts/check-seo-branding.mjs",
+    "build": "tsc -b && vite build && node scripts/generate-sitemap.mjs && yarn generate:ai && yarn check:ai && node scripts/check-seo-branding.mjs",
+    "check:ai": "node scripts/check-ai-readiness.mjs",
+    "generate:ai": "node scripts/generate-ai-content.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "deploy": "yarn build && wrangler pages deploy ./dist --project-name=portfolio",
+    "deploy": "wrangler pages deploy ./dist --project-name=portfolio",
     "predeploy": "yarn build"
   },
   "engines": {

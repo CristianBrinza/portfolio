@@ -1,4 +1,3 @@
-import { FormEvent, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import Footer from '../../../components/Footer/Footer';
@@ -14,77 +13,11 @@ const resources = [
   ['06', 'utilities', 'utilities'],
 ];
 
-let feedbackDismissedForPageLoad = false;
-
 export default function ContactFooter() {
   const { t, i18n } = useTranslation();
-  const [feedbackOpen, setFeedbackOpen] = useState(false);
-  const [feedbackTabVisible, setFeedbackTabVisible] = useState(false);
-  const [feedback, setFeedback] = useState('');
   const language = ['en', 'ro', 'ru'].includes(i18n.resolvedLanguage ?? '')
     ? i18n.resolvedLanguage
     : 'en';
-
-  useEffect(() => {
-    let revealReady = false;
-    const updateFeedbackVisibility = () => {
-      if (feedbackDismissedForPageLoad) return;
-      setFeedbackTabVisible(
-        revealReady && window.scrollY > Math.max(280, window.innerHeight * 0.55)
-      );
-    };
-    const revealTimer = window.setTimeout(() => {
-      revealReady = true;
-      updateFeedbackVisibility();
-    }, 3000);
-    window.addEventListener('scroll', updateFeedbackVisibility, {
-      passive: true,
-    });
-    window.addEventListener('resize', updateFeedbackVisibility);
-
-    return () => {
-      window.clearTimeout(revealTimer);
-      window.removeEventListener('scroll', updateFeedbackVisibility);
-      window.removeEventListener('resize', updateFeedbackVisibility);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!feedbackOpen) return;
-
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        feedbackDismissedForPageLoad = true;
-        setFeedbackOpen(false);
-        setFeedbackTabVisible(false);
-      }
-    };
-    window.addEventListener('keydown', closeOnEscape);
-    return () => window.removeEventListener('keydown', closeOnEscape);
-  }, [feedbackOpen]);
-
-  const openFeedback = () => {
-    feedbackDismissedForPageLoad = true;
-    setFeedbackTabVisible(false);
-    setFeedbackOpen(true);
-  };
-
-  const closeFeedback = () => {
-    feedbackDismissedForPageLoad = true;
-    setFeedbackOpen(false);
-    setFeedbackTabVisible(false);
-  };
-
-  const sendFeedback = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const message = feedback.trim();
-    if (!message) return;
-    const subject = encodeURIComponent(t('home_v2.feedback.subject'));
-    const body = encodeURIComponent(message);
-    window.location.href = `mailto:inbox.cristian.brinza@gmail.com?subject=${subject}&body=${body}`;
-    setFeedback('');
-    closeFeedback();
-  };
 
   return (
     <>
@@ -138,7 +71,7 @@ export default function ContactFooter() {
         <a
           data-home-reveal
           data-magnetic=""
-          href="mailto:inbox.cristian.brinza@gmail.com"
+          href="mailto:inbox@cristianbrinza.com"
         >
           {t('home_v2.contact.title')}
         </a>
@@ -146,63 +79,13 @@ export default function ContactFooter() {
           className={styles.emailButton}
           data-home-reveal
           data-magnetic=""
-          href="mailto:inbox.cristian.brinza@gmail.com"
+          href="mailto:inbox@cristianbrinza.com"
         >
           inbox@cristianbrinza.com <ArrowUpRight />
         </a>
       </section>
 
       <Footer type="1" />
-
-      <button
-        aria-hidden={!feedbackTabVisible}
-        aria-expanded={feedbackOpen}
-        className={styles.feedbackTab}
-        data-visible={feedbackTabVisible}
-        onClick={openFeedback}
-        tabIndex={feedbackTabVisible ? 0 : -1}
-        type="button"
-      >
-        {t('home_v2.feedback.tab')}
-      </button>
-      <aside
-        aria-hidden={!feedbackOpen}
-        aria-label={t('home_v2.feedback.title')}
-        className={styles.feedbackPanel}
-        data-open={feedbackOpen}
-      >
-        <div className={styles.feedbackHeader}>
-          <span>{t('home_v2.feedback.title')}</span>
-          <button
-            aria-label={t('home_v2.feedback.close')}
-            onClick={closeFeedback}
-            type="button"
-          >
-            ×
-          </button>
-        </div>
-        <p>{t('home_v2.feedback.description')}</p>
-        <form onSubmit={sendFeedback}>
-          <label className={styles.srOnly} htmlFor="home-feedback">
-            {t('home_v2.feedback.placeholder')}
-          </label>
-          <textarea
-            id="home-feedback"
-            onChange={event => setFeedback(event.target.value)}
-            placeholder={t('home_v2.feedback.placeholder')}
-            required
-            rows={4}
-            value={feedback}
-          />
-          <button
-            className={styles.primaryButton}
-            data-magnetic=""
-            type="submit"
-          >
-            {t('home_v2.feedback.send')}
-          </button>
-        </form>
-      </aside>
     </>
   );
 }

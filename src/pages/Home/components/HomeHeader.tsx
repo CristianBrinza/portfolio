@@ -145,7 +145,7 @@ export default function HomeHeader({ theme, onToggleTheme }: HomeHeaderProps) {
       route: true,
     },
     { href: '#services', label: 'home_v2.nav.services', route: false },
-    { href: '#contact', label: 'home_v2.nav.contact', route: false },
+    { href: '/contact', label: 'home_v2.nav.contact', route: true },
   ];
   const sectionItems = [
     ['#hero', 'home_v2.nav.intro'],

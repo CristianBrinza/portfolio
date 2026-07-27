@@ -382,9 +382,19 @@
     "feedback": {
       "tab": "Feedback",
       "title": "Feedback",
-      "description": "Ai observat ceva greșit sau ai o idee? Spune-mi — mesajul ajunge direct în inboxul meu.",
-      "placeholder": "Feedbackul tău…",
+      "description": "Evaluează portofoliul și spune-mi ce pot îmbunătăți.",
+      "questions": {
+        "design": "Cum evaluezi designul general?",
+        "usability": "Cum evaluezi utilizarea și navigarea?",
+        "work": "Cât de probabil este să lucrezi cu mine?"
+      },
+      "rating_label": "{{value}} din 5",
+      "placeholder": "Ce pot îmbunătăți?",
       "send": "Trimite feedback",
+      "sending": "Se trimite…",
+      "success": "Mulțumesc — feedbackul a fost trimis.",
+      "validation_error": "Completează toate evaluările și adaugă feedbackul tău.",
+      "error": "Feedbackul nu a putut fi trimis. Încearcă din nou.",
       "close": "Închide feedbackul",
       "subject": "Feedback pentru site"
     }

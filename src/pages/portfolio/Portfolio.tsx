@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import ArrowUpRight from '../../components/ArrowUpRight/ArrowUpRight.tsx';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.tsx';
-import FeedbackMenu from '../../components/FeedbackMenu/FeedbackMenu.tsx';
 import Footer from '../../components/Footer/Footer.tsx';
 import styles from './Portfolio.module.css';
 
@@ -299,7 +298,7 @@ export default function Portfolio() {
           className={styles.contact}
         >
           <span>{t('portfolio_v2.contact.eyebrow')}</span>
-          <a href="mailto:inbox.cristian.brinza@gmail.com">
+          <a href="mailto:inbox@cristianbrinza.com">
             <h2 id="portfolio-contact-title">
               {t('portfolio_v2.contact.title')}
             </h2>
@@ -317,7 +316,6 @@ export default function Portfolio() {
       </main>
 
       <Footer type="2" />
-      <FeedbackMenu />
     </>
   );
 }
