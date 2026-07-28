@@ -1,4 +1,9 @@
 import ReactGA from 'react-ga4';
+import {
+  getLocalStorageItem,
+  removeLocalStorageItem,
+  setLocalStorageItem,
+} from './browserStorage';
 
 export type ConsentPreferences = {
   analytics: boolean;
@@ -55,7 +60,7 @@ function applyDefaultConsent() {
 }
 
 export function getConsentPreferences(): StoredConsentPreferences | null {
-  const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
+  const stored = getLocalStorageItem(CONSENT_STORAGE_KEY);
   if (!stored) return null;
 
   try {
@@ -81,7 +86,7 @@ export function getConsentPreferences(): StoredConsentPreferences | null {
     // A malformed value is not a valid consent choice.
   }
 
-  localStorage.removeItem(CONSENT_STORAGE_KEY);
+  removeLocalStorageItem(CONSENT_STORAGE_KEY);
   return null;
 }
 
@@ -162,8 +167,8 @@ export function saveConsentPreferences(preferences: ConsentPreferences) {
     updatedAt: new Date().toISOString(),
   };
 
-  localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(storedPreferences));
-  localStorage.setItem(
+  setLocalStorageItem(CONSENT_STORAGE_KEY, JSON.stringify(storedPreferences));
+  setLocalStorageItem(
     LEGACY_CONSENT_STORAGE_KEY,
     preferences.analytics ? 'granted' : 'denied'
   );

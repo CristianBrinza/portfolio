@@ -122,7 +122,8 @@
     <div id="root"></div>
     <script>
       (() => {
-        const recoveryKey = "portfolio-pwa-recovery-v2";
+        const recoveryVersion = "3";
+        const recoveryParam = "pwa-recovery";
         const cachePrefixes = [
           "workbox-precache",
           "assets-cache",
@@ -130,29 +131,34 @@
         ];
 
         const recoverFromStalePWA = async () => {
-          if (sessionStorage.getItem(recoveryKey) === "1") return;
-          sessionStorage.setItem(recoveryKey, "1");
+          const url = new URL(window.location.href);
+          if (url.searchParams.get(recoveryParam) === recoveryVersion) return;
 
-          if ("serviceWorker" in navigator) {
-            const registrations =
-              await navigator.serviceWorker.getRegistrations();
-            await Promise.all(
-              registrations.map((registration) => registration.unregister()),
-            );
+          try {
+            if ("serviceWorker" in navigator) {
+              const registrations =
+                await navigator.serviceWorker.getRegistrations();
+              await Promise.all(
+                registrations.map((registration) => registration.unregister()),
+              );
+            }
+
+            if ("caches" in window) {
+              const cacheNames = await caches.keys();
+              await Promise.all(
+                cacheNames
+                  .filter((cacheName) =>
+                    cachePrefixes.some((prefix) =>
+                      cacheName.startsWith(prefix),
+                    ),
+                  )
+                  .map((cacheName) => caches.delete(cacheName)),
+              );
+            }
+          } finally {
+            url.searchParams.set(recoveryParam, recoveryVersion);
+            window.location.replace(url.toString());
           }
-
-          if ("caches" in window) {
-            const cacheNames = await caches.keys();
-            await Promise.all(
-              cacheNames
-                .filter((cacheName) =>
-                  cachePrefixes.some((prefix) => cacheName.startsWith(prefix)),
-                )
-                .map((cacheName) => caches.delete(cacheName)),
-            );
-          }
-
-          window.location.reload();
         };
 
         window.addEventListener(
@@ -175,7 +181,11 @@
             return;
           }
 
-          sessionStorage.removeItem(recoveryKey);
+          const url = new URL(window.location.href);
+          if (url.searchParams.has(recoveryParam)) {
+            url.searchParams.delete(recoveryParam);
+            window.history.replaceState({}, "", url.toString());
+          }
         }, 8000);
       })();
     </script>

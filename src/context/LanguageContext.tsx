@@ -2,6 +2,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
+import {
+  getLocalStorageItem,
+  setLocalStorageItem,
+} from '../utils/browserStorage';
 
 // Define the context type properly
 interface LanguageContextProps {
@@ -22,7 +26,7 @@ export const LanguageProvider = ({
   children: React.ReactNode;
 }) => {
   const [language, setLanguage] = useState(
-    localStorage.getItem('i18nextLng') || 'en'
+    getLocalStorageItem('i18nextLng') || 'en'
   );
   const { i18n } = useTranslation();
   const location = useLocation();
@@ -45,7 +49,7 @@ export const LanguageProvider = ({
     }
 
     if (!['en', 'ro', 'ru'].includes(detectedLang)) {
-      detectedLang = localStorage.getItem('i18nextLng') || 'en';
+      detectedLang = getLocalStorageItem('i18nextLng') || 'en';
       const newPath =
         '/' +
         detectedLang +
@@ -54,7 +58,7 @@ export const LanguageProvider = ({
     } else if (detectedLang !== i18n.language) {
       i18n.changeLanguage(detectedLang).then(() => {
         setLanguage(detectedLang);
-        localStorage.setItem('i18nextLng', detectedLang);
+        setLocalStorageItem('i18nextLng', detectedLang);
       });
     }
   }, [location.pathname, i18n.language, navigate]);

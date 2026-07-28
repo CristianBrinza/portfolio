@@ -8,13 +8,17 @@ import HomeHeader from './components/HomeHeader';
 import ServicesSection from './components/ServicesSection';
 import WorkSection from './components/WorkSection';
 import styles from './Home.module.css';
+import {
+  getLocalStorageItem,
+  setLocalStorageItem,
+} from '../../utils/browserStorage';
 
 export type HomeTheme = 'light' | 'dark';
 
 export default function Home() {
   const { i18n } = useTranslation();
   const [theme, setTheme] = useState<HomeTheme>(() => {
-    return localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+    return getLocalStorageItem('theme') === 'dark' ? 'dark' : 'light';
   });
 
   useEffect(() => {
@@ -23,7 +27,7 @@ export default function Home() {
     root.classList.toggle('dark-mode', theme === 'dark');
     root.style.colorScheme = theme;
     root.style.scrollBehavior = 'smooth';
-    localStorage.setItem('theme', theme);
+    setLocalStorageItem('theme', theme);
     return () => {
       root.style.scrollBehavior = previousScrollBehavior;
     };

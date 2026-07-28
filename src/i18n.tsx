@@ -6,6 +6,10 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import translationEnglish from './lang/en.json';
 import translationRomanian from './lang/ro.json';
 import translationRussian from './lang/ru.json';
+import {
+  getLocalStorageItem,
+  setLocalStorageItem,
+} from './utils/browserStorage';
 
 const resources = {
   en: {
@@ -25,7 +29,7 @@ i18next
   .use(initReactI18next)
   .init({
     resources,
-    lng: localStorage.getItem('i18nextLng') || 'en', // Load from localStorage or default to 'en'
+    lng: getLocalStorageItem('i18nextLng') || 'en',
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
@@ -36,7 +40,7 @@ i18next
   });
 
 i18next.on('languageChanged', lng => {
-  localStorage.setItem('i18nextLng', lng);
+  setLocalStorageItem('i18nextLng', lng);
 });
 
 export default i18next;

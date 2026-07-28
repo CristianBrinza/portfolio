@@ -1,6 +1,11 @@
 // src/context/AuthContext.tsx
 
 import React, { createContext, useContext, useState } from 'react';
+import {
+  getLocalStorageItem,
+  removeLocalStorageItem,
+  setLocalStorageItem,
+} from '../utils/browserStorage';
 
 interface AuthContextProps {
   role: 'admin' | 'user' | 'guest' | null;
@@ -21,9 +26,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [role, setRole] = useState<'admin' | 'user' | 'guest' | null>(() => {
-    // Initialize role from localStorage synchronously
-    const savedToken = localStorage.getItem('token');
-    const savedRole = localStorage.getItem('role') as
+    const savedToken = getLocalStorageItem('token');
+    const savedRole = getLocalStorageItem('role') as
       'admin' | 'user' | 'guest' | null;
     if (savedToken && savedRole) {
       return savedRole;
@@ -33,14 +37,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   });
 
   const login = (token: string, userRole: 'admin' | 'user' | 'guest') => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('role', userRole);
+    setLocalStorageItem('token', token);
+    setLocalStorageItem('role', userRole);
     setRole(userRole);
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    removeLocalStorageItem('token');
+    removeLocalStorageItem('role');
     setRole(null);
   };
 
