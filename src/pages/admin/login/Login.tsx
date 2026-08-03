@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useLocation, useParams } from 'react-router';
 import Breadcrumb from '../../../components/Breadcrumb/Breadcrumb';
 import { Trans } from 'react-i18next';
 import Footer from '../../../components/Footer/Footer';

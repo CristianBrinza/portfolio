@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 import api from '../../utils/api';
 import Page from '../../components/Page';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb';

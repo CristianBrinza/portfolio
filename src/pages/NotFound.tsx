@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import styles from '../styles/NotFound.module.css';

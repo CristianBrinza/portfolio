@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './Navbar.css';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router';
 import Button from '../Button.tsx';
 import Icon from '../Icon.tsx';
 import Popup from '../Popup/Popup.tsx';

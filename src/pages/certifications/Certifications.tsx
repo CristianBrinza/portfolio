@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import ArrowUpRight from '../../components/ArrowUpRight/ArrowUpRight.tsx';
 import Breadcrumb from '../../components/Breadcrumb/Breadcrumb.tsx';
 import Footer from '../../components/Footer/Footer.tsx';

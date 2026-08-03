@@ -5,7 +5,7 @@ import Button from '../../../components/Button';
 import Notification from '../../../components/Notification/Notification';
 import Icon from '../../../components/Icon';
 import { useAuth } from '../../../context/AuthContext';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout.tsx';
 import { storage_menu as AdminMenu } from '../menues.ts';
 

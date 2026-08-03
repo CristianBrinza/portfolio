@@ -6,7 +6,7 @@ import {
   Route,
   useLocation,
   useNavigate,
-} from 'react-router-dom';
+} from 'react-router';
 import './App.css';
 import i18n from './i18n';
 import { routes } from './routesConfig';

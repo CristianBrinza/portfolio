@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { useState } from 'react';
 import Icon, { icons } from '../../components/Icon.tsx';
 import styles from './IconInfo.module.css';

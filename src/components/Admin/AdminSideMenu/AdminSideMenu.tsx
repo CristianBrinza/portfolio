@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import styles from './AdminSideMenu.module.css';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Icon, { icons } from '../../Icon.tsx';
 
 interface AdminItem {

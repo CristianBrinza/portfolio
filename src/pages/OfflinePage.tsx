@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router';
 import Breadcrumb from '../components/Breadcrumb/Breadcrumb.tsx';
 import Footer from '../components/Footer/Footer.tsx';
 import styles from '../styles/Offline.module.css';

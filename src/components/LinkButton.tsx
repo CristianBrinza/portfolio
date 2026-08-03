@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Icon from './Icon.tsx';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 interface LinkButtonProps {
   to?: string;

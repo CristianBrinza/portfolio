@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from 'react';
 import styles from './AdminNavbar.module.css'; // Import the CSS module
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router';
 import Button from '../../Button';
 import Icon from '../../Icon';
 import Popup from '../../Popup/Popup';

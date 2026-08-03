@@ -6,7 +6,7 @@ import Title from '../../components/Text/Title/Title.tsx';
 import Input from '../../components/input/Input.tsx';
 import { useState } from 'react';
 import Footer from '../../components/Footer/Footer.tsx';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export default function IconShowcase() {
   const breadcrumbItems = [

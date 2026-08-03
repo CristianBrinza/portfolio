@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef } from 'react';
-import { useLocation, useNavigationType } from 'react-router-dom';
+import { useLocation, useNavigationType } from 'react-router';
 
 interface ScrollPosition {
   x: number;

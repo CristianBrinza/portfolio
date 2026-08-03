@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../../context/AuthContext';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 import api from '../../../utils/api';
 import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout';
 import Button from '../../../components/Button';

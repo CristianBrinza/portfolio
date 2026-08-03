@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import api from '../../utils/api';
 import './SharedFilesPage.css';
 import Page from '../../components/Page.tsx';

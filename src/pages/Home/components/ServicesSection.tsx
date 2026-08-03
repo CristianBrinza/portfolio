@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import styles from '../Home.module.css';
 import { ArrowRight, ArrowUpRight } from './HomeIcons';
 

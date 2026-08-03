@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import api from '../../../utils/api';
 import AdminLayout from '../../../components/Admin/AdminLayout/AdminLayout';
 import Button from '../../../components/Button';

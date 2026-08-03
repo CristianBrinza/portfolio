@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import Footer from '../../../components/Footer/Footer';
 import styles from '../Home.module.css';
 import { ArrowUpRight } from './HomeIcons';
