@@ -35,4 +35,7 @@ jobs:
         run: yarn build
 
       - name: Audit dependencies
-        run: yarn audit
+        # yarn audit exit bits: 2 low, 4 moderate, 8 high, 16 critical. deepmerge
+        # (low, build-time, via workbox-build) has no patched release, so fail on
+        # moderate and above only.
+        run: yarn audit || test $? -lt 4
