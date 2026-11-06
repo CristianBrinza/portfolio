@@ -16,7 +16,7 @@
     "predeploy": "yarn build"
   },
   "engines": {
-    "node": ">=22.13.0"
+    "node": ">=22.23.4"
   },
   "dependencies": {
     "@emailjs/browser": "^5.0.3",
