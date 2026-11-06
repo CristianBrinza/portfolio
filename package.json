@@ -19,7 +19,7 @@
     "node": ">=22.13.0"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
+    "@emailjs/browser": "^5.0.3",
     "axios": "^1.21.0",
     "js-cookie": "^3.0.8",
     "jwt-decode": "^4.0.0",
