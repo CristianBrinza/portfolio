@@ -14,6 +14,41 @@ import Icon, { icons } from '../../../components/Icon.tsx';
 import { chunkUpload } from '../../../utils/chunkUpload';
 import Input from '../../../components/input/Input.tsx';
 
+// Previews need a login, which an <img src> cannot send.
+const AuthImage: React.FC<{ filePath: string; alt: string }> = ({
+  filePath,
+  alt,
+}) => {
+  const [src, setSrc] = useState<string>();
+
+  useEffect(() => {
+    let active = true;
+    let url: string | undefined;
+    const encodedPath = filePath.split('/').map(encodeURIComponent).join('/');
+    api
+      .get(`/share/preview/${encodedPath}`, { responseType: 'blob' })
+      .then(response => {
+        if (!active) return;
+        url = URL.createObjectURL(response.data);
+        setSrc(url);
+      })
+      .catch(() => setSrc(undefined));
+    return () => {
+      active = false;
+      if (url) URL.revokeObjectURL(url);
+    };
+  }, [filePath]);
+
+  if (!src) return <Icon type="empty" />;
+  return (
+    <img
+      src={src}
+      alt={alt}
+      style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'cover' }}
+    />
+  );
+};
+
 interface FileItem {
   name: string;
   type: 'file' | 'folder';
@@ -543,7 +578,6 @@ const ShareManager: React.FC = () => {
     '.webp',
     '.bmp',
   ]);
-  const videoExtensions = new Set(['.mp4', '.mov', '.webm', '.ogg', '.avi']);
   const extensionIconMap: { [ext: string]: string } = {
     '.zip': 'copy',
     '.rar': 'copy',
@@ -571,25 +605,7 @@ const ShareManager: React.FC = () => {
 
     // If it's an image
     if (imageExtensions.has(ext)) {
-      // For an image preview, e.g. <img src={`/share/${item.path}`} />
-      return (
-        <img
-          src={`${import.meta.env.VITE_BACKEND}/share/preview/${item.path}`}
-          alt={item.name}
-          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'cover' }}
-        />
-      );
-    }
-
-    // If it's a video
-    if (videoExtensions.has(ext)) {
-      return (
-        <video
-          src={`${import.meta.env.VITE_BACKEND}/share/preview/${item.path}`}
-          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'cover' }}
-          muted
-        />
-      );
+      return <AuthImage filePath={item.path} alt={item.name} />;
     }
 
     // If we have a known icon for this extension
